@@ -99,6 +99,27 @@
           }
         }
       }
+    },
+    "form-builder": {
+      "root": "libs/form-builder",
+      "sourceRoot": "libs/form-builder/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/form-builder/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/form-builder"],
+          "options": {
+            "jestConfig": "libs/form-builder/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
