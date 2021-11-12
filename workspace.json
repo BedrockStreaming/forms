@@ -120,6 +120,27 @@
           }
         }
       }
+    },
+    "form-redux": {
+      "root": "libs/form-redux",
+      "sourceRoot": "libs/form-redux/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/form-redux/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/form-redux"],
+          "options": {
+            "jestConfig": "libs/form-redux/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

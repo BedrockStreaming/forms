@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@forms/form-builder": ["libs/form-builder/src/index.ts"]
+      "@forms/form-builder": ["libs/form-builder/src/index.ts"],
+      "@forms/form-redux": ["libs/form-redux/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

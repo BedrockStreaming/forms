@@ -28,13 +28,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+            ref: ${{ github.event.pull_request.head.ref }}
+            fetch-depth: 0
+      - run: |
+            git fetch --no-tags --prune --depth=5 origin master
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - run: yarn install --frozen-lockfile --non-interactive --no-progress
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected  --base=origin/master --target=build --parallel --max-parallel=3
+      - run: npx nx affected  --base=origin/master --target=test --parallel --max-parallel=2

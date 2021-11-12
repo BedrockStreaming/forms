@@ -4,7 +4,7 @@ import { DEFAULT_RULES_NAMES } from '../constants';
 import { ExtraValidation, Validations } from '../types';
 import { FieldErrors } from 'react-hook-form';
 export interface GetFieldRulesArgs {
-  validation: Validations;
+  validation?: Validations;
   extraValidation?: ExtraValidation;
 }
 

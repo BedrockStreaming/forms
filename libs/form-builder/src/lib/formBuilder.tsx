@@ -127,7 +127,7 @@ export function FormBuilder<FormValues>(props: FormBuilderProps<FormValues>) {
                         fieldType={type}
                         validation={validation}
                         dictionary={dictionary}
-                        errors={errors[id]}
+                        errors={_.get(errors, [id])}
                         setFieldValue={setFieldValue}
                         triggerValidationField={triggerValidationField}
                         {..._.omit(field, 'ref')}

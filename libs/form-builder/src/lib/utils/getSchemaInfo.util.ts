@@ -3,7 +3,7 @@ import { SUBMIT_FIELD_TYPE } from '../constants';
 import { FormFields, FormSchema } from '../types';
 
 const EMPTY_ARRAY = [] as string[];
-const EMPTY_OBJECT = {} as never;
+const EMPTY_OBJECT = {} as any;
 
 export const sanitizeFieldsById = (
   fieldsById: string[],

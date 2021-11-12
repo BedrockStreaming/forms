@@ -6,7 +6,6 @@ export type RuleCheck = (value: string | number) => boolean;
 
 export interface RuleObject {
   key: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   check: (value: any) => 0 | 1 | 2;
 }
 
@@ -14,7 +13,6 @@ export type Rule = (key: string, check: RuleCheck) => RuleObject;
 
 export const rule = (key: string, check: RuleCheck) => ({
   key,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   check: (value: any) => {
     if (typeof value === 'undefined' || !value.length) {
       return DEFAULT_STATE;

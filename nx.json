@@ -36,6 +36,9 @@
     },
     "form-builder": {
       "tags": []
+    },
+    "form-redux": {
+      "tags": []
     }
   }
 }

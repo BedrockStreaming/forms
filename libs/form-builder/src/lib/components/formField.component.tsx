@@ -12,7 +12,6 @@ export interface FormFieldProps<FormValues> {
   propRef?: Ref;
   disabled?: boolean;
   label?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (event: any) => void;
 }
 
