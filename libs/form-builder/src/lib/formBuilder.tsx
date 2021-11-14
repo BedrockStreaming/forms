@@ -27,7 +27,7 @@ import { useAutoFocus } from './hooks/useAutoFocus';
 const { DEBUG } = process.env;
 
 export interface FormBuilderProps<FormValues> {
-  defaultValues: DefaultValues<FormValues>;
+  defaultValues?: DefaultValues<FormValues>;
   behavior: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;

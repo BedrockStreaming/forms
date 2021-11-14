@@ -48,7 +48,7 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const stepsById = _.get(action, 'schema.stepsById');
+      const stepsById = _.get(action, ['schema', 'stepsById'], [] as string[]);
       const currentFormState = {
         ...defaultFormState,
         stepsCount: stepsById.length,

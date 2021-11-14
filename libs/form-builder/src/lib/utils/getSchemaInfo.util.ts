@@ -24,10 +24,8 @@ export const getSchemaInfo = (
   const steps = _.get(schema, 'steps');
   const stepsById = _.get(schema, 'stepsById', EMPTY_ARRAY);
   const stepId = _.get(stepsById, currentStepIndex);
-
   const fieldsById = _.get(steps, [stepId, 'fieldsById'], EMPTY_ARRAY);
   const submitLabel = _.get(steps, [stepId, 'submit', 'label']);
-
   const fields = _.get(schema, 'fields', EMPTY_OBJECT);
 
   return {

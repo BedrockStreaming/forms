@@ -78,11 +78,13 @@ interface UseCheckFormStepValidityArgs<FormValues> {
   watch: UseFormWatch<FormValues>;
 }
 
+const EMPTY_DEFAULT_VALUES = {} as DefaultValues<any>;
+
 export function useCheckFormStepValidity<FormValues>({
   schema,
   currentStepIndex,
   dirtyFields,
-  defaultValues = {} as DefaultValues<FormValues>,
+  defaultValues = EMPTY_DEFAULT_VALUES,
   watch,
   trigger
 }: UseCheckFormStepValidityArgs<FormValues>) {

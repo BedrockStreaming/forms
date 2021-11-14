@@ -40,10 +40,10 @@ interface AbstractMapOfString {
 }
 
 export interface GetValidationRulesHintsArgs {
-  t?: (value: string, config: AbstractMapOfString) => string;
+  t?: (value: string, config?: AbstractMapOfString) => string;
   errors: FieldErrors;
   validation: Validations;
-  config: AbstractMapOfString;
+  config?: AbstractMapOfString;
 }
 
 export const getValidationRulesHints = ({
