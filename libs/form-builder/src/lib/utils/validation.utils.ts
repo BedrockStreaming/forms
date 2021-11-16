@@ -1,8 +1,10 @@
+import { FieldErrors, RegisterOptions } from 'react-hook-form';
 import _ from 'lodash';
+
 import { RuleObject, rule } from './rule.utils';
 import { DEFAULT_RULES_NAMES } from '../constants';
 import { ExtraValidation, Validations } from '../types';
-import { FieldErrors } from 'react-hook-form';
+
 export interface GetFieldRulesArgs {
   validation?: Validations;
   extraValidation?: ExtraValidation;
@@ -11,7 +13,7 @@ export interface GetFieldRulesArgs {
 export const getFieldRules = ({
   validation,
   extraValidation
-}: GetFieldRulesArgs) => {
+}: GetFieldRulesArgs): RegisterOptions => {
   const hookFormRules = _.reduce(
     validation,
     (acc, { key, ...rest }) =>

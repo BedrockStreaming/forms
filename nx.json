@@ -39,6 +39,9 @@
     },
     "form-redux": {
       "tags": []
+    },
+    "form-validation-rule-list": {
+      "tags": []
     }
   }
 }

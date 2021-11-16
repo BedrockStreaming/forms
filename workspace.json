@@ -141,6 +141,48 @@
           }
         }
       }
+    },
+    "form-validation-rule-list": {
+      "root": "libs/form-validation-rule-list",
+      "sourceRoot": "libs/form-validation-rule-list/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/form-validation-rule-list",
+            "tsConfig": "libs/form-validation-rule-list/tsconfig.lib.json",
+            "project": "libs/form-validation-rule-list/package.json",
+            "entryFile": "libs/form-validation-rule-list/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/form-validation-rule-list/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/form-validation-rule-list/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/form-validation-rule-list"],
+          "options": {
+            "jestConfig": "libs/form-validation-rule-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

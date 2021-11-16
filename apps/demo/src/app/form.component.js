@@ -20,11 +20,11 @@ const {
 } = config;
 
 const Container = styled.div`
-  width: 600px;
-  margin: 0 auto;
-  min-height: 300px;
-  border: 1px solid black;
   padding: 24px;
+  margin: 0 auto;
+  width: 600px;
+  background: white;
+  border: 1px solid black;
   border-radius: 25px;
 `;
 
@@ -35,7 +35,7 @@ const Form = () => {
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
-  }, []);
+  }, [dispatch]);
 
   const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
 

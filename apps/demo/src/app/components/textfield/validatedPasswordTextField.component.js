@@ -1,15 +1,17 @@
-import PropTypes from 'prop-types';
-
 import { wrapped } from './wrapped.hoc';
 import { ValidatedTextField } from './validatedTextField.component';
+import {
+  weightByRulesClassnames,
+  colorByRulesClassnames
+} from '../../constants/validationColors.constants';
 
 export const ValidatedPasswordTextFieldRaw = ({ name, ...props }) => {
   return <ValidatedTextField name={name} type="password" {...props} />;
 };
 
-ValidatedPasswordTextFieldRaw.propTypes = {
-  /** Input's name */
-  name: PropTypes.string
+ValidatedPasswordTextFieldRaw.defaultProps = {
+  weightByRulesClassnames,
+  colorByRulesClassnames
 };
 
 ValidatedPasswordTextFieldRaw.displayName = 'ValidatedPasswordTextField';

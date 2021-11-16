@@ -3,12 +3,16 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { ValidatedTextField } from '../textfield';
+import { ValidatedTextField } from '../textfield/validatedTextField.component';
 import {
   formatBirthdate,
   getBirthdateSeparator,
   shortDateDisplay
 } from './birthdate.utils';
+import {
+  weightByRulesClassnames,
+  colorByRulesClassnames
+} from '../../constants/validationColors.constants';
 
 const separator = getBirthdateSeparator(shortDateDisplay);
 const MAX_INPUT_LENGTH = 10;
@@ -72,4 +76,9 @@ BirthdateInput.propTypes = {
   value: PropTypes.string,
   setFieldValue: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired
+};
+
+BirthdateInput.defaultProps = {
+  weightByRulesClassnames,
+  colorByRulesClassnames
 };

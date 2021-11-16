@@ -1,7 +1,11 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
-import { withValidationRuleList } from '../../validation-rule-list/validationRuleList.component';
+import { withValidationRuleList } from '@bedrockstreaming/form-validation-rule-list';
+import {
+  weightByRulesClassnames,
+  colorByRulesClassnames
+} from '../../constants/validationColors.constants';
 
 import { TextFieldRaw } from './textfield.component';
 
@@ -36,7 +40,7 @@ export const ValidatedTextFieldComponent = ({
     if (cursor) {
       textFieldRef.current.setSelectionRange(cursor, cursor);
     }
-  }, [value]);
+  }, [value, cursor]);
 
   return (
     <Wrapper>
@@ -63,11 +67,13 @@ ValidatedTextFieldComponent.defaultProps = {
   hasError: false,
   valid: false,
   onFocus: _.noop,
-  onBlur: _.noop
+  onBlur: _.noop,
+  weightByRulesClassnames,
+  colorByRulesClassnames
 };
 
 ValidatedTextFieldComponent.displayName = 'ValidatedTextField';
 
 export const ValidatedTextField = withValidationRuleList(
-  ValidatedTextFieldComponent
+  memo(ValidatedTextFieldComponent)
 );

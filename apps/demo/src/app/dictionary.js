@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styled from 'styled-components';
-
+import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
 import { getValidationRulesHints } from '@forms/form-builder';
-import {
-  ValidatedTextField,
-  ValidatedPasswordTextField
-} from './components/textfield';
-import { checkRules } from './components/validation-rule-list/validationRuleList.component';
+
+import { ValidatedPasswordTextField } from './components/textfield/validatedPasswordTextField.component';
+import { ValidatedTextField } from './components/textfield/validatedTextField.component';
 
 import { BirthdateInput } from './components/birthdate/birthdateInput.component';
 

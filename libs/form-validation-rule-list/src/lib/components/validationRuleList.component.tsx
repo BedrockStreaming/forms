@@ -1,36 +1,39 @@
+import React from 'react';
 import _ from 'lodash';
-import styled from 'styled-components';
-import { DotTextList as DotTextListComponent } from './dotTextList.component';
 
-export const DotTextList = styled(DotTextListComponent)`
-  margin-top: 4px;
-`;
+import { INCOMPLETE_STATE } from '../constants';
+import { RuleObject } from '../rule';
+import { ClassnamesByStatusNumbers } from '../types';
 
-export const DEFAULT_STATE = 0;
-export const COMPLETE_STATE = 1;
-export const INCOMPLETE_STATE = 2;
+import { DotTextList } from './dotTextList.component';
 
-export const rule = (key, check) => ({
-  key,
-  check: (value) => {
-    if (_.isUndefined(value) || !value.length) {
-      return DEFAULT_STATE;
-    }
+interface RulesItem {
+  key: string;
+  fontWeightClass: string;
+  itemColorClass: string;
+}
 
-    if (!check) {
-      return DEFAULT_STATE;
-    }
+interface BaseRules {
+  errors: string[];
+  items: RulesItem[];
+}
 
-    return check(value) ? COMPLETE_STATE : INCOMPLETE_STATE;
-  }
-});
+interface EnhancedRules extends RuleObject, BaseRules {}
 
-export const checkRules = (value, rules) =>
-  rules.reduce(
-    (acc, { check, key }) =>
-      check(value) === INCOMPLETE_STATE ? _.concat(acc, key) : acc,
-    []
-  );
+export interface ValidationRuleListComponentProps {
+  id?: string;
+  rules: EnhancedRules[];
+  colors: any;
+  value: any;
+  component: React.FunctionComponent<any>;
+  componentProp: any;
+  onError: (value: any) => void;
+  className?: string;
+  name?: string;
+  valueProp?: any;
+  weightByRulesClassnames: ClassnamesByStatusNumbers;
+  colorByRulesClassnames: ClassnamesByStatusNumbers;
+}
 
 export const ValidationRuleListComponent = ({
   rules,
@@ -38,24 +41,12 @@ export const ValidationRuleListComponent = ({
   value,
   component: Component,
   componentProp,
+  weightByRulesClassnames,
+  colorByRulesClassnames,
   onError,
   ...otherProps
-}) => {
+}: ValidationRuleListComponentProps) => {
   if (rules.length) {
-    const weightByRules = {
-      [DEFAULT_STATE]: 'bold',
-      [COMPLETE_STATE]: 400,
-      [INCOMPLETE_STATE]: 'bold'
-    };
-    const colorByRules = _.merge(
-      {
-        [DEFAULT_STATE]: 'green',
-        [COMPLETE_STATE]: 'red',
-        [INCOMPLETE_STATE]: 'red'
-      },
-      colors || {}
-    );
-
     const { items, errors } = rules.reduce(
       (acc, { check, key }) => {
         const result = check(value);
@@ -64,13 +55,13 @@ export const ValidationRuleListComponent = ({
           result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
         const nextItems = _.concat(acc.items, {
           key,
-          itemFontWeight: weightByRules[result],
-          itemColor: colorByRules[result]
+          fontWeightClass: weightByRulesClassnames[result],
+          itemColorClass: colorByRulesClassnames[result]
         });
 
         return { items: nextItems, errors: nextErrors };
       },
-      { errors: [], items: [] }
+      { errors: [], items: [] } as BaseRules
     );
 
     onError(errors);
@@ -94,7 +85,9 @@ ValidationRuleListComponent.defaultProps = {
 
 ValidationRuleListComponent.displayName = 'ValidationRuleList';
 
-export const withValidationRuleList = (ToEnhance) => {
+export const withValidationRuleList = (
+  ToEnhance: React.FunctionComponent<any>
+) => {
   const Enhanced = ({
     rules,
     colors,
@@ -103,8 +96,10 @@ export const withValidationRuleList = (ToEnhance) => {
     componentProp,
     valueProp,
     onError,
+    weightByRulesClassnames,
+    colorByRulesClassnames,
     ...otherProps
-  }) => {
+  }: ValidationRuleListComponentProps) => {
     const componentProps = { ...otherProps, [valueProp]: value };
     const { className } = otherProps;
 
@@ -119,6 +114,8 @@ export const withValidationRuleList = (ToEnhance) => {
           componentProp={componentProp}
           onError={onError}
           id={otherProps.name}
+          weightByRulesClassnames={weightByRulesClassnames}
+          colorByRulesClassnames={colorByRulesClassnames}
         />
       </div>
     );

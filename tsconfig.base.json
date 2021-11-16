@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bedrockstreaming/form-validation-rule-list": [
+        "libs/form-validation-rule-list/src/index.ts"
+      ],
       "@forms/form-builder": ["libs/form-builder/src/index.ts"],
       "@forms/form-redux": ["libs/form-redux/src/index.ts"]
     }
