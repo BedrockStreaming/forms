@@ -1,18 +1,16 @@
-# `@bedrockstreaming/form-builder`
+# :construction_worker: form-builder
 
 This utility package allows to dynamically build a form based on an input configuration and a dictionary of visual components.
 
-## Install
+## :building_construction: Install
 
-```shell
-yarn add @bedrockstreaming/forms
+```bash
+npm install @bedrockstreaming/form-builder
 ```
 
-```shell
-npm install @bedrockstreaming/forms
-```
+## :rocket: Usage
 
-## How to create a form using the FormBuilder?
+### How to create a form using the FormBuilder?
 
 In order to create a form using the Form-Builder, you simply need to import the Form-Builder from the package, render the components in the JSX and provide it with the following props:
 
@@ -21,15 +19,6 @@ In order to create a form using the Form-Builder, you simply need to import the 
 - `onSubmit`: the function you want to be called when the form is submitted
 - `currentStepIndex`: _optional_ the current form step index, use only for multi steps, 0 by default
 - `extraValidation`: an object that will map custom validation functions to our fields, see Validation part of the doc
-
-```jsx
-import React from 'react';
-import { FormBuilder } from '@bedrockstreaming/forms';
-
-const MyCustomForm = () => (
-  <FormBuilder schema={schema} dictionary={dictionary} onSubmit={onSubmit} />
-);
-```
 
 ## How to configure your form?
 
@@ -79,7 +68,7 @@ const dictionary = {
 
 Make sure the `dictionary` keys corresponds to your fields types.
 
-### Usage
+### How to use it in my React application ?
 
 By default, the form schema must include steps, even for a single one.
 
@@ -89,7 +78,7 @@ Example usage of a form that will display one text input.
 
 ```jsx
 import React from 'react';
-import { FormBuilder } from '@bedrockstreaming/forms';
+import { FormBuilder } from '@bedrockstreaming/form-builder';
 
 const schema = {
   fields: {
@@ -133,7 +122,9 @@ Example usage of a form that will display two steps.
 
 ```jsx
 import React from 'react';
-import { FormBuilder, getCurrentStepIndex } from '@bedrockstreaming/forms';
+import { useSelector } from 'react-redux';
+import { FormBuilder } from '@bedrockstreaming/form-builder';
+import { getCurrentStepIndex } from '@bedrockstreaming/form-redux';
 
 const schema = {
   fields: {
@@ -196,9 +187,11 @@ const DumbComponent = () => {
 };
 ```
 
-### Navigating in a multistep form
+### Navigating in a multi-step form
 
-To navigate in a form built by the form-builder, the form comes with the redux actions `setNextStep(formId)` & `setPreviousStep(formId)` where the formId is the id of the form located in the config.
+To navigate in a form built by the form-builder, you can use the redux module from [@bedrockstreamin/form-redux](../form-redux/README.md)
+
+> e.g. `setNextStep(formId)` & `setPreviousStep(formId)` where the formId is the id of the form located in the config.
 
 The next action is handled in the submit button, everything is handled by the form-builder so there is nothing to do but adding a submit field at every step of a new multistep form.
 
@@ -277,18 +270,18 @@ When we need more personalization in our validation for a special type of field 
 
 ### Validation hints
 
-In order to display some hints to the user regarding what validation is passing or not, we use `@bedrockstreaming/validation-rule-list` package. As a result, whenever you want to use a `ValidatedTextField` (or any input using the `withValidationRuleList` HOC), you need to do add a few things to your dictionary components:
+In order to display some hints to the user regarding what validation is passing or not, we use `@bedrockstreaming/form-validation-rule-list` package. As a result, whenever you want to use a `ValidatedTextField` (or any input using the `withValidationRuleList` HOC), you need to do add a few things to your dictionary components:
 
-- use `getValidationRulesHints` from `@bedrockstreaming/forms` to retrieve the rules. It will translate the error messages and format the validation errors to what's expected by `@bedrockstreaming/validation-rule-list` elements. Optionally, you can pass a config object in case you have some sprintf values to template inside your error messages.
+- use `getValidationRulesHints` from `@bedrockstreaming/form-builder` to retrieve the rules. It will translate the error messages and format the validation errors to what's expected by `@bedrockstreaming/form-validation-rule-list` elements. Optionally, you can pass a config object in case you have some sprintf values to template inside your error messages.
 - provide some `rules` and `colors` props
-- use the `checkRules` function from `@bedrockstreaming/validation-rule-list`
+- use the `checkRules` function from `@bedrockstreaming/form-validation-rule-list`
 
 ```js
 import { useTranslate } from '@m6web/react-i18n';
-import { onboarding } from '@6play/config';
-import { getValidationRulesHints } from '@bedrockstreaming/forms';
-import { ValidatedPasswordTextField } from '@bedrockstreaming/textfield';
-import { checkRules } from '@bedrockstreaming/validation-rule-list';
+import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
+import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
+import { onboarding } from '@mylib/config';
+import { ValidatedPasswordTextField } from '@mylib/textfield';
 
 const dictionary = {
   password: ({ errors, validation, ...props }) => {
@@ -321,83 +314,10 @@ const dictionary = {
 
 :warning: Beware, you can't use several `react-hook-form` default rules as validation hints since the `errors` object returned by the library can only contain one default rule error at a time.
 
-## Usage with Redux
-
-`@bedrockstreaming/forms` comes with a built-in redux module.
-
-Since we are using `react-hook-form` to persist data locally, we are only storing the form data and step information on each form submission.
-
-### Example usage
-
-Import and subscribe the reducer.
-
-```js
-// reducers
-import { reducer as forms } from '@bedrockstreaming/forms';
-
-combineReducers({ forms, ... });
-```
-
-Use redux to control the form state.
-
-```js
-// a form using actions
-import React from 'react';
-import {
-  Form-Builder,
-  getCurrentStepIndex,
-  getFormConfiguration,
-  isLastStep,
-  resetForm,
-  initForm,
-  setNextStep,
-} from '@bedrockstreaming/forms';
-import { fooSubmitAction } from '<my-app-module>';
-
-export const FooForm = () => {
-  const dispatch = useDispatch();
-  const { foo: formId } = useSelector(getFormIds);
-  const schema = useSelector(getFormConfiguration(formId));
-  const currentStepIndex = useSelector(getCurrentStepIndex(formId));
-  const currentStepMeta = useSelector(
-    getCurrentStepMeta(formId, currentStepIndex)
-  );
-  const shouldSubmit = useSelector(isLastStep(formId));
-
-  useEffect(() => {
-    dispatch(initForm(formId, schema));
-  }, [formId, schema]);
-
-  const handleSubmit = (formId) => (fieldValues) => {
-    if (shouldSubmit) {
-      dispatch(fooSubmitAction(fieldValues));
-      dispatch(resetForm(formId));
-    } else {
-      dispatch(setNextStep(formId));
-    }
-  };
-
-  return (
-    <FormBuilder
-      dictionary={dictionary}
-      schema={schema}
-      onSubmit={handleSubmit(formId)}
-      currentStepIndex={currentStepIndex}
-    />
-  );
-};
-```
-
-## RoadMap
-
-:construction:
-
-## Contribute
-
 ### Running unit tests
 
-Run `nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).
 
 ### Running e2e tests
 
-Run `nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).

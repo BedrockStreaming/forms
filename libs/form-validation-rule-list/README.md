@@ -1,6 +1,16 @@
-# form-validation-rule-list
+# :judge: form-validation-rule-list
 
-This library was generated with [Nx](https://nx.dev).
+This utility package allows to add a visual validation feedback to your users.
+
+## :building_construction: Install
+
+```bash
+npm install @bedrockstreaming/form-validation-rule-list
+```
+
+## :rocket: Usage
+
+### How to create a form using form-validation-rule-list?
 
 ## Running unit tests
 

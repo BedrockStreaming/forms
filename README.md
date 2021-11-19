@@ -1,94 +1,116 @@
+# :clipboard: Forms
 
+TODO: Add badges
 
-# Forms
+:octocat: `BedrockStreaming/forms` is a monorepo exposing a set of form libraries we are using in our react applications to handle dynamic forms generation and validation.
 
-This project was generated using [Nx](https://nx.dev).
+## Why
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+The idea of this library came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate those forms by simply passing some config and building a dictionary of inputs to go with.
+As we were eager to keep some control over the process, we went with [react-hook-form](https://react-hook-form.com/) which has great capabilities but not all the ones we wanted:
 
-🔎 **Smart, Extensible Build Framework**
+- Complex validation with multiple visuals feedback
+- Steps handling
 
-## Adding capabilities to your workspace
+## :package: Packages
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+- ⚛️ `@bedrockstreaming/form-builder` :construction_worker:
+- ⚛️ `@bedrockstreaming/form-validation-rule-list` 🧑‍⚖️
+- :convenience_store: `@bedrockstreaming/form-redux`
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+## :railway_track: Road map
 
-Below are our core plugins:
+### :rocket: v1
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+#### Must Have
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+- [ ] Unit tests
+- [ ] Sound types
+- [ ] Demo with vanilla css and styled-components
+- [ ] Demo with react-provider and redux
+- [ ] Finish readmes
 
-## Generate an application
+#### Nice to Have
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+- [ ] E2e tests
+
+## 🤝 Contributing
+
+First read the [Contributing](.github/CONTRIBUTING.md) and [Code of conduct](.github/CODE_OF_CONDUCT.md) sections.
+
+:point_up: Note that this project was generated using [Nx](https://nx.dev).
+
+### Generate an application
+
+Run `yarn nx g @nrwl/react:app my-app` to generate an application.
 
 > You can use any of the plugins above to generate applications as well.
 
 When using Nx, you can create multiple applications and libraries in the same workspace.
 
-## Generate a library
+### Generate a library
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+Run `yarn nx g @nrwl/react:lib my-lib` to generate a react library.
+Run `yarn nx g @nrwl/react:web my-lib` to generate a web library.
+Run `yarn nx g @nrwl/react:node my-lib` to generate a node library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
 Libraries are shareable across libraries and applications. They can be imported from `@forms/mylib`.
 
-## Development server
+If you want the library to be publishable use:
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+```bash
+yarn nx g @nrwl/react:lib my-lib --publishable --importPath="@bedrockstreaming/form-foo"
+```
 
-## Code scaffolding
+### Development server
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+Run `yarn nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Build
+### Code scaffolding
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `yarn nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
-## Running unit tests
+### Build
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+### Running unit tests
 
-## Running end-to-end tests
+Run `yarn nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `yarn nx affected:test` to execute the unit tests affected by a change.
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+### Running end-to-end tests
 
-## Understand your workspace
+Run `yarn nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+Run `yarn nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-## Further help
+### Understand your workspace
+
+Run `yarn nx dep-graph` to see a diagram of the dependencies of your projects.
+
+### Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
+## 👥 Authors
 
+TODO: add links to twitter/github
 
-## ☁ Nx Cloud
+- Florent Dubost
+- Antoine Caron
+- Mehdi Kabab
+- Maxime Bounaas-Ferret
+- Renaud Amsellem
+- Guillaume Trémé
+- Nicolas Castejon
+- François Jacquier
+- Jean Baptiste Coquet
+- Pierre Huyghe
 
-### Distributed Computation Caching & Distributed Task Execution
+## :memo: Licence
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+// TODO
