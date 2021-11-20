@@ -1,22 +1,31 @@
-# :clipboard: Forms
+<h1 align="center">Welcome to Forms 👋</h1>
+<p>
+  <a href="https://github.com/hpierre74/forms/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/Bedrock_Stream" target="_blank">
+    <img alt="Twitter: Bedrock_Stream" src="https://img.shields.io/twitter/follow/Bedrock_Stream.svg?style=social" />
+  </a>
+  <a href="https://github.com/hpierre74/forms/actions/workflows/main.yml" target="_blank">
+    <img alt="CI" src="https://github.com/hpierre74/forms/actions/workflows/main.yml/badge.svg" />
+  </a>
+</p>
 
-TODO: Add badges
-
-:octocat: `BedrockStreaming/forms` is a monorepo exposing a set of form libraries we are using in our react applications to handle dynamic forms generation and validation.
+:octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our react applications to handle dynamic forms generation and validation.
 
 ## Why
 
-The idea of this library came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate those forms by simply passing some config and building a dictionary of inputs to go with.
-As we were eager to keep some control over the process, we went with [react-hook-form](https://react-hook-form.com/) which has great capabilities but not all the ones we wanted:
+The idea of this library came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate any form by simply passing some config and a dictionary of inputs to go with.
+As we were eager to keep some control over the process, we went with [react-hook-form](https://react-hook-form.com/) which has great capabilities. Unfortunately we were missing some features that we had to implement ourselves.
 
 - Complex validation with multiple visuals feedback
 - Steps handling
 
 ## :package: Packages
 
-- ⚛️ `@bedrockstreaming/form-builder` :construction_worker:
-- ⚛️ `@bedrockstreaming/form-validation-rule-list` 🧑‍⚖️
-- :convenience_store: `@bedrockstreaming/form-redux`
+- ⚛️ [@bedrockstreaming/form-builder](libs/form-builder/README.md) :construction_worker:
+- ⚛️ [@bedrockstreaming/form-validation-rule-list](libs/form-validation-rule-list/README.md) 🧑‍⚖️
+- :convenience_store: [@bedrockstreaming/form-redux](libs/form-redux/README.md)
 
 ## :railway_track: Road map
 
@@ -66,7 +75,7 @@ yarn nx g @nrwl/react:lib my-lib --publishable --importPath="@bedrockstreaming/f
 
 ### Development server
 
-Run `yarn nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `yarn nx serve my-app` for a dev server. Navigate to [http://localhost:4200/](http://localhost:4200/). The app will automatically reload if you change any of the source files.
 
 ### Code scaffolding
 

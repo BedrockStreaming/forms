@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Contributing to BedrockStreaming Forms
 
 First off, thanks for taking the time to contribute! ❤️
@@ -6,12 +5,12 @@ First off, thanks for taking the time to contribute! ❤️
 All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
+>
 > - Star the project
 > - Tweet about it
 > - Refer this project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
 
-<!-- omit in toc -->
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
@@ -25,14 +24,12 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Commit Messages](#commit-messages)
 - [Join The Project Team](#join-the-project-team)
 
-
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
 [BedrockStreaming Forms Code of Conduct](https://github.com/BedrockStreaming/formsblob/master/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to <contact@bedrockstreaming.com>.
-
 
 ## I Have a Question
 
@@ -42,35 +39,20 @@ Before you ask a question, it is best to search for existing [Issues](https://gi
 
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
-- Open an [Issue](https://github.com/BedrockStreaming/formsissues/new).
+- Open an [Issue](https://github.com/BedrockStreaming/forms/issues/new).
 - Provide as much context as you can about what you're running into.
 - Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
 
-<!--
-You might want to create a separate issue tag for questions and include it in this description. People should then tag their issues accordingly.
-
-Depending on how large the project is, you may want to outsource the questioning, e.g. to Stack Overflow or Gitter. You may add additional contact and information possibilities:
-- IRC
-- Slack
-- Gitter
-- Stack Overflow tag
-- Blog
-- FAQ
-- Roadmap
-- E-Mail List
-- Forum
--->
-
 ## I Want To Contribute
 
-> ### Legal Notice <!-- omit in toc -->
-> When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
+### Legal Notice
+
+When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
 ### Reporting Bugs
 
-<!-- omit in toc -->
 #### Before Submitting a Bug Report
 
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
@@ -86,18 +68,19 @@ A good bug report shouldn't leave others needing to chase you up for more inform
   - Possibly your input and the output
   - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
-<!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
 
 > You must never report security related issues, vulnerabilities or bugs to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <security@bedrockstreaming.com>.
+
 <!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
 - Open an [Issue](https://github.com/BedrockStreaming/formsissues/new). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
 - Explain the behavior you would expect and the actual behavior.
-- Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
+- Please provide as much context as possible and describe the _reproduction steps_ that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
+- If you could add a CodeSandBox sample to help us reproduce it would be great :pray:
 
 Once it's filed:
 
@@ -107,12 +90,10 @@ Once it's filed:
 
 <!-- You might want to create an issue template for bugs and errors that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
-
 ### Suggesting Enhancements
 
 This section guides you through submitting an enhancement suggestion for BedrockStreaming Forms, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
 
-<!-- omit in toc -->
 #### Before Submitting an Enhancement
 
 - Make sure that you are using the latest version.
@@ -120,7 +101,6 @@ This section guides you through submitting an enhancement suggestion for Bedrock
 - Perform a [search](https://github.com/BedrockStreaming/formsissues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
-<!-- omit in toc -->
 #### How Do I Submit a Good Enhancement Suggestion?
 
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/BedrockStreaming/formsissues).
@@ -134,26 +114,48 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Bedroc
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
 
--->
+- Make sure you have yarn and node (>= 12) installed
+- Your Pull Request must include both unit tests and functional (cypress) tests when possible.
 
 ### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
 
--->
+Fork this project and make a Pull Request :muscle:
+You should only need to update the READMEs.
 
 ## Styleguides
-### Commit Messages
-<!-- TODO
 
--->
+### Commit Messages
+
+We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+```txt
+<type>(<scope>): <subject>
+```
+
+#### Type
+
+- **feat**: a new feature
+- **fix**: a bug fix
+- **docs**: an update concerning only the documentation
+- **style**: a change that doesn't affect the logic of the code (formatting, spaces, naming, etc)
+- **spike**: a technical study that isn't destined to be merged as is
+- **refactor**: a change of the code that is neither a bugfix nor a feature addition
+- **perf**: a change that improves the performances of the app
+- **test**: an addition of missing tests or a fix of existing tests
+- **chore**: a change that affects the build process or libs and tools
+- **ci**: a change that affects only the CI or CD
+
+#### Scope
+
+The scope helps specify what is the change about. It can be a feature (e.g. _login_), a technical term (e.g. _serviceWorker_), etc...
+See some examples below:
+
+- feat(login): add password retrieval
+- chore(eslint): add global ignore rule no-console
 
 ## Join The Project Team
-<!-- TODO -->
 
-<!-- omit in toc -->
 ## Attribution
+
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
