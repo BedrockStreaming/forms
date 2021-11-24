@@ -4,8 +4,6 @@ import {
   isLastStep
 } from '../forms.selectors';
 
-jest.unmock('../forms.selectors.ts');
-
 const formId = 'foo';
 const state = {
   forms: {

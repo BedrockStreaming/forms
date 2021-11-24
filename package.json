@@ -63,6 +63,7 @@
     "@nrwl/web": "12.6.3",
     "@nrwl/workspace": "12.6.3",
     "@testing-library/react": "11.2.6",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/debug": "4.1.7",
     "@types/deep-freeze": "0.1.2",
     "@types/jest": "26.0.24",

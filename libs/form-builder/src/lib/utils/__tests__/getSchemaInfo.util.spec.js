@@ -1,9 +1,6 @@
 import { getSchemaInfo } from '../getSchemaInfo.util';
 import { CORRECT_SCHEMA, stepOne, stepOneId, typesAllowed } from './fixtures';
 
-jest.unmock('../getSchemaInfo.util.ts');
-jest.unmock('./fixtures.js');
-
 describe('getSchemaInfo', () => {
   const stepOneIndex = 0;
 

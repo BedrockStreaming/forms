@@ -1,8 +1,5 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { Stepper } from '../stepper.component';
-
-jest.unmock('../stepper.component.tsx');
 
 const childOne = <span key="one">one</span>;
 const childTwo = <span key="two">two</span>;

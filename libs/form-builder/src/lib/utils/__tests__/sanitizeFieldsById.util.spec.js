@@ -1,8 +1,6 @@
 import { sanitizeFieldsById } from '../getSchemaInfo.util';
 import { CORRECT_SCHEMA, typesAllowed } from './fixtures';
 
-jest.unmock('../getSchemaInfo.util.ts');
-
 describe('sanitizeFieldsById', () => {
   it('should remove submit from returned fieldsById', () => {
     const badSchema = {

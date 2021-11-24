@@ -13,8 +13,6 @@ import {
   SET_STEP
 } from '../forms.actions';
 
-jest.unmock('../forms.actions.ts');
-
 const formId = 'foo';
 const CORRECT_SCHEMA = {
   fields: {

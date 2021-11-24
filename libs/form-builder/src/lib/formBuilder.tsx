@@ -24,33 +24,29 @@ import { SubmitField } from './components/submitField.component';
 import { getFieldRules } from './utils/validation.utils';
 import { useAutoFocus } from './hooks/useAutoFocus';
 
-const { DEBUG } = process.env;
-
 export interface FormBuilderProps<FormValues> {
   defaultValues?: DefaultValues<FormValues>;
   behavior: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;
-  onNextStep: (value: UnpackNestedValue<FormValues>) => void;
+  onNextStep?: (value: UnpackNestedValue<FormValues>) => void;
   onSubmit: SubmitHandler<FormValues>;
   extraValidation?: ExtraValidation;
   isLastStep: boolean;
   currentStepIndex: number;
 }
 
-export function FormBuilder<FormValues>(props: FormBuilderProps<FormValues>) {
-  const {
-    defaultValues,
-    behavior,
-    schema,
-    dictionary,
-    onNextStep,
-    onSubmit,
-    extraValidation,
-    isLastStep,
-    currentStepIndex
-  } = props;
-
+export function FormBuilder<FormValues>({
+  defaultValues,
+  behavior,
+  schema,
+  dictionary,
+  onNextStep = _.noop,
+  onSubmit,
+  extraValidation,
+  isLastStep,
+  currentStepIndex = 0
+}: FormBuilderProps<FormValues>) {
   const {
     handleSubmit,
     formState: { isDirty, isValid, errors, dirtyFields },
@@ -95,13 +91,23 @@ export function FormBuilder<FormValues>(props: FormBuilderProps<FormValues>) {
   useAutoFocus({ currentStepIndex, schema, setFocus });
 
   // Displays nice and informative errors in dev mode
-  if (DEBUG) handleFormBuilderError(typesAllowed, schema, dictionary);
+  if (process.env.DEBUG)
+    handleFormBuilderError(typesAllowed, schema, dictionary);
 
-  if (_.isEmpty(schema) || _.isEmpty(dictionary)) return null;
+  if (
+    _.isEmpty(schema) ||
+    _.isEmpty(dictionary) ||
+    typeof onSubmit !== 'function'
+  )
+    return null;
 
   return (
     <>
-      <form data-testid="form-builder" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        aria-labelledby="form-label-element-id"
+        data-testid="form-builder"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Stepper currentStepIndex={currentStepIndex}>
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
@@ -153,7 +159,7 @@ export function FormBuilder<FormValues>(props: FormBuilderProps<FormValues>) {
           onNextStep={onNextStep}
         />
       </form>
-      {DEBUG && <DevTool control={control} />}
+      {process.env.DEBUG && <DevTool control={control} />}
     </>
   );
 }

@@ -14,8 +14,6 @@ import {
   SET_STEP
 } from '../forms.actions';
 
-jest.unmock('../forms.reducer.ts');
-
 const formId = 'foo';
 const emptyObject = {};
 const zero = 0;

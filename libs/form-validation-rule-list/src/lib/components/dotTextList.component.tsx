@@ -1,32 +1,6 @@
 import classnames from 'classnames';
 import _ from 'lodash';
-
-export interface DotTextProps {
-  key: string;
-  itemColorClass: string;
-  fontWeightClass: string;
-  status: string;
-}
-
-export const DotText = ({
-  key,
-  itemColorClass,
-  fontWeightClass,
-  status
-}: DotTextProps) => {
-  return (
-    <li
-      key={key}
-      className={classnames('validation-rule-li', {
-        [fontWeightClass]: true,
-        [itemColorClass]: true
-      })}
-      data-testid={`hint-${_.kebabCase(key)}-${status}`}
-    >
-      <span>{key}</span>
-    </li>
-  );
-};
+import { DotText, DotTextProps } from './dotText.component';
 
 export interface DotTextListProps {
   items: DotTextProps[];
@@ -39,7 +13,11 @@ export const DotTextList = ({
   className,
   ...otherProps
 }: DotTextListProps) => (
-  <ul className={classnames('validation-rule-ul', className)} {...otherProps}>
+  <ul
+    className={classnames('validation-rule-ul', className)}
+    {...otherProps}
+    data-testid="validation-rule-ul"
+  >
     {_.map(items, DotText)}
   </ul>
 );

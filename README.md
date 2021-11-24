@@ -9,6 +9,9 @@
   <a href="https://github.com/hpierre74/forms/actions/workflows/main.yml" target="_blank">
     <img alt="CI" src="https://github.com/hpierre74/forms/actions/workflows/main.yml/badge.svg" />
   </a>
+  <a href="https://codecov.io/gh/hpierre74/forms">
+    <img src="https://codecov.io/gh/hpierre74/forms/branch/master/graph/badge.svg?token=073DJ56DNX"/>
+  </a>
 </p>
 
 :octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our react applications to handle dynamic forms generation and validation.

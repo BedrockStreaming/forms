@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, act, RenderResult } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import configureStore from './store/configureStore';
@@ -14,14 +14,21 @@ const renderWithStore = () => (
 );
 
 describe('App', () => {
+  let wrapper: RenderResult;
+
+  beforeEach(async () => {
+    await act(async () => {
+      wrapper = await render(renderWithStore());
+    });
+  });
   it('should render successfully', () => {
-    const { baseElement } = render(renderWithStore());
+    const { baseElement } = wrapper;
 
     expect(baseElement).toBeTruthy();
   });
 
   it('should have a greeting as the title', () => {
-    const { getByText } = render(renderWithStore());
+    const { getByText } = wrapper;
 
     expect(getByText('Welcome to demo!')).toBeTruthy();
   });

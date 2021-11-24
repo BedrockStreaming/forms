@@ -1,8 +1,5 @@
-import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { FormField } from '../formField.component';
-
-jest.unmock('../formField.component.tsx');
 
 const id = 'foo';
 

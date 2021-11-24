@@ -2,7 +2,6 @@ import { rule } from '../rule.utils';
 import { getFieldRules, getValidationRulesHints } from '../validation.utils';
 
 jest.mock('../rule.utils');
-jest.unmock('../validation.utils.ts');
 
 describe('getFieldRules', () => {
   describe('extraValidation', () => {

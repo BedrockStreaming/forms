@@ -21,9 +21,15 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress
+          cache: yarn
+      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=test --parallel --max-parallel=2 --coverage  --outputFile=coverage-final.json --json
+      - name: Codecov upload
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
@@ -33,7 +39,7 @@ jobs:
             ref: ${{ github.event.pull_request.head.ref }}
             fetch-depth: 0
       - run: |
-            git fetch --no-tags --prune --depth=5 origin master
+            git fetch --no-tags --prune origin master
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
         with:
@@ -41,6 +47,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress
+          cache: yarn
+      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected  --base=origin/master --target=build --parallel --max-parallel=3
-      - run: npx nx affected  --base=origin/master --target=test --parallel --max-parallel=2
+      - run: npx nx affected  --base=origin/master --target=test --parallel --max-parallel=2 --coverage --outputFile=coverage-final.json --json
+
+      - name: Codecov upload
+        uses: codecov/codecov-action@v2
+        with:
+          verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }}
