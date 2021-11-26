@@ -46,6 +46,18 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "renaudAmsellem",
+      "name": "renaudAmsellem",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5941601?v=4",
+      "profile": "https://github.com/renaudAmsellem",
+      "contributions": [
+        "doc",
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }
