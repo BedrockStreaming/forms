@@ -106,6 +106,19 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "MaximeBF2000",
+      "name": "Maxime BOUNAAS-FERRET",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46478550?v=4",
+      "profile": "https://github.com/MaximeBF2000",
+      "contributions": [
+        "doc",
+        "code",
+        "example",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }

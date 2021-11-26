@@ -127,6 +127,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/nicolasca"><img src="https://avatars.githubusercontent.com/u/2886734?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicolas Castejon</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=nicolasca" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=nicolasca" title="Code">💻</a> <a href="#maintenance-nicolasca" title="Maintenance">🚧</a> <a href="#ideas-nicolasca" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/MaximeBF2000"><img src="https://avatars.githubusercontent.com/u/46478550?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maxime BOUNAAS-FERRET</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=MaximeBF2000" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=MaximeBF2000" title="Code">💻</a> <a href="#example-MaximeBF2000" title="Examples">💡</a> <a href="#maintenance-MaximeBF2000" title="Maintenance">🚧</a> <a href="#ideas-MaximeBF2000" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
