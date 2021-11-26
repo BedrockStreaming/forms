@@ -58,6 +58,18 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "jcoquet",
+      "name": "jcoquet",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26571211?v=4",
+      "profile": "https://github.com/jcoquet",
+      "contributions": [
+        "doc",
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }
