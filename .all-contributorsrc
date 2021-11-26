@@ -82,6 +82,18 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "Cruz-Azul",
+      "name": "Alves Mickaël",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60877626?v=4",
+      "profile": "https://lacruz.org/team/alves-mickael",
+      "contributions": [
+        "doc",
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }
