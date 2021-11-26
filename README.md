@@ -1,16 +1,16 @@
 <h1 align="center">Welcome to Forms 👋</h1>
 <p>
-  <a href="https://github.com/hpierre74/forms/blob/main/LICENSE" target="_blank">
+  <a href="https://github.com/BedrockStreaming/forms/blob/main/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
   <a href="https://twitter.com/Bedrock_Stream" target="_blank">
     <img alt="Twitter: Bedrock_Stream" src="https://img.shields.io/twitter/follow/Bedrock_Stream.svg?style=social" />
   </a>
-  <a href="https://github.com/hpierre74/forms/actions/workflows/main.yml" target="_blank">
-    <img alt="CI" src="https://github.com/hpierre74/forms/actions/workflows/main.yml/badge.svg" />
+  <a href="https://github.com/BedrockStreaming/forms/actions/workflows/main.yml" target="_blank">
+    <img alt="CI" src="https://github.com/BedrockStreaming/forms/actions/workflows/main.yml/badge.svg" />
   </a>
-  <a href="https://codecov.io/gh/hpierre74/forms">
-    <img src="https://codecov.io/gh/hpierre74/forms/branch/master/graph/badge.svg?token=073DJ56DNX"/>
+  <a href="https://codecov.io/gh/BedrockStreaming/forms">
+    <img src="https://codecov.io/gh/BedrockStreaming/forms/branch/master/graph/badge.svg?token=073DJ56DNX"/>
   </a>
 </p>
 
