@@ -23,7 +23,9 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "private": true,
   "dependencies": {
@@ -76,6 +78,7 @@
     "@types/styled-components": "5.1.9",
     "@typescript-eslint/eslint-plugin": "~4.28.3",
     "@typescript-eslint/parser": "~4.28.3",
+    "all-contributors-cli": "^6.20.0",
     "babel-jest": "27.0.6",
     "babel-plugin-styled-components": "1.10.7",
     "cypress": "7.3.0",
