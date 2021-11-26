@@ -94,6 +94,18 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "nicolasca",
+      "name": "Nicolas Castejon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2886734?v=4",
+      "profile": "https://github.com/nicolasca",
+      "contributions": [
+        "doc",
+        "code",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }

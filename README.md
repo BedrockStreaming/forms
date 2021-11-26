@@ -125,6 +125,9 @@ This project follows the [all-contributors](https://github.com/all-contributors/
     <td align="center"><a href="https://github.com/UltiXstorm"><img src="https://avatars.githubusercontent.com/u/53232310?v=4?s=100" width="100px;" alt=""/><br /><sub><b>UltiXstorm</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=UltiXstorm" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=UltiXstorm" title="Code">💻</a> <a href="#maintenance-UltiXstorm" title="Maintenance">🚧</a> <a href="#ideas-UltiXstorm" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://lacruz.org/team/alves-mickael"><img src="https://avatars.githubusercontent.com/u/60877626?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alves Mickaël</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=Cruz-Azul" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=Cruz-Azul" title="Code">💻</a> <a href="#maintenance-Cruz-Azul" title="Maintenance">🚧</a> <a href="#ideas-Cruz-Azul" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/nicolasca"><img src="https://avatars.githubusercontent.com/u/2886734?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicolas Castejon</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=nicolasca" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=nicolasca" title="Code">💻</a> <a href="#maintenance-nicolasca" title="Maintenance">🚧</a> <a href="#ideas-nicolasca" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
