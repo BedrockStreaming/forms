@@ -108,9 +108,28 @@ Run `yarn nx dep-graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
-## 👥 Authors
+## Contributors
 
-TODO: add links to twitter/github
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/hpierre74"><img src="https://avatars.githubusercontent.com/u/25172711?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pierre Huyghe</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=hpierre74" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=hpierre74" title="Code">💻</a> <a href="#example-hpierre74" title="Examples">💡</a> <a href="#maintenance-hpierre74" title="Maintenance">🚧</a> <a href="#ideas-hpierre74" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://slashgear.github.io/"><img src="https://avatars.githubusercontent.com/u/6263857?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antoine Caron</b></sub></a><br /><a href="https://github.com/BedrockStreaming/forms/commits?author=Slashgear" title="Documentation">📖</a> <a href="https://github.com/BedrockStreaming/forms/commits?author=Slashgear" title="Code">💻</a> <a href="#maintenance-Slashgear" title="Maintenance">🚧</a> <a href="#ideas-Slashgear" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## :memo: Licence
+
+// TODO
 
 - Florent Dubost
 - Antoine Caron
