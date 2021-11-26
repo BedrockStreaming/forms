@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormBuilder } from '@forms/form-builder';
+import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
   updateFormData
-} from '@forms/form-redux';
+} from '@bedrockstreaming/form-redux';
 import { config } from './config';
 import { dictionary } from './dictionary';
 import { useSubmit } from './hooks/useSubmit.hook';

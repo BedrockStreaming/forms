@@ -18,8 +18,8 @@
       "@bedrockstreaming/form-validation-rule-list": [
         "libs/form-validation-rule-list/src/index.ts"
       ],
-      "@forms/form-builder": ["libs/form-builder/src/index.ts"],
-      "@forms/form-redux": ["libs/form-redux/src/index.ts"]
+      "@bedrockstreaming/form-builder": ["libs/form-builder/src/index.ts"],
+      "@bedrockstreaming/form-redux": ["libs/form-redux/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styled from 'styled-components';
 import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
-import { getValidationRulesHints } from '@forms/form-builder';
+import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
 
 import { ValidatedPasswordTextField } from './components/textfield/validatedPasswordTextField.component';
 import { ValidatedTextField } from './components/textfield/validatedTextField.component';
