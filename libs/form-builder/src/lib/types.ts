@@ -16,7 +16,7 @@ export interface FormMeta {
 
 export interface Validation {
   key: string;
-  type: string;
+  type?: string;
   message: string;
   value?: unknown;
 }

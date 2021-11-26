@@ -1,5 +1,11 @@
+import set from 'immutable-set';
 import { getSchemaInfo } from '../getSchemaInfo.util';
-import { CORRECT_SCHEMA, stepOne, stepOneId, typesAllowed } from './fixtures';
+import {
+  CORRECT_SCHEMA,
+  stepOne,
+  stepOneId,
+  typesAllowed
+} from '../../__tests__/fixtures';
 
 describe('getSchemaInfo', () => {
   const stepOneIndex = 0;
@@ -18,20 +24,24 @@ describe('getSchemaInfo', () => {
   });
 
   it('should sanitize fieldsById from submit field', () => {
-    const badSchema = {
-      ...CORRECT_SCHEMA,
-      fieldsById: [...CORRECT_SCHEMA.fieldsById, 'submit']
-    };
+    const badSchema = set(
+      CORRECT_SCHEMA,
+      ['steps', stepOneId, 'fieldsById'],
+      [...CORRECT_SCHEMA.steps[stepOneId].fieldsById, 'foo']
+    );
+
     expect(getSchemaInfo(badSchema, typesAllowed, stepOneIndex)).toEqual(
       expectedResult
     );
   });
 
   it('should sanitize fieldsById from unknown fields', () => {
-    const badSchema = {
-      ...CORRECT_SCHEMA,
-      fieldsById: [...CORRECT_SCHEMA.fieldsById, 'foo']
-    };
+    const badSchema = set(
+      CORRECT_SCHEMA,
+      ['steps', stepOneId, 'fieldsById'],
+      [...CORRECT_SCHEMA.steps[stepOneId].fieldsById, 'foo']
+    );
+
     expect(getSchemaInfo(badSchema, typesAllowed, stepOneIndex)).toEqual(
       expectedResult
     );

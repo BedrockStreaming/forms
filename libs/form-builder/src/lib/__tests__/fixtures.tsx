@@ -1,4 +1,16 @@
-const makeStep = ({ fieldsById, stepId, label }) => ({
+import { Dictionary } from '../types';
+import _ from 'lodash';
+import { FormSchema } from '../types';
+
+const makeStep = ({
+  fieldsById,
+  stepId,
+  label
+}: {
+  fieldsById: string[];
+  stepId: string;
+  label: string;
+}) => ({
   [stepId]: {
     fieldsById,
     id: stepId,
@@ -8,29 +20,25 @@ const makeStep = ({ fieldsById, stepId, label }) => ({
   }
 });
 
-const fieldOneId = '1';
-const fieldTwoId = '2';
-const fieldThreeId = '3';
+export const fieldOneId = '1';
+export const fieldTwoId = '2';
+export const fieldThreeId = '3';
 
-const stepOneId = 'step-1';
-const stepTwoId = 'step-2';
+export const stepOneId = 'step-1';
+export const stepTwoId = 'step-2';
 
-const stepOne = makeStep({
+export const stepOne = makeStep({
   fieldsById: [fieldOneId, fieldTwoId],
   label: 'stepOne',
   stepId: stepOneId
 });
-const stepTwo = makeStep({
+export const stepTwo = makeStep({
   fieldsById: [fieldThreeId],
   label: 'stepTwo',
   stepId: stepTwoId
 });
 
-// Fields length is the length of our custom fields + 1 for the submit field which is always here
-const stepOneLength = stepOne[stepOneId].fieldsById.length + 1;
-const stepTwoLength = stepTwo[stepTwoId].fieldsById.length + 1;
-
-export const CORRECT_SCHEMA = {
+export const CORRECT_SCHEMA: FormSchema = {
   fields: {
     [fieldOneId]: {
       id: fieldOneId,
@@ -41,8 +49,15 @@ export const CORRECT_SCHEMA = {
     [fieldTwoId]: {
       id: fieldTwoId,
       title: 'Input Checkbox 2',
-      meta: { label: 'foo', validation: { required: true, maxLength: 20 } },
-      type: 'checkbox'
+      meta: { label: 'foo' },
+      type: 'checkbox',
+      validation: {
+        required: {
+          key: 'required',
+          message: 'forms.required.error',
+          value: true
+        }
+      }
     },
     [fieldThreeId]: {
       id: fieldThreeId,
@@ -51,12 +66,11 @@ export const CORRECT_SCHEMA = {
       type: 'text'
     }
   },
-  fieldsById: [fieldOneId, fieldTwoId, fieldThreeId],
   steps: { ...stepOne, ...stepTwo },
   stepsById: [stepOneId, stepTwoId]
 };
 
-export const CORRECT_DICTIONARY = {
+export const CORRECT_DICTIONARY: Dictionary = {
   text: () => <input type="text" placeholder="Test" data-testid="test" />,
   checkbox: () => <input type="checkbox" data-testid="test" />,
   submit: ({ label }) => (
@@ -65,3 +79,5 @@ export const CORRECT_DICTIONARY = {
     </button>
   )
 };
+
+export const typesAllowed = _.keys(CORRECT_DICTIONARY);

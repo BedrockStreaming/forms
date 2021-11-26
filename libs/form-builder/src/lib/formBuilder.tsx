@@ -14,6 +14,7 @@ import _ from 'lodash';
 
 import { Dictionary, ExtraValidation, FormSchema } from './types';
 import { useCheckFormStepValidity } from './hooks/useCheckFormStepValidity.hook';
+import { useAutoFocus } from './hooks/useAutoFocus.hook';
 
 import { getSchemaInfo } from './utils/getSchemaInfo.util';
 import { handleFormBuilderError } from './utils/handleFormBuilderError.util';
@@ -22,7 +23,6 @@ import { Stepper } from './components/stepper.component';
 import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules } from './utils/validation.utils';
-import { useAutoFocus } from './hooks/useAutoFocus';
 
 export interface FormBuilderProps<FormValues> {
   defaultValues?: DefaultValues<FormValues>;

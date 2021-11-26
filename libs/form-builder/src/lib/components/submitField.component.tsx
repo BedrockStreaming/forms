@@ -5,7 +5,7 @@ import { SUBMIT_FIELD_TYPE } from '../constants';
 import { FormField } from './formField.component';
 import { Dictionary } from '../types';
 
-interface SubmitFieldProps<FormValues> {
+export interface SubmitFieldProps<FormValues> {
   dictionary: Dictionary;
   isDirty: boolean;
   isValid: boolean;

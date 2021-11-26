@@ -2154,7 +2154,7 @@
     lz-string "^1.4.4"
     pretty-format "^26.6.2"
 
-"@testing-library/react-hooks@^7.0.2":
+"@testing-library/react-hooks@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-7.0.2.tgz#3388d07f562d91e7f2431a4a21b5186062ecfee0"
   integrity sha512-dYxpz8u9m4q1TuzfcUApqi8iFfR6R0FaMbr2hjZJy1uC8z+bO/K4v8Gs9eogGKYQop7QsrBTFkv/BCF7MzD2Cg==
@@ -6708,6 +6708,11 @@ image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
+
+immutable-set@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/immutable-set/-/immutable-set-2.2.1.tgz#cf14a0fd220dade690106049d0464c8517093155"
+  integrity sha512-3g0ek7RRm9PnTzfaGnNgDunRwuoE9tUKBwGDG/0o58TURSEDvkFLgytEKGRLMIaZZDVWByMfvqpGAtjOhFY2tg==
 
 import-cwd@^3.0.0:
   version "3.0.0"

@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import _ from 'lodash';
-import debug from 'debug';
 import { FieldValues, UseFormSetFocus } from 'react-hook-form';
 import { FormSchema } from '../types';
-
-const log = debug('formbuilder:useAutoFocus');
 
 export interface UseAutoFocusArgs {
   currentStepIndex: number;
@@ -29,7 +26,7 @@ export const useAutoFocus = ({
     try {
       setFocus(firstFieldIdInStep);
     } catch (error) {
-      log('One element is not focusable. Error: ', error);
+      return;
     }
   }, [currentStepIndex, schema, setFocus]);
 };

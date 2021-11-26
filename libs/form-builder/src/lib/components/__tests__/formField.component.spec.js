@@ -30,7 +30,7 @@ describe('<FormField />', () => {
     it('should not render when field type is missing from dictionnary', () => {
       getWrapper({ fieldType, dictionary, id });
 
-      expect(screen.queryByRole('heading')).not.toBeUndefined();
+      expect(screen.queryByRole('heading')).toBeNull();
     });
   });
 });

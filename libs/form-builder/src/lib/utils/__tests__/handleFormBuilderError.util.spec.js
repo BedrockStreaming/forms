@@ -1,6 +1,10 @@
 import { FormBuilderError } from '../formBuilderError.utils';
 import { handleFormBuilderError } from '../handleFormBuilderError.util';
-import { CORRECT_DICTIONARY, CORRECT_SCHEMA, typesAllowed } from './fixtures';
+import {
+  CORRECT_DICTIONARY,
+  CORRECT_SCHEMA,
+  typesAllowed
+} from '../../__tests__/fixtures';
 
 describe('handleFormBuilderError', () => {
   it('should not throw a FormBuilderError error if schema, types allowed and dictionary are correct', () => {
