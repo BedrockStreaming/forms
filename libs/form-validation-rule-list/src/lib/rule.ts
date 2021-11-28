@@ -31,7 +31,7 @@ export type CheckRules = (
 ) => string[];
 
 export const checkRules = (
-  value: string | number,
+  value: string | number | undefined,
   rules: RuleObject[]
 ): string[] =>
   rules.reduce(

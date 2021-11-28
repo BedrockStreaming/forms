@@ -62,5 +62,5 @@ export interface Dictionary {
 }
 
 export interface ExtraValidation {
-  [FieldId: string]: () => () => boolean;
+  [FieldId: string]: (value?: any) => (input?: any) => boolean;
 }

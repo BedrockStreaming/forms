@@ -26,7 +26,7 @@ import { getFieldRules } from './utils/validation.utils';
 
 export interface FormBuilderProps<FormValues> {
   defaultValues?: DefaultValues<FormValues>;
-  behavior: keyof ValidationMode;
+  behavior?: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;
   onNextStep?: (value: UnpackNestedValue<FormValues>) => void;
@@ -38,7 +38,7 @@ export interface FormBuilderProps<FormValues> {
 
 export function FormBuilder<FormValues>({
   defaultValues,
-  behavior,
+  behavior = 'onChange',
   schema,
   dictionary,
   onNextStep = _.noop,

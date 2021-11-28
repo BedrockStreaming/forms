@@ -9,7 +9,7 @@ import {
   setNextStep,
   updateFormData
 } from '@bedrockstreaming/form-redux';
-import { config } from './config';
+import { config } from '../../config';
 import { dictionary } from './dictionary';
 import { useSubmit } from './hooks/useSubmit.hook';
 import { extraValidation } from './extraValidation';
