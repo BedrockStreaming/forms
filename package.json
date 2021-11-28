@@ -55,6 +55,7 @@
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
     "@hookform/devtools": "4.0.1",
+    "@jscutlery/semver": "^2.14.0",
     "@nrwl/cli": "12.6.3",
     "@nrwl/cypress": "12.6.3",
     "@nrwl/eslint-plugin-nx": "12.6.3",
