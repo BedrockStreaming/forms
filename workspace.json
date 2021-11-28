@@ -158,6 +158,23 @@
             "jestConfig": "libs/form-redux/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/form-redux",
+            "tsConfig": "libs/form-redux/tsconfig.lib.json",
+            "project": "libs/form-redux/package.json",
+            "entryFile": "libs/form-redux/src/index.ts",
+            "assets": [
+              {
+                "glob": "README.md",
+                "input": "libs/form-redux/.",
+                "output": "."
+              }
+            ]
+          },
+          "outputs": ["{options.outputPath}"]
         }
       }
     },
