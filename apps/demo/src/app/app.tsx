@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Form from './form.component';
+import Form from './examples/with-redux/form.component';
 import { ReactComponent as Logo } from './logo.svg';
 
 const Container = styled.div`

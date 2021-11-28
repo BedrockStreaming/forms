@@ -27,7 +27,7 @@ export interface EnhancedRules extends RuleObject, BaseRules {}
 
 export interface ValidationRuleListProps {
   id?: string;
-  rules: RuleObject[];
+  rules?: RuleObject[];
   value?: string | number;
   component?: React.FunctionComponent<any>;
   componentProp?: string;
