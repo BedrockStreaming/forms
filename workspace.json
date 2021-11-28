@@ -105,6 +105,25 @@
       "sourceRoot": "libs/form-builder/src",
       "projectType": "library",
       "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/form-builder",
+            "tsConfig": "libs/form-builder/tsconfig.lib.json",
+            "project": "libs/form-builder/package.json",
+            "entryFile": "libs/form-builder/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/form-builder/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
@@ -139,6 +158,23 @@
             "jestConfig": "libs/form-redux/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/form-redux",
+            "tsConfig": "libs/form-redux/tsconfig.lib.json",
+            "project": "libs/form-redux/package.json",
+            "entryFile": "libs/form-redux/src/index.ts",
+            "assets": [
+              {
+                "glob": "README.md",
+                "input": "libs/form-redux/.",
+                "output": "."
+              }
+            ]
+          },
+          "outputs": ["{options.outputPath}"]
         }
       }
     },

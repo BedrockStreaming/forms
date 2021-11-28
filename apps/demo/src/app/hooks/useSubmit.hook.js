@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateFormData } from '@forms/form-redux';
+import { updateFormData } from '@bedrockstreaming/form-redux';
 
 const transformFields = (x) => x;
 const formSubmit = (processedFields) => ({

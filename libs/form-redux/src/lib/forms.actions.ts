@@ -1,4 +1,4 @@
-import { FormSchema } from '@forms/form-builder';
+import { FormSchema } from '@bedrockstreaming/form-builder';
 
 export const INIT_FORM = 'forms/INIT_FORM';
 export const initForm = (formId: string, schema: FormSchema) => ({
