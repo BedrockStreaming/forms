@@ -160,7 +160,7 @@
           }
         },
         "build": {
-          "builder": "@nrwl/web:package",
+          "executor": "@nrwl/web:package",
           "options": {
             "outputPath": "dist/libs/form-redux",
             "tsConfig": "libs/form-redux/tsconfig.lib.json",
@@ -175,6 +175,37 @@
             ]
           },
           "outputs": ["{options.outputPath}"]
+        }
+      }
+    },
+    "form-redux-slice": {
+      "root": "libs/form-redux-slice",
+      "sourceRoot": "libs/form-redux-slice/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/form-redux-slice",
+            "main": "libs/form-redux-slice/src/index.ts",
+            "tsConfig": "libs/form-redux-slice/tsconfig.lib.json",
+            "assets": ["libs/form-redux-slice/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/form-redux-slice/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/form-redux-slice"],
+          "options": {
+            "jestConfig": "libs/form-redux-slice/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       }
     },

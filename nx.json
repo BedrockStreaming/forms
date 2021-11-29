@@ -40,6 +40,9 @@
     "form-redux": {
       "tags": []
     },
+    "form-redux-slice": {
+      "tags": []
+    },
     "form-validation-rule-list": {
       "tags": []
     }

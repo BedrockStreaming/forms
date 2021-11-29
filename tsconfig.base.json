@@ -15,11 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bedrockstreaming/form-builder": ["libs/form-builder/src/index.ts"],
+      "@bedrockstreaming/form-redux": ["libs/form-redux/src/index.ts"],
+      "@bedrockstreaming/form-redux-slice": [
+        "libs/form-redux-slice/src/index.ts"
+      ],
       "@bedrockstreaming/form-validation-rule-list": [
         "libs/form-validation-rule-list/src/index.ts"
-      ],
-      "@bedrockstreaming/form-builder": ["libs/form-builder/src/index.ts"],
-      "@bedrockstreaming/form-redux": ["libs/form-redux/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
