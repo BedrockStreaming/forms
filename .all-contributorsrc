@@ -119,6 +119,19 @@
         "maintenance",
         "ideas"
       ]
+    },
+    {
+      "login": "piouPiouM",
+      "name": "Mehdi Kabab",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22614?v=4",
+      "profile": "http://pioupioum.fr/",
+      "contributions": [
+        "doc",
+        "code",
+        "example",
+        "maintenance",
+        "ideas"
+      ]
     }
   ]
 }
