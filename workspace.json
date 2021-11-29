@@ -71,6 +71,9 @@
             "jestConfig": "apps/demo/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -97,6 +100,9 @@
           "options": {
             "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -137,6 +143,9 @@
             "jestConfig": "libs/form-builder/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -160,7 +169,7 @@
           }
         },
         "build": {
-          "builder": "@nrwl/web:package",
+          "executor": "@nrwl/web:package",
           "options": {
             "outputPath": "dist/libs/form-redux",
             "tsConfig": "libs/form-redux/tsconfig.lib.json",
@@ -175,6 +184,9 @@
             ]
           },
           "outputs": ["{options.outputPath}"]
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -217,28 +229,11 @@
             "jestConfig": "libs/form-validation-rule-list/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "version": {
+          "executor": "@jscutlery/semver:version"
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "demo"
+  }
 }
