@@ -177,8 +177,8 @@
             "entryFile": "libs/form-redux/src/index.ts",
             "assets": [
               {
-                "glob": "README.md",
-                "input": "libs/form-redux/.",
+                "glob": "libs/form-redux/README.md",
+                "input": ".",
                 "output": "."
               }
             ]
