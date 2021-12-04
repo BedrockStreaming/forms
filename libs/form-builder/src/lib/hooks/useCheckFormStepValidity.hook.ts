@@ -14,10 +14,10 @@ interface GetFieldsToCheckByStepArgs {
   currentStepIndex: number;
 }
 
-export const getFieldsToCheckByStep = ({
+export function getFieldsToCheckByStep({
   schema,
   currentStepIndex
-}: GetFieldsToCheckByStepArgs) => {
+}: GetFieldsToCheckByStepArgs) {
   const currentStepId = _.get(schema, `stepsById.${currentStepIndex}`);
   const currentStepFieldIds = _.get(
     schema,
@@ -30,7 +30,7 @@ export const getFieldsToCheckByStep = ({
   );
 
   return fieldsToCheck;
-};
+}
 
 type UnknownArrayOrObject = unknown[] | Record<string, unknown>;
 
@@ -80,6 +80,12 @@ interface UseCheckFormStepValidityArgs<FormValues> {
 
 const EMPTY_DEFAULT_VALUES = {} as DefaultValues<any>;
 
+function getDefaultValuesFilledKeys(defaultValues: DefaultValues<any>) {
+  return Object.keys(defaultValues).filter(
+    (key) => !_.isEmpty(defaultValues[key])
+  );
+}
+
 export function useCheckFormStepValidity<FormValues>({
   schema,
   currentStepIndex,
@@ -91,9 +97,17 @@ export function useCheckFormStepValidity<FormValues>({
   const [validity, setValidity] = useState(false);
 
   useEffect(() => {
-    const fieldsToCheck = getFieldsToCheckByStep({ schema, currentStepIndex });
+    const stepFields = getFieldsToCheckByStep({
+      schema,
+      currentStepIndex
+    });
 
-    updateValidity({
+    const fieldsToCheck = _.intersection(
+      stepFields,
+      getDefaultValuesFilledKeys(defaultValues)
+    );
+
+    updateValidity<FormValues>({
       dirtyFields,
       fieldsToCheck,
       defaultValues,
@@ -102,7 +116,7 @@ export function useCheckFormStepValidity<FormValues>({
     });
 
     const subscription = watch(() =>
-      updateValidity({
+      updateValidity<FormValues>({
         dirtyFields,
         fieldsToCheck,
         defaultValues,

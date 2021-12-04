@@ -106,6 +106,50 @@
         }
       }
     },
+    "examples-styled-inputs": {
+      "root": "libs/examples/styled-inputs",
+      "sourceRoot": "libs/examples/styled-inputs/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/examples/styled-inputs"],
+          "options": {
+            "jestConfig": "libs/examples/styled-inputs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "examples-birthdate": {
+      "root": "libs/examples/birthdate",
+      "sourceRoot": "libs/examples/birthdate/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/examples/birthdate/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/examples/birthdate"],
+          "options": {
+            "jestConfig": "libs/examples/birthdate/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "form-builder": {
       "root": "libs/form-builder",
       "sourceRoot": "libs/form-builder/src",
@@ -233,6 +277,26 @@
         "version": {
           "executor": "@jscutlery/semver:version"
         }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "demo",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
       }
     }
   }

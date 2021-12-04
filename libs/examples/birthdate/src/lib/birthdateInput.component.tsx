@@ -1,39 +1,47 @@
 import { useRef } from 'react';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import { ValidatedTextField } from '../textfield/validatedTextField.component';
 import {
   formatBirthdate,
   getBirthdateSeparator,
   shortDateDisplay
 } from './birthdate.utils';
-import {
-  weightByRulesClassnames,
-  colorByRulesClassnames
-} from '../../constants/validationColors.constants';
 
 const separator = getBirthdateSeparator(shortDateDisplay);
 const MAX_INPUT_LENGTH = 10;
 
-const StyledValidatedTextField = styled(ValidatedTextField)`
-  button {
-    color: 'grey';
-  }
-`;
+export interface ComponentProps {
+  value: any;
+  label: string;
+  onChange: (event: any) => void;
+  'data-testid': string;
+  type: string;
+  name: string;
+  [key: string]: any;
+}
+
+export interface BirthdateInputProps {
+  component: (props: any) => JSX.Element;
+  id: string;
+  value: any;
+  label: string;
+  setFieldValue: any;
+  onChange: (event: any) => void;
+  [key: string]: any;
+}
 
 export const BirthdateInput = ({
+  component: Component,
   id,
   label,
   value,
   setFieldValue,
   onChange,
   ...props
-}) => {
-  const previousInputValue = useRef(0);
+}: BirthdateInputProps) => {
+  const previousInputValue = useRef<string>('');
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     const eventValue = _.get(event, 'target.value', '');
 
     if (eventValue.length > MAX_INPUT_LENGTH) {
@@ -58,8 +66,8 @@ export const BirthdateInput = ({
   };
 
   return (
-    <StyledValidatedTextField
-      label={label || 'onboarding.labels.birthdate'}
+    <Component
+      label={label}
       data-testid="birthdate-field"
       type="text"
       name="birthdate"
@@ -70,15 +78,7 @@ export const BirthdateInput = ({
   );
 };
 
-BirthdateInput.propTypes = {
-  id: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  setFieldValue: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired
-};
-
 BirthdateInput.defaultProps = {
-  weightByRulesClassnames,
-  colorByRulesClassnames
+  weightByRulesClassnames: {},
+  colorByRulesClassnames: {}
 };

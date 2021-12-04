@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
 import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
 
-import { ValidatedPasswordTextField } from './components/textfield/validatedPasswordTextField.component';
-import { ValidatedTextField } from './components/textfield/validatedTextField.component';
-
-import { BirthdateInput } from './components/birthdate/birthdateInput.component';
+import {
+  ValidatedTextField,
+  ValidatedPasswordTextField
+} from '@forms/examples/styled-inputs';
+import { BirthdateInput } from '@forms/examples/birthdate';
 
 const validationColors = {};
 
@@ -70,6 +71,7 @@ export const dictionary = {
     return (
       <TextFieldMarginWrapper>
         <BirthdateInput
+          component={ValidatedTextField}
           label={label}
           hasError={hasError}
           valid={isValid}

@@ -64,7 +64,7 @@ export function FormBuilder<FormValues>({
 
   const isPreFilled = !_.isEmpty(defaultValues);
 
-  const typesAllowed = _.keys(dictionary);
+  const typesAllowed = React.useMemo(() => _.keys(dictionary), [dictionary]);
 
   const { fields, fieldsById, stepsById, submitLabel } = React.useMemo(
     () => getSchemaInfo(schema, typesAllowed, currentStepIndex),
@@ -111,7 +111,7 @@ export function FormBuilder<FormValues>({
         <Stepper currentStepIndex={currentStepIndex}>
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(fieldsById, (fieldId) => {
+              {_.map(fieldsById, (fieldId, index) => {
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 

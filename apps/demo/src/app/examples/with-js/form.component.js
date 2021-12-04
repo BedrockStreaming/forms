@@ -12,7 +12,7 @@ import {
 import { config } from '../../config';
 import { dictionary } from './dictionary';
 import { useSubmit } from './hooks/useSubmit.hook';
-import { extraValidation } from './extraValidation';
+import { extraValidation } from '../../extraValidation';
 
 const formId = 'register';
 const {
