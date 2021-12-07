@@ -8,15 +8,22 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.tsx",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
-            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-            "styles": ["apps/demo/src/styles.css"],
+            "assets": [
+              "apps/demo/src/favicon.ico",
+              "apps/demo/src/assets"
+            ],
+            "styles": [
+              "apps/demo/src/styles.css"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -61,12 +68,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/demo/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/demo/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/demo"],
+          "outputs": [
+            "coverage/apps/demo"
+          ],
           "options": {
             "jestConfig": "apps/demo/jest.config.js",
             "passWithNoTests": true
@@ -95,7 +106,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/demo-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -151,13 +164,17 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/form-builder",
             "tsConfig": "libs/form-builder/tsconfig.lib.json",
             "project": "libs/form-builder/package.json",
             "entryFile": "libs/form-builder/src/index.ts",
-            "external": ["react/jsx-runtime"],
+            "external": [
+              "react/jsx-runtime"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -171,12 +188,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/form-builder/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/form-builder/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/form-builder"],
+          "outputs": [
+            "coverage/libs/form-builder"
+          ],
           "options": {
             "jestConfig": "libs/form-builder/jest.config.js",
             "passWithNoTests": true
@@ -217,12 +238,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/form-redux/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/form-redux/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/form-redux"],
+          "outputs": [
+            "coverage/libs/form-redux"
+          ],
           "options": {
             "jestConfig": "libs/form-redux/jest.config.js",
             "passWithNoTests": true
@@ -243,7 +268,9 @@
               }
             ]
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "version": {
           "executor": "@jscutlery/semver:version",
@@ -279,13 +306,17 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/form-validation-rule-list",
             "tsConfig": "libs/form-validation-rule-list/tsconfig.lib.json",
             "project": "libs/form-validation-rule-list/package.json",
             "entryFile": "libs/form-validation-rule-list/src/index.ts",
-            "external": ["react/jsx-runtime"],
+            "external": [
+              "react/jsx-runtime"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -306,7 +337,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/form-validation-rule-list"],
+          "outputs": [
+            "coverage/libs/form-validation-rule-list"
+          ],
           "options": {
             "jestConfig": "libs/form-validation-rule-list/jest.config.js",
             "passWithNoTests": true
@@ -338,6 +371,25 @@
           "options": {
             "baseBranch": "master",
             "access": "public"
+          }
+        }
+      }
+    },
+    "docsite": {
+      "projectType": "application",
+      "root": "apps/docsite",
+      "sourceRoot": "apps/docsite/src",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/docusaurus:browser",
+          "options": {
+            "outputPath": "dist/apps/docsite"
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/docusaurus:dev-server",
+          "options": {
+            "port": 3000
           }
         }
       }
