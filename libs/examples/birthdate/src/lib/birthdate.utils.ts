@@ -8,34 +8,35 @@ const config = {
   }
 };
 
-export const shortDate = _.get(config, 'moment.formats.shortDate');
+export const shortDate: string = _.get(config, 'moment.formats.shortDate');
 export const shortDateDisplay = _.get(
   config,
   'moment.formats.shortDateDisplay'
 );
 
-export const getUserAge = (birthdate) =>
+export const getUserAge = (birthdate?: string) =>
   moment().diff(moment(birthdate, shortDate), 'years');
 
-export const isDateValid = (date) => moment(date, shortDate, true).isValid();
+export const isDateValid = (date?: string) =>
+  moment(date, shortDate, true).isValid();
 
-export const getBirthdateSeparator = (birthdateFormat) =>
+export const getBirthdateSeparator = (birthdateFormat: string): string =>
   birthdateFormat.replace(/[a-zÀ-ž]/gi, '')[0];
 
 // Get the indexes where we should put a separator just after
 const getBirthdateSeparatorIndexes = () => {
   const separator = getBirthdateSeparator(shortDateDisplay);
 
-  return Array.from(shortDateDisplay).reduce(
+  return Array.from<string>(shortDateDisplay).reduce(
     (separatorsIndexes, char, index) =>
       char === separator
         ? separatorsIndexes.concat(index - 1 - separatorsIndexes.length)
         : separatorsIndexes,
-    []
+    [] as number[]
   );
 };
 
-export const formatBirthdate = (birthdate) => {
+export const formatBirthdate = (birthdate: string) => {
   const separator = getBirthdateSeparator(shortDateDisplay);
   const sliceCases = getBirthdateSeparatorIndexes();
 

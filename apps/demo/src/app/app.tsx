@@ -1,23 +1,26 @@
-import styled from 'styled-components';
-import Form from './examples/with-redux/form.component';
-import { ReactComponent as Logo } from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
 
-const Container = styled.div`
-  background: lightgrey;
-  height: 100vh;
-`;
+import { Layout } from './components/app/layout.component';
+import MUIForm from './examples/with-material-ui/form.component';
+import StyledForm from './examples/with-styled-components/form.component';
 
 export function App() {
   return (
-    <Container>
-      <header>
-        <Logo width="75" height="75" />
-        <h1>Welcome to demo!</h1>
-      </header>
+    <Layout>
       <main>
-        <Form />
+        <Switch>
+          <Route exact path="/">
+            <MUIForm />
+          </Route>
+          <Route exact path="/examples/styled-components">
+            <StyledForm />
+          </Route>
+          <Route exact path="/examples/material-ui">
+            <MUIForm />
+          </Route>
+        </Switch>
       </main>
-    </Container>
+    </Layout>
   );
 }
 

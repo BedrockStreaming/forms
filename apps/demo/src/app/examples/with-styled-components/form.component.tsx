@@ -1,22 +1,32 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FieldValues } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
-  updateFormData
+  updateFormData,
+  getFormData
 } from '@bedrockstreaming/form-redux';
+import _ from 'lodash';
 
 import { config } from '../../config';
 import { dictionary } from './dictionary';
 import { useSubmit } from '../../hooks/useSubmit.hook';
-import { extraValidation } from './extraValidation';
+import { extraValidation } from '../../extraValidation';
 
 const formId = 'register';
+const defaultValues = {
+  email: '',
+  firstName: '',
+  lastName: '',
+  birthdate: '',
+  password: ''
+};
+
 const {
   schemas: { register: schema }
 } = config;
@@ -43,6 +53,7 @@ const Form = () => {
   const dispatch = useDispatch();
   const currentStepIndex = useSelector(getCurrentStepIndex(formId));
   const isLastStep = useSelector(isLastStepSelector(formId));
+  const previousValues = useSelector(getFormData(formId));
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
@@ -61,7 +72,6 @@ const Form = () => {
     },
     [cleanUseSubmit]
   );
-
   return (
     <Container>
       <FormBuilder
@@ -72,6 +82,9 @@ const Form = () => {
         currentStepIndex={currentStepIndex}
         isLastStep={isLastStep}
         extraValidation={extraValidation}
+        defaultValues={
+          _.isEmpty(previousValues) ? defaultValues : previousValues
+        }
       />
     </Container>
   );

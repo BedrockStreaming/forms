@@ -1,9 +1,6 @@
 import _ from 'lodash';
 
-import {
-  getUserAge,
-  isDateValid
-} from '../../components/birthdate/birthdate.utils';
+import { getUserAge, isDateValid } from '@forms/examples/birthdate';
 
 const config = {
   onboarding: {

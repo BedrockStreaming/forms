@@ -5,8 +5,9 @@ import {
 } from '@bedrockstreaming/form-builder';
 import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
 
+import { ValidatedPasswordTextField } from '@forms/examples/styled-inputs';
+
 import { TextFieldTopMarginWrapper } from './styled';
-import { ValidatedPasswordTextField } from '../../../components/textfield/validatedPasswordTextField.component';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames

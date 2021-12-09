@@ -5,12 +5,14 @@ import {
 } from '@bedrockstreaming/form-builder';
 import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
 
+import { ValidatedTextField } from '@forms/examples/styled-inputs';
+import { BirthdateInput } from '@forms/examples/birthdate';
+
 import { TextFieldMarginWrapper } from './styled';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames
 } from '../../../constants/validationColors.constants';
-import { BirthdateInput } from '../../../components/birthdate/birthdateInput.component';
 
 export const DateInput = ({
   errors,
@@ -38,6 +40,7 @@ export const DateInput = ({
   return (
     <TextFieldMarginWrapper>
       <BirthdateInput
+        component={ValidatedTextField}
         label={label}
         hasError={hasError}
         valid={isValid}

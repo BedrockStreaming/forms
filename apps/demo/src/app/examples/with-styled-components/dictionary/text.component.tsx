@@ -1,8 +1,9 @@
 import { FieldErrors } from 'react-hook-form';
 import { Validations } from '@bedrockstreaming/form-builder';
 
+import { ValidatedTextField } from '@forms/examples/styled-inputs';
+
 import { TextFieldMarginWrapper } from './styled';
-import { ValidatedTextField } from '../../../components/textfield/validatedTextField.component';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames
