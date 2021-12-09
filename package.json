@@ -64,6 +64,7 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
+    "@bedrockstreaming/form-redux": "./libs/form-redux",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-angular": "^15.0.0",
     "@hookform/devtools": "4.0.1",
