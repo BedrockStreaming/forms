@@ -71,9 +71,6 @@
             "jestConfig": "apps/demo/jest.config.js",
             "passWithNoTests": true
           }
-        },
-        "version": {
-          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -100,9 +97,6 @@
           "options": {
             "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
           }
-        },
-        "version": {
-          "executor": "@jscutlery/semver:version"
         }
       }
     },
@@ -189,7 +183,19 @@
           }
         },
         "version": {
-          "executor": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "baseBranch": "master",
+            "postTargets": ["form-builder:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "branch": "master",
+            "tag": "${tag}",
+            "notesFile": "libs/form-builder/CHANGELOG.md"
+          }
         }
       }
     },
@@ -230,7 +236,19 @@
           "outputs": ["{options.outputPath}"]
         },
         "version": {
-          "executor": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "baseBranch": "master",
+            "postTargets": ["form-redux:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "branch": "master",
+            "tag": "${tag}",
+            "notesFile": "libs/form-redux/CHANGELOG.md"
+          }
         }
       }
     },
@@ -275,7 +293,19 @@
           }
         },
         "version": {
-          "executor": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "baseBranch": "master",
+            "postTargets": ["form-validation-rule-list:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "branch": "master",
+            "tag": "${tag}",
+            "notesFile": "libs/form-validation-rule-list/CHANGELOG.md"
+          }
         }
       }
     }

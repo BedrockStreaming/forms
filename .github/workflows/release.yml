@@ -15,8 +15,8 @@ jobs:
       - run: yarn commitlint --from=master
       - run: yarn nx affected:lint --base=master
       - run: yarn nx affected:build --base=master
-      # @NOTICE find a way to use affected:test with --code-coverage flag (if that possible??)
-      - run: yarn nx affected:test --base=master --code-coverage
+      # @NOTICE find a way to use affected:test with flag (if that possible??)
+      - run: yarn nx affected:test --base=master
       - run: yarn nx affected:e2e --headless --base=master
       - name: Codecov upload
         uses: codecov/codecov-action@v2
