@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: yarn commitlint --from=master
       - run: yarn nx affected:lint --base=master
       - run: yarn nx affected:build --base=master
