@@ -34,6 +34,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
       - name: Version
