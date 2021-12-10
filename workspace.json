@@ -186,7 +186,10 @@
           "executor": "@jscutlery/semver:version",
           "options": {
             "baseBranch": "master",
-            "postTargets": ["form-builder:github"]
+            "push": true,
+            "noVerify": true,
+            "commitMessageFormat": "release(${projectName}): publish version ${version}",
+            "postTargets": ["form-builder:publish", "form-builder:github"]
           }
         },
         "github": {
@@ -239,7 +242,10 @@
           "executor": "@jscutlery/semver:version",
           "options": {
             "baseBranch": "master",
-            "postTargets": ["form-redux:github"]
+            "push": true,
+            "noVerify": true,
+            "commitMessageFormat": "release(${projectName}): publish version ${version}",
+            "postTargets": ["form-redux:publish", "form-redux:github"]
           }
         },
         "github": {
@@ -296,7 +302,13 @@
           "executor": "@jscutlery/semver:version",
           "options": {
             "baseBranch": "master",
-            "postTargets": ["form-validation-rule-list:github"]
+            "push": true,
+            "noVerify": true,
+            "commitMessageFormat": "release(${projectName}): publish version ${version}",
+            "postTargets": [
+              "form-validation-rule-list:publish",
+              "form-validation-rule-list:github"
+            ]
           }
         },
         "github": {
