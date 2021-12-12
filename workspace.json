@@ -199,6 +199,13 @@
             "tag": "${tag}",
             "notesFile": "libs/form-builder/CHANGELOG.md"
           }
+        },
+        "publish": {
+          "executor": "ngx-deploy-npm:deploy",
+          "options": {
+            "baseBranch": "master",
+            "access": "public"
+          }
         }
       }
     },
@@ -254,6 +261,13 @@
             "branch": "master",
             "tag": "${tag}",
             "notesFile": "libs/form-redux/CHANGELOG.md"
+          }
+        },
+        "publish": {
+          "executor": "ngx-deploy-npm:deploy",
+          "options": {
+            "baseBranch": "master",
+            "access": "public"
           }
         }
       }
@@ -317,6 +331,13 @@
             "branch": "master",
             "tag": "${tag}",
             "notesFile": "libs/form-validation-rule-list/CHANGELOG.md"
+          }
+        },
+        "publish": {
+          "executor": "ngx-deploy-npm:deploy",
+          "options": {
+            "baseBranch": "master",
+            "access": "public"
           }
         }
       }
