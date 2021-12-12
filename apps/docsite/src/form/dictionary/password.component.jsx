@@ -1,8 +1,6 @@
-import { Ref, useMemo } from 'react';
-import { FieldErrors } from 'react-hook-form';
+import React, { useMemo } from 'react';
 import {
   getValidationRulesHints,
-  Validations
 } from '@bedrockstreaming/form-builder';
 import {
   checkRules,
@@ -15,7 +13,7 @@ import _ from 'lodash';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+} from '../constants/validationColors.constants';
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -32,19 +30,6 @@ export const Password = ({
   type,
   value,
   validation
-}: {
-  'data-testid': string;
-  errors: FieldErrors;
-  id: string;
-  label: string;
-  name: string;
-  onBlur: (event: any) => void;
-  onChange: (event: any) => void;
-  optionalText?: string;
-  propRef: Ref<any>;
-  type?: string;
-  value?: string | number;
-  validation: Validations;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
 

@@ -1,6 +1,4 @@
-import { Ref, RefObject, useMemo } from 'react';
-import { FieldErrors } from 'react-hook-form';
-import { Validations } from '@bedrockstreaming/form-builder';
+import React, {  useMemo } from 'react';
 import { TextField } from '@mui/material';
 import _ from 'lodash';
 import { Box } from '@mui/system';
@@ -18,20 +16,8 @@ export const Text = ({
   propRef,
   type,
   value
-}: {
-  'data-testid': string;
-  errorMessage: string;
-  errors: FieldErrors;
-  id: string;
-  label: string;
-  name: string;
-  onBlur: (event: any) => void;
-  onChange: (event: any) => void;
-  optionalText?: string;
-  propRef: Ref<any>;
-  type?: string;
-  value?: string | number;
-}) => {
+}
+ ) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const error = errors && errors.type && errorMessage;
 

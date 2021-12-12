@@ -133,9 +133,9 @@ export const config = {
         }
       },
       steps: {
-        'register-step-0': {
+        'step-0': {
           fieldsById: ['email'],
-          id: 'register-step-0',
+          id: 'step-0',
           meta: {
             subtitle: 'Email',
             title: 'Email'
@@ -144,9 +144,9 @@ export const config = {
             label: 'Next'
           }
         },
-        'register-step-1': {
+        'step-1': {
           fieldsById: ['password'],
-          id: 'register-step-1',
+          id: 'step-1',
           meta: {
             subtitle: 'Password',
             title: 'Password'
@@ -155,9 +155,9 @@ export const config = {
             label: 'Next'
           }
         },
-        'register-step-2': {
+        'step-2': {
           fieldsById: ['firstName', 'lastName'],
-          id: 'register-step-2',
+          id: 'step-2',
           meta: {
             subtitle: 'First name and Last name',
             title: 'First name and Last name'
@@ -166,9 +166,9 @@ export const config = {
             label: 'Next'
           }
         },
-        'register-step-3': {
+        'step-3': {
           fieldsById: ['birthdate'],
-          id: 'register-step-3',
+          id: 'step-3',
           meta: {
             subtitle: 'Birthdate',
             title: 'Birthdate'
@@ -178,12 +178,7 @@ export const config = {
           }
         }
       },
-      stepsById: [
-        'register-step-0',
-        'register-step-1',
-        'register-step-2',
-        'register-step-3'
-      ]
+      stepsById: ['step-0', 'step-1', 'step-2', 'step-3']
     },
     single_step_register: {
       fields: {

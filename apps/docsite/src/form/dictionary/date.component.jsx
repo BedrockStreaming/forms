@@ -1,9 +1,6 @@
-import { Ref, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { FieldErrors, Path, FieldValues } from 'react-hook-form';
-import {
-  getValidationRulesHints,
-  Validations
-} from '@bedrockstreaming/form-builder';
+import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
 import {
   checkRules,
   withValidationRuleList
@@ -16,7 +13,7 @@ import { BirthdateInput } from '@forms/examples/birthdate';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+} from '../constants/validationColors.constants';
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -33,20 +30,6 @@ export const DateInput = ({
   onChange,
   onBlur,
   propRef
-}: {
-  'data-testid': string;
-  errors: FieldErrors;
-  id: string;
-  label: string;
-  name: string;
-  onBlur: (event: any) => void;
-  onChange: (event: any) => void;
-  optionalText?: string;
-  propRef: Ref<any>;
-  type?: string;
-  value?: string | number;
-  validation: Validations;
-  setFieldValue: (id: Path<FieldValues>, value: any) => void;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const rules = getValidationRulesHints({

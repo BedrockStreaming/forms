@@ -1,6 +1,6 @@
+import * as React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-
 export interface DotTextProps {
   key: string;
   itemColorClass: string;

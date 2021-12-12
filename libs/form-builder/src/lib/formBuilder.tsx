@@ -91,7 +91,7 @@ export function FormBuilder<FormValues>({
   useAutoFocus({ currentStepIndex, schema, setFocus });
 
   // Displays nice and informative errors in dev mode
-  if (process.env.DEBUG)
+  if (global?.process?.env?.DEBUG)
     handleFormBuilderError(typesAllowed, schema, dictionary);
 
   if (
@@ -159,7 +159,7 @@ export function FormBuilder<FormValues>({
           onNextStep={onNextStep}
         />
       </form>
-      {process.env.DEBUG && <DevTool control={control} />}
+      {global?.process?.env?.DEBUG && <DevTool control={control} />}
     </>
   );
 }

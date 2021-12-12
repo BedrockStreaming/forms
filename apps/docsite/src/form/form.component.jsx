@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
-import { FieldValues } from 'react-hook-form';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
@@ -79,7 +78,7 @@ const Form = () => {
 
   const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
 
-  const handleNextStep = (fieldsValues: FieldValues) => {
+  const handleNextStep = (fieldsValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };
@@ -93,8 +92,8 @@ const Form = () => {
 
   return (
     <Paper className={classes.root} sx={{ p: 2 }}>
-      <Typography component="h1" variant="h6">
-        {formId}
+      <Typography sx={{ p: 1}} component="h1" variant="h6">
+        Validated register form demo
       </Typography>
       <Divider />
       <Box sx={{ m: 2 }}>
