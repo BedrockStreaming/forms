@@ -9,6 +9,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        name: Checkout [master]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+        with:
+          main-branch-name: 'master'
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
