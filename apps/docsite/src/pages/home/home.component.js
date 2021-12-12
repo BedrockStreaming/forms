@@ -4,11 +4,9 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { Button } from '@mui/material';
+import LiveExample from './live-example.component';
 import styles from './styles.module.css';
-import Form from '../../form/form.component';
-import { Grid, Button } from '@mui/material';
-import { Box } from '@mui/system';
-import Typography from '@mui/material/Typography';
 
 const RefLink = React.forwardRef((props, ref) => <Link {...props} />);
 
@@ -41,32 +39,7 @@ function Home() {
         </div>
       </header>
       <main>
-        <Box component="section" sx={{ p: 5 }}>
-          <Box>
-            <Grid container>
-              <Grid sx={{ p: 2 }} item xs={12} sm={6} md={6}>
-                <Typography
-                  sx={{ m: 2, textAlign: 'center' }}
-                  component="h1"
-                  variant="h4"
-                  gutterBottom
-                >
-                  Try it
-                </Typography>
-                <Typography sx={{ textAlign: 'center' }}>
-                  This registration form was generated using the FormBuilder
-                  component.
-                </Typography>
-                <Typography sx={{ textAlign: 'center' }}>
-                  You can have a look at the code used on Github
-                </Typography>
-              </Grid>
-              <Grid sx={{ p: 2 }} item xs={12} sm={6} md={6}>
-                <Form />
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
+        <LiveExample />
       </main>
     </Layout>
   );

@@ -3,10 +3,11 @@ import thunk from 'redux-thunk';
 
 import { createRootReducer } from './reducers';
 
+const windowProxy = typeof window === 'undefined' ? {} : window;
 const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+  windowProxy.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
   process.env.NODE_ENV === 'development'
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? windowProxy.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
 export default function configureStore(preloadedState = {}) {

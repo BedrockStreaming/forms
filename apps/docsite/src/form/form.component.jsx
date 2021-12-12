@@ -93,7 +93,7 @@ const Form = () => {
   return (
     <Paper className={classes.root} sx={{ p: 2 }}>
       <Typography sx={{ p: 1}} component="h1" variant="h6">
-        Validated register form demo
+        Multi Step Registration Form Demo
       </Typography>
       <Divider />
       <Box sx={{ m: 2 }}>

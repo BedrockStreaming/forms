@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Bedrock Streaming Forms',
-  tagline: 'You give me inputs, I give you forms',
+  tagline: 'I receive inputs, you receive forms',
   url: 'https://BedrockStreaming.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
