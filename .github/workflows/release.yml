@@ -54,8 +54,8 @@ jobs:
         # run: npx nx affected --base=master --releaseAs=minor --target=version
         run: |
           npx --no-install nx version form-builder --base=master --releaseAs=minor \
-          npx --no-install nx version form-validation-rule-list --base=master --releaseAs=minor \
-          npx --no-install nx version form-redux --base=master --releaseAs=minor
+          && npx --no-install nx version form-validation-rule-list --base=master --releaseAs=minor \
+          && npx --no-install nx version form-redux --base=master --releaseAs=minor
       - name: Tag last release
         run: git tag -f last-release
       - name: Push changes
