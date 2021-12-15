@@ -48,6 +48,9 @@
     },
     "form-validation-rule-list": {
       "tags": []
+    },
+    "docsite": {
+      "tags": []
     }
   },
   "cli": {

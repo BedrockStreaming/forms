@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import styled, { css } from 'styled-components';
@@ -207,4 +207,4 @@ TextFieldComponent.propTypes = {
 TextFieldComponent.displayName = 'TextField';
 
 export const TextFieldRaw = TextFieldComponent;
-export const TextField = memo(wrapped(TextFieldRaw));
+export const TextField = React.memo(wrapped(TextFieldRaw));

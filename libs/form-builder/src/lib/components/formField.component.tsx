@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Dictionary, Validations } from '../types';
 import { ErrorOption, Path, Ref, SetFieldValue } from 'react-hook-form';
 

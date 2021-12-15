@@ -44,7 +44,7 @@ const checkStepExist = (stepsCount: number, newStepIndex: number) =>
 export const reducer = (state = initialState, action: FormAction) => {
   switch (action.type) {
     case INIT_FORM: {
-      if (!checkFormId(action)) {
+      if (!checkFormId(action) || checkFormExist(action, state)) {
         return state;
       }
 

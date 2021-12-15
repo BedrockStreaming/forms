@@ -1,3 +1,4 @@
+import * as React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { DotText, DotTextProps } from './dotText.component';

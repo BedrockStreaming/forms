@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import * as React from 'react';
 import _ from 'lodash';
 
 import {
@@ -39,7 +39,7 @@ export const BirthdateInput = ({
   onChange,
   ...props
 }: BirthdateInputProps) => {
-  const previousInputValue = useRef<string>('');
+  const previousInputValue = React.useRef<string>('');
 
   const handleChange = (event: any) => {
     const eventValue = _.get(event, 'target.value', '');
