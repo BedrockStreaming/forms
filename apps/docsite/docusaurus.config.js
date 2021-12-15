@@ -81,12 +81,12 @@ module.exports = {
           editUrl:
             'https://github.com/BedrockStreaming/forms/edit/master/apps/docsite/'
         },
-
         theme: {
           customCss: require.resolve('./src/css/custom.css')
         }
       }
     ]
-  ]
+  ],
+  themes: ['@docusaurus/theme-live-codeblock']
 };
 // https://github.com/nielsen-oss/docs/blob/master/.github/workflows/documentation.yml

@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import Form from '../../form/form.component';
-import { Grid, Button, Typography, Paper } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+
+import Form from '../../form/form.component';
 
 const RefLink = React.forwardRef((props, ref) => <Link {...props} />);
 
@@ -29,8 +30,9 @@ export default function LiveExample() {
               You can play with it here to see how a form behaves with our
               solution.
             </Typography>
-            <Box sx={{ m: 2 }}>
+            <Box sx={{ p: 2 }} display="flex" justifyContent="center">
               <Button
+                sx={{ m: 1 }}
                 color="primary"
                 component={RefLink}
                 variant="contained"
@@ -38,16 +40,19 @@ export default function LiveExample() {
               >
                 See code sample
               </Button>
+              <Button
+                sx={{ m: 1, color: 'white', borderColor: 'white' }}
+                component={RefLink}
+                variant="outlined"
+                to="https://codesandbox.io/s/cranky-buck-pdxxd?file=/src/App.js"
+              >
+                Try it in CodeSandBox
+              </Button>
             </Box>
           </Grid>
           <Grid sx={{ p: 2 }} item xs={12} sm={6} md={6}>
             <Form />
           </Grid>
-          {/* <Grid sx={{ p: 2 }} item xs={12}>
-            <Paper sx={{ p: 3 }}>
-              <p>foo</p>
-            </Paper>
-          </Grid> */}
         </Grid>
       </Box>
     </Box>

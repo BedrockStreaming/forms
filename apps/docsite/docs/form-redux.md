@@ -1,6 +1,6 @@
 ---
 id: form-redux
-title: Form Redux
+title: 🌐 Form Redux
 ---
 
 `form-redux` is a redux slice for managing the forms steps.
@@ -34,17 +34,17 @@ import React from 'react';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
-  getFormConfiguration,
   isLastStep,
   resetForm,
   initForm,
   setNextStep,
 } from '@bedrockstreaming/form-redux';
+import { formConfig } from './path/to/my/config';
 import { fooSubmitAction } from '<my-app-module>';
 
 export const FooForm = () => {
+  const { foo: formId, schema } = formConfig;
   const dispatch = useDispatch();
-  const { foo: formId } = useSelector(getFormIds);
   const schema = useSelector(getFormConfiguration(formId));
   const currentStepIndex = useSelector(getCurrentStepIndex(formId));
   const currentStepMeta = useSelector(

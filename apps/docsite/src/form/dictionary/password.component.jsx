@@ -7,6 +7,7 @@ import {
   withValidationRuleList
 } from '@bedrockstreaming/form-validation-rule-list';
 
+import { Box } from '@mui/system';
 import { TextField } from '@mui/material';
 import _ from 'lodash';
 
@@ -41,21 +42,23 @@ export const Password = ({
   const hasError = !!checkRules(value, rules).length;
 
   return (
-    <ValidatedTextField
-      type="password"
-      inputProps={inputProps}
-      id={id}
-      label={label}
-      name={name}
-      error={hasError}
-      helperText={optionalText}
-      onBlur={onBlur}
-      onChange={onChange}
-      rules={rules}
-      value={value}
-      data-testid={dataTestId}
-      colorByRulesClassnames={colorByRulesClassnames}
-      weightByRulesClassnames={weightByRulesClassnames}
-    />
+    <Box sm={{ m: 1 }}>
+      <ValidatedTextField
+        type="password"
+        inputProps={inputProps}
+        id={id}
+        label={label}
+        name={name}
+        error={hasError}
+        helperText={optionalText}
+        onBlur={onBlur}
+        onChange={onChange}
+        rules={rules}
+        value={value}
+        data-testid={dataTestId}
+        colorByRulesClassnames={colorByRulesClassnames}
+        weightByRulesClassnames={weightByRulesClassnames}
+        />
+    </Box>
   );
 };

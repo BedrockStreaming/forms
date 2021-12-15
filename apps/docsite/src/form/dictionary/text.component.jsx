@@ -22,7 +22,7 @@ export const Text = ({
   const error = errors && errors.type && errorMessage;
 
   return (
-    <Box sx={{ m: 2 }}>
+    <Box sx={{ m: 1 }}>
       <TextField
         data-testid={dataTestId}
         error={!!error}

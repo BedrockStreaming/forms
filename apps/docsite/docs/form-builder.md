@@ -60,7 +60,7 @@ const schema = {
 
 You can then assign each type of field you have declared in `schema` by configuring the `dictionary` prop:
 
-```jsx
+```jsx live
 const dictionary = {
   text: MyTextFieldComponent,
   checkbox: MyCheckboxFieldComponent,
@@ -229,13 +229,13 @@ When we need more personalization in our validation for a special type of field 
 
 ```jsx
   const extraValidation = {
-    'customValidationFunction1': (...youCanPassAnyUsefullThingsHere) => fieldValue => doCustomValidationHere(fieldValue),
-    'customValidationFunction2': () => fieldValue => doOtherCustomValidationHere(fieldValue),
+    'customValidationFunction1': (schemaErrorValue) => inputValue => doCustomValidationHere(inputValue, schemaErrorValue),
+    'customValidationFunction2': () => inputValue => doOtherCustomValidationHere(inputValue),
   };
 
   const schema = {
     fields: {
-      BIRTHDATE: {
+      birthdate: {
         ...
         meta: {
           ...
@@ -243,11 +243,12 @@ When we need more personalization in our validation for a special type of field 
         validation: {
           customValidationFunction1: { // <-- this is a custom validation
             key: 'customValidationFunction1',
-            message: 'forms.register.birthdate.minAgeError',
+            message: 'Some untranslated error message',
           },
           customValidationFunction2: {  // <-- this is a custom validation
             key: 'customValidationFunction2',
-            message: 'forms.register.birthdate.maxAgeError',
+            message: 'some.i18n.node', // <-- Your input, your language
+            value: 16, // <-- this is a custom validation
           },
           required: { // <-- this is a default validation (native to react-hook-form)
             key: 'required',

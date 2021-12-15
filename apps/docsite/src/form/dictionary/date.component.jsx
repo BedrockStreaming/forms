@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { FieldErrors, Path, FieldValues } from 'react-hook-form';
 import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
 import {
   checkRules,
@@ -10,6 +9,7 @@ import _ from 'lodash';
 
 import { BirthdateInput } from '@forms/examples/birthdate';
 
+import { Box } from '@mui/system';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames
@@ -40,7 +40,7 @@ export const DateInput = ({
   const hasError = !!checkRules(value, rules).length;
 
   return (
-    <div>
+    <Box sx={{ m: 1 }}>
       <BirthdateInput
         component={ValidatedTextField}
         setFieldValue={setFieldValue}
@@ -58,6 +58,6 @@ export const DateInput = ({
         colorByRulesClassnames={colorByRulesClassnames}
         weightByRulesClassnames={weightByRulesClassnames}
       />
-    </div>
+    </Box>
   );
 };

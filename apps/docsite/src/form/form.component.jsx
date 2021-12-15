@@ -19,7 +19,7 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Box
+  Box,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -27,8 +27,8 @@ import { config } from './config';
 import { dictionary } from './dictionary';
 import { useSubmit } from './hooks/useSubmit.hook';
 import { extraValidation } from './extraValidation';
+import FormResults from './results.component';
 
-const formId = 'register';
 const defaultValues = {
   email: '',
   firstName: '',
@@ -38,6 +38,7 @@ const defaultValues = {
 };
 
 const {
+  formIds: { register: formId, },
   schemas: { register: schema }
 } = config;
 
@@ -121,6 +122,7 @@ const Form = () => {
           extraValidation={extraValidation}
         />
       </Box>
+      <FormResults results={_.isEmpty(previousValues) ? defaultValues : previousValues} />
     </Paper>
   );
 };

@@ -14,7 +14,7 @@
   </a>
 </p>
 
-:octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our react applications to handle dynamic forms generation and validation.
+:octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our production react applications to handle dynamic forms generation and validation.
 
 ## Why
 
@@ -26,9 +26,9 @@ As we were eager to keep some control over the process, we went with [react-hook
 
 ## :package: Packages
 
-- ⚛️ [@bedrockstreaming/form-builder](libs/form-builder/README.md) :construction_worker:
-- ⚛️ [@bedrockstreaming/form-validation-rule-list](libs/form-validation-rule-list/README.md) 🧑‍⚖️
-- :convenience_store: [@bedrockstreaming/form-redux](libs/form-redux/README.md)
+- [@bedrockstreaming/form-builder](libs/form-builder/README.md) :construction_worker:
+- [@bedrockstreaming/form-validation-rule-list](libs/form-validation-rule-list/README.md) 🧑‍⚖️
+- [@bedrockstreaming/form-redux](libs/form-redux/README.md) :globe_with_meridians:
 
 ## :railway_track: Road map
 
@@ -36,15 +36,23 @@ As we were eager to keep some control over the process, we went with [react-hook
 
 #### Must Have
 
-- [ ] Unit tests
 - [ ] Sound types
-- [ ] Demo with vanilla css and styled-components
-- [ ] Demo with react-provider and redux
-- [ ] Finish readmes
+- [ ] Demo with react-provider and redux toolkit
+- [ ] Clean readmes
+- [ ] Remove lodash
+
+- Documentation site
+  - [ ] Usage
+  - [ ] Clean quick start
+  - [ ] Form Builder
+    - [ ] validation
+    - [ ] multi-steps control
+  - [ ] Validation rule list
 
 #### Nice to Have
 
-- [ ] E2e tests
+- [ ] E2e tests on demo
+- [ ] E2e tests on docsite
 
 ## 🤝 Contributing
 

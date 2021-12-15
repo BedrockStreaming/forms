@@ -10,6 +10,7 @@ module.exports = {
   presets: [require.resolve('@docusaurus/core/lib/babel/preset')],
   plugins: [
     [
+      // Workaround for docusaurus to recognize NX workspace (libs) aliases
       require.resolve('babel-plugin-module-resolver'),
       {
         alias: alias
