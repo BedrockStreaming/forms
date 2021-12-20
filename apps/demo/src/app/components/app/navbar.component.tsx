@@ -33,6 +33,15 @@ export const NavBar = () => {
               </Button>
             ))}
           </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              component={Link}
+              to={`/schema-builder`}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Schema builder
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
