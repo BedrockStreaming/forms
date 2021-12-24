@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import { FormBuilder } from '@bedrockstreaming/form-builder';
+import {
+  Dictionary,
+  FormBuilder,
+  ExtraValidation
+} from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
@@ -24,10 +28,9 @@ import { ExpandMore } from '@mui/icons-material';
 
 import { getFields, getSchema } from '../generator.selectors';
 import { makeSchema } from './config';
-import { dictionary } from '../dictionary';
-import { extraValidation } from '../../extraValidation';
-import { useSubmit } from './useSubmit';
+import { useSubmit } from '../useSubmit.hook';
 import { useStyles } from '../useStyles';
+import { addStep } from '../generator.actions';
 
 const formId = 'add-step';
 const defaultValues = {
@@ -37,7 +40,13 @@ const defaultValues = {
   stepPosition: 0
 };
 
-export const StepForm = () => {
+export const StepForm = ({
+  dictionary,
+  extraValidation
+}: {
+  dictionary: Dictionary;
+  extraValidation: ExtraValidation;
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentStepIndex = useSelector(getCurrentStepIndex(formId));
@@ -54,19 +63,12 @@ export const StepForm = () => {
     dispatch(initForm(formId, schema));
   }, [dispatch, schema]);
 
-  const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId, addStep);
 
   const handleNextStep = (fieldsValues: FieldValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };
-
-  useEffect(
-    () => () => {
-      cleanUseSubmit();
-    },
-    [cleanUseSubmit]
-  );
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>

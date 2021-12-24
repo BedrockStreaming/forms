@@ -1,14 +1,9 @@
-import { useMemo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { FieldValues } from 'react-hook-form';
-import { FormBuilder } from '@bedrockstreaming/form-builder';
-import {
-  initForm,
-  setNextStep,
-  updateFormData
-} from '@bedrockstreaming/form-redux';
+import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
+import { initForm } from '@bedrockstreaming/form-redux';
 
 import {
   Typography,
@@ -20,17 +15,16 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
-import { dictionary } from '../dictionary';
-import { useSubmit } from './useSubmit';
-import { extraValidation } from '../../extraValidation';
 import { useStyles } from '../useStyles';
+import { useSubmit } from '../useSubmit.hook';
+import { addDictionary } from '../generator.actions';
 
-const formId = 'add-form-id';
+const formId = 'upload-dictionary';
 const defaultValues = {
-  formId: ''
+  dictionary: ''
 };
 
-export const FormIdForm = () => {
+export const DictionaryForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -38,12 +32,7 @@ export const FormIdForm = () => {
     dispatch(initForm(formId, schema));
   }, [dispatch]);
 
-  const [handleSubmit] = useSubmit(formId);
-
-  const handleNextStep = (fieldsValues: FieldValues) => {
-    dispatch(updateFormData(formId, fieldsValues));
-    dispatch(setNextStep(formId));
-  };
+  const [handleSubmit] = useSubmit(formId, addDictionary);
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>
@@ -53,7 +42,7 @@ export const FormIdForm = () => {
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Choose a unique identifier
+            Copy paste your existing dictionary object
           </Typography>
         </Box>
       </AccordionSummary>
@@ -63,9 +52,7 @@ export const FormIdForm = () => {
             dictionary={dictionary}
             schema={schema}
             defaultValues={defaultValues}
-            onNextStep={handleNextStep}
             onSubmit={handleSubmit}
-            extraValidation={extraValidation}
           />
         </Box>
       </AccordionDetails>

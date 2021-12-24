@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { FormBuilder, FormSchema } from '@bedrockstreaming/form-builder';
+import {
+  FormBuilder,
+  FormSchema,
+  Dictionary,
+  ExtraValidation
+} from '@bedrockstreaming/form-builder';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-import { dictionary } from '../../dictionary';
-import { extraValidation } from '../../../extraValidation';
-import { getElementType } from '../schema.utils';
 import { getTargetFormId } from '../../generator.selectors';
-import { useSubmit } from './useSubmit';
+import { updateSchema } from '../../generator.actions';
+import { getElementType } from '../schema.utils';
+import { useSubmit } from '../../useSubmit.hook';
 
 const style = {
   position: 'absolute' as const,
@@ -24,18 +27,23 @@ const style = {
   p: 4
 };
 
+const defaultSchema = { fields: {}, steps: {}, stepsById: [] };
+
 export function UpdateModal({
   open,
-  handleOpen,
   handleClose,
   text,
-  storedSchema
+  storedSchema,
+  dictionary,
+  extraValidation
 }: {
   open: boolean;
   handleOpen: () => void;
   handleClose: () => void;
   text: string;
   storedSchema: FormSchema;
+  dictionary: Dictionary;
+  extraValidation: ExtraValidation;
 }) {
   const formId = useSelector(getTargetFormId);
   const schema = getElementType({
@@ -45,7 +53,7 @@ export function UpdateModal({
     extraValidation
   });
 
-  const [onSubmit] = useSubmit(formId);
+  const [onSubmit] = useSubmit(formId, updateSchema);
 
   if (!formId) return null;
 
@@ -72,7 +80,7 @@ export function UpdateModal({
                   schema: storedSchema,
                   dictionary,
                   extraValidation
-                }) || { fields: {}, steps: {}, stepsById: [] }
+                }) || defaultSchema
               }
             />
           )}

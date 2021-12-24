@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import { FormBuilder } from '@bedrockstreaming/form-builder';
+import {
+  Dictionary,
+  FormBuilder,
+  ExtraValidation
+} from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
@@ -14,15 +18,20 @@ import {
 
 import { Typography, Box, Paper } from '@mui/material';
 
-import { dictionary } from '../dictionary';
-import { useSubmit } from './useSubmit';
-import { extraValidation } from '../../extraValidation';
+import { useSubmit } from '../useSubmit.hook';
 import { getSchema, getTargetFormId } from '../generator.selectors';
 import { useStyles } from '../useStyles';
+import { submitPreview } from '../generator.actions';
 
 const defaultValues = {};
 
-export const PreviewForm = () => {
+export const PreviewForm = ({
+  dictionary,
+  extraValidation
+}: {
+  dictionary: Dictionary;
+  extraValidation: ExtraValidation;
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const formId = useSelector(getTargetFormId);
@@ -36,19 +45,12 @@ export const PreviewForm = () => {
     }
   }, [dispatch, schema, formId]);
 
-  const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId, submitPreview);
 
   const handleNextStep = (fieldsValues: FieldValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };
-
-  useEffect(
-    () => () => {
-      cleanUseSubmit();
-    },
-    [cleanUseSubmit]
-  );
 
   return (
     <Paper className={classes.root} sx={{ p: 2 }}>

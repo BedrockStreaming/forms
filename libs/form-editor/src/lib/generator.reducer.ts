@@ -4,7 +4,8 @@ import {
   ADD_STEP,
   ADD_FORM_ID,
   ADD_SCHEMA,
-  ADD_DICTIONARY
+  ADD_DICTIONARY,
+  ADD_EXTRA_VALIDATION
 } from './generator.actions';
 
 const DEFAULT_OBJECT = {};
@@ -117,6 +118,9 @@ export const reducer = (
     }
     case ADD_DICTIONARY: {
       return { ...state, dictionary: action.payload };
+    }
+    case ADD_EXTRA_VALIDATION: {
+      return { ...state, extraValidation: action.payload };
     }
     default:
       return state;

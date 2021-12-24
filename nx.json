@@ -34,22 +34,25 @@
       "tags": [],
       "implicitDependencies": ["demo"]
     },
-    "examples-styled-inputs": {
+    "docsite": {
       "tags": []
     },
     "examples-birthdate": {
       "tags": []
     },
+    "examples-styled-inputs": {
+      "tags": []
+    },
     "form-builder": {
+      "tags": []
+    },
+    "form-editor": {
       "tags": []
     },
     "form-redux": {
       "tags": []
     },
     "form-validation-rule-list": {
-      "tags": []
-    },
-    "docsite": {
       "tags": []
     }
   },

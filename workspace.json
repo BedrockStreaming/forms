@@ -100,25 +100,21 @@
         }
       }
     },
-    "examples-styled-inputs": {
-      "root": "libs/examples/styled-inputs",
-      "sourceRoot": "libs/examples/styled-inputs/src",
-      "projectType": "library",
+    "docsite": {
+      "projectType": "application",
+      "root": "apps/docsite",
+      "sourceRoot": "apps/docsite/src",
       "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
+        "build": {
+          "executor": "@nx-plus/docusaurus:browser",
           "options": {
-            "lintFilePatterns": [
-              "libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"
-            ]
+            "outputPath": "dist/apps/docsite"
           }
         },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/examples/styled-inputs"],
+        "serve": {
+          "executor": "@nx-plus/docusaurus:dev-server",
           "options": {
-            "jestConfig": "libs/examples/styled-inputs/jest.config.js",
-            "passWithNoTests": true
+            "port": 3000
           }
         }
       }
@@ -139,6 +135,29 @@
           "outputs": ["coverage/libs/examples/birthdate"],
           "options": {
             "jestConfig": "libs/examples/birthdate/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "examples-styled-inputs": {
+      "root": "libs/examples/styled-inputs",
+      "sourceRoot": "libs/examples/styled-inputs/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/examples/styled-inputs"],
+          "options": {
+            "jestConfig": "libs/examples/styled-inputs/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -205,6 +224,46 @@
           "options": {
             "baseBranch": "master",
             "access": "public"
+          }
+        }
+      }
+    },
+    "form-editor": {
+      "root": "libs/form-editor",
+      "sourceRoot": "libs/form-editor/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/form-editor",
+            "tsConfig": "libs/form-editor/tsconfig.lib.json",
+            "project": "libs/form-editor/package.json",
+            "entryFile": "libs/form-editor/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/form-editor/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/form-editor/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/form-editor"],
+          "options": {
+            "jestConfig": "libs/form-editor/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -338,25 +397,6 @@
           "options": {
             "baseBranch": "master",
             "access": "public"
-          }
-        }
-      }
-    },
-    "docsite": {
-      "projectType": "application",
-      "root": "apps/docsite",
-      "sourceRoot": "apps/docsite/src",
-      "targets": {
-        "build": {
-          "executor": "@nx-plus/docusaurus:browser",
-          "options": {
-            "outputPath": "dist/apps/docsite"
-          }
-        },
-        "serve": {
-          "executor": "@nx-plus/docusaurus:dev-server",
-          "options": {
-            "port": 3000
           }
         }
       }

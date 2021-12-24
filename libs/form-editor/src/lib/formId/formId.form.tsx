@@ -2,8 +2,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { FormBuilder } from '@bedrockstreaming/form-builder';
-import { initForm } from '@bedrockstreaming/form-redux';
+import { FieldValues } from 'react-hook-form';
+import { Dictionary, FormBuilder } from '@bedrockstreaming/form-builder';
+import {
+  initForm,
+  setNextStep,
+  updateFormData
+} from '@bedrockstreaming/form-redux';
 
 import {
   Typography,
@@ -15,17 +20,16 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
-import { dictionary } from '../../dictionary';
-import { useSubmit } from './useSubmit';
-import { extraValidation } from '../../../extraValidation';
-import { useStyles } from '../../useStyles';
+import { useStyles } from '../useStyles';
+import { useSubmit } from '../useSubmit.hook';
+import { addFormId } from '../generator.actions';
 
-const formId = 'upload-schema';
+const formId = 'add-form-id';
 const defaultValues = {
-  schema: ''
+  formId: ''
 };
 
-export const SchemaForm = () => {
+export const FormIdForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -33,7 +37,12 @@ export const SchemaForm = () => {
     dispatch(initForm(formId, schema));
   }, [dispatch]);
 
-  const [handleSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId, addFormId);
+
+  const handleNextStep = (fieldsValues: FieldValues) => {
+    dispatch(updateFormData(formId, fieldsValues));
+    dispatch(setNextStep(formId));
+  };
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>
@@ -43,7 +52,7 @@ export const SchemaForm = () => {
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Copy paste your existing schema
+            Choose a unique identifier
           </Typography>
         </Box>
       </AccordionSummary>
@@ -53,8 +62,8 @@ export const SchemaForm = () => {
             dictionary={dictionary}
             schema={schema}
             defaultValues={defaultValues}
+            onNextStep={handleNextStep}
             onSubmit={handleSubmit}
-            extraValidation={extraValidation}
           />
         </Box>
       </AccordionDetails>

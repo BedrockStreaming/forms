@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import { FormBuilder } from '@bedrockstreaming/form-builder';
+import {
+  Dictionary,
+  FormBuilder,
+  ExtraValidation
+} from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
@@ -23,11 +27,10 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { makeSchema } from './config';
-import { dictionary } from '../dictionary';
-import { useSubmit } from './useSubmit';
-import { extraValidation } from '../../extraValidation';
-import { getSchema } from '../generator.selectors';
 import { useStyles } from '../useStyles';
+import { getSchema } from '../generator.selectors';
+import { addField } from '../generator.actions';
+import { useSubmit } from '../useSubmit.hook';
 
 const formId = 'add-field';
 const defaultValues = {
@@ -41,7 +44,13 @@ const defaultValues = {
   positionInStep: 0
 };
 
-export const FieldForm = () => {
+export const FieldForm = ({
+  dictionary,
+  extraValidation
+}: {
+  dictionary: Dictionary;
+  extraValidation: ExtraValidation;
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentStepIndex = useSelector(getCurrentStepIndex(formId));
@@ -50,26 +59,19 @@ export const FieldForm = () => {
   const storedSchema = useSelector(getSchema);
   const schema = useMemo(
     () => makeSchema({ dictionary, extraValidation, schema: storedSchema }),
-    [storedSchema]
+    [storedSchema, dictionary, extraValidation]
   );
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
   }, [dispatch, schema]);
 
-  const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId, addField);
 
   const handleNextStep = (fieldsValues: FieldValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };
-
-  useEffect(
-    () => () => {
-      cleanUseSubmit();
-    },
-    [cleanUseSubmit]
-  );
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>

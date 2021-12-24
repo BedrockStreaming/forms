@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { FormSchema } from '@bedrockstreaming/form-builder';
+import {
+  Dictionary,
+  FormSchema,
+  ExtraValidation
+} from '@bedrockstreaming/form-builder';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { List, Paper } from '@mui/material';
@@ -9,7 +13,13 @@ import { Line } from './line.component';
 import { isClickableItem } from './schema.utils';
 import { UpdateModal } from './update/updateModal.component';
 
-export const SchemaVisualizer = () => {
+export const SchemaVisualizer = ({
+  dictionary,
+  extraValidation
+}: {
+  dictionary: Dictionary;
+  extraValidation: ExtraValidation;
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const [lineText, setLineText] = useState('');
   const handleOpenModal = () => setOpenModal(true);
@@ -43,6 +53,8 @@ export const SchemaVisualizer = () => {
         handleClose={handleCloseModal}
         text={lineText}
         storedSchema={schema}
+        dictionary={dictionary}
+        extraValidation={extraValidation}
       />
     </Paper>
   );

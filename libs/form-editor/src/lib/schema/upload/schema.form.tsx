@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { FormBuilder } from '@bedrockstreaming/form-builder';
+import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
 import { initForm } from '@bedrockstreaming/form-redux';
 
 import {
@@ -15,17 +15,16 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
-import { dictionary } from '../dictionary';
-import { useSubmit } from './useSubmit';
-import { extraValidation } from '../../extraValidation';
-import { useStyles } from '../useStyles';
+import { useStyles } from '../../useStyles';
+import { useSubmit } from '../../useSubmit.hook';
+import { addSchema } from '../../generator.actions';
 
-const formId = 'upload-dictionary';
+const formId = 'upload-schema';
 const defaultValues = {
-  dictionary: ''
+  schema: ''
 };
 
-export const DictionaryForm = () => {
+export const SchemaForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -33,7 +32,7 @@ export const DictionaryForm = () => {
     dispatch(initForm(formId, schema));
   }, [dispatch]);
 
-  const [handleSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId, addSchema);
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>
@@ -43,7 +42,7 @@ export const DictionaryForm = () => {
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Copy paste your existing dictionary object
+            Copy paste your existing schema
           </Typography>
         </Box>
       </AccordionSummary>
@@ -54,7 +53,6 @@ export const DictionaryForm = () => {
             schema={schema}
             defaultValues={defaultValues}
             onSubmit={handleSubmit}
-            extraValidation={extraValidation}
           />
         </Box>
       </AccordionDetails>
