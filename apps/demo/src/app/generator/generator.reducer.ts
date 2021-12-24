@@ -1,5 +1,11 @@
 import { FormSchema } from '@bedrockstreaming/form-builder';
-import { ADD_FIELD, ADD_STEP } from './generator.actions';
+import {
+  ADD_FIELD,
+  ADD_STEP,
+  ADD_FORM_ID,
+  ADD_SCHEMA,
+  ADD_DICTIONARY
+} from './generator.actions';
 
 const DEFAULT_OBJECT = {};
 
@@ -34,6 +40,9 @@ export const reducer = (
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
+    case ADD_FORM_ID: {
+      return { ...state, formId: action.payload.formId };
+    }
     case ADD_FIELD: {
       const {
         schema: { steps, fields }
@@ -102,6 +111,12 @@ export const reducer = (
           stepsById: newStepsById
         }
       };
+    }
+    case ADD_SCHEMA: {
+      return { ...state, schema: action.payload };
+    }
+    case ADD_DICTIONARY: {
+      return { ...state, dictionary: action.payload };
     }
     default:
       return state;

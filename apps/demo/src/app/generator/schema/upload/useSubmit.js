@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateFormData } from '@bedrockstreaming/form-redux';
-import { addField } from '../generator.actions';
+import { addSchema } from '../../generator.actions';
 
 const onExit = () => ({ type: 'some_scope/EXIT' });
 
@@ -12,7 +12,7 @@ export const useSubmit = (formId) => {
     async (fieldsValues) => {
       dispatch(updateFormData(formId, fieldsValues));
 
-      return dispatch(addField(fieldsValues));
+      return dispatch(addSchema(fieldsValues.schema));
     },
     [dispatch, formId]
   );

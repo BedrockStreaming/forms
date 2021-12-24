@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
@@ -31,7 +31,9 @@ export const PreviewForm = () => {
   const schema = useSelector(getSchema);
 
   useEffect(() => {
-    dispatch(initForm(formId, schema));
+    if (formId && schema && schema.stepsById.length > 1) {
+      dispatch(initForm(formId, schema));
+    }
   }, [dispatch, schema, formId]);
 
   const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
@@ -53,7 +55,6 @@ export const PreviewForm = () => {
       <Typography component="h1" variant="h6">
         Preview {formId}
       </Typography>
-
       <Box sx={{ m: 2 }}>
         <FormBuilder
           dictionary={dictionary}

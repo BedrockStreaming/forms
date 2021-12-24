@@ -73,14 +73,15 @@ export const FieldForm = () => {
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>
-      <AccordionSummary
-        expandIcon={<ExpandMore />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
-        <Typography component="h1" variant="h6">
-          {formId}
-        </Typography>
+      <AccordionSummary expandIcon={<ExpandMore />}>
+        <Box flexDirection="column">
+          <Typography component="h2" variant="h6">
+            {formId}
+          </Typography>
+          <Typography component="h4" variant="subtitle1">
+            Add a new field to your schema
+          </Typography>
+        </Box>
       </AccordionSummary>
       <AccordionDetails>
         <Box sx={{ m: 2 }}>

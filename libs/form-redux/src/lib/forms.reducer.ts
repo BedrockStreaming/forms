@@ -112,6 +112,15 @@ export const reducer = (state = initialState, action: FormAction) => {
           ? stepsCount - 1
           : currentStepIndex + 1;
 
+      console.log({
+        stepsCount,
+        currentStepIndex,
+        newStepIndex,
+        isAboveCountMinusOne: currentStepIndex >= stepsCount - 1,
+        stepsCountMinusOne: stepsCount - 1,
+        nextStep: currentStepIndex + 1
+      });
+
       return {
         ...state,
         [action.formId]: {

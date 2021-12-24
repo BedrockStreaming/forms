@@ -87,15 +87,22 @@ export const makeSchema = ({
     },
     stepId: {
       id: 'stepId',
+      type: 'select',
+      title: 'the stepId the field belongs to',
+      defaultValue: [],
+      validation: {
+        required: {
+          key: 'required',
+          value: true,
+          message: 'required field'
+        }
+      },
       meta: {
         errorMessage: 'Invalid',
         label: 'the stepId the field belongs to',
         name: 'stepId',
         choices: schema.stepsById
-      },
-      title: 'the stepId the field belongs to',
-      type: 'select',
-      defaultValue: []
+      }
     }
   },
   steps: {

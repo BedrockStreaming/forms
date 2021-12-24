@@ -1,6 +1,12 @@
-import { FormFields } from '@bedrockstreaming/form-builder';
+import { FormFields, FormSchema } from '@bedrockstreaming/form-builder';
 
-export const makeSchema = ({ fields }: { fields: FormFields }) => ({
+export const makeSchema = ({
+  fields,
+  schema
+}: {
+  fields: FormFields;
+  schema: FormSchema;
+}) => ({
   fields: {
     stepId: {
       id: 'stepId',
@@ -51,12 +57,24 @@ export const makeSchema = ({ fields }: { fields: FormFields }) => ({
         label: 'stepPosition',
         name: 'stepPosition',
         type: 'number'
+      },
+      validation: {
+        max: {
+          message: 'max number exceeded',
+          value: schema.stepsById.length,
+          key: 'max'
+        }
       }
     }
   },
   steps: {
     'add-step-0': {
-      fieldsById: ['stepId', 'stepFieldsById', 'stepSubmitLabel'],
+      fieldsById: [
+        'stepId',
+        'stepFieldsById',
+        'stepSubmitLabel',
+        'stepPosition'
+      ],
       id: 'add-step-0',
       submit: {
         label: 'Add step'

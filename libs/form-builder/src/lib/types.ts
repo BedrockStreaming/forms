@@ -37,6 +37,7 @@ export interface FormField {
     | number
     | string[]
     | number[]
+    | Path<string>
     | undefined;
 }
 

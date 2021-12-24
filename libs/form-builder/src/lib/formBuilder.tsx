@@ -32,8 +32,8 @@ export interface FormBuilderProps<FormValues> {
   onNextStep?: (value: UnpackNestedValue<FormValues>) => void;
   onSubmit: SubmitHandler<FormValues>;
   extraValidation?: ExtraValidation;
-  isLastStep: boolean;
-  currentStepIndex: number;
+  isLastStep?: boolean;
+  currentStepIndex?: number;
 }
 
 export function FormBuilder<FormValues>({
@@ -44,7 +44,7 @@ export function FormBuilder<FormValues>({
   onNextStep = _.noop,
   onSubmit,
   extraValidation,
-  isLastStep,
+  isLastStep = true,
   currentStepIndex = 0
 }: FormBuilderProps<FormValues>) {
   const {

@@ -5,12 +5,9 @@ import _ from 'lodash';
 import { FieldValues } from 'react-hook-form';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
-  getCurrentStepIndex,
-  isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
-  updateFormData,
-  getFormData
+  updateFormData
 } from '@bedrockstreaming/form-redux';
 
 import {
@@ -22,51 +19,31 @@ import {
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
-import { getFields, getSchema } from '../generator.selectors';
-import { makeSchema } from './config';
+import { schema } from './config';
 import { dictionary } from '../dictionary';
-import { extraValidation } from '../../extraValidation';
 import { useSubmit } from './useSubmit';
+import { extraValidation } from '../../extraValidation';
 import { useStyles } from '../useStyles';
 
-const formId = 'add-step';
+const formId = 'add-form-id';
 const defaultValues = {
-  stepId: '',
-  stepSubmitLabel: '',
-  stepFieldsById: [],
-  stepPosition: 0
+  formId: ''
 };
 
-export const StepForm = () => {
+export const FormIdForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const currentStepIndex = useSelector(getCurrentStepIndex(formId));
-  const isLastStep = useSelector(isLastStepSelector(formId));
-  const previousValues = useSelector(getFormData(formId));
-  const fields = useSelector(getFields);
-  const storedSchema = useSelector(getSchema);
-  const schema = useMemo(
-    () => makeSchema({ fields, schema: storedSchema }),
-    [fields, storedSchema]
-  );
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
-  }, [dispatch, schema]);
+  }, [dispatch]);
 
-  const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
+  const [handleSubmit] = useSubmit(formId);
 
   const handleNextStep = (fieldsValues: FieldValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };
-
-  useEffect(
-    () => () => {
-      cleanUseSubmit();
-    },
-    [cleanUseSubmit]
-  );
 
   return (
     <Accordion className={classes.root} sx={{ p: 2 }}>
@@ -76,7 +53,7 @@ export const StepForm = () => {
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Add a step to your form (min 1)
+            Choose a unique identifier
           </Typography>
         </Box>
       </AccordionSummary>
@@ -85,13 +62,9 @@ export const StepForm = () => {
           <FormBuilder
             dictionary={dictionary}
             schema={schema}
-            defaultValues={
-              _.isEmpty(previousValues) ? defaultValues : previousValues
-            }
+            defaultValues={defaultValues}
             onNextStep={handleNextStep}
             onSubmit={handleSubmit}
-            currentStepIndex={currentStepIndex}
-            isLastStep={isLastStep}
             extraValidation={extraValidation}
           />
         </Box>

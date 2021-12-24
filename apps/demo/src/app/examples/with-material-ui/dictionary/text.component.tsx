@@ -17,7 +17,8 @@ export const Text = ({
   optionalText,
   propRef,
   type,
-  value
+  value,
+  multiline
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -31,6 +32,7 @@ export const Text = ({
   propRef: Ref<any>;
   type?: string;
   value?: string | number;
+  multiline?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const error = errors && errors.type && errorMessage;
@@ -38,6 +40,7 @@ export const Text = ({
   return (
     <Box sx={{ m: 2 }}>
       <TextField
+        multiline={multiline}
         data-testid={dataTestId}
         error={!!error}
         helperText={error || optionalText}

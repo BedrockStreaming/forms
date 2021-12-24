@@ -10,7 +10,6 @@ export const useSubmit = (formId) => {
 
   const callback = useCallback(
     async (fieldsValues) => {
-      console.log('submit values', fieldsValues);
       dispatch(updateFormData(formId, fieldsValues));
 
       return dispatch(addStep(fieldsValues));
