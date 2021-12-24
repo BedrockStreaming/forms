@@ -34,6 +34,7 @@ export interface FormBuilderProps<FormValues> {
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
+  debug?: boolean;
 }
 
 export function FormBuilder<FormValues>({
@@ -45,7 +46,8 @@ export function FormBuilder<FormValues>({
   onSubmit,
   extraValidation,
   isLastStep = true,
-  currentStepIndex = 0
+  currentStepIndex = 0,
+  debug = false
 }: FormBuilderProps<FormValues>) {
   const {
     handleSubmit,
@@ -91,8 +93,7 @@ export function FormBuilder<FormValues>({
   useAutoFocus({ currentStepIndex, schema, setFocus });
 
   // Displays nice and informative errors in dev mode
-  if (window?.process?.env?.DEBUG)
-    handleFormBuilderError(typesAllowed, schema, dictionary);
+  if (debug) handleFormBuilderError(typesAllowed, schema, dictionary);
 
   if (
     _.isEmpty(schema) ||
@@ -159,7 +160,7 @@ export function FormBuilder<FormValues>({
           onNextStep={onNextStep}
         />
       </form>
-      {window?.process?.env?.DEBUG && <DevTool control={control} />}
+      {debug && <DevTool control={control} />}
     </>
   );
 }
