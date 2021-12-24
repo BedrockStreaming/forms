@@ -1,13 +1,12 @@
-import { Typography, Box, Grid, Divider } from '@mui/material';
+import { Typography, Box, Grid } from '@mui/material';
 
-import { FieldForm } from './field/field.form';
-import { SchemaVisualizer } from './schema/schema.component';
-import { StepForm } from './step/step.form';
-import { PreviewForm } from './preview/preview.component';
 import { FormIdForm } from './formId/formId.form';
-import { SchemaLoader } from './schema/schemaLoader.component';
-import { DictionaryForm } from './dictionary/dictionary.form';
 import { SchemaForm } from './schema/upload/schema.form';
+import { SchemaVisualizer } from './schema/schema.component';
+import { DictionaryForm } from './dictionary/dictionary.form';
+import { StepForm } from './step/step.form';
+import { FieldForm } from './field/field.form';
+import { PreviewForm } from './preview/preview.component';
 
 const Generator = () => {
   return (

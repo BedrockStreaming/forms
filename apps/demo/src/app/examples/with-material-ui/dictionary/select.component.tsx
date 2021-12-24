@@ -1,12 +1,6 @@
-import { Ref, RefObject, useMemo } from 'react';
+import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
-import { Validations } from '@bedrockstreaming/form-builder';
-import {
-  InputLabel,
-  MenuItem,
-  Select as MUISelect,
-  TextField
-} from '@mui/material';
+import { InputLabel, MenuItem, Select as MUISelect } from '@mui/material';
 import _ from 'lodash';
 import { Box } from '@mui/system';
 
@@ -64,18 +58,6 @@ export const Select = ({
           </MenuItem>
         ))}
       </MUISelect>
-      {/* <TextField
-        error={!!error}
-        helperText={error || optionalText}
-        id={id}
-        inputProps={inputProps}
-        label={label}
-        name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        type={type || 'text'}
-        value={value}
-      /> */}
     </Box>
   );
 };

@@ -1,23 +1,23 @@
 export const schema = {
   fields: {
-    dictionary: {
-      id: 'dictionary',
-      title: 'The form dictionary',
+    schema: {
+      id: 'schema',
+      title: 'The form schema',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
-        label: 'Component dictionary key',
-        name: 'dictionary',
+        label: 'Copy paste your schema',
+        name: 'schema',
         multiline: true
       }
     }
   },
   steps: {
     'step-0': {
-      fieldsById: ['dictionary'],
+      fieldsById: ['schema'],
       id: 'step-0',
       submit: {
-        label: 'Add component to dictionary'
+        label: 'Upload existing schema'
       }
     }
   },
