@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-  Dictionary,
-  FormSchema,
-  ExtraValidation
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, ExtraValidation } from '@bedrockstreaming/form-builder';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { List, Paper } from '@mui/material';

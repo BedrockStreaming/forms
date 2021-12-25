@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { Grid, Button, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Grid, Button, Typography, Box } from '@mui/material';
 
 import Form from '../../form/form.component';
 

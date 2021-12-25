@@ -1,8 +1,7 @@
 import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
-import { InputLabel, MenuItem, Select as MUISelect } from '@mui/material';
+import { InputLabel, MenuItem, Select as MUISelect, Box } from '@mui/material';
 import _ from 'lodash';
-import { Box } from '@mui/system';
 
 export const Select = ({
   'data-testid': dataTestId,

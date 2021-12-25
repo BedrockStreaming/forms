@@ -14,10 +14,6 @@ const useStyles = makeStyles({
         cursor: 'pointer'
       }
     },
-    // '&:hover': {
-    //   background: 'yellow',
-    //   cursor: 'pointer'
-    // },
     '& .button-appearance': {
       display: 'block',
       position: 'absolute',

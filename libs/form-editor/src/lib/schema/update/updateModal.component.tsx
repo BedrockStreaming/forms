@@ -6,9 +6,7 @@ import {
   Dictionary,
   ExtraValidation
 } from '@bedrockstreaming/form-builder';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import { Typography, Modal, Box } from '@mui/material';
 
 import { getTargetFormId } from '../../generator.selectors';
 import { updateSchema } from '../../generator.actions';

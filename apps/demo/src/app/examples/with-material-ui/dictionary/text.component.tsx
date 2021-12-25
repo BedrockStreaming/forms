@@ -3,7 +3,7 @@ import { FieldErrors } from 'react-hook-form';
 import { Validations } from '@bedrockstreaming/form-builder';
 import { TextField } from '@mui/material';
 import _ from 'lodash';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 
 export const Text = ({
   'data-testid': dataTestId,

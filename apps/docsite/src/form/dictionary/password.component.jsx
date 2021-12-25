@@ -7,8 +7,7 @@ import {
   withValidationRuleList
 } from '@bedrockstreaming/form-validation-rule-list';
 
-import { Box } from '@mui/system';
-import { TextField } from '@mui/material';
+import { TextField, Box } from '@mui/material';
 import _ from 'lodash';
 
 import {
