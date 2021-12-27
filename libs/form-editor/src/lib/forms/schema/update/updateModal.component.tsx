@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import {
   FormBuilder,
   FormSchema,
@@ -8,10 +7,9 @@ import {
 } from '@bedrockstreaming/form-builder';
 import { Typography, Modal, Box } from '@mui/material';
 
-import { getTargetFormId } from '../../generator.selectors';
-import { updateSchema } from '../../generator.actions';
+import { updateSchema } from '../../../generator.actions';
 import { getElementType } from '../schema.utils';
-import { useSubmit } from '../../useSubmit.hook';
+import { useSubmit } from '../../../useSubmit.hook';
 
 const style = {
   position: 'absolute' as const,
@@ -25,6 +23,7 @@ const style = {
   p: 4
 };
 
+const formId = 'update-form';
 const defaultSchema = { fields: {}, steps: {}, stepsById: [] };
 
 export function UpdateModal({
@@ -43,7 +42,6 @@ export function UpdateModal({
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
 }) {
-  const formId = useSelector(getTargetFormId);
   const schema = getElementType({
     text,
     schema: storedSchema,
@@ -52,8 +50,6 @@ export function UpdateModal({
   });
 
   const [onSubmit] = useSubmit(formId, updateSchema);
-
-  if (!formId) return null;
 
   return (
     <div>

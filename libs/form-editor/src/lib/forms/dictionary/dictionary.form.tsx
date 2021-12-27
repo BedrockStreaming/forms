@@ -15,9 +15,9 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
-import { useStyles } from '../useStyles';
-import { useSubmit } from '../useSubmit.hook';
-import { addDictionary } from '../generator.actions';
+import { useStyles } from '../../useStyles';
+import { useSubmit } from '../../useSubmit.hook';
+import { addDictionary } from '../../generator.actions';
 
 const formId = 'upload-dictionary';
 const defaultValues = {
@@ -35,7 +35,7 @@ export const DictionaryForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const [handleSubmit] = useSubmit(formId, addDictionary);
 
   return (
-    <Accordion className={classes.root} sx={{ p: 2 }}>
+    <Accordion className={classes.root}>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box flexDirection="column">
           <Typography component="h2" variant="h6">

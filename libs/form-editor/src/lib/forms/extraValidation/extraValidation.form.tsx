@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
@@ -14,35 +14,42 @@ import {
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
-import { schema } from './config';
+import { makeSchema } from './config';
 import { useStyles } from '../../useStyles';
 import { useSubmit } from '../../useSubmit.hook';
-import { addSchema } from '../../generator.actions';
+import { addExtraValidation } from '../../generator.actions';
+import { getExtraValidationList } from '../../generator.selectors';
 
-const formId = 'upload-schema';
+const formId = 'upload-extraValidation';
 const defaultValues = {
-  schema: ''
+  extraValidationList: ''
 };
 
-export const SchemaForm = ({ dictionary }: { dictionary: Dictionary }) => {
+export const ExtraValidationForm = ({
+  dictionary
+}: {
+  dictionary: Dictionary;
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const extraValidationList = useSelector(getExtraValidationList);
+  const schema = makeSchema(extraValidationList);
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
-  }, [dispatch]);
+  }, [dispatch, schema]);
 
-  const [handleSubmit] = useSubmit(formId, addSchema);
+  const [handleSubmit] = useSubmit(formId, addExtraValidation);
 
   return (
-    <Accordion className={classes.root} sx={{ p: 2 }}>
+    <Accordion className={classes.root}>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box flexDirection="column">
           <Typography component="h2" variant="h6">
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Copy paste your existing schema
+            Copy paste your existing extraValidation object
           </Typography>
         </Box>
       </AccordionSummary>

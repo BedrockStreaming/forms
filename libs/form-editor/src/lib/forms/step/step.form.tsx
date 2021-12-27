@@ -26,11 +26,11 @@ import {
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
-import { getFields, getSchema } from '../generator.selectors';
+import { getFields, getSchema } from '../../generator.selectors';
 import { makeSchema } from './config';
-import { useSubmit } from '../useSubmit.hook';
-import { useStyles } from '../useStyles';
-import { addStep } from '../generator.actions';
+import { useSubmit } from '../../useSubmit.hook';
+import { useStyles } from '../../useStyles';
+import { addStep } from '../../generator.actions';
 
 const formId = 'add-step';
 const defaultValues = {
@@ -71,7 +71,7 @@ export const StepForm = ({
   };
 
   return (
-    <Accordion className={classes.root} sx={{ p: 2 }}>
+    <Accordion className={classes.root}>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box flexDirection="column">
           <Typography component="h2" variant="h6">

@@ -6,5 +6,11 @@ export const getFields = ({ generator }: { generator: GeneratorState }) =>
 export const getSchema = ({ generator }: { generator: GeneratorState }) =>
   generator.schema;
 
-export const getTargetFormId = ({ generator }: { generator: GeneratorState }) =>
-  generator.formId;
+export const getDictionary = ({ generator }: { generator: GeneratorState }) =>
+  generator.dictionary;
+
+export const getExtraValidationList = ({
+  generator
+}: {
+  generator: GeneratorState;
+}) => generator.extraValidationList;

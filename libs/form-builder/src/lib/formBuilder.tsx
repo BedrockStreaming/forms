@@ -112,7 +112,7 @@ export function FormBuilder<FormValues>({
         <Stepper currentStepIndex={currentStepIndex}>
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(fieldsById, (fieldId, index) => {
+              {_.map(fieldsById, (fieldId) => {
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 

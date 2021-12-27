@@ -2,13 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { FieldValues } from 'react-hook-form';
-import { Dictionary, FormBuilder } from '@bedrockstreaming/form-builder';
-import {
-  initForm,
-  setNextStep,
-  updateFormData
-} from '@bedrockstreaming/form-redux';
+import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
+import { initForm } from '@bedrockstreaming/form-redux';
 
 import {
   Typography,
@@ -20,16 +15,16 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
-import { useStyles } from '../useStyles';
-import { useSubmit } from '../useSubmit.hook';
-import { addFormId } from '../generator.actions';
+import { useStyles } from '../../../useStyles';
+import { useSubmit } from '../../../useSubmit.hook';
+import { addSchema } from '../../../generator.actions';
 
-const formId = 'add-form-id';
+const formId = 'upload-schema';
 const defaultValues = {
-  formId: ''
+  schema: ''
 };
 
-export const FormIdForm = ({ dictionary }: { dictionary: Dictionary }) => {
+export const SchemaForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -37,22 +32,17 @@ export const FormIdForm = ({ dictionary }: { dictionary: Dictionary }) => {
     dispatch(initForm(formId, schema));
   }, [dispatch]);
 
-  const [handleSubmit] = useSubmit(formId, addFormId);
-
-  const handleNextStep = (fieldsValues: FieldValues) => {
-    dispatch(updateFormData(formId, fieldsValues));
-    dispatch(setNextStep(formId));
-  };
+  const [handleSubmit] = useSubmit(formId, addSchema);
 
   return (
-    <Accordion className={classes.root} sx={{ p: 2 }}>
+    <Accordion className={classes.root}>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box flexDirection="column">
           <Typography component="h2" variant="h6">
             {formId}
           </Typography>
           <Typography component="h4" variant="subtitle1">
-            Choose a unique identifier
+            Copy paste your existing schema
           </Typography>
         </Box>
       </AccordionSummary>
@@ -62,7 +52,6 @@ export const FormIdForm = ({ dictionary }: { dictionary: Dictionary }) => {
             dictionary={dictionary}
             schema={schema}
             defaultValues={defaultValues}
-            onNextStep={handleNextStep}
             onSubmit={handleSubmit}
           />
         </Box>

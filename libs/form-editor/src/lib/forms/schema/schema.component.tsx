@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { List, Paper } from '@mui/material';
 
-import { getSchema } from '../generator.selectors';
+import { getSchema } from '../../generator.selectors';
 import { Line } from './line.component';
 import { isClickableItem } from './schema.utils';
 import { UpdateModal } from './update/updateModal.component';

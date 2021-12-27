@@ -2,7 +2,6 @@ import { FormSchema } from '@bedrockstreaming/form-builder';
 import {
   ADD_FIELD,
   ADD_STEP,
-  ADD_FORM_ID,
   ADD_SCHEMA,
   ADD_DICTIONARY,
   ADD_EXTRA_VALIDATION
@@ -11,15 +10,13 @@ import {
 const DEFAULT_OBJECT = {};
 
 export interface GeneratorState {
-  formId: string;
-  dictionary: string[];
-  extraValidation: string[];
+  dictionary: string[] | null;
+  extraValidationList: string[];
   schema: FormSchema;
 }
 export const initialState = {
-  formId: '',
-  dictionary: [],
-  extraValidation: [],
+  dictionary: null,
+  extraValidationList: [],
   schema: {
     fields: {},
     steps: {},
@@ -41,9 +38,6 @@ export const reducer = (
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
-    case ADD_FORM_ID: {
-      return { ...state, formId: action.payload.formId };
-    }
     case ADD_FIELD: {
       const {
         schema: { steps, fields }
@@ -120,7 +114,7 @@ export const reducer = (
       return { ...state, dictionary: action.payload };
     }
     case ADD_EXTRA_VALIDATION: {
-      return { ...state, extraValidation: action.payload };
+      return { ...state, extraValidationList: action.payload };
     }
     default:
       return state;

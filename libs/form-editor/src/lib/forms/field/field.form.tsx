@@ -27,10 +27,10 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 import { makeSchema } from './config';
-import { useStyles } from '../useStyles';
-import { getSchema } from '../generator.selectors';
-import { addField } from '../generator.actions';
-import { useSubmit } from '../useSubmit.hook';
+import { useStyles } from '../../useStyles';
+import { getSchema } from '../../generator.selectors';
+import { addField } from '../../generator.actions';
+import { useSubmit } from '../../useSubmit.hook';
 
 const formId = 'add-field';
 const defaultValues = {
@@ -74,7 +74,7 @@ export const FieldForm = ({
   };
 
   return (
-    <Accordion className={classes.root} sx={{ p: 2 }}>
+    <Accordion className={classes.root}>
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Box flexDirection="column">
           <Typography component="h2" variant="h6">

@@ -1,12 +1,12 @@
 import { Dictionary, ExtraValidation } from '@bedrockstreaming/form-builder';
 import { Typography, Box, Grid } from '@mui/material';
 
-import { FormIdForm } from './formId/formId.form';
-import { SchemaForm } from './schema/upload/schema.form';
-import { SchemaVisualizer } from './schema/schema.component';
-import { DictionaryForm } from './dictionary/dictionary.form';
-import { StepForm } from './step/step.form';
-import { FieldForm } from './field/field.form';
+import { SchemaForm } from './forms/schema/upload/schema.form';
+import { SchemaVisualizer } from './forms/schema/schema.component';
+import { DictionaryForm } from './forms/dictionary/dictionary.form';
+import { StepForm } from './forms/step/step.form';
+import { FieldForm } from './forms/field/field.form';
+import { ExtraValidationForm } from './forms/extraValidation/extraValidation.form';
 import { PreviewForm } from './preview/preview.component';
 
 export const Generator = ({
@@ -33,9 +33,9 @@ export const Generator = ({
           />
         </Grid>
         <Grid item sm={4} md={6}>
-          <FormIdForm dictionary={dictionary} />
           <SchemaForm dictionary={dictionary} />
           <DictionaryForm dictionary={dictionary} />
+          <ExtraValidationForm dictionary={dictionary} />
           <StepForm dictionary={dictionary} extraValidation={extraValidation} />
           <FieldForm
             dictionary={dictionary}

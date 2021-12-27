@@ -9,17 +9,15 @@ export const addField = (payload: FieldValues) => ({
 export const ADD_STEP = 'generator/ADD_STEP';
 export const addStep = (payload: FieldValues) => ({ type: ADD_STEP, payload });
 
-export const ADD_FORM_ID = 'generator/ADD_FORM_ID';
-export const addFormId = (payload: FieldValues) => ({
-  type: ADD_FORM_ID,
-  payload: payload.formId
-});
-
 export const ADD_SCHEMA = 'generator/ADD_SCHEMA';
-export const addSchema = (payload: FieldValues) => ({
-  type: ADD_SCHEMA,
-  payload: JSON.parse(payload.schema)
-});
+export const addSchema = (payload: FieldValues) => {
+  console.log(JSON.parse(payload.schema));
+
+  return {
+    type: ADD_SCHEMA,
+    payload: JSON.parse(payload.schema)
+  };
+};
 
 export const ADD_DICTIONARY = 'generator/ADD_DICTIONARY';
 export const addDictionary = (payload: FieldValues) => ({
@@ -30,7 +28,7 @@ export const addDictionary = (payload: FieldValues) => ({
 export const ADD_EXTRA_VALIDATION = 'generator/ADD_EXTRA_VALIDATION';
 export const addExtraValidation = (payload: FieldValues) => ({
   type: ADD_EXTRA_VALIDATION,
-  payload: JSON.parse(payload.extraValidation)
+  payload: Object.keys(JSON.parse(payload.extraValidationList))
 });
 
 export const UPDATE_SCHEMA = 'generator/UPDATE_SCHEMA';
