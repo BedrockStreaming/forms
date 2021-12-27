@@ -1,11 +1,9 @@
-import { Ref, RefObject, useMemo } from 'react';
+import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
-import { Validations } from '@bedrockstreaming/form-builder';
-import { TextField } from '@mui/material';
+import { InputLabel, MenuItem, Select as MUISelect, Box } from '@mui/material';
 import _ from 'lodash';
-import { Box } from '@mui/material';
 
-export const Text = ({
+export const Select = ({
   'data-testid': dataTestId,
   errorMessage,
   errors,
@@ -16,9 +14,9 @@ export const Text = ({
   onChange,
   optionalText,
   propRef,
-  type,
   value,
-  multiline
+  choices,
+  multiple
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -32,27 +30,33 @@ export const Text = ({
   propRef: Ref<any>;
   type?: string;
   value?: string | number;
-  multiline?: boolean;
+  choices: string[] | number[];
+  multiple?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const error = errors && errors.type && errorMessage;
 
   return (
     <Box sx={{ m: 2 }}>
-      <TextField
-        multiline={multiline}
-        data-testid={dataTestId}
-        error={!!error}
-        helperText={error || optionalText}
+      <InputLabel id="label-id">{label}</InputLabel>
+      <MUISelect
+        multiple={multiple}
+        labelId="label-id"
+        value={value}
+        label={label}
+        onChange={onChange}
         id={id}
         inputProps={inputProps}
-        label={label}
-        name={name}
+        data-testid={dataTestId}
         onBlur={onBlur}
-        onChange={onChange}
-        type={type || 'text'}
-        value={value}
-      />
+        name={name}
+      >
+        {choices.map((choice) => (
+          <MenuItem key={choice} value={choice}>
+            {choice}
+          </MenuItem>
+        ))}
+      </MUISelect>
     </Box>
   );
 };

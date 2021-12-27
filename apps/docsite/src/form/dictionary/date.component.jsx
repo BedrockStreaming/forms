@@ -4,12 +4,11 @@ import {
   checkRules,
   withValidationRuleList
 } from '@bedrockstreaming/form-validation-rule-list';
-import { TextField } from '@mui/material';
+import { TextField, Box } from '@mui/material';
 import _ from 'lodash';
 
 import { BirthdateInput } from '@forms/examples/birthdate';
 
-import { Box } from '@mui/system';
 import {
   colorByRulesClassnames,
   weightByRulesClassnames

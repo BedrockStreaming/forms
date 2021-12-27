@@ -31,7 +31,14 @@ export interface FormField {
   type: string;
   meta?: FormMeta | undefined;
   validation?: Validations | undefined;
-  defaultValue?: UnpackNestedValue<PathValue<unknown, never>> | undefined;
+  defaultValue?:
+    | UnpackNestedValue<PathValue<unknown, never>>
+    | string
+    | number
+    | string[]
+    | number[]
+    | Path<string>
+    | undefined;
 }
 
 export interface FormFields {

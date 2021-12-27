@@ -32,8 +32,9 @@ export interface FormBuilderProps<FormValues> {
   onNextStep?: (value: UnpackNestedValue<FormValues>) => void;
   onSubmit: SubmitHandler<FormValues>;
   extraValidation?: ExtraValidation;
-  isLastStep: boolean;
-  currentStepIndex: number;
+  isLastStep?: boolean;
+  currentStepIndex?: number;
+  debug?: boolean;
 }
 
 export function FormBuilder<FormValues>({
@@ -44,8 +45,9 @@ export function FormBuilder<FormValues>({
   onNextStep = _.noop,
   onSubmit,
   extraValidation,
-  isLastStep,
-  currentStepIndex = 0
+  isLastStep = true,
+  currentStepIndex = 0,
+  debug = false
 }: FormBuilderProps<FormValues>) {
   const {
     handleSubmit,
@@ -91,8 +93,7 @@ export function FormBuilder<FormValues>({
   useAutoFocus({ currentStepIndex, schema, setFocus });
 
   // Displays nice and informative errors in dev mode
-  if (global?.process?.env?.DEBUG)
-    handleFormBuilderError(typesAllowed, schema, dictionary);
+  if (debug) handleFormBuilderError(typesAllowed, schema, dictionary);
 
   if (
     _.isEmpty(schema) ||
@@ -111,7 +112,7 @@ export function FormBuilder<FormValues>({
         <Stepper currentStepIndex={currentStepIndex}>
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(fieldsById, (fieldId, index) => {
+              {_.map(fieldsById, (fieldId) => {
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 
@@ -159,7 +160,7 @@ export function FormBuilder<FormValues>({
           onNextStep={onNextStep}
         />
       </form>
-      {global?.process?.env?.DEBUG && <DevTool control={control} />}
+      {debug && <DevTool control={control} />}
     </>
   );
 }

@@ -5,6 +5,17 @@ export const config = {
   schemas: {
     register: {
       fields: {
+        gender: {
+          id: 'gender',
+          title: 'Gender',
+          meta: {
+            label: 'hello gender',
+            name: 'gender',
+            choices: ['male', 'female']
+          },
+          type: 'select',
+          defaultValue: 'male'
+        },
         birthdate: {
           id: 'birthdate',
           meta: {
@@ -134,7 +145,7 @@ export const config = {
       },
       steps: {
         'register-step-0': {
-          fieldsById: ['email'],
+          fieldsById: ['email', 'gender'],
           id: 'register-step-0',
           meta: {
             subtitle: 'Email',
