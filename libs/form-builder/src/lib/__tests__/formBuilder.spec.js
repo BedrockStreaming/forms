@@ -1,6 +1,5 @@
 import { act, render, screen } from '@testing-library/react';
 import { FormBuilder } from '../formBuilder';
-import { FormBuilderError } from '../utils/formBuilderError.utils';
 
 const makeStep = ({ fieldsById, stepId, label }) => ({
   [stepId]: {
@@ -44,10 +43,6 @@ describe('<FormBuilder />', () => {
     stepId: stepTwoId
   });
 
-  // Fields length is the length of our custom fields + 1 for the submit field which is always here
-  const stepOneLength = stepOne[stepOneId].fieldsById.length + 1;
-  const stepTwoLength = stepTwo[stepTwoId].fieldsById.length + 1;
-
   const CORRECT_SCHEMA = {
     fields: {
       [fieldOneId]: {
@@ -89,55 +84,6 @@ describe('<FormBuilder />', () => {
     ),
     submit: ({ label }) => <button type="submit">{label}</button>
   };
-
-  describe('with good props', () => {
-    it('should render the first step of the form', async () => {
-      await getWrapper({
-        schema: CORRECT_SCHEMA,
-        dictionary: CORRECT_DICTIONARY,
-        onSubmit,
-        currentStepIndex: 0
-      });
-
-      expect(screen.getByRole('form').children.length).toBe(3);
-      expect(screen.getAllByRole('checkbox')).toHaveLength(1);
-      expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepOne[stepOneId].submit.label
-      );
-    });
-
-    it('should render the second step of the form', async () => {
-      await getWrapper({
-        schema: CORRECT_SCHEMA,
-        dictionary: CORRECT_DICTIONARY,
-        onSubmit,
-        currentStepIndex: 1
-      });
-
-      expect(screen.getByRole('form').children.length).toBe(2);
-      expect(screen.queryByRole('checkbox')).toBeNull();
-      expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepTwo[stepTwoId].submit.label
-      );
-    });
-
-    it('should render step one if we pass no currentStepIndex', async () => {
-      await getWrapper({
-        schema: CORRECT_SCHEMA,
-        dictionary: CORRECT_DICTIONARY,
-        onSubmit
-      });
-
-      expect(screen.getByRole('form').children.length).toBe(3);
-      expect(screen.getAllByRole('checkbox')).toHaveLength(1);
-      expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepOne[stepOneId].submit.label
-      );
-    });
-  });
 
   describe('with bad props', () => {
     it('should not render if we pass no dictionary', async () => {
@@ -189,45 +135,6 @@ describe('<FormBuilder />', () => {
       await getWrapper({ schema, dictionary, onSubmit });
 
       return expect(screen.queryByRole('form')).toBeNull();
-    });
-  });
-
-  describe('with DEBUG', () => {
-    beforeEach(() => {
-      process.env.DEBUG = true;
-    });
-
-    afterEach(() => {
-      process.env.DEBUG = false;
-    });
-
-    it('should throw a FormBuilderError error to the developer if there is an invalid field', async () => {
-      jest.spyOn(console, 'error').mockImplementation(() => null);
-
-      const schema = {
-        fields: {
-          [fieldOneId]: {
-            id: fieldOneId,
-            title: 'an invalid field',
-            type: 'iDontExistIndictionary'
-          }
-        },
-        fieldsById: [fieldOneId],
-        steps: { ...stepOne },
-        stepsById: [stepOneId]
-      };
-      // Does not contain the field type 'iDontExistIndictionary'
-      const dictionary = {};
-      let _error;
-
-      try {
-        await getWrapper({ schema, dictionary, onSubmit, isLastStep: true });
-      } catch (error) {
-        _error = error;
-        expect(error).toBeInstanceOf(FormBuilderError);
-      }
-      expect(_error).toBeDefined();
-      console.error.mockRestore();
     });
   });
 });
