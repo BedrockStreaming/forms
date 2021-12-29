@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {
-  useForm,
   Controller,
-  ValidationMode,
   DefaultValues,
+  FieldValues,
   Path,
   SubmitHandler,
-  UnpackNestedValue
+  UnpackNestedValue,
+  useForm,
+  ValidationMode
 } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
@@ -24,20 +25,20 @@ import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules } from './utils/validation.utils';
 
-export interface FormBuilderProps<FormValues> {
-  defaultValues?: DefaultValues<FormValues>;
+export interface FormBuilderProps {
+  defaultValues?: DefaultValues<FieldValues>;
   behavior?: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;
-  onNextStep?: (value: UnpackNestedValue<FormValues>) => void;
-  onSubmit: SubmitHandler<FormValues>;
+  onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
+  onSubmit: SubmitHandler<FieldValues>;
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
   debug?: boolean;
 }
 
-export function FormBuilder<FormValues>({
+export function FormBuilder({
   defaultValues,
   behavior = 'onChange',
   schema,
@@ -48,7 +49,7 @@ export function FormBuilder<FormValues>({
   isLastStep = true,
   currentStepIndex = 0,
   debug = false
-}: FormBuilderProps<FormValues>) {
+}: FormBuilderProps) {
   const {
     handleSubmit,
     formState: { isDirty, isValid, errors, dirtyFields },
@@ -58,7 +59,7 @@ export function FormBuilder<FormValues>({
     trigger,
     watch,
     setFocus
-  } = useForm<FormValues>({
+  } = useForm<FieldValues>({
     mode: behavior,
     criteriaMode: 'all',
     defaultValues
@@ -74,14 +75,14 @@ export function FormBuilder<FormValues>({
   );
 
   const setFieldValue = React.useCallback(
-    (id: Path<FormValues>, value) =>
+    (id: Path<FieldValues>, value) =>
       setValue(id, value, { shouldValidate: true, shouldDirty: true }),
     [setValue]
   );
 
   const triggerValidationField = React.useCallback(trigger, [trigger]);
 
-  const isFormStepValid = useCheckFormStepValidity<FormValues>({
+  const isFormStepValid = useCheckFormStepValidity({
     schema,
     currentStepIndex,
     dirtyFields,
@@ -148,7 +149,7 @@ export function FormBuilder<FormValues>({
             </React.Fragment>
           ))}
         </Stepper>
-        <SubmitField<FormValues>
+        <SubmitField
           dictionary={dictionary}
           isDirty={isDirty}
           isValid={isValid}
