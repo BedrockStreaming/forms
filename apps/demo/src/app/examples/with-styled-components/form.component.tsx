@@ -9,7 +9,8 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
+  setPreviousStep
 } from '@bedrockstreaming/form-redux';
 import _ from 'lodash';
 
@@ -66,6 +67,10 @@ const Form = () => {
     dispatch(setNextStep(formId));
   };
 
+  const handlePreviousStep = () => {
+    dispatch(setPreviousStep(formId));
+  };
+
   useEffect(
     () => () => {
       cleanUseSubmit();
@@ -78,6 +83,7 @@ const Form = () => {
         dictionary={dictionary}
         schema={schema}
         onNextStep={handleNextStep}
+        onPreviousStep={handlePreviousStep}
         onSubmit={handleSubmit}
         currentStepIndex={currentStepIndex}
         isLastStep={isLastStep}

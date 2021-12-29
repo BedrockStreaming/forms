@@ -14,8 +14,8 @@ import { DevTool } from '@hookform/devtools';
 import _ from 'lodash';
 
 import { Dictionary, ExtraValidation, FormSchema } from './types';
-import { useCheckFormStepValidity } from './hooks/useCheckFormStepValidity.hook';
 import { useAutoFocus } from './hooks/useAutoFocus.hook';
+import { useIsFormStepValid } from './hooks/useIsFormStepValid';
 
 import { getSchemaInfo } from './utils/getSchemaInfo.util';
 import { handleFormBuilderError } from './utils/handleFormBuilderError.util';
@@ -24,13 +24,16 @@ import { Stepper } from './components/stepper.component';
 import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules } from './utils/validation.utils';
+import { PreviousStepField } from './components/previousStepField.component';
 
+const EMPTY_OBJECT = {} as const;
 export interface FormBuilderProps {
   defaultValues?: DefaultValues<FieldValues>;
   behavior?: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;
   onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
+  onPreviousStep?: (value: any) => void;
   onSubmit: SubmitHandler<FieldValues>;
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
@@ -44,6 +47,7 @@ export function FormBuilder({
   schema,
   dictionary,
   onNextStep = _.noop,
+  onPreviousStep = _.noop,
   onSubmit,
   extraValidation,
   isLastStep = true,
@@ -52,7 +56,7 @@ export function FormBuilder({
 }: FormBuilderProps) {
   const {
     handleSubmit,
-    formState: { isDirty, isValid, errors, dirtyFields },
+    formState: { isDirty, isValid, isValidating, errors, dirtyFields },
     control,
     getValues,
     setValue,
@@ -74,6 +78,27 @@ export function FormBuilder({
     [currentStepIndex, schema, typesAllowed]
   );
 
+  const validationRulesById = React.useMemo(
+    () =>
+      _.reduce(
+        fieldsById,
+        (accumulator, fieldId) => {
+          const validation = _.get(
+            fields,
+            [fieldId, 'validation'],
+            EMPTY_OBJECT
+          );
+
+          return {
+            ...accumulator,
+            [fieldId]: getFieldRules({ validation, extraValidation })
+          };
+        },
+        {}
+      ),
+    [extraValidation, fields, fieldsById]
+  );
+
   const setFieldValue = React.useCallback(
     (id: Path<FieldValues>, value) =>
       setValue(id, value, { shouldValidate: true, shouldDirty: true }),
@@ -82,13 +107,14 @@ export function FormBuilder({
 
   const triggerValidationField = React.useCallback(trigger, [trigger]);
 
-  const isFormStepValid = useCheckFormStepValidity({
+  const isFormStepValid = useIsFormStepValid({
+    errors,
     schema,
+    isLastStep,
     currentStepIndex,
     dirtyFields,
     defaultValues,
-    watch,
-    trigger
+    isValidating
   });
 
   useAutoFocus({ currentStepIndex, schema, setFocus });
@@ -140,6 +166,7 @@ export function FormBuilder({
                         triggerValidationField={triggerValidationField}
                         {..._.omit(field, 'ref')}
                         propRef={field.ref}
+                        isValidating={isValidating}
                         {...meta}
                       />
                     )}
@@ -149,17 +176,24 @@ export function FormBuilder({
             </React.Fragment>
           ))}
         </Stepper>
-        <SubmitField
-          dictionary={dictionary}
-          isDirty={isDirty}
-          isValid={isValid}
-          isPreFilled={isPreFilled}
-          isLastStep={isLastStep}
-          isFormStepValid={isFormStepValid}
-          submitLabel={submitLabel}
-          getValues={getValues}
-          onNextStep={onNextStep}
-        />
+        <div className="step-fields-actions">
+          <PreviousStepField
+            onPreviousStep={onPreviousStep}
+            currentStepIndex={currentStepIndex}
+            dictionary={dictionary}
+          />
+          <SubmitField
+            dictionary={dictionary}
+            isDirty={isDirty}
+            isValid={isValid}
+            isPreFilled={isPreFilled}
+            isLastStep={isLastStep}
+            isFormStepValid={isFormStepValid}
+            submitLabel={submitLabel}
+            getValues={getValues}
+            onNextStep={onNextStep}
+          />
+        </div>
       </form>
       {debug && <DevTool control={control} />}
     </>
