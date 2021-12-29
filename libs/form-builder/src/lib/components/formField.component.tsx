@@ -20,6 +20,7 @@ export interface FormFieldProps {
   disabled?: boolean;
   label?: string;
   onClick?: (event: any) => void;
+  isValidating?: boolean;
 }
 
 export function FormField({

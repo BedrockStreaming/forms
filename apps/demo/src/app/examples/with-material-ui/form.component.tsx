@@ -10,7 +10,8 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
+  setPreviousStep
 } from '@bedrockstreaming/form-redux';
 
 import {
@@ -62,6 +63,11 @@ const useStyles = makeStyles({
     },
     '& .incomplete-li,.idle-li': {
       color: '#da3b2b'
+    },
+    '& .step-fields-actions': {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center'
     }
   }
 });
@@ -82,6 +88,10 @@ const Form = () => {
   const handleNextStep = (fieldsValues: FieldValues) => {
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
+  };
+
+  const handlePreviousStep = () => {
+    dispatch(setPreviousStep(formId));
   };
 
   useEffect(
@@ -116,6 +126,7 @@ const Form = () => {
             _.isEmpty(previousValues) ? defaultValues : previousValues
           }
           onNextStep={handleNextStep}
+          onPreviousStep={handlePreviousStep}
           onSubmit={handleSubmit}
           currentStepIndex={currentStepIndex}
           isLastStep={isLastStep}
