@@ -1,23 +1,27 @@
 import * as React from 'react';
-import { UseFormGetValues, UnpackNestedValue } from 'react-hook-form';
+import {
+  UseFormGetValues,
+  UnpackNestedValue,
+  FieldValues
+} from 'react-hook-form';
 
 import { SUBMIT_FIELD_TYPE } from '../constants';
 import { FormField } from './formField.component';
 import { Dictionary } from '../types';
 
-export interface SubmitFieldProps<FormValues> {
+export interface SubmitFieldProps {
   dictionary: Dictionary;
   isDirty: boolean;
   isValid: boolean;
   isPreFilled: boolean;
-  getValues: UseFormGetValues<FormValues>;
+  getValues: UseFormGetValues<FieldValues>;
   isLastStep: boolean;
   isFormStepValid: boolean;
   submitLabel: string;
-  onNextStep: (value: UnpackNestedValue<FormValues>) => void;
+  onNextStep: (value: UnpackNestedValue<FieldValues>) => void;
 }
 
-export function SubmitField<FormValues>({
+export function SubmitField({
   dictionary,
   isDirty,
   isValid,
@@ -27,7 +31,7 @@ export function SubmitField<FormValues>({
   isFormStepValid,
   submitLabel,
   onNextStep
-}: SubmitFieldProps<FormValues>) {
+}: SubmitFieldProps) {
   const handleNextStep = React.useCallback(
     (event) => {
       event.preventDefault();

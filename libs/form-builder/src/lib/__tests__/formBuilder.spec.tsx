@@ -1,5 +1,4 @@
 import { act, render, screen } from '@testing-library/react';
-import { FieldValues } from 'react-hook-form';
 import { FormBuilder, FormBuilderProps } from '../formBuilder';
 import { FormBuilderError } from '../utils/formBuilderError.utils';
 
@@ -23,7 +22,7 @@ const makeStep = ({
 
 describe('<FormBuilder />', () => {
   let wrapper;
-  const getWrapper = async (props: FormBuilderProps<any>) => {
+  const getWrapper = async (props: FormBuilderProps) => {
     await act(async () => {
       wrapper = await render(<FormBuilder {...props} />);
     });

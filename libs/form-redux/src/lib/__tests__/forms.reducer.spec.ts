@@ -27,16 +27,9 @@ const defaultState = {
   }
 };
 
-interface FormValues {
-  foo?: string;
-  bar?: string;
-}
-
 describe('forms.reducer', () => {
-  const freezedReducer = (
-    state: DefaultFormState<FormValues>,
-    action: FormAction
-  ) => reducer(deepFreeze(state), action);
+  const freezedReducer = (state: DefaultFormState, action: FormAction) =>
+    reducer(deepFreeze(state), action);
 
   it('should init store', () => {
     expect(reducer(undefined, { type: '@@redux/INIT' })).toEqual(initialState);

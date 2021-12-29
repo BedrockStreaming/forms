@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import _ from 'lodash';
 import {
   DefaultValues,
+  FieldValues,
   Path,
   UseFormTrigger,
   UseFormWatch
@@ -34,21 +35,21 @@ export function getFieldsToCheckByStep({
 
 type UnknownArrayOrObject = unknown[] | Record<string, unknown>;
 
-interface UpdateValidityArgs<FormValues> {
+interface UpdateValidityArgs {
   dirtyFields: UnknownArrayOrObject | boolean;
-  fieldsToCheck: Path<FormValues>[];
-  defaultValues?: DefaultValues<FormValues>;
-  trigger: UseFormTrigger<FormValues>;
+  fieldsToCheck: Path<FieldValues>[];
+  defaultValues?: DefaultValues<FieldValues>;
+  trigger: UseFormTrigger<FieldValues>;
   setValidity: (value: boolean) => void;
 }
 
-export async function updateValidity<FormValues>({
+export async function updateValidity({
   dirtyFields,
   fieldsToCheck,
-  defaultValues = {} as DefaultValues<FormValues>,
+  defaultValues = {} as DefaultValues<FieldValues>,
   trigger,
   setValidity
-}: UpdateValidityArgs<FormValues>) {
+}: UpdateValidityArgs) {
   if (_.isBoolean(dirtyFields)) {
     setValidity(dirtyFields);
 
@@ -69,13 +70,13 @@ export async function updateValidity<FormValues>({
   setValidity(updatedValidity);
 }
 
-interface UseCheckFormStepValidityArgs<FormValues> {
+interface UseCheckFormStepValidityArgs {
   schema: FormSchema;
   dirtyFields: UnknownArrayOrObject | boolean;
   currentStepIndex: number;
-  defaultValues?: DefaultValues<FormValues>;
-  trigger: UseFormTrigger<FormValues>;
-  watch: UseFormWatch<FormValues>;
+  defaultValues?: DefaultValues<FieldValues>;
+  trigger: UseFormTrigger<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
 }
 
 const EMPTY_DEFAULT_VALUES = {} as DefaultValues<any>;
@@ -86,14 +87,14 @@ function getDefaultValuesFilledKeys(defaultValues: DefaultValues<any>) {
   );
 }
 
-export function useCheckFormStepValidity<FormValues>({
+export function useCheckFormStepValidity({
   schema,
   currentStepIndex,
   dirtyFields,
   defaultValues = EMPTY_DEFAULT_VALUES,
   watch,
   trigger
-}: UseCheckFormStepValidityArgs<FormValues>) {
+}: UseCheckFormStepValidityArgs) {
   const [validity, setValidity] = useState(false);
 
   useEffect(() => {
@@ -107,7 +108,7 @@ export function useCheckFormStepValidity<FormValues>({
       getDefaultValuesFilledKeys(defaultValues)
     );
 
-    updateValidity<FormValues>({
+    updateValidity({
       dirtyFields,
       fieldsToCheck,
       defaultValues,
@@ -116,7 +117,7 @@ export function useCheckFormStepValidity<FormValues>({
     });
 
     const subscription = watch(() =>
-      updateValidity<FormValues>({
+      updateValidity({
         dirtyFields,
         fieldsToCheck,
         defaultValues,

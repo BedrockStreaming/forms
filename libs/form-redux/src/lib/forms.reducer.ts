@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { FieldValues } from 'react-hook-form';
 
 import {
   PREVIOUS_STEP,
@@ -9,12 +10,12 @@ import {
   SET_STEP
 } from './forms.actions';
 
-export interface DefaultFormState<FormValues> {
+export interface DefaultFormState {
   [key: string]: {
     stepsCount: number;
     isLastStep: boolean;
     currentStepIndex: number;
-    data: FormValues;
+    data: FieldValues;
   };
 }
 
@@ -34,10 +35,8 @@ const DEFAULT_OBJECT = {};
 export const initialState = {} as any;
 
 const checkFormId = ({ formId }: FormAction) => !!formId;
-const checkFormExist = <T>(
-  { formId }: FormAction,
-  state: DefaultFormState<T>
-) => !!state[formId];
+const checkFormExist = <T>({ formId }: FormAction, state: DefaultFormState) =>
+  !!state[formId];
 const checkStepExist = (stepsCount: number, newStepIndex: number) =>
   newStepIndex + 1 <= stepsCount;
 
