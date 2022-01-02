@@ -12,7 +12,7 @@ This documentation presents a set of libraries BedrockStreaming uses to handle d
 
 ## Why would you use these libraries ?
 
-The idea of this library came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate any form by simply passing some config and a dictionary of inputs to go with.
+The idea of these libraries came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate any form by simply passing some config and a dictionary of inputs to go with.
 As we were eager to keep some control over the process, we went with [react-hook-form](https://react-hook-form.com/) which has great capabilities. Unfortunately we were missing some features that we had to implement ourselves.
 
 - Complex validation with multiple visuals feedback
@@ -20,13 +20,40 @@ As we were eager to keep some control over the process, we went with [react-hook
 
 ## Features
 
-Here is a list of features we are supporting:
+Here is a list of features we are supporting :white_check_mark:
 
-## :railway_track: Road map
+:white_check_mark: Form Generation
+:white_check_mark: Asynchronous Custom Validation
+:white_check_mark: Multi Steps Forms
 
-Here is our road map for the next versions
+---
 
-_WIP_
+Here is a list of features we are **not** supporting :x:
+
+:x: Form UI Components
+:construction: Conditional Steps
+:construction: Conditional Fields
+
+## Why did we have to make it ?
+
+### Our context and needs
+
+Bedrock provides turn-keys streaming platforms on different devices. A few years ago, we didn't have to maintain many forms for our existing AVOD platforms - mainly login and register ones - while our customers mostly shared the UX and UI of such forms. However, since we started addressing SVOD platforms and higher customization expectations, we realized we had to **industrialize** the way we were handling forms or we would end up writing custom code for every customer, which would dramatically impact our core delivery schedule.
+
+We decided that we wanted to:
+
+- Use our design system and existing styled-components inputs (excluding form generation libraries providing UI or html output).
+- Describe our forms from serializable schemas (json), so such schema could be shared across front-ends regardless of the language or library used to built it and even come from a server response.
+- Use complex validation, keeping in mind we didn't want to increase our bundle size by using a dedicated validation library (like yup or joi).
+- Display as many visual hints as there are validation rules on a given input (not just one error message, each rule would show its completeness state).
+- Avoid using redux (in our opinion, inputs should be uncontrolled or handling their own state locally)
+- Use multi steps forms.
+- Write the less code as possible. Of course.
+
+#### A case study, looking for the right library :male_detective:
+
+We made some research of this ideal lib that would handle both the form state and the inputs generation, but we didn't found it.
+**Formik** and **react-hook-from** were top shelf candidates but were missing the generation part whereas **react-jsonschema-forms** had the schema and form generation capabilities but was lacking async validation and ease in input customization.
 
 ## Contributors
 

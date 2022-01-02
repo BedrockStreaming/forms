@@ -20,7 +20,7 @@ module.exports = {
         {
           to: 'docs/',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Doc',
           position: 'left'
         },
         {
@@ -37,8 +37,12 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Overview',
               to: 'docs/'
+            },
+            {
+              label: 'Quickstart',
+              to: 'docs/quickstart/'
             },
             {
               label: 'Using Forms with Redux',
