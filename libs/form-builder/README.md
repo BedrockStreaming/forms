@@ -269,53 +269,6 @@ When we need more personalization in our validation for a special type of field 
   // More info on the official react-hooks-form doc : https://react-hook-form.com/get-started#Applyvalidation
 ```
 
-### Validation hints
-
-In order to display some hints to the user regarding what validation is passing or not, we use `@bedrockstreaming/form-validation-rule-list` package. As a result, whenever you want to use a `ValidatedTextField` (or any input using the `withValidationRuleList` HOC), you need to do add a few things to your dictionary components:
-
-- use `getValidationRulesHints` from `@bedrockstreaming/form-builder` to retrieve the rules. It will translate the error messages and format the validation errors to what's expected by `@bedrockstreaming/form-validation-rule-list` elements. Optionally, you can pass a config object in case you have some sprintf values to template inside your error messages.
-- provide some `rules` and `colors` props
-- use the `checkRules` function from `@bedrockstreaming/form-validation-rule-list`
-
-```js
-import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
-import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
-
-import { onboarding } from '@mylib/config';
-import { ValidatedPasswordTextField } from '@mylib/textfield';
-import { useTranslate } from '@mylib/react-i18n';
-
-const dictionary = {
-  password: ({ errors, validation, ...props }) => {
-    const t = useTranslate();
-    const rules = getValidationRulesHints({
-      t,
-      errors,
-      validation,
-      config: onboarding,
-    });
-    const hasError = !!checkRules(props.value, rules).length;
-    const fieldError = errors && errors.type;
-    const isValid = !!(props.value && !hasError && !fieldError);
-
-    return (
-      <div>
-        <ValidatedPasswordTextField
-          hasError={hasError}
-          valid={isValid}
-          {...props}
-          rules={rules}
-          colors={validationColors}
-          label={t(props.label)}
-        />
-      </div>
-    );
-  },
-};
-```
-
-:warning: Beware, you can't use several `react-hook-form` default rules as validation hints since the `errors` object returned by the library can only contain one default rule error at a time.
-
 ## Examples
 
 For real-world usage, see the [demo](../../apps/demo) app and the [form-editor](../form-editor) lib.

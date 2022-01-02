@@ -96,7 +96,7 @@ export default MyForm;
 ### Or try it in code sandbox
 
 <iframe
-  src="https://codesandbox.io/embed/simple-form-builder-pdxxd?fontsize=14&hidenavigation=1&theme=dark&editorsize=70&view=editor"
+  src="https://codesandbox.io/embed/simple-form-builder-pdxxd?fontsize=14&hidenavigation=1&theme=dark&editorsize=70"
   style={{ width:"100%", height: "500px", border: 0, borderRadius: "4px", overflow:"hidden"}}
   title="simple-form-builder"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -201,7 +201,7 @@ const FormWrapper = () => {
 
 This library doesn't provide steps state management by default. You can implement your own step management logic through the `onNextStep` and `onPreviousStep` callbacks, there you can change the `currentStepIndex` prop passed to the `FormBuilder` as it is done in the previous example.
 
-:bulb: If you are using redux, we have a slice ready for you :point_right: [@bedrockstreaming/form-redux](../form-redux/README.md)
+:bulb: If you are using redux, we have a slice ready for you :point_right: [@bedrockstreaming/form-redux](./form-redux.md)
 
 ## FormField
 

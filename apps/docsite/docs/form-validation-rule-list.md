@@ -96,7 +96,3 @@ const dictionary = {
 ```
 
 :warning: Beware, you can't use several `react-hook-form` default rules as validation hints since the `errors` object returned by the library can only contain one default rule error at a time.
-
-## Running unit tests
-
-Run `nx test form-validation-rule-list` to execute the unit tests via [Jest](https://jestjs.io).

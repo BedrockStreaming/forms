@@ -72,7 +72,3 @@ export const FooForm = () => {
   );
 };
 ```
-
-## Running unit tests
-
-Run `nx test form-redux` to execute the unit tests via [Jest](https://jestjs.io).
