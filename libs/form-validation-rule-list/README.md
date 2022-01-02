@@ -10,8 +10,6 @@ npm install @bedrockstreaming/form-validation-rule-list
 
 ## :rocket: Usage
 
-### How to create a form using form-validation-rule-list?
-
 ## Running unit tests
 
 Run `nx test form-validation-rule-list` to execute the unit tests via [Jest](https://jestjs.io).

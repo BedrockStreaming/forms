@@ -13,26 +13,15 @@ npm install @bedrockstreaming/form-builder
 
 ## :rocket: Usage
 
-### How to create a form using the FormBuilder?
+In order to create a form using this library, you simply need to import the `FormBuilder` component, and instantiate it with the following props:
 
-In order to create a form using the Form-Builder, you simply need to import the Form-Builder from the package, render the components in the JSX and provide it with the following props:
-
-- `schema`: an object that will contains all the fields you want to display in your form
+- `schema`: an object that will contain all the **fields** you want to display in your form, as well as the **steps** and the **stepsById**.
 - `dictionary`: an object that will map all the fields of the schema with the React component you provide
 - `onSubmit`: the function you want to be called when the form is submitted
-- `currentStepIndex`: _optional_ the current form step index, use only for multi steps, 0 by default
-- `extraValidation`: an object that will map custom validation functions to our fields, see Validation part of the doc
 
-## How to configure your form?
+### schema
 
-- formId
-
-Each form has a unique identifier, steps information and form data will be stored under this id inside the forms reducer.
-
-- schema
-
-To configure your form, you need to create a configuration `schema` to indicate which fields to render.
-To do that, you should provide the `schema` with the following structure:
+You should provide a `schema` with the following structure:
 
 ```jsx
 const schema = {
@@ -44,7 +33,6 @@ const schema = {
     },
     ...
   },
-  fieldsById: ['some-unique-identifier'],
   steps: {
     'step-foo': {
       id: 'step-foo',
@@ -58,12 +46,13 @@ const schema = {
 };
 ```
 
-You can then assign each type of field you have declared in `schema` by configuring the `dictionary` prop:
+### dictionary
 
-```jsx live
+You can then assign each type of field you have declared in your `schema` by configuring the `dictionary` prop:
+
+```jsx
 const dictionary = {
-  text: MyTextFieldComponent,
-  checkbox: MyCheckboxFieldComponent,
+  'some-unique-identifier': MyUniqueInput,
   submit: MySubmitButton, // mandatory field
   ...
 };
@@ -71,11 +60,15 @@ const dictionary = {
 
 Make sure the `dictionary` keys corresponds to your fields types.
 
-### How to use it in my React application ?
+### onSubmit
+
+The `onSubmit` callback is called when submitting the form, it follows `react-hook-form` API.
+
+---
 
 By default, the form schema must include steps, even for a single one.
 
-## Single step forms
+### Single step forms
 
 Example usage of a form that will display one text input.
 
@@ -85,86 +78,92 @@ import { FormBuilder } from '@bedrockstreaming/form-builder';
 
 const schema = {
   fields: {
-    1: {
-      id: '1',
+    foo: {
+      id: 'foo',
       title: 'name',
       type: 'text',
       meta: {
-        label: 'i18n.path.to.label',
+        label: 'Your name',
       },
     },
   },
-  fieldsById: ['1'],
   steps: {
     'single-step-form': {
-      fieldsById: ['1'],
+      fieldsById: ['foo'],
       id: 'single-step-form',
       submit: {
-        label: 'global.submit', // action contains the label for the submit button
+        label: 'submit',
       },
-      meta: {}, // any step related data
     },
   },
   stepsById: ['single-step-form'],
 };
 
 const dictionary = {
-  text: () => <input type="text" placeholder="Your name" />,
+  text: ({ value, onChange, label }) => (
+    <input type="text" value={value} onChange={onChange} placeholder={label} />
+  ),
+  submit: ({ label }) => <button type="submit">{label}</button>,
 };
 
-const DumbComponent = () => (
-  <div>
-    <FormBuilder schema={schema} dictionary={dictionary} onSubmit={() => {}} />
-  </div>
-);
+const FormWrapper = () => {
+  const onSubmit = (fieldValues) => {
+    return someAPICall(fieldValues).then(() => ...);
+  };
+
+  return (
+    <div>
+      <FormBuilder
+        schema={schema}
+        dictionary={dictionary}
+        onSubmit={onSubmit}
+      />
+    </div>
+  )
+}
 ```
 
-## Multi steps forms
+### Multi steps forms
 
 Example usage of a form that will display two steps.
 
 ```jsx
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
-import { getCurrentStepIndex } from '@bedrockstreaming/form-redux';
 
 const schema = {
   fields: {
-    1: {
-      id: '1',
+    foo: {
+      id: 'foo',
       title: 'name',
       type: 'text',
       meta: {
-        label: 'i18n.path.to.label',
+        label: 'some label',
       },
     },
-    2: {
-      id: '2',
+    bar: {
+      id: 'bar',
       title: 'email',
       type: 'text',
       meta: {
-        label: 'i18n.path.to.label',
+        label: 'some label',
       },
     },
   },
-  fieldsById: ['1', '2'],
   steps: {
     'multi-step-form-1': {
-      fieldsById: ['1'],
+      fieldsById: ['foo'],
       id: 'multi-step-form-1',
       submit: {
-        label: 'global.next',
+        label: 'next',
       },
-      meta: {},
     },
     'multi-step-form-2': {
-      fieldsById: ['2'],
+      fieldsById: ['bar'],
       id: 'multi-step-form-2',
       submit: {
-        label: 'global.submit',
+        label: 'submit',
       },
-      meta: {},
     },
   },
   stepsById: ['multi-step-form-1', 'multi-step-form-2'],
@@ -174,16 +173,24 @@ const dictionary = {
   text: () => <input type="text" placeholder="Your name" />,
 };
 
-const DumbComponent = () => {
-  const currentStepIndex = useSelector(getCurrentStepIndex(formId));
+const LAST_STEP_INDEX = schema.stepsById.length - 1;
+
+const FormWrapper = () => {
+  const [stepIndex, setStepIndex] = useState(0);
+
+  const onSubmit = (fieldValues) => {
+    return someAPICall(fieldValues).then(() => ...)
+  };
 
   return (
     <div>
       <FormBuilder
         schema={schema}
         dictionary={dictionary}
-        currentStepIndex={currentStepIndex}
-        onSubmit={() => {}}
+        currentStepIndex={stepIndex}
+        onSubmit={onSubmit}
+        onNextStep={() => setStepIndex((oldIndex) => oldIndex === LAST_STEP_INDEX ? oldIndex : oldIndex + 1)}
+        onPreviousStep={() => setStepIndex((oldIndex) => oldIndex === 0 ? oldIndex : oldIndex - 1)}
       />
     </div>
   );
@@ -192,15 +199,13 @@ const DumbComponent = () => {
 
 ### Navigating in a multi-step form
 
-To navigate in a form built by the form-builder, you can use the redux module from [@bedrockstreamin/form-redux](../form-redux/README.md)
+This library doesn't provide steps state management by default. You can implement your own step management logic through the `onNextStep` and `onPreviousStep` callbacks, there you can change the `currentStepIndex` prop passed to the `FormBuilder` as it is done in the previous example.
 
-> e.g. `setNextStep(formId)` & `setPreviousStep(formId)` where the formId is the id of the form located in the config.
-
-The next action is handled in the submit button, everything is handled by the form-builder so there is nothing to do but adding a submit field at every step of a new multistep form.
+:bulb: If you are using redux, we have a slice ready for you :point_right: [@bedrockstreaming/form-redux](../form-redux/README.md)
 
 ## FormField
 
-The FormField specific logics should be handled in the `dictionary`  
+The FormField specifics should be handled in the `dictionary` components
 The FormField has props:
 
 - id: the unique identifier of the field
@@ -229,13 +234,12 @@ When we need more personalization in our validation for a special type of field 
 
 ```jsx
   const extraValidation = {
-    'customValidationFunction1': (schemaErrorValue) => inputValue => doCustomValidationHere(inputValue, schemaErrorValue),
-    'customValidationFunction2': () => inputValue => doOtherCustomValidationHere(inputValue),
+    'customValidationFunction1': (valueFromSchema) => fieldValue => doCustomValidationHere(valueFromSchema, fieldValue),
   };
 
   const schema = {
     fields: {
-      birthdate: {
+      BIRTHDATE: {
         ...
         meta: {
           ...
@@ -243,12 +247,8 @@ When we need more personalization in our validation for a special type of field 
         validation: {
           customValidationFunction1: { // <-- this is a custom validation
             key: 'customValidationFunction1',
-            message: 'Some untranslated error message',
-          },
-          customValidationFunction2: {  // <-- this is a custom validation
-            key: 'customValidationFunction2',
-            message: 'some.i18n.node', // <-- Your input, your language
-            value: 16, // <-- this is a custom validation
+            message: 'forms.register.birthdate.minAgeError',
+            value: 13,
           },
           required: { // <-- this is a default validation (native to react-hook-form)
             key: 'required',
@@ -257,9 +257,9 @@ When we need more personalization in our validation for a special type of field 
           },
         },
       },
+    }
   };
 
-  ...
   const MyForm = () => (
     <FormBuilder
       schema={schema}
@@ -271,57 +271,3 @@ When we need more personalization in our validation for a special type of field 
 
   // More info on the official react-hooks-form doc : https://react-hook-form.com/get-started#Applyvalidation
 ```
-
-### Validation hints
-
-In order to display some hints to the user regarding what validation is passing or not, we use `@bedrockstreaming/form-validation-rule-list` package. As a result, whenever you want to use a `ValidatedTextField` (or any input using the `withValidationRuleList` HOC), you need to do add a few things to your dictionary components:
-
-- use `getValidationRulesHints` from `@bedrockstreaming/form-builder` to retrieve the rules. It will translate the error messages and format the validation errors to what's expected by `@bedrockstreaming/form-validation-rule-list` elements. Optionally, you can pass a config object in case you have some sprintf values to template inside your error messages.
-- provide some `rules` and `colors` props
-- use the `checkRules` function from `@bedrockstreaming/form-validation-rule-list`
-
-```js
-import { useTranslate } from '@m6web/react-i18n';
-import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
-import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
-import { onboarding } from '@mylib/config';
-import { ValidatedPasswordTextField } from '@mylib/textfield';
-
-const dictionary = {
-  password: ({ errors, validation, ...props }) => {
-    const t = useTranslate();
-    const rules = getValidationRulesHints({
-      t,
-      errors,
-      validation,
-      config: onboarding,
-    });
-    const hasError = !!checkRules(props.value, rules).length;
-    const fieldError = errors && errors.type;
-    const isValid = !!(props.value && !hasError && !fieldError);
-
-    return (
-      <TextFieldTopMarginWrapper>
-        <ValidatedPasswordTextField
-          hasError={hasError}
-          valid={isValid}
-          {...props}
-          rules={rules}
-          colors={validationColors}
-          label={t(props.label)}
-        />
-      </TextFieldTopMarginWrapper>
-    );
-  },
-};
-```
-
-:warning: Beware, you can't use several `react-hook-form` default rules as validation hints since the `errors` object returned by the library can only contain one default rule error at a time.
-
-### Running unit tests
-
-Run `yarn nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).
-
-### Running e2e tests
-
-Run `yarn nx test form-builder` to execute the unit tests via [Jest](https://jestjs.io).

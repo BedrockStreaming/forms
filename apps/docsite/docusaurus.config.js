@@ -37,8 +37,12 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/'
+              label: 'Overview',
+              to: 'docs/overview'
+            },
+            {
+              label: 'Quickstart',
+              to: 'docs/quickstart/'
             },
             {
               label: 'Using Forms with Redux',

@@ -30,7 +30,8 @@ Use redux to control the form state.
 
 ```js
 // a form using actions
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
@@ -39,24 +40,20 @@ import {
   initForm,
   setNextStep,
 } from '@bedrockstreaming/form-redux';
-import { formConfig } from './path/to/my/config';
+
+import { schema, formId } from './path/to/my/config';
 import { fooSubmitAction } from '<my-app-module>';
 
 export const FooForm = () => {
-  const { foo: formId, schema } = formConfig;
   const dispatch = useDispatch();
-  const schema = useSelector(getFormConfiguration(formId));
   const currentStepIndex = useSelector(getCurrentStepIndex(formId));
-  const currentStepMeta = useSelector(
-    getCurrentStepMeta(formId, currentStepIndex)
-  );
   const shouldSubmit = useSelector(isLastStep(formId));
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
-  }, [formId, schema]);
+  }, [dispatch]);
 
-  const handleSubmit = (formId) => (fieldValues) => {
+  const handleSubmit = (fieldValues) => {
     if (shouldSubmit) {
       dispatch(fooSubmitAction(fieldValues));
       dispatch(resetForm(formId));
@@ -69,7 +66,7 @@ export const FooForm = () => {
     <FormBuilder
       dictionary={dictionary}
       schema={schema}
-      onSubmit={handleSubmit(formId)}
+      onSubmit={handleSubmit}
       currentStepIndex={currentStepIndex}
     />
   );
@@ -79,8 +76,3 @@ export const FooForm = () => {
 ## Running unit tests
 
 Run `nx test form-redux` to execute the unit tests via [Jest](https://jestjs.io).
-
-## Dependencies
-
-- redux
-- redux-thunk

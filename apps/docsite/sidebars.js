@@ -5,28 +5,18 @@ module.exports = {
       type: 'category',
       label: 'Getting Started',
       collapsed: false,
-      items: ['quickstart', 'install', 'usage']
+      items: ['quickstart', 'install']
     },
     {
       type: 'category',
-      label: 'Core',
+      label: 'Packages',
       collapsed: false,
-      items: ['form-builder']
-    },
-    {
-      type: 'category',
-      label: 'Plugins',
-      items: ['form-redux', 'form-validation-rule-list']
+      items: ['form-builder', 'form-redux', 'form-validation-rule-list']
     },
     {
       type: 'category',
       label: 'Contributing',
       items: ['development']
-    },
-    {
-      type: 'category',
-      label: 'Docusaurus',
-      items: ['doc1', 'mdx']
     }
   ]
 };

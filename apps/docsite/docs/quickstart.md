@@ -8,7 +8,7 @@ The following snippets will help you get started with our form-builder in no tim
 ## Install
 
 ```sh
-yarn add @bedrockstreaming/form-builder
+npm install @bedrockstreaming/form-builder
 ```
 
 ## Bootstrap a form
@@ -16,13 +16,11 @@ yarn add @bedrockstreaming/form-builder
 You can organize your files as you wish, this is a single file example for a quick start purpose
 
 ```jsx
-import * as React from 'react';
 import { FormBuilder } from '@bedrockstreaming/form-builder';
 
 const dictionary = {
   submit: ({ label }) => <button type="submit">{label}</button>,
   text: ({ value, onChange, label, errors }) => {
-    console.log(errors);
     return (
       <div>
         <label>{label}</label>
@@ -94,6 +92,8 @@ const MyForm = () => (
 
 export default MyForm;
 ```
+
+### Or try it in code sandbox
 
 <iframe
   src="https://codesandbox.io/embed/simple-form-builder-pdxxd?fontsize=14&hidenavigation=1&theme=dark&editorsize=70&view=editor"
