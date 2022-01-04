@@ -73,9 +73,9 @@ jobs:
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
         run: |
-          npx --no-install nx version form-builder --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
-          && npx --no-install nx version form-validation-rule-list --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
-          && npx --no-install nx version form-redux --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun
+          npx --no-install nx run form-builder:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
+          && npx --no-install nx run form-validation-rule-list:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
+          && npx --no-install nx run form-redux:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun
       - name: Tag last release
         run: git tag -f last-release
       - name: Push changes
