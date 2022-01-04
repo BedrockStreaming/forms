@@ -2,6 +2,15 @@ name: 'Forms Release'
 
 on:
   workflow_dispatch:
+    inputs:
+      releaseAs:
+        description: 'releaseAs (patch, minor, major, ...)'
+        required: true
+        default: 'minor'
+      dryRun:
+        description: 'dry run ?'
+        required: false
+        default: "false"
   pull_request:
 
 jobs:
@@ -56,20 +65,22 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_AS: ${{ github.event.inputs.releaseAs }}
+          DRY_RUN: ${{ github.event.inputs.dryRun }}
         # Use npx instead of yarn because yarn auto-magically sets NPM_* environment variables
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
         run: |
-          npx --no-install nx version form-builder --baseBranch=master --releaseAs=minor --dryRun \
-          && npx --no-install nx version form-validation-rule-list --baseBranch=master --releaseAs=minor --dryRun \
-          && npx --no-install nx version form-redux --baseBranch=master --releaseAs=minor --dryRun
+          npx --no-install nx version form-builder --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
+          && npx --no-install nx version form-validation-rule-list --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
+          && npx --no-install nx version form-redux --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun
       - name: Tag last release
         run: git tag -f last-release
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          force: true
-          tags: true
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}
+      #     force: true
+      #     tags: true
