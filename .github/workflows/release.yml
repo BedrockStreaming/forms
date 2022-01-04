@@ -21,11 +21,17 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
-      - run: yarn commitlint --from=master
-      - run: yarn nx affected:lint --base=master
-      - run: yarn nx affected:build --base=master
-      - run: yarn nx affected:test --base=master
+      - name: Install
+        run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+      - name: Commit lint
+        shell: bash
+        run: yarn commitlint --from=master
+      - name: Lint
+        run: yarn nx affected:lint --base=master
+      - name: Build
+        run: yarn nx affected:build --base=master
+      - name: Unit tests
+        run: yarn nx affected:test --base=master
       # - name: Codecov upload
       #   uses: codecov/codecov-action@v2
       #   with:
