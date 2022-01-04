@@ -1,7 +1,10 @@
 name: 'Forms Release'
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  pull_request:
+
+
 
 jobs:
   test:
@@ -19,6 +22,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+          registry-url: https://registry.npmjs.org
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: yarn commitlint --from=master
       - run: yarn nx affected:lint --base=master
@@ -53,9 +57,9 @@ jobs:
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
         run: |
-          npx --no-install nx version form-builder --base=master --releaseAs=minor \
-          && npx --no-install nx version form-validation-rule-list --base=master --releaseAs=minor \
-          && npx --no-install nx version form-redux --base=master --releaseAs=minor
+          npx --no-install nx version form-builder --baseBranch=master --releaseAs=minor --dryRun \
+          && npx --no-install nx version form-validation-rule-list --baseBranch=master --releaseAs=minor --dryRun \
+          && npx --no-install nx version form-redux --baseBranch=master --releaseAs=minor --dryRun
       - name: Tag last release
         run: git tag -f last-release
       - name: Push changes
