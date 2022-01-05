@@ -1,0 +1,66 @@
+{
+  "root": "libs/form-builder",
+  "sourceRoot": "libs/form-builder/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/form-builder",
+        "tsConfig": "libs/form-builder/tsconfig.lib.json",
+        "project": "libs/form-builder/package.json",
+        "entryFile": "libs/form-builder/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/form-builder/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/form-builder/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/form-builder"],
+      "options": {
+        "jestConfig": "libs/form-builder/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "push": true,
+        "noVerify": true,
+        "commitMessageFormat": "release(${projectName}): publish version ${version}",
+        "postTargets": ["form-builder:publish", "form-builder:github"]
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "branch": "master",
+        "tag": "${tag}",
+        "notesFile": "libs/form-builder/CHANGELOG.md"
+      }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "baseBranch": "master",
+        "access": "public"
+      }
+    }
+  },
+  "tags": []
+}
