@@ -236,7 +236,7 @@ When we need more personalization in our validation for a special type of field 
 
   const schema = {
     fields: {
-      BIRTHDATE: {
+      birthDate: {
         ...
         meta: {
           ...
@@ -244,12 +244,12 @@ When we need more personalization in our validation for a special type of field 
         validation: {
           customValidationFunction1: { // <-- this is a custom validation
             key: 'customValidationFunction1',
-            message: 'forms.register.birthdate.minAgeError',
+            message: 'some.translated.message.minAgeError',
             value: 13,
           },
           required: { // <-- this is a default validation (native to react-hook-form)
             key: 'required',
-            message: 'forms.required.error',
+            message: 'some.translated.message.requiredError',
             value: true,
           },
         },

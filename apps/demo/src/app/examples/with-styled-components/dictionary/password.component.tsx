@@ -1,9 +1,9 @@
 import { FieldErrors } from 'react-hook-form';
+import { Validations } from '@bedrockstreaming/form-builder';
 import {
   getValidationRulesHints,
-  Validations
-} from '@bedrockstreaming/form-builder';
-import { checkRules } from '@bedrockstreaming/form-validation-rule-list';
+  checkRules
+} from '@bedrockstreaming/form-validation-rule-list';
 
 import { ValidatedPasswordTextField } from '@forms/examples/styled-inputs';
 

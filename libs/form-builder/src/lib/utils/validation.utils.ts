@@ -1,7 +1,6 @@
-import { FieldErrors, RegisterOptions } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form';
 import _ from 'lodash';
 
-import { RuleObject, rule } from './rule.utils';
 import { DEFAULT_RULES_NAMES } from '../constants';
 import { ExtraValidation, Validations } from '../types';
 
@@ -35,31 +34,4 @@ export const getFieldRules = ({
     ...hookFormRules,
     ...(hasExtraRules && { validate: extraRules })
   };
-};
-
-interface AbstractMapOfString {
-  [key: string]: string;
-}
-
-export interface GetValidationRulesHintsArgs {
-  t?: (value: string, config?: AbstractMapOfString) => string;
-  errors: FieldErrors;
-  validation: Validations;
-  config?: AbstractMapOfString;
-}
-
-export const getValidationRulesHints = ({
-  t = _.identity,
-  errors,
-  validation,
-  config
-}: GetValidationRulesHintsArgs) => {
-  return Object.values(validation).reduce((acc, { message, key }) => {
-    return DEFAULT_RULES_NAMES[key]
-      ? acc
-      : [
-          ...acc,
-          rule(t(message, config), () => !_.get(errors, ['types', key]))
-        ];
-  }, [] as Array<RuleObject>);
 };

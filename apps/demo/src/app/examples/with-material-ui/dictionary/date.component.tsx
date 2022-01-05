@@ -1,12 +1,10 @@
 import { Ref, useMemo } from 'react';
 import { FieldErrors, Path, FieldValues } from 'react-hook-form';
-import {
-  getValidationRulesHints,
-  Validations
-} from '@bedrockstreaming/form-builder';
+import { Validations } from '@bedrockstreaming/form-builder';
 import {
   checkRules,
-  withValidationRuleList
+  withValidationRuleList,
+  getValidationRulesHints
 } from '@bedrockstreaming/form-validation-rule-list';
 import { TextField } from '@mui/material';
 import _ from 'lodash';
