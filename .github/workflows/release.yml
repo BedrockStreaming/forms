@@ -61,7 +61,7 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:version --baseBranch=master
+        run: npx --no-install nx run workspace:version --baseBranch=master --syncVersions
       - name: Tag last release
         run: git tag -f last-release
       - name: Push changes
