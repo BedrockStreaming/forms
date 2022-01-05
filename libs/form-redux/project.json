@@ -34,24 +34,6 @@
       },
       "outputs": ["{options.outputPath}"]
     },
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "baseBranch": "master",
-        "push": true,
-        "noVerify": true,
-        "commitMessageFormat": "release(${projectName}): publish version ${version}",
-        "postTargets": ["form-redux:publish", "form-redux:github"]
-      }
-    },
-    "github": {
-      "executor": "@jscutlery/semver:github",
-      "options": {
-        "branch": "master",
-        "tag": "${tag}",
-        "notesFile": "libs/form-redux/CHANGELOG.md"
-      }
-    },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {

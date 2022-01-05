@@ -1,6 +1,29 @@
 {
   "version": 2,
   "projects": {
+    "workspace": {
+      "root": ".",
+      "targets": {
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "baseBranch": "master",
+            "push": true,
+            "noVerify": true,
+            "commitMessageFormat": "release(${projectName}): publish version ${version}",
+            "postTargets": ["workspace:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "branch": "master",
+            "tag": "${tag}",
+            "notesFile": "./CHANGELOG.md"
+          }
+        }
+      }
+    },
     "demo": "apps/demo",
     "demo-e2e": "apps/demo-e2e",
     "docsite": "apps/docsite",
