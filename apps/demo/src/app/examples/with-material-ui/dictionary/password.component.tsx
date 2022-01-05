@@ -1,10 +1,8 @@
 import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
+import { Validations } from '@bedrockstreaming/form-builder';
 import {
   getValidationRulesHints,
-  Validations
-} from '@bedrockstreaming/form-builder';
-import {
   checkRules,
   withValidationRuleList
 } from '@bedrockstreaming/form-validation-rule-list';

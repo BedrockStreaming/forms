@@ -53,8 +53,8 @@ const schema = {
 Dictionary
 
 ```jsx
-import { getValidationRulesHints } from '@bedrockstreaming/form-builder';
 import {
+  getValidationRulesHints,
   checkRules,
   withValidationRuleList,
 } from '@bedrockstreaming/form-validation-rule-list';

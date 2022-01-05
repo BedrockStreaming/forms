@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import {
   getValidationRulesHints,
-} from '@bedrockstreaming/form-builder';
-import {
   checkRules,
   withValidationRuleList
 } from '@bedrockstreaming/form-validation-rule-list';
