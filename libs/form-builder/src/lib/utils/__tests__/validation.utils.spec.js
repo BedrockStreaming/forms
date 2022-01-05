@@ -1,7 +1,4 @@
-import { rule } from '../rule.utils';
 import { getFieldRules } from '../validation.utils';
-
-jest.mock('../rule.utils');
 
 describe('getFieldRules', () => {
   describe('extraValidation', () => {
