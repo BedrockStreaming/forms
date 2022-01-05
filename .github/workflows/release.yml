@@ -45,6 +45,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'master'
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           cache: yarn
