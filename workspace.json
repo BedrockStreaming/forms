@@ -17,9 +17,9 @@
         "github": {
           "executor": "@jscutlery/semver:github",
           "options": {
-            "branch": "master",
+            "target": "master",
             "tag": "${tag}",
-            "notesFile": "./CHANGELOG.md"
+            "generateNotes": true
           }
         }
       }
