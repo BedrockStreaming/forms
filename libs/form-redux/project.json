@@ -1,0 +1,64 @@
+{
+  "root": "libs/form-redux",
+  "sourceRoot": "libs/form-redux/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/form-redux/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/form-redux"],
+      "options": {
+        "jestConfig": "libs/form-redux/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/web:package",
+      "options": {
+        "outputPath": "dist/libs/form-redux",
+        "tsConfig": "libs/form-redux/tsconfig.lib.json",
+        "project": "libs/form-redux/package.json",
+        "entryFile": "libs/form-redux/src/index.ts",
+        "assets": [
+          {
+            "glob": "libs/form-redux/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "push": true,
+        "noVerify": true,
+        "commitMessageFormat": "release(${projectName}): publish version ${version}",
+        "postTargets": ["form-redux:publish", "form-redux:github"]
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "branch": "master",
+        "tag": "${tag}",
+        "notesFile": "libs/form-redux/CHANGELOG.md"
+      }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "baseBranch": "master",
+        "access": "public"
+      }
+    }
+  },
+  "tags": []
+}

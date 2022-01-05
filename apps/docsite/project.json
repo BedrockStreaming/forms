@@ -1,0 +1,20 @@
+{
+  "projectType": "application",
+  "root": "apps/docsite",
+  "sourceRoot": "apps/docsite/src",
+  "targets": {
+    "build": {
+      "executor": "@nx-plus/docusaurus:browser",
+      "options": {
+        "outputPath": "dist/apps/docsite"
+      }
+    },
+    "serve": {
+      "executor": "@nx-plus/docusaurus:dev-server",
+      "options": {
+        "port": 3000
+      }
+    }
+  },
+  "tags": []
+}

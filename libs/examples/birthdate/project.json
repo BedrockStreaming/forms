@@ -1,0 +1,22 @@
+{
+  "root": "libs/examples/birthdate",
+  "sourceRoot": "libs/examples/birthdate/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/examples/birthdate/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/examples/birthdate"],
+      "options": {
+        "jestConfig": "libs/examples/birthdate/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

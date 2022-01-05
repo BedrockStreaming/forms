@@ -1,0 +1,22 @@
+{
+  "root": "libs/examples/styled-inputs",
+  "sourceRoot": "libs/examples/styled-inputs/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/examples/styled-inputs"],
+      "options": {
+        "jestConfig": "libs/examples/styled-inputs/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

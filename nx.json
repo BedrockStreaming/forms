@@ -26,36 +26,7 @@
       }
     ]
   },
-  "projects": {
-    "demo": {
-      "tags": []
-    },
-    "demo-e2e": {
-      "tags": [],
-      "implicitDependencies": ["demo"]
-    },
-    "docsite": {
-      "tags": []
-    },
-    "examples-birthdate": {
-      "tags": []
-    },
-    "examples-styled-inputs": {
-      "tags": []
-    },
-    "form-builder": {
-      "tags": []
-    },
-    "form-editor": {
-      "tags": []
-    },
-    "form-redux": {
-      "tags": []
-    },
-    "form-validation-rule-list": {
-      "tags": []
-    }
-  },
+  "projects": {},
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
