@@ -2,15 +2,6 @@ name: 'Forms Release'
 
 on:
   workflow_dispatch:
-    inputs:
-      releaseAs:
-        description: 'releaseAs (patch, minor, major, ...)'
-        required: true
-        default: 'minor'
-      dryRun:
-        description: 'dry run ?'
-        required: false
-        default: "false"
 
 jobs:
   test:
@@ -66,16 +57,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_AS: ${{ github.event.inputs.releaseAs }}
-          DRY_RUN: ${{ github.event.inputs.dryRun }}
         # Use npx instead of yarn because yarn auto-magically sets NPM_* environment variables
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: |
-          npx --no-install nx run form-builder:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
-          && npx --no-install nx run form-validation-rule-list:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun \
-          && npx --no-install nx run form-redux:version --baseBranch=master --releaseAs="$RELEASE_AS" --dryRun
+        run: npx --no-install nx run workspace:version --baseBranch=master --syncVersions
       - name: Tag last release
         run: git tag -f last-release
       - name: Push changes

@@ -1,6 +1,35 @@
 {
   "version": 2,
   "projects": {
+    "workspace": {
+      "root": ".",
+      "targets": {
+        "version": {
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "baseBranch": "master",
+            "push": true,
+            "noVerify": true,
+            "commitMessageFormat": "release(${projectName}): publish version ${version}",
+            "postTargets": [
+              "workspace:github",
+              "form-builder:publish",
+              "form-editor:publish",
+              "form-validation-rule-list:publish",
+              "form-redux:publish"
+            ]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "target": "master",
+            "tag": "${tag}",
+            "notes": "${notes}"
+          }
+        }
+      }
+    },
     "demo": "apps/demo",
     "demo-e2e": "apps/demo-e2e",
     "docsite": "apps/docsite",
