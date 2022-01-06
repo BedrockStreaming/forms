@@ -14,9 +14,9 @@
             "postTargets": [
               "workspace:github",
               "form-builder:publish",
-              "form-editor:publish",
               "form-validation-rule-list:publish",
-              "form-redux:publish"
+              "form-redux:publish",
+              "form-editor:publish"
             ]
           }
         },
