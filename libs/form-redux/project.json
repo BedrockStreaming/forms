@@ -7,7 +7,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": ["libs/form-redux/**/*.ts"]
-      }
+      },
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",
@@ -18,7 +19,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/web:package",
+      "executor": "@nrwl/web:rollup",
       "options": {
         "outputPath": "dist/libs/form-redux",
         "tsConfig": "libs/form-redux/tsconfig.lib.json",

@@ -1,6 +1,15 @@
 {
   "version": 2,
   "projects": {
+    "demo": "apps/demo",
+    "demo-e2e": "apps/demo-e2e",
+    "docsite": "apps/docsite",
+    "examples-birthdate": "libs/examples/birthdate",
+    "examples-styled-inputs": "libs/examples/styled-inputs",
+    "form-builder": "libs/form-builder",
+    "form-editor": "libs/form-editor",
+    "form-redux": "libs/form-redux",
+    "form-validation-rule-list": "libs/form-validation-rule-list",
     "workspace": {
       "root": ".",
       "targets": {
@@ -28,35 +37,6 @@
             "notes": "${notes}"
           }
         }
-      }
-    },
-    "demo": "apps/demo",
-    "demo-e2e": "apps/demo-e2e",
-    "docsite": "apps/docsite",
-    "examples-birthdate": "libs/examples/birthdate",
-    "examples-styled-inputs": "libs/examples/styled-inputs",
-    "form-builder": "libs/form-builder",
-    "form-editor": "libs/form-editor",
-    "form-redux": "libs/form-redux",
-    "form-validation-rule-list": "libs/form-validation-rule-list"
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "defaultProject": "demo",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
       }
     }
   }
