@@ -143,7 +143,7 @@ We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 - **refactor**: a change of the code that is neither a bugfix nor a feature addition
 - **perf**: a change that improves the performances of the app
 - **test**: an addition of missing tests or a fix of existing tests
-- **chore**: a change that affects the build process or libs and tools
+- **build**: a change that affects the build process or libs and tools
 - **ci**: a change that affects only the CI or CD
 
 #### Scope
