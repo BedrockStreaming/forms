@@ -7,6 +7,24 @@ First read the [Contributing](https://github.com/BedrockStreaming/forms/tree/mas
 
 :point_up: Note that this project was generated using [Nx](https://nx.dev).
 
+## Development workflow
+
+There are two applications in this NX workspace `demo` and `docsite`. We are using a _dogfooding_ strategy, implementing every features in those apps so we can functionally test it and provide working examples at the same time to our users.
+
+Start the server
+
+```bash
+yarn start demo
+```
+
+Then start editing the libraries and demo app.
+
+:warning: You must add unit tests to the libraries and you can optionally add e2e tests through cypress on the demo app.
+
+:warning: Everything must be documented on both **workspace**, **libs** and **apps** `README.md` files as well as on the `docsite` corresponding docs.
+
+## About NX
+
 ### Generate an application
 
 Run `yarn nx g @nrwl/react:app my-app` to generate an application.
