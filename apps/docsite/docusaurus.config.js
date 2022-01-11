@@ -9,6 +9,9 @@ module.exports = {
   organizationName: 'BedrockStreaming',
   projectName: 'forms',
   themeConfig: {
+    prism: {
+      theme: require('prism-react-renderer/themes/dracula')
+    },
     colorMode: { defaultMode: 'dark', disableSwitch: false },
     navbar: {
       title: 'Home',
@@ -90,7 +93,8 @@ module.exports = {
         }
       }
     ]
-  ],
-  themes: ['@docusaurus/theme-live-codeblock']
+  ]
+
+  // themes: ['@docusaurus/theme-live-codeblock']
 };
 // https://github.com/nielsen-oss/docs/blob/master/.github/workflows/documentation.yml
