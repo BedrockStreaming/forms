@@ -10,3 +10,11 @@ export const DEFAULT_RULES_NAMES: DeFaultRulesNames = {
   max: 'max',
   required: 'required'
 };
+
+interface FormClassnames {
+  [key: string]: string;
+}
+
+export const FORM_CLASSNAMES: FormClassnames = {
+  formActionsWrapper: 'form-actions-wrapper'
+};

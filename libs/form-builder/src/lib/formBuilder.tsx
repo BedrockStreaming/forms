@@ -25,6 +25,7 @@ import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules } from './utils/validation.utils';
 import { PreviousStepField } from './components/previousStepField.component';
+import { FORM_CLASSNAMES } from './constants';
 
 const EMPTY_OBJECT = {} as const;
 export interface FormBuilderProps {
@@ -176,7 +177,7 @@ export function FormBuilder({
             </React.Fragment>
           ))}
         </Stepper>
-        <div className="step-fields-actions">
+        <div className={FORM_CLASSNAMES.formActionsWrapper}>
           <PreviousStepField
             onPreviousStep={onPreviousStep}
             currentStepIndex={currentStepIndex}
