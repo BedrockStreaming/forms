@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/BedrockStreaming/forms/compare/v0.2.1...v0.3.0) (2022-01-11)
+
+
+### Features
+
+* **form-builder/validation:** allow async validation ([#26](https://github.com/BedrockStreaming/forms/issues/26)) ([9f7e11b](https://github.com/BedrockStreaming/forms/commit/9f7e11b6e4fde01f8bd1ff26a6f90a6006cfa4c4))
+
+
+
 ## [0.2.1](https://github.com/BedrockStreaming/forms/compare/v0.2.0...v0.2.1) (2022-01-06)
 
 
