@@ -2,6 +2,13 @@
   "name": "forms",
   "version": "0.4.0",
   "license": "MIT",
+  "keywords": [
+    "react-hook-form",
+    "form builder",
+    "form schema",
+    "react forms",
+    "redux forms"
+  ],
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
