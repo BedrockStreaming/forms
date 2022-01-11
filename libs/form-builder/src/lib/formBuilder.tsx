@@ -13,7 +13,7 @@ import { DevTool } from '@hookform/devtools';
 
 import _ from 'lodash';
 
-import { Dictionary, ExtraValidation, FormSchema } from './types';
+import { Dictionary, ExtraValidation, FormSchema, Validations } from './types';
 import { useAutoFocus } from './hooks/useAutoFocus.hook';
 import { useIsFormStepValid } from './hooks/useIsFormStepValid';
 
@@ -23,7 +23,7 @@ import { handleFormBuilderError } from './utils/handleFormBuilderError.util';
 import { Stepper } from './components/stepper.component';
 import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
-import { getFieldRules } from './utils/validation.utils';
+import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { PreviousStepField } from './components/previousStepField.component';
 
 const EMPTY_OBJECT = {} as const;
@@ -94,7 +94,7 @@ export function FormBuilder({
             [fieldId]: getFieldRules({ validation, extraValidation })
           };
         },
-        {}
+        {} as { [key: string]: FieldRules }
       ),
     [extraValidation, fields, fieldsById]
   );
@@ -143,18 +143,13 @@ export function FormBuilder({
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 
-                const validationRules = getFieldRules({
-                  validation,
-                  extraValidation
-                });
-
                 return (
                   <Controller
                     key={id}
                     name={id}
                     control={control}
                     defaultValue={defaultValue}
-                    rules={validationRules}
+                    rules={validationRulesById[fieldId]}
                     render={({ field }) => (
                       <FormField
                         id={id}
