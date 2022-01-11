@@ -13,7 +13,7 @@ import { DevTool } from '@hookform/devtools';
 
 import _ from 'lodash';
 
-import { Dictionary, ExtraValidation, FormSchema, Validations } from './types';
+import { Dictionary, ExtraValidation, FormSchema } from './types';
 import { useAutoFocus } from './hooks/useAutoFocus.hook';
 import { useIsFormStepValid } from './hooks/useIsFormStepValid';
 
@@ -61,7 +61,6 @@ export function FormBuilder({
     getValues,
     setValue,
     trigger,
-    watch,
     setFocus
   } = useForm<FieldValues>({
     mode: behavior,
