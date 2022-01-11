@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.4.0](https://github.com/BedrockStreaming/forms/compare/v0.3.0...v0.4.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* **apps/docsite:** fix base url ([#29](https://github.com/BedrockStreaming/forms/issues/29)) ([2a37147](https://github.com/BedrockStreaming/forms/commit/2a37147f2ae5ca335d4a4a095d1267794eb66b64))
+
+
+### Features
+
+* **apps/docsite:** use bedrock colors ([#30](https://github.com/BedrockStreaming/forms/issues/30)) ([d8cf132](https://github.com/BedrockStreaming/forms/commit/d8cf1329b0d7bff8fc09327840df8058841945c3))
+
+
+
 # [0.3.0](https://github.com/BedrockStreaming/forms/compare/v0.2.1...v0.3.0) (2022-01-11)
 
 

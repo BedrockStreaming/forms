@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.4.0](https://github.com/BedrockStreaming/forms/compare/v0.3.0...v0.4.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* **apps/docsite:** fix base url ([#29](https://github.com/BedrockStreaming/forms/issues/29)) ([2a37147](https://github.com/BedrockStreaming/forms/commit/2a37147f2ae5ca335d4a4a095d1267794eb66b64))
+* **libs/form-builder:** use the right field rules ([#32](https://github.com/BedrockStreaming/forms/issues/32)) ([6b6335d](https://github.com/BedrockStreaming/forms/commit/6b6335d0760d849e35abc4701bdc62927088b5ac))
+
+
+### Features
+
+* **apps/docsite:** use bedrock colors ([#30](https://github.com/BedrockStreaming/forms/issues/30)) ([d8cf132](https://github.com/BedrockStreaming/forms/commit/d8cf1329b0d7bff8fc09327840df8058841945c3))
+* **libs/form-builder:** export inner components classnames ([#31](https://github.com/BedrockStreaming/forms/issues/31)) ([0c09ada](https://github.com/BedrockStreaming/forms/commit/0c09adaadfbe9063e2af2a195dbc4663253c94c2))
+
+
+
 # [0.3.0](https://github.com/BedrockStreaming/forms/compare/v0.2.1...v0.3.0) (2022-01-11)
 
 
