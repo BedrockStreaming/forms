@@ -88,7 +88,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## :memo: Licence
 
-Copyright © 2021 [BedrockStreaming](https://github.com/BedrockStreaming).<br />
+Copyright © 2022 [BedrockStreaming](https://github.com/BedrockStreaming).<br />
 This project is [MIT](https://github.com/BedrockStreaming/forms/blob/master/LICENSE) licensed.
 
 ---
