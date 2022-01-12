@@ -31,13 +31,13 @@
   "private": true,
   "resolutions": {
     "glob-parent": "5.1.2",
+    "immer": "9.0.6",
     "terser": "4.8.0",
     "trim": "1.0.1"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.14",
-    "@docusaurus/preset-classic": "2.0.0-beta.14",
-    "@docusaurus/theme-live-codeblock": "2.0.0-beta.14",
+    "@docusaurus/preset-classic": "2.0.0-beta.759298296",
     "@emotion/react": "11.7.0",
     "@emotion/styled": "11.6.0",
     "@mdx-js/react": "1.6.21",

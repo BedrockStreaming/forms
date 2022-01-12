@@ -1,3 +1,6 @@
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+
 module.exports = {
   title: 'Bedrock Streaming Forms',
   tagline: 'I receive inputs, you receive forms',
@@ -9,9 +12,6 @@ module.exports = {
   organizationName: 'BedrockStreaming',
   projectName: 'forms',
   themeConfig: {
-    prism: {
-      theme: require('prism-react-renderer/themes/dracula')
-    },
     colorMode: { defaultMode: 'dark', disableSwitch: false },
     navbar: {
       title: 'Home',
@@ -77,6 +77,10 @@ module.exports = {
         }
       ],
       copyright: `Copyright © ${new Date().getFullYear()} BedrockStreaming, Inc. Built with Docusaurus.`
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme
     }
   },
   presets: [
@@ -97,4 +101,3 @@ module.exports = {
 
   // themes: ['@docusaurus/theme-live-codeblock']
 };
-// https://github.com/nielsen-oss/docs/blob/master/.github/workflows/documentation.yml
