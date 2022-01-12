@@ -52,8 +52,8 @@ jobs:
       - run: npx nx affected  --base=origin/master --target=build --parallel --max-parallel=3
       - run: npx nx affected  --base=origin/master --target=test --parallel --max-parallel=2 --coverage --outputFile=coverage-final.json --json
 
-      - name: Codecov upload
-        uses: codecov/codecov-action@v2
-        with:
-          verbose: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+      # - name: Codecov upload
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     verbose: true
+      #     token: ${{ secrets.CODECOV_TOKEN }}
