@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.1](https://github.com/BedrockStreaming/forms/compare/v0.4.0...v0.4.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* **apps/docsite:** code blocks colorization ([#33](https://github.com/BedrockStreaming/forms/issues/33)) ([f52f8c0](https://github.com/BedrockStreaming/forms/commit/f52f8c0c790ace0d404a280a3857a9e4160c33b6))
+
+
+
 # [0.4.0](https://github.com/BedrockStreaming/forms/compare/v0.3.0...v0.4.0) (2022-01-11)
 
 
