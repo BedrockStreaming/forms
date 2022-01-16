@@ -1,17 +1,22 @@
 import { screen, render, fireEvent } from '@testing-library/react';
-import { SubmitField } from '../submitField.component';
+import { SubmitField, SubmitFieldProps } from '../submitField.component';
 import { SUBMIT_FIELD_TYPE } from '../../constants';
+import { FormFieldProps } from '../formField.component';
 
-let baseProps;
+let baseProps: Partial<FormFieldProps> & SubmitFieldProps;
 const values = { foo: 'bar' };
 
-const getWrapper = (props) => render(<SubmitField {...props} />);
+const getWrapper = (props: any) => render(<SubmitField {...props} />);
 
 describe('<FormField />', () => {
   beforeEach(() => {
     baseProps = {
       dictionary: {
-        [SUBMIT_FIELD_TYPE]: ({ id, label, onClick }) => (
+        [SUBMIT_FIELD_TYPE]: ({
+          id,
+          label,
+          onClick
+        }: Partial<FormFieldProps>) => (
           <button type="submit" onClick={onClick} id={id}>
             {label}
           </button>

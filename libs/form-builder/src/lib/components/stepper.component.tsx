@@ -1,8 +1,8 @@
 import * as React from 'react';
 import _ from 'lodash';
 
-interface StepperProps {
-  children: React.ReactElement[] | React.ReactElement;
+export interface StepperProps {
+  children?: React.ReactElement[] | React.ReactElement;
   currentStepIndex: number;
 }
 

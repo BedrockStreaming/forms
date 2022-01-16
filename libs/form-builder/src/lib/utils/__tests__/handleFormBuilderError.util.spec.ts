@@ -22,7 +22,7 @@ describe('handleFormBuilderError', () => {
     return expect(() =>
       handleFormBuilderError(
         [...typesAllowed, 'submit'],
-        badSchema,
+        badSchema as any,
         CORRECT_DICTIONARY
       )
     ).toThrowError(FormBuilderError);
@@ -35,7 +35,7 @@ describe('handleFormBuilderError', () => {
     };
 
     return expect(() =>
-      handleFormBuilderError(typesAllowed, badSchema, CORRECT_DICTIONARY)
+      handleFormBuilderError(typesAllowed, badSchema as any, CORRECT_DICTIONARY)
     ).toThrowError(FormBuilderError);
   });
 
@@ -62,7 +62,7 @@ describe('handleFormBuilderError', () => {
     const badDictionary = { ...CORRECT_DICTIONARY, submit: undefined };
 
     return expect(() =>
-      handleFormBuilderError(typesAllowed, CORRECT_SCHEMA, badDictionary)
+      handleFormBuilderError(typesAllowed, CORRECT_SCHEMA, badDictionary as any)
     ).toThrowError(FormBuilderError);
   });
 });
