@@ -35,5 +35,6 @@ export const extraValidation = {
   checkForNumber: () => (input: string) => /\d+/g.test(input),
   isChecked: () => (value?: string | number) => !!value,
   checkPattern: (value: string) => (input: string) =>
-    new RegExp(value).test(input)
+    new RegExp(value).test(input),
+  disappearWhenTruthy: () => (input: string) => !input
 };

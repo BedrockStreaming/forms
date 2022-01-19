@@ -25,11 +25,18 @@ export interface Validations {
   [key: string]: Validation;
 }
 
+export interface DependsOnObject {
+  key: string;
+  value?: string | number | null | string[] | number[];
+  callback: string;
+}
+
 export interface FormField {
-  id: Path<string>;
+  id: string;
   title: string;
   type: string;
   meta?: FormMeta | undefined;
+  dependsOn?: Array<string | DependsOnObject>;
   validation?: Validations | undefined;
   defaultValue?:
     | UnpackNestedValue<PathValue<unknown, never>>

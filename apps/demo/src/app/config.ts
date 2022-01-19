@@ -14,7 +14,19 @@ export const config = {
             choices: ['male', 'female']
           },
           type: 'select',
-          defaultValue: 'male'
+          defaultValue: '',
+          dependsOn: [
+            {
+              key: 'email',
+              callback: 'checkPattern',
+              value:
+                '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+            },
+            {
+              key: 'lastName',
+              callback: 'disappearWhenTruthy'
+            }
+          ]
         },
         birthdate: {
           id: 'birthdate',
@@ -50,6 +62,12 @@ export const config = {
           },
           title: 'Email',
           type: 'text',
+          dependsOn: [
+            {
+              key: 'firstName',
+              callback: 'disappearWhenTruthy'
+            }
+          ],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -73,6 +91,7 @@ export const config = {
           },
           title: 'firstName',
           type: 'text',
+          dependsOn: ['gender'],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -95,6 +114,7 @@ export const config = {
           },
           title: 'lastName',
           type: 'text',
+          dependsOn: ['firstName'],
           validation: {
             maxLength: {
               key: 'checkMaxLength',
@@ -145,7 +165,7 @@ export const config = {
       },
       steps: {
         'register-step-0': {
-          fieldsById: ['email', 'gender'],
+          fieldsById: ['email', 'gender', 'firstName', 'lastName'],
           id: 'register-step-0',
           meta: {
             subtitle: 'Email',
@@ -167,19 +187,8 @@ export const config = {
           }
         },
         'register-step-2': {
-          fieldsById: ['firstName', 'lastName'],
-          id: 'register-step-2',
-          meta: {
-            subtitle: 'First name and Last name',
-            title: 'First name and Last name'
-          },
-          submit: {
-            label: 'Next'
-          }
-        },
-        'register-step-3': {
           fieldsById: ['birthdate'],
-          id: 'register-step-3',
+          id: 'register-step-2',
           meta: {
             subtitle: 'Birthdate',
             title: 'Birthdate'
