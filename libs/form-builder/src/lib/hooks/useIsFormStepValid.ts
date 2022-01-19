@@ -3,6 +3,16 @@ import { DefaultValues, FieldValues, FieldErrors } from 'react-hook-form';
 import { getFieldsToCheckByStep, isStepInError } from '../utils/error.util';
 import { DirtyFields, FormSchema } from '../types';
 
+export interface UseIsFormStepValid {
+  errors: FieldErrors;
+  schema: FormSchema;
+  isLastStep: boolean;
+  currentStepIndex: number;
+  dirtyFields: DirtyFields;
+  defaultValues?: DefaultValues<FieldValues>;
+  isValidating: boolean;
+}
+
 export const useIsFormStepValid = ({
   errors,
   schema,
@@ -11,15 +21,7 @@ export const useIsFormStepValid = ({
   dirtyFields,
   defaultValues,
   isValidating
-}: {
-  errors: FieldErrors;
-  schema: FormSchema;
-  isLastStep: boolean;
-  currentStepIndex: number;
-  dirtyFields: DirtyFields;
-  defaultValues?: DefaultValues<FieldValues>;
-  isValidating: boolean;
-}) =>
+}: UseIsFormStepValid) =>
   useMemo(() => {
     if (isLastStep || isValidating) {
       return false;
