@@ -15,18 +15,14 @@ export const config = {
           },
           type: 'select',
           defaultValue: '',
-          dependsOn: [
-            {
-              key: 'email',
-              callback: 'checkPattern',
-              value:
-                '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
-            },
-            {
-              key: 'lastName',
-              callback: 'disappearWhenTruthy'
+          dependsOn: ['email'],
+          validation: {
+            required: {
+              key: 'required',
+              message: 'Required field',
+              value: true
             }
-          ]
+          }
         },
         birthdate: {
           id: 'birthdate',
@@ -62,12 +58,6 @@ export const config = {
           },
           title: 'Email',
           type: 'text',
-          dependsOn: [
-            {
-              key: 'firstName',
-              callback: 'disappearWhenTruthy'
-            }
-          ],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -91,7 +81,7 @@ export const config = {
           },
           title: 'firstName',
           type: 'text',
-          dependsOn: ['gender'],
+          dependsOn: ['gender', 'email'],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -114,12 +104,17 @@ export const config = {
           },
           title: 'lastName',
           type: 'text',
-          dependsOn: ['firstName'],
+          dependsOn: ['firstName', 'gender', 'email'],
           validation: {
             maxLength: {
               key: 'checkMaxLength',
               message: 'Maximum input length',
               value: 20
+            },
+            minLength: {
+              key: 'checkMinLength',
+              message: 'Minimum input length',
+              value: 2
             },
             required: {
               key: 'required',
@@ -198,12 +193,7 @@ export const config = {
           }
         }
       },
-      stepsById: [
-        'register-step-0',
-        'register-step-1',
-        'register-step-2',
-        'register-step-3'
-      ]
+      stepsById: ['register-step-0', 'register-step-1', 'register-step-2']
     },
     single_step_register: {
       fields: {

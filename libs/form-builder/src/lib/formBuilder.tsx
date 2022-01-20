@@ -29,6 +29,7 @@ import { FORM_CLASSNAMES } from './constants';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
 
 const EMPTY_OBJECT = {} as const;
+
 export interface FormBuilderProps {
   defaultValues?: DefaultValues<FieldValues>;
   behavior?: keyof ValidationMode;
@@ -79,12 +80,13 @@ export function FormBuilder({
     [currentStepIndex, schema, typesAllowed]
   );
 
-  const filteredFields = filterDependentsFieldsById(
+  const filteredFields = filterDependentsFieldsById({
     fieldsById,
     fields,
     getValues,
+    errors,
     extraValidation
-  );
+  });
 
   const validationRulesById = React.useMemo(
     () =>
@@ -106,8 +108,6 @@ export function FormBuilder({
       ),
     [extraValidation, fields, fieldsById]
   );
-
-  console.log(validationRulesById);
 
   const setFieldValue = React.useCallback(
     (id: Path<FieldValues>, value) =>
