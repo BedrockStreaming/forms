@@ -71,7 +71,3 @@ Then in the `workspace.json` file, add the publish target to your workspace vers
   }
 }
 ```
-
-## Caveats
-
-:warning: Changelog are not properly pushed on Github, bug is being investigated in `@jscutlery/semver`

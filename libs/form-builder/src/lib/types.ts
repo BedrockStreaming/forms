@@ -44,8 +44,7 @@ export interface FormField {
     | number
     | string[]
     | number[]
-    | Path<string>
-    | undefined;
+    | Path<string>;
 }
 
 export interface FormFields {
