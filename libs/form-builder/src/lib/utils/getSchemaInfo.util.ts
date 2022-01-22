@@ -16,11 +16,18 @@ export const sanitizeFieldsById = (
     return typesAllowed.includes(type) && type !== SUBMIT_FIELD_TYPE;
   });
 
+export interface SchemaInfo {
+  fields: FormFields;
+  fieldsById: string[];
+  submitLabel: string;
+  stepsById: string[];
+}
+
 export const getSchemaInfo = (
   schema: FormSchema,
   typesAllowed: string[],
   currentStepIndex: number
-) => {
+): SchemaInfo => {
   const steps = _.get(schema, 'steps');
   const stepsById = _.get(schema, 'stepsById', EMPTY_ARRAY);
   const stepId = _.get(stepsById, currentStepIndex);

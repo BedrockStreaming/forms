@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import { getUserAge, isDateValid } from '@forms/examples/birthdate';
+import { ExtraValidation } from '@bedrockstreaming/form-builder';
 
 const config = {
   onboarding: {
@@ -33,7 +34,8 @@ export const extraValidation = {
   checkForUpper: () => (input: string) => /[A-Z]+/g.test(input),
   checkForLower: () => (input: string) => /[a-z]+/g.test(input),
   checkForNumber: () => (input: string) => /\d+/g.test(input),
-  isChecked: () => (value?: string | number) => !!value,
+  isChecked: () => (value?: boolean) => !!value,
   checkPattern: (value: string) => (input: string) =>
-    new RegExp(value).test(input)
-};
+    new RegExp(value).test(input),
+  isTrue: () => (input: boolean) => input === true
+} as ExtraValidation;

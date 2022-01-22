@@ -22,17 +22,22 @@ As we were eager to keep some control over the process, we went with [react-hook
 
 Here is a list of features we are supporting :white_check_mark:
 
-:white_check_mark: Form Generation
-:white_check_mark: Asynchronous Custom Validation
-:white_check_mark: Multi Steps Forms
+- :white_check_mark: Form Generation
+- :white_check_mark: Asynchronous Custom Validation
+- :white_check_mark: Multi Steps Forms
+- :white_check_mark: Conditional Fields
 
 ---
 
-Here is a list of features we are **not** supporting :x:
+Here is a list of features we will **not** support :x:
 
-:x: Form UI Components
-:construction: Conditional Steps
-:construction: Conditional Fields
+- :x: Form UI Components
+
+---
+
+Here is a list of features we will **probably** support :thinking:
+
+- :construction: Conditional Steps
 
 ## Why did we have to make it ?
 

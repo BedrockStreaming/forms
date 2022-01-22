@@ -26,8 +26,10 @@ import { SubmitField } from './components/submitField.component';
 import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { PreviousStepField } from './components/previousStepField.component';
 import { FORM_CLASSNAMES } from './constants';
+import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
 
 const EMPTY_OBJECT = {} as const;
+
 export interface FormBuilderProps {
   defaultValues?: DefaultValues<FieldValues>;
   behavior?: keyof ValidationMode;
@@ -77,6 +79,14 @@ export function FormBuilder({
     () => getSchemaInfo(schema, typesAllowed, currentStepIndex),
     [currentStepIndex, schema, typesAllowed]
   );
+
+  const filteredFields = filterDependentsFieldsById({
+    fieldsById,
+    fields,
+    getValues,
+    errors,
+    extraValidation
+  });
 
   const validationRulesById = React.useMemo(
     () =>
@@ -139,7 +149,7 @@ export function FormBuilder({
         <Stepper currentStepIndex={currentStepIndex}>
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(fieldsById, (fieldId) => {
+              {_.map(filteredFields, (fieldId) => {
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 

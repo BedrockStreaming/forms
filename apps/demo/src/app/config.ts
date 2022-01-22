@@ -14,13 +14,33 @@ export const config = {
             choices: ['male', 'female']
           },
           type: 'select',
-          defaultValue: 'male'
+          dependsOn: [
+            'email',
+            { fieldId: 'discloseGender', key: 'isTrue', validate: true }
+          ],
+          validation: {
+            required: {
+              key: 'required',
+              message: 'Required field',
+              value: true
+            }
+          }
+        },
+        discloseGender: {
+          id: 'discloseGender',
+          title: 'discloseGender checkbox',
+          meta: {
+            label: 'I agree to disclose my gender',
+            name: 'discloseGender'
+          },
+          type: 'checkbox',
+          dependsOn: ['email']
         },
         birthdate: {
           id: 'birthdate',
           meta: {
             errorMessage: 'Birth date invalid',
-            label: 'Birth date',
+            label: 'Birthdate',
             name: 'birthdate'
           },
           title: 'birthdate',
@@ -73,6 +93,7 @@ export const config = {
           },
           title: 'firstName',
           type: 'text',
+          dependsOn: ['email'],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -95,11 +116,17 @@ export const config = {
           },
           title: 'lastName',
           type: 'text',
+          dependsOn: ['firstName', 'gender', 'email'],
           validation: {
             maxLength: {
               key: 'checkMaxLength',
               message: 'Maximum input length',
               value: 20
+            },
+            minLength: {
+              key: 'checkMinLength',
+              message: 'Minimum input length',
+              value: 2
             },
             required: {
               key: 'required',
@@ -145,7 +172,13 @@ export const config = {
       },
       steps: {
         'register-step-0': {
-          fieldsById: ['email', 'gender'],
+          fieldsById: [
+            'email',
+            'discloseGender',
+            'gender',
+            'firstName',
+            'lastName'
+          ],
           id: 'register-step-0',
           meta: {
             subtitle: 'Email',
@@ -167,19 +200,8 @@ export const config = {
           }
         },
         'register-step-2': {
-          fieldsById: ['firstName', 'lastName'],
-          id: 'register-step-2',
-          meta: {
-            subtitle: 'First name and Last name',
-            title: 'First name and Last name'
-          },
-          submit: {
-            label: 'Next'
-          }
-        },
-        'register-step-3': {
           fieldsById: ['birthdate'],
-          id: 'register-step-3',
+          id: 'register-step-2',
           meta: {
             subtitle: 'Birthdate',
             title: 'Birthdate'
@@ -189,12 +211,7 @@ export const config = {
           }
         }
       },
-      stepsById: [
-        'register-step-0',
-        'register-step-1',
-        'register-step-2',
-        'register-step-3'
-      ]
+      stepsById: ['register-step-0', 'register-step-1', 'register-step-2']
     },
     single_step_register: {
       fields: {

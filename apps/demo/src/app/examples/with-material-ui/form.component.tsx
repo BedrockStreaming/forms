@@ -36,7 +36,9 @@ const defaultValues = {
   firstName: '',
   lastName: '',
   birthdate: '',
-  password: ''
+  password: '',
+  gender: '',
+  newsletter: true
 };
 
 const {

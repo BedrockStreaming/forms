@@ -23,15 +23,77 @@ In order to create a form using this library, you simply need to import the `For
 
 You should provide a `schema` with the following structure:
 
+```ts
+import {
+  DeepMap,
+  DeepPartial,
+  Path,
+  PathValue,
+  UnionLike,
+  UnpackNestedValue,
+} from 'react-hook-form';
+
+export interface FormSchema {
+  fields: {
+    [FieldId: string]: {
+      id: string;
+      title: string;
+      type: string;
+      meta?: {
+        [key: string]: unknown;
+      };
+      dependsOn?: Array<
+        | string
+        | {
+            key: string;
+            value?: string | number | null | string[] | number[];
+            callback: string;
+          }
+      >;
+      validation?: {
+        [key: string]: {
+          key: string;
+          type?: string;
+          message: string;
+          value?: unknown;
+        };
+      };
+      defaultValue?:
+        | UnpackNestedValue<PathValue<unknown, never>>
+        | string
+        | number
+        | string[]
+        | number[]
+        | Path<string>;
+    };
+  };
+  steps: {
+    [StepId: string]: {
+      id: string;
+      fieldsById: string[];
+      submit: {
+        label: string;
+      };
+      meta?: {
+        [key: string]: unknown;
+      };
+    };
+  };
+  stepsById: string[];
+}
+```
+
+See this stripped down example below of a single input form
+
 ```jsx
 const schema = {
   fields: {
     'some-unique-identifier': {
       id: 'some-unique-identifier',
       title: 'First name',
-      type: 'text'
+      type: 'text',
     },
-    ...
+    // ...
   },
   steps: {
     'step-foo': {
@@ -42,7 +104,7 @@ const schema = {
       },
     },
   },
-  stepsById: ['step-foo']
+  stepsById: ['step-foo'],
 };
 ```
 
@@ -59,6 +121,33 @@ const dictionary = {
 ```
 
 Make sure the `dictionary` keys corresponds to your fields types.
+
+---
+
+Dictionary components (field components) can use some defined props,
+
+Here are all the base props that will be passed to every FormField.
+
+```ts
+export interface FormFieldProps {
+  id: string;
+  validation?: Validations;
+  errors?: ErrorOption;
+  setFieldValue?: SetFieldValue<string | number>;
+  triggerValidationField?: (value: Path<FieldValues>) => void;
+  propRef?: Ref;
+  disabled?: boolean;
+  label?: string;
+  onClick?: (event: any) => void;
+  isValidating?: boolean;
+}
+```
+
+:::tip
+
+You can leverage the `meta` field property to pass more values to your field !
+
+:::
 
 ### onSubmit
 
@@ -203,71 +292,145 @@ This library doesn't provide steps state management by default. You can implemen
 
 :bulb: If you are using redux, we have a slice ready for you :point_right: [@bedrockstreaming/form-redux](./form-redux.md)
 
-## FormField
-
-The FormField specifics should be handled in the `dictionary` components
-The FormField has props:
-
-- id: the unique identifier of the field
-- fieldType: the dictionary type of the field
-- dictionary: the list of implemented fields
-- setFieldValue: a wrapper to the native react-hooks-form function `setValue`, allow to change the field value without making a controlled component
-- errors: return from react-hook-form with errors type and message
-- validation: get the validation rules from the form config
-
 ## Dictionary
-
-Dictionary components (field components) must accept three props:
-
-- propRef: the field registered ref
-- name: the id of the field element
-- onChange: the onChange callback
 
 ## Validation
 
-To do fields validation, we use the native implementation of react-hooks-form. We get access to a `rule` prop that is passed to our (currently controlled) components, which takes an object that can have several rules.
+To do fields validation, we use the native implementation of `react-hooks-form`. We leverage it through the validation field property.
 
-When we need more personalization in our validation for a special type of field for example, we need to do 2 things :
+When we want to perform a complex or very specific validation, even async, we need to:
 
 - Create an object containing the custom validation functions and pass it to the `extraValidation` prop of the form-Builder
 - Reference those `extraValidation` functions in the schema config
 
 ```jsx
-  const extraValidation = {
-    'customValidationFunction1': (valueFromSchema) => fieldValue => doCustomValidationHere(valueFromSchema, fieldValue),
-  };
+const extraValidation = {
+  customValidationFunction1: (valueFromSchema) => (fieldValue) =>
+    doCustomValidationHere(valueFromSchema, fieldValue),
+};
 
-  const schema = {
-    fields: {
-      BIRTHDATE: {
-        ...
-        meta: {
-          ...
+const schema = {
+  fields: {
+    birthdate: {
+      // [...]
+      validation: {
+        customValidationFunction1: {
+          // <-- this is a custom validation
+          key: 'customValidationFunction1',
+          message: 'forms.register.birthdate.minAgeError',
+          value: 13,
         },
-        validation: {
-          customValidationFunction1: { // <-- this is a custom validation
-            key: 'customValidationFunction1',
-            message: 'forms.register.birthdate.minAgeError',
-            value: 13,
-          },
-          required: { // <-- this is a default validation (native to react-hook-form)
-            key: 'required',
-            message: 'forms.required.error',
-            value: true,
-          },
+        required: {
+          // <-- this is a default validation (native to react-hook-form)
+          key: 'required',
+          message: 'forms.required.error',
+          value: true,
         },
       },
-    }
-  };
+    },
+  },
+};
 
-  const MyForm = () => (
-    <FormBuilder
-      schema={schema}
-      extraValidation={extraValidation}
-      dictionary={dictionary}
-      onSubmit={onSubmit}
-    />
-  );
+const MyForm = () => (
+  <FormBuilder
+    schema={schema}
+    extraValidation={extraValidation}
+    dictionary={dictionary}
+    onSubmit={onSubmit}
+  />
+);
 
-  // More info on the official react-hooks-form doc : https://react-hook-form.com/get-started#Applyvalidation
+// More info on the official react-hooks-form doc : https://react-hook-form.com/get-started#Applyvalidation
 ```
+
+## Conditional Fields
+
+You can add a `dependsOn` entry in any of your field schema.
+
+```ts
+export interface FormField {
+  // [...]
+  dependsOn?: Array<
+    | string // an other field id
+    | {
+        fieldId: string; // an other field id
+        key: string; // validation key
+        value?: string | number | null | string[] | number[]; // any serializable value, works the same way as validation
+        validate?: boolean; // perform an extra validation "manually"
+      }
+  >;
+}
+```
+
+### Using strings
+
+When using a string, corresponding to a field id, the form builder will hide the field until those target field ids have been touched and validated.
+
+```jsx
+const schema = {
+  fields: {
+    someField: {
+      id: 'someField',
+      // ...
+    },
+    myConditionalField: {
+      id: 'myConditionalField',
+      dependsOn: [
+        {
+          key: 'someField',
+          callback: 'customValidationFunction1',
+          value: 13,
+        },
+      ],
+    },
+  },
+};
+```
+
+### Using objects
+
+Otherwise, when using objects, you can either check for a specific validation error or leverage the `extraValidation` functions to execute a
+
+```jsx
+const extraValidation = {
+  customValidationFunction1: (valueFromSchema) => (fieldValue) =>
+    doCustomValidationHere(valueFromSchema, fieldValue),
+  customValidationFunction2: (valueFromSchema) => (fieldValue) =>
+    valueFromSchema === fieldValue,
+};
+
+const schema = {
+  fields: {
+    someField: {
+      id: 'someField',
+      validation: {
+        key: 'customValidationFunction2'
+        value: 'foo',
+        message: 'Some error message'
+      }
+      // ...
+    },
+    myConditionalField: {
+      id: 'myConditionalField',
+      dependsOn: [
+        {
+          fieldId: 'someField',
+          key: 'customValidationFunction1',
+          value: 13,
+          validate: true,
+        },
+        {
+          fieldId: 'someField',
+          key: 'customValidationFunction2',
+        },
+      ],
+    },
+  },
+};
+```
+
+:::tip
+
+When using boolean values (e.g. for checkbox), there is no other way than asserting the opposite of the default value to display a conditional field
+
+:::
