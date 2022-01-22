@@ -14,8 +14,10 @@ export const config = {
             choices: ['male', 'female']
           },
           type: 'select',
-          defaultValue: '',
-          dependsOn: ['email'],
+          dependsOn: [
+            'email',
+            { fieldId: 'newsletter', key: 'isFalse', validate: true }
+          ],
           validation: {
             required: {
               key: 'required',
@@ -24,11 +26,27 @@ export const config = {
             }
           }
         },
+        newsletter: {
+          id: 'newsletter',
+          title: 'Newsletter checkbox',
+          meta: {
+            label: 'Agree to receive newsletter',
+            name: 'newsletter'
+          },
+          type: 'checkbox',
+          dependsOn: ['email'],
+          validation: {
+            required: {
+              key: 'isChecked',
+              message: 'Required'
+            }
+          }
+        },
         birthdate: {
           id: 'birthdate',
           meta: {
             errorMessage: 'Birth date invalid',
-            label: 'Birth date',
+            label: 'Birthdate',
             name: 'birthdate'
           },
           title: 'birthdate',
@@ -160,7 +178,13 @@ export const config = {
       },
       steps: {
         'register-step-0': {
-          fieldsById: ['email', 'gender', 'firstName', 'lastName'],
+          fieldsById: [
+            'email',
+            'newsletter',
+            'gender',
+            'firstName',
+            'lastName'
+          ],
           id: 'register-step-0',
           meta: {
             subtitle: 'Email',

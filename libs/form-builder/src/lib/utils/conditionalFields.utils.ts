@@ -19,20 +19,38 @@ export const shouldDisplayField = ({
   const dependsOnConditions = [] as boolean[];
 
   dependsOn.forEach((dependRule) => {
+    // Validate at field level on string
     if (typeof dependRule === 'string') {
       return dependsOnConditions.push(
         !!getValues(dependRule) && !errors[dependRule]
       );
     }
+    const fieldValue = getValues(dependRule.fieldId);
+    const fieldError = errors[dependRule.fieldId];
 
-    if (!extraValidation || !extraValidation[dependRule.callback]) {
-      return dependsOnConditions.push(!errors[dependRule.key]);
+    // When the validate option is disabled
+    // Check for specific validation error
+    if (!dependRule.validate) {
+      const validationError = fieldError && fieldError[dependRule.key];
+      return dependsOnConditions.push(!!fieldValue && !validationError);
     }
 
+    const validateMethod = extraValidation && extraValidation[dependRule.key];
+
+    // When validation method is missing from extraValidation, only assert on fieldError
+    if (!validateMethod) {
+      return dependsOnConditions.push(!!fieldValue && !fieldError);
+    }
+
+    console.log(
+      validateMethod(dependRule.value)(fieldValue),
+      dependRule,
+      fieldValue,
+      fieldError
+    );
+
     return dependsOnConditions.push(
-      !!extraValidation[dependRule.callback](dependRule.value)(
-        getValues(dependRule.key)
-      ) && !errors[dependRule.key]
+      !!validateMethod(dependRule.value)(fieldValue) && !fieldError
     );
   });
 

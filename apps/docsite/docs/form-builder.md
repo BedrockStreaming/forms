@@ -124,11 +124,7 @@ Make sure the `dictionary` keys corresponds to your fields types.
 
 ---
 
-Dictionary components (field components) must accept three props:
-
-- propRef: the field registered ref
-- name: the id of the field element
-- onChange: the onChange callback
+Dictionary components (field components) can use some defined props,
 
 Here are all the base props that will be passed to every FormField.
 
@@ -347,7 +343,7 @@ const MyForm = () => (
 // More info on the official react-hooks-form doc : https://react-hook-form.com/get-started#Applyvalidation
 ```
 
-## ConditionalFields
+## Conditional Fields
 
 You can add a `dependsOn` entry in any of your field schema.
 
@@ -357,9 +353,10 @@ export interface FormField {
   dependsOn?: Array<
     | string // an other field id
     | {
-        key: string; // an other field id
+        fieldId: string; // an other field id
+        key: string; // validation key
         value?: string | number | null | string[] | number[]; // any serializable value, works the same way as validation
-        callback: string; // the extra validation method key
+        validate?: boolean; // perform an extra validation "manually"
       }
   >;
 }
@@ -392,30 +389,48 @@ const schema = {
 
 ### Using objects
 
-Otherwise, when using objects, you can leverage the `extraValidation` functions to apply custom logic.
+Otherwise, when using objects, you can either check for a specific validation error or leverage the `extraValidation` functions to execute a
 
 ```jsx
 const extraValidation = {
   customValidationFunction1: (valueFromSchema) => (fieldValue) =>
     doCustomValidationHere(valueFromSchema, fieldValue),
+  customValidationFunction2: (valueFromSchema) => (fieldValue) =>
+    valueFromSchema === fieldValue,
 };
 
 const schema = {
   fields: {
     someField: {
       id: 'someField',
+      validation: {
+        key: 'customValidationFunction2'
+        value: 'foo',
+        message: 'Some error message'
+      }
       // ...
     },
     myConditionalField: {
       id: 'myConditionalField',
       dependsOn: [
         {
-          key: 'someField',
-          callback: 'customValidationFunction1',
+          fieldId: 'someField',
+          key: 'customValidationFunction1',
           value: 13,
+          validate: true,
+        },
+        {
+          fieldId: 'someField',
+          key: 'customValidationFunction2',
         },
       ],
     },
   },
 };
 ```
+
+:::warning
+
+When using boolean values, you may need to target the required key following the object form
+
+:::

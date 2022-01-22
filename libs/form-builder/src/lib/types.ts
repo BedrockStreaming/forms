@@ -1,14 +1,13 @@
 import * as React from 'react';
 import {
-  DeepMap,
-  DeepPartial,
   Path,
   PathValue,
-  UnionLike,
+  FieldValues,
+  FieldNamesMarkedBoolean,
   UnpackNestedValue
 } from 'react-hook-form';
 
-export type DirtyFields = DeepMap<DeepPartial<UnionLike<unknown>>, true>;
+export type DirtyFields = FieldNamesMarkedBoolean<FieldValues>;
 
 export interface FormMeta {
   [key: string]: unknown;
@@ -26,9 +25,10 @@ export interface Validations {
 }
 
 export interface DependsOnObject {
+  fieldId: string;
   key: string;
   value?: string | number | null | string[] | number[];
-  callback: string;
+  validate?: boolean;
 }
 
 export interface FormField {
