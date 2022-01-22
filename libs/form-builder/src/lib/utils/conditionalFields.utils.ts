@@ -42,13 +42,6 @@ export const shouldDisplayField = ({
       return dependsOnConditions.push(!!fieldValue && !fieldError);
     }
 
-    console.log(
-      validateMethod(dependRule.value)(fieldValue),
-      dependRule,
-      fieldValue,
-      fieldError
-    );
-
     return dependsOnConditions.push(
       !!validateMethod(dependRule.value)(fieldValue) && !fieldError
     );

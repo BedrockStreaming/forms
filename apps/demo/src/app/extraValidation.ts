@@ -37,5 +37,5 @@ export const extraValidation = {
   isChecked: () => (value?: boolean) => !!value,
   checkPattern: (value: string) => (input: string) =>
     new RegExp(value).test(input),
-  isFalse: () => (input: boolean) => input === false
+  isTrue: () => (input: boolean) => input === true
 } as ExtraValidation;

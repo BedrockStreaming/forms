@@ -429,8 +429,8 @@ const schema = {
 };
 ```
 
-:::warning
+:::tip
 
-When using boolean values, you may need to target the required key following the object form
+When using boolean values (e.g. for checkbox), there is no other way than asserting the opposite of the default value to display a conditional field
 
 :::

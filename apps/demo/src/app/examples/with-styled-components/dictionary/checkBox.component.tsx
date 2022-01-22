@@ -12,7 +12,6 @@ export const Checkbox = ({
     <div>
       <label>{label}</label>
       <input type="checkbox" checked={value} onChange={onChange} />
-      {/* <StyledCheckbox value={value} onChange={onChange} {...props} /> */}
     </div>
   );
 };

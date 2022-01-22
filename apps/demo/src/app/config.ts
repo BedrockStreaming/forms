@@ -16,7 +16,7 @@ export const config = {
           type: 'select',
           dependsOn: [
             'email',
-            { fieldId: 'newsletter', key: 'isFalse', validate: true }
+            { fieldId: 'discloseGender', key: 'isTrue', validate: true }
           ],
           validation: {
             required: {
@@ -26,21 +26,15 @@ export const config = {
             }
           }
         },
-        newsletter: {
-          id: 'newsletter',
-          title: 'Newsletter checkbox',
+        discloseGender: {
+          id: 'discloseGender',
+          title: 'discloseGender checkbox',
           meta: {
-            label: 'Agree to receive newsletter',
-            name: 'newsletter'
+            label: 'I agree to disclose my gender',
+            name: 'discloseGender'
           },
           type: 'checkbox',
-          dependsOn: ['email'],
-          validation: {
-            required: {
-              key: 'isChecked',
-              message: 'Required'
-            }
-          }
+          dependsOn: ['email']
         },
         birthdate: {
           id: 'birthdate',
@@ -99,7 +93,7 @@ export const config = {
           },
           title: 'firstName',
           type: 'text',
-          dependsOn: ['gender', 'email'],
+          dependsOn: ['email'],
           validation: {
             checkPattern: {
               key: 'checkPattern',
@@ -180,7 +174,7 @@ export const config = {
         'register-step-0': {
           fieldsById: [
             'email',
-            'newsletter',
+            'discloseGender',
             'gender',
             'firstName',
             'lastName'
