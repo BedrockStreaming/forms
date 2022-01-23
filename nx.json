@@ -26,7 +26,11 @@
       }
     ]
   },
-  "projects": {},
+  "projects": {
+    "form-context": {
+      "tags": []
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
