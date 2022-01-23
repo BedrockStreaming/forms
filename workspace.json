@@ -7,79 +7,11 @@
     "examples-birthdate": "libs/examples/birthdate",
     "examples-styled-inputs": "libs/examples/styled-inputs",
     "form-builder": "libs/form-builder",
+    "form-context": "libs/form-context",
     "form-editor": "libs/form-editor",
-    "form-context": {
-      "root": "libs/form-context",
-      "sourceRoot": "libs/form-context/src",
-      "projectType": "library",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/form-context",
-            "tsConfig": "libs/form-context/tsconfig.lib.json",
-            "project": "libs/form-context/package.json",
-            "entryFile": "libs/form-context/src/index.ts",
-            "external": ["react/jsx-runtime"],
-            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-            "assets": [
-              {
-                "glob": "libs/form-context/README.md",
-                "input": ".",
-                "output": "."
-              }
-            ]
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/form-context/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/form-context"],
-          "options": {
-            "jestConfig": "libs/form-context/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "form-redux": "libs/form-redux",
     "form-validation-rule-list": "libs/form-validation-rule-list",
-    "workspace": {
-      "root": ".",
-      "targets": {
-        "version": {
-          "executor": "@jscutlery/semver:version",
-          "options": {
-            "baseBranch": "master",
-            "push": true,
-            "noVerify": true,
-            "commitMessageFormat": "release(${projectName}): publish version ${version}",
-            "postTargets": [
-              "workspace:github",
-              "form-builder:publish",
-              "form-validation-rule-list:publish",
-              "form-redux:publish",
-              "form-editor:publish"
-            ]
-          }
-        },
-        "github": {
-          "executor": "@jscutlery/semver:github",
-          "options": {
-            "target": "master",
-            "tag": "${tag}",
-            "notes": "${notes}"
-          }
-        }
-      }
-    }
+    "workspace": "."
   },
   "cli": {
     "defaultCollection": "@nrwl/react"
