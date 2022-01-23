@@ -2,7 +2,8 @@ import * as React from 'react';
 import {
   UseFormGetValues,
   UnpackNestedValue,
-  FieldValues
+  FieldValues,
+  FieldErrors
 } from 'react-hook-form';
 
 import { SUBMIT_FIELD_TYPE } from '../constants';
@@ -18,7 +19,11 @@ export interface SubmitFieldProps {
   isLastStep: boolean;
   isFormStepValid: boolean;
   submitLabel: string;
-  onNextStep: (value: UnpackNestedValue<FieldValues>) => void;
+  onNextStep: (
+    value: UnpackNestedValue<FieldValues>,
+    errors: FieldErrors
+  ) => void;
+  errors: FieldErrors;
 }
 
 export function SubmitField({
@@ -30,14 +35,15 @@ export function SubmitField({
   isLastStep,
   isFormStepValid,
   submitLabel,
-  onNextStep
+  onNextStep,
+  errors
 }: SubmitFieldProps) {
   const handleNextStep = React.useCallback(
     (event) => {
       event.preventDefault();
-      onNextStep(getValues());
+      onNextStep(getValues(), errors);
     },
-    [onNextStep, getValues]
+    [onNextStep, getValues, errors]
   );
 
   return (

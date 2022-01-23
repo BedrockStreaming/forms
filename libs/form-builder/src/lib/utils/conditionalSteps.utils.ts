@@ -1,19 +1,21 @@
 import { UseFormGetValues, FieldValues, FieldErrors } from 'react-hook-form';
-import { ExtraValidation, FormField, FormFields } from '../types';
+import { ExtraValidation, FormField, FormSteps } from '../types';
 
-export interface ShouldDisplayField {
-  getValues: UseFormGetValues<FieldValues>;
+export interface ShouldDisplayStep {
+  getValues:
+    | UseFormGetValues<FieldValues>
+    | ((selector: string) => Partial<FieldValues>);
   extraValidation?: ExtraValidation;
   errors: FieldErrors;
   dependsOn: FormField['dependsOn'];
 }
 
-export const shouldDisplayField = ({
+export const shouldDisplayStep = ({
   dependsOn,
   getValues,
   extraValidation,
   errors
-}: ShouldDisplayField) => {
+}: ShouldDisplayStep) => {
   if (!dependsOn) return true;
 
   const dependsOnConditions = [] as boolean[];
@@ -50,28 +52,30 @@ export const shouldDisplayField = ({
   return dependsOnConditions.filter((value) => !value).length === 0;
 };
 
-export interface FilterDependentsFieldsById {
-  fieldsById: string[];
-  fields: FormFields;
-  getValues: UseFormGetValues<FieldValues>;
+export interface FilterDependentsStepsById {
+  stepsById: string[];
+  getValues:
+    | UseFormGetValues<FieldValues>
+    | ((selector: string) => Partial<FieldValues>);
   extraValidation?: ExtraValidation;
   errors: FieldErrors;
+  steps: FormSteps;
 }
 
-export const filterDependentsFieldsById = ({
-  fieldsById,
-  fields,
+export const filterDependentsStepsById = ({
+  stepsById,
+  steps,
   getValues,
   extraValidation,
   errors
-}: FilterDependentsFieldsById) => {
-  return fieldsById.reduce((acc, id) => {
-    const { dependsOn } = fields[id];
+}: FilterDependentsStepsById) => {
+  return stepsById.reduce((acc, id) => {
+    const { dependsOn } = steps[id];
     if (!dependsOn) {
       return [...acc, id];
     }
 
-    return shouldDisplayField({
+    return shouldDisplayStep({
       dependsOn,
       getValues,
       extraValidation,

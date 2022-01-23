@@ -16,15 +16,8 @@ export const config = {
           type: 'select',
           dependsOn: [
             'email',
-            { fieldId: 'discloseGender', key: 'isTrue', validate: true }
-          ],
-          validation: {
-            required: {
-              key: 'required',
-              message: 'Required field',
-              value: true
-            }
-          }
+            { id: 'discloseGender', key: 'isTrue', validate: true }
+          ]
         },
         discloseGender: {
           id: 'discloseGender',
@@ -48,11 +41,13 @@ export const config = {
           validation: {
             checkDateFormat: {
               key: 'checkDateFormat',
-              message: 'Date format must be DD/MM/YYYY'
+              message: 'Date format must be DD/MM/YYYY',
+              value: 130
             },
             checkMinAge: {
               key: 'checkMinAge',
-              message: 'Minimum age'
+              message: 'Minimum age',
+              value: 13
             },
             required: {
               key: 'required',
@@ -116,7 +111,7 @@ export const config = {
           },
           title: 'lastName',
           type: 'text',
-          dependsOn: ['firstName', 'gender', 'email'],
+          dependsOn: ['firstName'],
           validation: {
             maxLength: {
               key: 'checkMaxLength',
@@ -209,9 +204,82 @@ export const config = {
           submit: {
             label: 'Submit'
           }
+        },
+        // 'register-step-3-1': {
+        //   id: 'register-step-3-1',
+        //   fieldsById: ['birthday'],
+        //   submit: {
+        //     label: 'Home'
+        //   },
+        //   dependsOn: [
+        //     {
+        //       id: 'birthdate',
+        //       key: 'checkBirthday',
+        //       validate: true
+        //     }
+        //   ]
+        // },
+        'register-step-3-2': {
+          id: 'register-step-3-2',
+          fieldsById: ['okBoomer'],
+          submit: {
+            label: 'Home'
+          },
+          dependsOn: [
+            {
+              id: 'birthdate',
+              key: 'checkMinAge',
+              value: 40,
+              validate: true
+            }
+          ]
+        },
+        'register-step-3-3': {
+          id: 'register-step-3-3',
+          fieldsById: ['okKiddo'],
+          submit: {
+            label: 'Home'
+          },
+          dependsOn: [
+            {
+              id: 'birthdate',
+              key: 'checkMaxAge',
+              value: 20,
+              validate: true
+            }
+          ]
+        },
+        'register-step-3-4': {
+          id: 'register-step-3-4',
+          fieldsById: ['thanks'],
+          submit: {
+            label: 'Home'
+          },
+          dependsOn: [
+            {
+              id: 'birthdate',
+              key: 'checkMaxAge',
+              value: 40,
+              validate: true
+            },
+            {
+              id: 'birthdate',
+              key: 'checkMinAge',
+              value: 20,
+              validate: true
+            }
+          ]
         }
       },
-      stepsById: ['register-step-0', 'register-step-1', 'register-step-2']
+      stepsById: [
+        'register-step-0',
+        'register-step-1',
+        'register-step-2',
+        // 'register-step-3-1',
+        'register-step-3-2',
+        'register-step-3-3',
+        'register-step-3-4'
+      ]
     },
     single_step_register: {
       fields: {

@@ -3,6 +3,7 @@ import {
   Controller,
   DefaultValues,
   FieldValues,
+  FieldErrors,
   Path,
   SubmitHandler,
   UnpackNestedValue,
@@ -27,6 +28,7 @@ import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { PreviousStepField } from './components/previousStepField.component';
 import { FORM_CLASSNAMES } from './constants';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
+import { filterDependentsStepsById } from './utils/conditionalSteps.utils';
 
 const EMPTY_OBJECT = {} as const;
 
@@ -35,7 +37,10 @@ export interface FormBuilderProps {
   behavior?: keyof ValidationMode;
   schema: FormSchema;
   dictionary: Dictionary;
-  onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
+  onNextStep?: (
+    value: UnpackNestedValue<FieldValues>,
+    errors: FieldErrors
+  ) => void;
   onPreviousStep?: (value: any) => void;
   onSubmit: SubmitHandler<FieldValues>;
   extraValidation?: ExtraValidation;
@@ -80,9 +85,17 @@ export function FormBuilder({
     [currentStepIndex, schema, typesAllowed]
   );
 
-  const filteredFields = filterDependentsFieldsById({
+  const filteredFieldsById = filterDependentsFieldsById({
     fieldsById,
     fields,
+    getValues,
+    errors,
+    extraValidation
+  });
+
+  const filteredStepsById = filterDependentsStepsById({
+    steps: schema.steps,
+    stepsById,
     getValues,
     errors,
     extraValidation
@@ -139,6 +152,8 @@ export function FormBuilder({
   )
     return null;
 
+  console.log({ stepsById, filteredStepsById });
+
   return (
     <>
       <form
@@ -147,9 +162,9 @@ export function FormBuilder({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Stepper currentStepIndex={currentStepIndex}>
-          {_.map(stepsById, (stepId) => (
+          {_.map(filteredStepsById, (stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(filteredFields, (fieldId) => {
+              {_.map(filteredFieldsById, (fieldId) => {
                 const { type, id, defaultValue, meta, validation } =
                   fields[fieldId];
 
@@ -197,6 +212,7 @@ export function FormBuilder({
             submitLabel={submitLabel}
             getValues={getValues}
             onNextStep={onNextStep}
+            errors={errors}
           />
         </div>
       </form>
