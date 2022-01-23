@@ -25,7 +25,7 @@ export interface Validations {
 }
 
 export interface DependsOnObject {
-  fieldId: string;
+  id: string;
   key: string;
   value?: string | number | null | string[] | number[];
   validate?: boolean;
@@ -58,6 +58,7 @@ export interface FormStep {
     label: string;
   };
   meta?: FormMeta;
+  dependsOn?: Array<string | DependsOnObject>;
 }
 
 export interface FormSteps {

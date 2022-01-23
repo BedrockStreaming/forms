@@ -23,6 +23,13 @@ export const updateFormData = <T>(formId: string, data: T) => ({
   data
 });
 
+export const UPDATE_FORM_STEPS = 'forms/UPDATE_FORM_STEPS';
+export const updateFormSteps = (formId: string, stepsById: string[]) => ({
+  type: UPDATE_FORM_DATA,
+  formId,
+  stepsById
+});
+
 export const RESET_FORM = 'forms/RESET_FORM';
 export const resetForm = (formId: string) => ({ type: RESET_FORM, formId });
 

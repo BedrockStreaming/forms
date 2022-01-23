@@ -5,6 +5,7 @@ import {
   PREVIOUS_STEP,
   NEXT_STEP,
   UPDATE_FORM_DATA,
+  UPDATE_FORM_STEPS,
   INIT_FORM,
   RESET_FORM,
   SET_STEP
@@ -142,6 +143,24 @@ export const reducer = (state = initialState, action: FormAction) => {
             ...action.data
           }
         }
+      };
+    }
+
+    case UPDATE_FORM_STEPS: {
+      if (!checkFormId(action) || checkFormExist(action, state)) {
+        return state;
+      }
+
+      const stepsById = _.get(action, ['stepsById'], [] as string[]);
+      const currentFormState = {
+        ...defaultFormState,
+        stepsCount: stepsById.length,
+        isLastStep: stepsById.length === 1
+      };
+
+      return {
+        ...state,
+        [action.formId]: currentFormState
       };
     }
 

@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
-import { FieldValues } from 'react-hook-form';
-import { FormBuilder } from '@bedrockstreaming/form-builder';
+import { FieldErrors, FieldValues } from 'react-hook-form';
+import {
+  filterDependentsStepsById,
+  FormBuilder
+} from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
@@ -11,7 +14,8 @@ import {
   setNextStep,
   updateFormData,
   getFormData,
-  setPreviousStep
+  setPreviousStep,
+  updateFormSteps
 } from '@bedrockstreaming/form-redux';
 
 import {
@@ -87,7 +91,16 @@ const Form = () => {
 
   const [handleSubmit, cleanUseSubmit] = useSubmit(formId);
 
-  const handleNextStep = (fieldsValues: FieldValues) => {
+  const handleNextStep = (fieldsValues: FieldValues, errors: FieldErrors) => {
+    const stepsById = filterDependentsStepsById({
+      steps: schema.steps,
+      stepsById: schema.stepsById,
+      getValues: (selector: string) =>
+        typeof selector === 'string' ? fieldsValues[selector] : fieldsValues,
+      errors,
+      extraValidation
+    });
+    dispatch(updateFormSteps(formId, stepsById));
     dispatch(updateFormData(formId, fieldsValues));
     dispatch(setNextStep(formId));
   };

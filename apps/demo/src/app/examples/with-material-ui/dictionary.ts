@@ -5,6 +5,10 @@ import { Submit } from './dictionary/submit.component';
 import { Select } from './dictionary/select.component';
 import { Previous } from './dictionary/previous.component';
 import { Checkbox } from './dictionary/checkBox.component';
+import { Thanks } from './dictionary/presentational/thanks.component';
+import { OkBoomer } from './dictionary/presentational/okBoomer.component';
+import { Birthday } from './dictionary/presentational/birthday.component';
+import { OkKiddo } from './dictionary/presentational/kiddo.component';
 
 export const dictionary = {
   text: Text,
@@ -13,5 +17,9 @@ export const dictionary = {
   select: Select,
   checkbox: Checkbox,
   submit: Submit,
-  previous: Previous
+  previous: Previous,
+  thanks: Thanks,
+  okBoomer: OkBoomer,
+  okKiddo: OkKiddo,
+  birthday: Birthday
 };
