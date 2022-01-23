@@ -13,7 +13,8 @@
           "form-builder:publish",
           "form-validation-rule-list:publish",
           "form-redux:publish",
-          "form-editor:publish"
+          "form-editor:publish",
+          "form-context:publish"
         ]
       }
     },

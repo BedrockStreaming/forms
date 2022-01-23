@@ -36,6 +36,13 @@
         "jestConfig": "libs/form-context/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "baseBranch": "master",
+        "access": "public"
+      }
     }
   },
   "tags": []
