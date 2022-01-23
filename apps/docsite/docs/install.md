@@ -23,7 +23,13 @@ You only need state to handle the steps, you can use a solution as simple as **u
 
 :::
 
-Using redux
+Using React's Context API
+
+```sh
+npm install @bedrockstreaming/form-context
+```
+
+Using react-redux
 
 ```sh
 npm install @bedrockstreaming/form-redux

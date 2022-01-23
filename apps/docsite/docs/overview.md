@@ -9,6 +9,7 @@ This documentation presents a set of libraries BedrockStreaming uses to handle d
 - :package: [@bedrockstreaming/form-builder](https://github.com/BedrockStreaming/forms/tree/master/libs/form-builder/README.md)
 - :package: [@bedrockstreaming/form-validation-rule-list](https://github.com/BedrockStreaming/forms/tree/master/libs/form-validation-rule-list/README.md)
 - :package: [@bedrockstreaming/form-redux](https://github.com/BedrockStreaming/forms/tree/master/libs/form-redux/README.md)
+- :package: [@bedrockstreaming/form-context](https://github.com/BedrockStreaming/forms/tree/master/libs/form-context/README.md)
 
 ## Why would you use these libraries ?
 

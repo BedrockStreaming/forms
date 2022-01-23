@@ -1,7 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 
 import { Layout } from './components/app/layout.component';
-import MUIForm from './examples/with-material-ui/form.component';
+import { FormContainer } from './examples/with-material-ui/login/form.container';
+import MUIRegisterForm from './examples/with-material-ui/register/form.component';
 import { Generator as SchemaBuilder } from '@bedrockstreaming/form-editor';
 import StyledForm from './examples/with-styled-components/form.component';
 import { dictionary } from './examples/with-material-ui/dictionary';
@@ -13,7 +14,7 @@ export function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <MUIForm />
+            <MUIRegisterForm />
           </Route>
           <Route exact path="/schema-builder">
             <SchemaBuilder
@@ -25,7 +26,8 @@ export function App() {
             <StyledForm />
           </Route>
           <Route exact path="/examples/material-ui">
-            <MUIForm />
+            <MUIRegisterForm />
+            <FormContainer />
           </Route>
         </Switch>
       </main>

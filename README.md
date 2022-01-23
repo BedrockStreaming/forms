@@ -21,13 +21,14 @@
 - [@bedrockstreaming/form-builder](libs/form-builder/README.md) :construction_worker:
 - [@bedrockstreaming/form-validation-rule-list](libs/form-validation-rule-list/README.md) 🧑‍⚖️
 - [@bedrockstreaming/form-redux](libs/form-redux/README.md) :globe_with_meridians:
+- [@bedrockstreaming/form-context](libs/form-context/README.md) :globe_with_meridians:
 
 ## Why
 
 The idea of this library came from the variety of requests our customers had in terms of forms. Thus, we wanted to be able to generate any form by simply passing some config and a dictionary of inputs to go with.
 As we were eager to keep some control over the process, but not willing to control the form state ourselves, we went with [react-hook-form](https://react-hook-form.com/) which has great capabilities. Unfortunately we were missing some features that we had to implement ourselves.
 
-- Complex validation with multiple visuals feedback
+- Complex validation with multiple visuals feedback (at the same time)
 - Steps handling
 
 We believe that anyone using react could use our libraries to create and manage forms the way we do. We are still exposing - what we think are - the relevant parts of `react-hook-form` API so we think of the FormBuilder as an opinionated solution to industrialize forms across your application.

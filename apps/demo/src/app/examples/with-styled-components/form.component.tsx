@@ -14,9 +14,9 @@ import {
 } from '@bedrockstreaming/form-redux';
 import _ from 'lodash';
 
-import { config } from '../../config';
+import { config } from '../../register.config';
 import { dictionary } from './dictionary';
-import { useSubmit } from '../../hooks/useSubmit.hook';
+import { useSubmit } from '../../hooks/useRegisterSubmit.hook';
 import { extraValidation } from '../../extraValidation';
 
 const formId = 'register';

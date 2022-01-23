@@ -1,0 +1,49 @@
+{
+  "root": "libs/form-context",
+  "sourceRoot": "libs/form-context/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/form-context",
+        "tsConfig": "libs/form-context/tsconfig.lib.json",
+        "project": "libs/form-context/package.json",
+        "entryFile": "libs/form-context/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/form-context/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/form-context/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/form-context"],
+      "options": {
+        "jestConfig": "libs/form-context/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "baseBranch": "master",
+        "access": "public"
+      }
+    }
+  },
+  "tags": []
+}
