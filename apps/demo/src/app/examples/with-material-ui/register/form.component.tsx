@@ -25,10 +25,10 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-import { config } from '../../config';
-import { dictionary } from './dictionary';
-import { useSubmit } from '../../hooks/useSubmit.hook';
-import { extraValidation } from '../../extraValidation';
+import { config } from '../../../register.config';
+import { dictionary } from '../dictionary';
+import { useSubmit } from '../../../hooks/useRegisterSubmit.hook';
+import { extraValidation } from '../../../extraValidation';
 
 const formId = 'register';
 const defaultValues = {
@@ -104,9 +104,9 @@ const Form = () => {
   );
 
   return (
-    <Paper className={classes.root} sx={{ p: 2 }}>
+    <Paper className={classes.root} sx={{ p: 2, m: 2 }}>
       <Typography component="h1" variant="h6">
-        {formId}
+        {formId} with React Redux
       </Typography>
       <Divider />
       <Box sx={{ m: 2 }}>

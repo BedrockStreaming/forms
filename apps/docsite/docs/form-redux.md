@@ -21,7 +21,7 @@ Import and subscribe the reducer.
 
 ```js
 // reducers
-import { reducer as forms } from '@bedrockstreaming/forms';
+import { reducer as forms } from '@bedrockstreaming/form-redux';
 
 combineReducers({ forms, ... });
 ```

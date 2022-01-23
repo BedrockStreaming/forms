@@ -11,7 +11,7 @@ module.exports = {
       type: 'category',
       label: 'Packages',
       collapsed: false,
-      items: ['form-builder', 'form-redux', 'form-validation-rule-list']
+      items: ['form-builder', 'form-redux', 'form-validation-rule-list', 'form-context']
     },
     {
       type: 'category',
