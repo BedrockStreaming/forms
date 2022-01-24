@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.5.0](https://github.com/BedrockStreaming/forms/compare/v0.4.1...v0.5.0) (2022-01-24)
+
+
+### Features
+
+* **libs/form-builder:** add conditional fields ([#36](https://github.com/BedrockStreaming/forms/issues/36)) ([d45f3fb](https://github.com/BedrockStreaming/forms/commit/d45f3fbf4a9c44cafda30b92090d8ca2787cbb0f))
+
+
+
 ## [0.4.1](https://github.com/BedrockStreaming/forms/compare/v0.4.0...v0.4.1) (2022-01-12)
 
 
