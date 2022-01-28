@@ -1,6 +1,6 @@
-import { FormSteps } from '@bedrockstreaming/form-builder';
+import { FormSteps, FormSchema } from '@bedrockstreaming/form-builder';
 
-export const makeSchema = (extraValidationList: string[]) => ({
+export const makeSchema = (extraValidationList: string[]): FormSchema => ({
   fields: {
     extraValidationList: {
       id: 'extraValidationList',

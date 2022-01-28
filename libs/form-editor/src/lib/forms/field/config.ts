@@ -12,7 +12,7 @@ export const makeSchema = ({
   schema: FormSchema;
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
-}) => ({
+}): FormSchema => ({
   fields: {
     fieldType: {
       id: 'fieldType',

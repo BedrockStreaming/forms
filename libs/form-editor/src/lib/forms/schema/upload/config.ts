@@ -1,8 +1,9 @@
-export const schema = {
+import { FormSchema } from '@bedrockstreaming/form-builder';
+
+export const schema: FormSchema = {
   fields: {
     schema: {
       id: 'schema',
-      title: 'The form schema',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
