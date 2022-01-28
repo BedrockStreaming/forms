@@ -42,13 +42,11 @@ export const CORRECT_SCHEMA: FormSchema = {
   fields: {
     [fieldOneId]: {
       id: fieldOneId,
-      title: 'Input text 1',
       meta: { label: 'bar' },
       type: 'text'
     },
     [fieldTwoId]: {
       id: fieldTwoId,
-      title: 'Input Checkbox 2',
       meta: { label: 'foo' },
       type: 'checkbox',
       validation: {
@@ -61,7 +59,6 @@ export const CORRECT_SCHEMA: FormSchema = {
     },
     [fieldThreeId]: {
       id: fieldThreeId,
-      title: 'Input text 3',
       meta: { label: 'baz' },
       type: 'text'
     }
