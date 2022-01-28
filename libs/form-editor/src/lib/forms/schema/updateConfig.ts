@@ -16,7 +16,6 @@ export const makeStepSchema = ({
   fields: {
     stepId: {
       id: 'stepId',
-      title: 'The stepId',
       type: 'text',
       defaultValue: step.id,
       meta: {
@@ -39,13 +38,11 @@ export const makeStepSchema = ({
         label: 'the step submit label',
         name: 'stepSubmitLabel'
       },
-      title: 'The step submit label',
       type: 'text',
       defaultValue: step.submit.label
     },
     stepFieldsById: {
       id: 'stepFieldsById',
-      title: 'stepFieldsById',
       type: 'select',
       defaultValue: step.fieldsById || [],
       meta: {
@@ -58,7 +55,6 @@ export const makeStepSchema = ({
     },
     stepPosition: {
       id: 'stepPosition',
-      title: 'stepPosition',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
@@ -104,20 +100,8 @@ export const makeFieldSchema = ({
   extraValidation?: ExtraValidation;
 }): FormSchema => ({
   fields: {
-    fieldTitle: {
-      id: 'fieldTitle',
-      title: 'The field title',
-      type: 'text',
-      meta: {
-        errorMessage: 'Invalid',
-        label: 'field title',
-        name: 'fieldTitle'
-      },
-      defaultValue: field.title
-    },
     fieldType: {
       id: 'fieldType',
-      title: 'The dictionary target',
       type: 'select',
       meta: {
         label: 'dictionary target',
@@ -129,7 +113,6 @@ export const makeFieldSchema = ({
     },
     fieldId: {
       id: 'fieldId',
-      title: 'The field id',
       type: 'text',
       defaultValue: field.id,
       meta: {
@@ -152,13 +135,11 @@ export const makeFieldSchema = ({
         label: 'the field default value',
         name: 'fieldDefaultValue'
       },
-      title: 'The field default value',
       type: 'text',
       defaultValue: field.defaultValue
     },
     fieldValidation: {
       id: 'fieldValidation',
-      title: 'Field validation',
       type: 'select',
       defaultValue: Object.keys(field.validation || {}) || [],
       meta: {
@@ -182,14 +163,12 @@ export const makeFieldSchema = ({
         name: 'positionInStep',
         type: 'number'
       },
-      title: 'The field position in Step',
       type: 'text',
       defaultValue: 0
     },
     stepId: {
       id: 'stepId',
       type: 'select',
-      title: 'the stepId the field belongs to',
       defaultValue: [],
       validation: {
         required: {
@@ -210,7 +189,6 @@ export const makeFieldSchema = ({
     'add-field-0': {
       fieldsById: [
         'fieldId',
-        'fieldTitle',
         'fieldType',
         'fieldValidation',
         'fieldDefaultValue',

@@ -1,3 +1,4 @@
+import { FormSchema } from '@bedrockstreaming/form-builder';
 import {
   INIT_FORM,
   initForm,
@@ -14,20 +15,17 @@ import {
 } from '../forms.actions';
 
 const formId = 'foo';
-const CORRECT_SCHEMA = {
+const CORRECT_SCHEMA: FormSchema = {
   fields: {
     foo: {
       id: 'foo',
-      title: 'Input text 1',
       type: 'text'
     },
     bar: {
       id: 'bar',
-      title: 'Input Checkbox 2',
       type: 'checkbox'
     }
   },
-  fieldsById: ['foo', 'bar'],
   steps: {
     one: {
       fieldsById: ['foo', 'bar'],

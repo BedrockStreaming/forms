@@ -36,7 +36,6 @@ const formId = 'add-field';
 const defaultValues = {
   fieldId: '',
   fieldName: '',
-  fieldTitle: '',
   fieldValidation: [],
   fieldType: '',
   fieldDefaultValue: '',

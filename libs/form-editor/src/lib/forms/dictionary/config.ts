@@ -2,7 +2,6 @@ export const schema = {
   fields: {
     dictionary: {
       id: 'dictionary',
-      title: 'The form dictionary',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
