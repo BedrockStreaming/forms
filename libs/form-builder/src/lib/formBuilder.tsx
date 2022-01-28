@@ -41,6 +41,7 @@ export interface FormBuilderProps {
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
+  formProps?: { [key: string]: any };
   debug?: boolean;
 }
 
@@ -55,6 +56,7 @@ export function FormBuilder({
   extraValidation,
   isLastStep = true,
   currentStepIndex = 0,
+  formProps = EMPTY_OBJECT,
   debug = false
 }: FormBuilderProps) {
   const {
@@ -142,8 +144,8 @@ export function FormBuilder({
   return (
     <>
       <form
-        aria-labelledby="form-label-element-id"
         data-testid="form-builder"
+        {...formProps}
         onSubmit={handleSubmit(onSubmit)}
       >
         <Stepper currentStepIndex={currentStepIndex}>
