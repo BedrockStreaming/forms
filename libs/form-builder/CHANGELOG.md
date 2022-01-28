@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.6.0](https://github.com/BedrockStreaming/forms/compare/v0.5.1...v0.6.0) (2022-01-28)
+
+
+### Features
+
+* **libs/form-builder:** add form props ([#41](https://github.com/BedrockStreaming/forms/issues/41)) ([36c6154](https://github.com/BedrockStreaming/forms/commit/36c615444b3c7679c48d32df18619e8bb353b6c2))
+
+
+
 ## [0.5.1](https://github.com/BedrockStreaming/forms/compare/v0.5.0...v0.5.1) (2022-01-28)
 
 
