@@ -145,6 +145,7 @@ export function FormBuilder({
     <>
       <form
         data-testid="form-builder"
+        aria-labelledby="form-label-element-id"
         {...formProps}
         onSubmit={handleSubmit(onSubmit)}
       >
