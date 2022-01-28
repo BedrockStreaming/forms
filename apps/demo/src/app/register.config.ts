@@ -1,4 +1,14 @@
-export const config = {
+import { FormSchema } from '@bedrockstreaming/form-builder';
+interface Config {
+  formIds: {
+    [key: string]: string;
+  };
+  schemas: {
+    [key: string]: FormSchema;
+  };
+}
+
+export const config: Config = {
   formIds: {
     register: 'register'
   },
@@ -7,7 +17,6 @@ export const config = {
       fields: {
         gender: {
           id: 'gender',
-          title: 'Gender',
           meta: {
             label: 'hello gender',
             name: 'gender',
@@ -28,7 +37,6 @@ export const config = {
         },
         discloseGender: {
           id: 'discloseGender',
-          title: 'discloseGender checkbox',
           meta: {
             label: 'I agree to disclose my gender',
             name: 'discloseGender'
@@ -43,7 +51,6 @@ export const config = {
             label: 'Birthdate',
             name: 'birthdate'
           },
-          title: 'birthdate',
           type: 'date',
           validation: {
             checkDateFormat: {
@@ -68,7 +75,6 @@ export const config = {
             label: 'Email',
             name: 'email'
           },
-          title: 'Email',
           type: 'text',
           validation: {
             checkPattern: {
@@ -91,7 +97,6 @@ export const config = {
             label: 'Firstname',
             name: 'firstName'
           },
-          title: 'firstName',
           type: 'text',
           dependsOn: ['email'],
           validation: {
@@ -114,7 +119,6 @@ export const config = {
             label: 'Lastname',
             name: 'lastName'
           },
-          title: 'lastName',
           type: 'text',
           dependsOn: ['firstName', 'gender', 'email'],
           validation: {
@@ -142,7 +146,6 @@ export const config = {
             label: 'Password',
             name: 'password'
           },
-          title: 'password',
           type: 'password',
           validation: {
             checkForLower: {
@@ -222,7 +225,6 @@ export const config = {
             label: 'account.birthDay',
             name: 'birthdate'
           },
-          title: 'birthdate',
           type: 'date',
           validation: {
             checkDateFormat: {
@@ -247,7 +249,6 @@ export const config = {
             label: 'account.email',
             name: 'email'
           },
-          title: 'Email',
           type: 'text',
           validation: {
             checkPattern: {
@@ -270,7 +271,6 @@ export const config = {
             label: 'account.firstName',
             name: 'firstName'
           },
-          title: 'firstName',
           type: 'text',
           validation: {
             checkPattern: {
@@ -292,7 +292,6 @@ export const config = {
             label: 'account.lastName',
             name: 'lastName'
           },
-          title: 'lastName',
           type: 'text',
           validation: {
             maxLength: {
@@ -314,7 +313,6 @@ export const config = {
             label: 'global.password',
             name: 'password'
           },
-          title: 'password',
           type: 'password',
           validation: {
             checkForLower: {

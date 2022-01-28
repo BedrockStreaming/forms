@@ -48,8 +48,7 @@ export const reducer = (
         fieldId: id,
         fieldType: type,
         fieldDefaultValue: defaultValue,
-        fieldValidation: validation,
-        fieldTitle: title
+        fieldValidation: validation
       } = action.payload;
 
       const fieldsById = arrayInsertAtPosition(
@@ -67,8 +66,7 @@ export const reducer = (
             [id]: {
               id,
               type,
-              title,
-              name: title,
+              name: id,
               defaultValue,
               validation,
               meta: DEFAULT_OBJECT

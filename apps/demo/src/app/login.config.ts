@@ -12,7 +12,6 @@ export const config = {
             label: 'Email',
             name: 'email'
           },
-          title: 'Email',
           type: 'text',
           validation: {
             checkPattern: {
@@ -35,7 +34,6 @@ export const config = {
             label: 'Password',
             name: 'password'
           },
-          title: 'password',
           type: 'password',
           validation: {
             checkForLower: {

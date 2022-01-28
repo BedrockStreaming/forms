@@ -12,7 +12,6 @@ export const config = {
             label: 'Birth date',
             name: 'birthdate'
           },
-          title: 'birthdate',
           type: 'date',
           validation: {
             checkDateFormat: {
@@ -37,7 +36,6 @@ export const config = {
             label: 'Email',
             name: 'email'
           },
-          title: 'Email',
           type: 'text',
           validation: {
             checkPattern: {
@@ -60,7 +58,6 @@ export const config = {
             label: 'Firstname',
             name: 'firstName'
           },
-          title: 'firstName',
           type: 'text',
           validation: {
             checkPattern: {
@@ -82,7 +79,6 @@ export const config = {
             label: 'Lastname',
             name: 'lastName'
           },
-          title: 'lastName',
           type: 'text',
           validation: {
             maxLength: {
@@ -104,7 +100,6 @@ export const config = {
             label: 'Password',
             name: 'password'
           },
-          title: 'password',
           type: 'password',
           validation: {
             checkForLower: {
@@ -189,7 +184,6 @@ export const config = {
             label: 'account.birthDay',
             name: 'birthdate'
           },
-          title: 'birthdate',
           type: 'date',
           validation: {
             checkDateFormat: {
@@ -214,7 +208,6 @@ export const config = {
             label: 'account.email',
             name: 'email'
           },
-          title: 'Email',
           type: 'text',
           validation: {
             checkPattern: {
@@ -237,7 +230,6 @@ export const config = {
             label: 'account.firstName',
             name: 'firstName'
           },
-          title: 'firstName',
           type: 'text',
           validation: {
             checkPattern: {
@@ -259,7 +251,6 @@ export const config = {
             label: 'account.lastName',
             name: 'lastName'
           },
-          title: 'lastName',
           type: 'text',
           validation: {
             maxLength: {
@@ -281,7 +272,6 @@ export const config = {
             label: 'global.password',
             name: 'password'
           },
-          title: 'password',
           type: 'password',
           validation: {
             checkForLower: {

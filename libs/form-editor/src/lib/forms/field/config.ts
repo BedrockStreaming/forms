@@ -12,21 +12,10 @@ export const makeSchema = ({
   schema: FormSchema;
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
-}) => ({
+}): FormSchema => ({
   fields: {
-    fieldTitle: {
-      id: 'fieldTitle',
-      title: 'The field title',
-      type: 'text',
-      meta: {
-        errorMessage: 'Invalid',
-        label: 'field title',
-        name: 'fieldTitle'
-      }
-    },
     fieldType: {
       id: 'fieldType',
-      title: 'The dictionary target',
       type: 'select',
       meta: {
         label: 'dictionary target',
@@ -40,7 +29,6 @@ export const makeSchema = ({
         label: 'the field id',
         name: 'fieldId'
       },
-      title: 'The field id',
       type: 'text',
       validation: {
         required: {
@@ -57,12 +45,10 @@ export const makeSchema = ({
         label: 'the field default value',
         name: 'fieldDefaultValue'
       },
-      title: 'The field default value',
       type: 'text'
     },
     fieldValidation: {
       id: 'fieldValidation',
-      title: 'Field validation',
       type: 'select',
       meta: {
         errorMessage: 'Invalid',
@@ -81,14 +67,12 @@ export const makeSchema = ({
         name: 'positionInStep',
         type: 'number'
       },
-      title: 'The field position in Step',
       type: 'text',
       defaultValue: 0
     },
     stepId: {
       id: 'stepId',
       type: 'select',
-      title: 'the stepId the field belongs to',
       defaultValue: [],
       validation: {
         required: {
@@ -109,7 +93,6 @@ export const makeSchema = ({
     'step-0': {
       fieldsById: [
         'fieldId',
-        'fieldTitle',
         'fieldType',
         'fieldValidation',
         'fieldDefaultValue',

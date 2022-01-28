@@ -17,7 +17,7 @@ const minAge = _.get(config, 'onboarding.minAge');
  * extravalidation: an object of functions that return a callback function used by react-hook-form
  * (with the current input value as argument)
  */
-export const extraValidation = {
+export const extraValidation: ExtraValidation = {
   checkMinAge: () => (input?: string) => getUserAge(input) >= minAge,
   checkDateFormat: () => (input?: string) => {
     const match = input && input.match(/\D/g);

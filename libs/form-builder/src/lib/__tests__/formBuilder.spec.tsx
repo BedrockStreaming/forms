@@ -1,5 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import { FormBuilder, FormBuilderProps } from '../formBuilder';
+import { FormSchema } from '../types';
 import { FormBuilderError } from '../utils/formBuilderError.utils';
 
 const makeStep = ({
@@ -56,28 +57,24 @@ describe('<FormBuilder />', () => {
   const stepOneLength = stepOne[stepOneId].fieldsById.length + 1;
   const stepTwoLength = stepTwo[stepTwoId].fieldsById.length + 1;
 
-  const CORRECT_SCHEMA = {
+  const CORRECT_SCHEMA: FormSchema = {
     fields: {
       [fieldOneId]: {
         id: fieldOneId,
-        title: 'Input text 1',
         meta: { label: 'bar' },
         type: 'text'
       },
       [fieldTwoId]: {
         id: fieldTwoId,
-        title: 'Input Checkbox 2',
         meta: { label: 'foo', validation: { required: true, maxLength: 20 } },
         type: 'checkbox'
       },
       [fieldThreeId]: {
         id: fieldThreeId,
-        title: 'Input text 3',
         meta: { label: 'baz' },
         type: 'text'
       }
     },
-    fieldsById: [fieldOneId, fieldTwoId, fieldThreeId],
     steps: { ...stepOne, ...stepTwo },
     stepsById: [stepOneId, stepTwoId]
   };
@@ -163,7 +160,6 @@ describe('<FormBuilder />', () => {
         fields: {
           [fieldOneId]: {
             id: fieldOneId,
-            title: 'an invalid field',
             type: 'iDontExistIndictionary'
           }
         },

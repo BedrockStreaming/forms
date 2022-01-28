@@ -18,12 +18,10 @@ const CORRECT_SCHEMA = {
   fields: {
     foo: {
       id: 'foo',
-      title: 'Input text 1',
       type: 'text'
     },
     bar: {
       id: 'bar',
-      title: 'Input Checkbox 2',
       type: 'checkbox'
     }
   },

@@ -1,10 +1,9 @@
-import { FormSteps } from '@bedrockstreaming/form-builder';
+import { FormSteps, FormSchema } from '@bedrockstreaming/form-builder';
 
-export const makeSchema = (extraValidationList: string[]) => ({
+export const makeSchema = (extraValidationList: string[]): FormSchema => ({
   fields: {
     extraValidationList: {
       id: 'extraValidationList',
-      title: 'The form extraValidation',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
@@ -15,7 +14,6 @@ export const makeSchema = (extraValidationList: string[]) => ({
     },
     validationType: {
       id: 'validationType',
-      title: 'The form validation type',
       type: 'select',
       meta: {
         errorMessage: 'Invalid',
@@ -26,7 +24,6 @@ export const makeSchema = (extraValidationList: string[]) => ({
     },
     validationValue: {
       id: 'validationValue',
-      title: 'The form validation value',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
@@ -36,7 +33,6 @@ export const makeSchema = (extraValidationList: string[]) => ({
     },
     validationErrorMessage: {
       id: 'validationErrorMessage',
-      title: 'The form validation error message',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',

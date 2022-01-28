@@ -33,7 +33,6 @@ export interface DependsOnObject {
 
 export interface FormField {
   id: string;
-  title: string;
   type: string;
   meta?: FormMeta | undefined;
   dependsOn?: Array<string | DependsOnObject>;
@@ -48,7 +47,7 @@ export interface FormField {
 }
 
 export interface FormFields {
-  [FieldId: string]: FormField;
+  [key: string]: FormField;
 }
 
 export interface FormStep {
@@ -61,7 +60,7 @@ export interface FormStep {
 }
 
 export interface FormSteps {
-  [StepId: string]: FormStep;
+  [key: string]: FormStep;
 }
 
 export interface FormSchema {
@@ -71,11 +70,11 @@ export interface FormSchema {
 }
 
 export interface Dictionary {
-  [FieldId: string]: React.VoidFunctionComponent<any>;
+  [key: string]: React.VoidFunctionComponent<any>;
 }
 
 export interface ExtraValidation {
-  [FieldId: string]: (
+  [key: string]: (
     value?: any
   ) => (input?: any) => boolean | string | Promise<boolean | string>;
 }

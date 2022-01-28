@@ -6,7 +6,7 @@ export const makeSchema = ({
 }: {
   fields: FormFields;
   schema: FormSchema;
-}) => ({
+}): FormSchema => ({
   fields: {
     stepId: {
       id: 'stepId',
@@ -15,7 +15,6 @@ export const makeSchema = ({
         label: 'the step id',
         name: 'stepId'
       },
-      title: 'The stepId',
       type: 'text',
       validation: {
         required: {
@@ -32,12 +31,10 @@ export const makeSchema = ({
         label: 'the step submit label',
         name: 'stepSubmitLabel'
       },
-      title: 'The step submit label',
       type: 'text'
     },
     stepFieldsById: {
       id: 'stepFieldsById',
-      title: 'stepFieldsById',
       type: 'select',
       meta: {
         errorMessage: 'Invalid',
@@ -50,7 +47,6 @@ export const makeSchema = ({
     },
     stepPosition: {
       id: 'stepPosition',
-      title: 'stepPosition',
       type: 'text',
       meta: {
         errorMessage: 'Invalid',
