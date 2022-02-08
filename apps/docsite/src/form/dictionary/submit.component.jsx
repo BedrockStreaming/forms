@@ -7,7 +7,6 @@ import { getCurrentStepIndex, setPreviousStep } from '@bedrockstreaming/form-red
 export const Submit = ({ label, formId, ...props }) => {
   const dispatch = useDispatch();
   const shouldDisplayPrevious = useSelector(getCurrentStepIndex(formId)) !== 0;
-  console.log({shouldDisplayPrevious})
 
   const handlePreviousStep = () => {
     dispatch(setPreviousStep(formId));
