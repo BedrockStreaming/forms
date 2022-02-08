@@ -49,6 +49,7 @@ export const DictionaryForm = ({ dictionary }: { dictionary: Dictionary }) => {
       <AccordionDetails>
         <Box sx={{ m: 2 }}>
           <FormBuilder
+            formId={formId}
             dictionary={dictionary}
             schema={schema}
             defaultValues={defaultValues}

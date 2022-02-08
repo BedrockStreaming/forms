@@ -21,6 +21,7 @@ export interface FormFieldProps {
   label?: string;
   onClick?: (event: any) => void;
   isValidating?: boolean;
+  formId?: string;
 }
 
 export function FormField({

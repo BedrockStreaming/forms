@@ -24,20 +24,18 @@ import { Stepper } from './components/stepper.component';
 import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules, FieldRules } from './utils/validation.utils';
-import { PreviousStepField } from './components/previousStepField.component';
-import { FORM_CLASSNAMES } from './constants';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
 
 const EMPTY_OBJECT = {} as const;
 
 export interface FormBuilderProps {
-  defaultValues?: DefaultValues<FieldValues>;
-  behavior?: keyof ValidationMode;
+  formId: string;
   schema: FormSchema;
   dictionary: Dictionary;
-  onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
-  onPreviousStep?: (value: any) => void;
   onSubmit: SubmitHandler<FieldValues>;
+  onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
+  defaultValues?: DefaultValues<FieldValues>;
+  behavior?: keyof ValidationMode;
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
@@ -46,14 +44,14 @@ export interface FormBuilderProps {
 }
 
 export function FormBuilder({
-  defaultValues,
-  behavior = 'onChange',
+  formId,
   schema,
   dictionary,
-  onNextStep = _.noop,
-  onPreviousStep = _.noop,
   onSubmit,
+  onNextStep = _.noop,
   extraValidation,
+  defaultValues,
+  behavior = 'onChange',
   isLastStep = true,
   currentStepIndex = 0,
   formProps = EMPTY_OBJECT,
@@ -184,24 +182,16 @@ export function FormBuilder({
             </React.Fragment>
           ))}
         </Stepper>
-        <div className={FORM_CLASSNAMES.formActionsWrapper}>
-          <PreviousStepField
-            onPreviousStep={onPreviousStep}
-            currentStepIndex={currentStepIndex}
-            dictionary={dictionary}
-          />
-          <SubmitField
-            dictionary={dictionary}
-            isDirty={isDirty}
-            isValid={isValid}
-            isPreFilled={isPreFilled}
-            isLastStep={isLastStep}
-            isFormStepValid={isFormStepValid}
-            submitLabel={submitLabel}
-            getValues={getValues}
-            onNextStep={onNextStep}
-          />
-        </div>
+        <SubmitField
+          formId={formId}
+          dictionary={dictionary}
+          submitDisabled={!(isDirty || isPreFilled) || !isValid}
+          nextDisabled={!isFormStepValid}
+          isLastStep={isLastStep}
+          submitLabel={submitLabel}
+          getValues={getValues}
+          onNextStep={onNextStep}
+        />
       </form>
       {debug && <DevTool control={control} />}
     </>

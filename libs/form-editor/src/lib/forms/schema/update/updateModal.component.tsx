@@ -65,6 +65,7 @@ export function UpdateModal({
           </Typography>
           {schema && (
             <FormBuilder
+              formId={formId}
               onSubmit={onSubmit}
               dictionary={dictionary}
               extraValidation={extraValidation}

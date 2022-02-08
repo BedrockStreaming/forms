@@ -85,6 +85,7 @@ export const StepForm = ({
       <AccordionDetails>
         <Box sx={{ m: 2 }}>
           <FormBuilder
+            formId={formId}
             dictionary={dictionary}
             schema={schema}
             defaultValues={

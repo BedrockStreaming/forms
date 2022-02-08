@@ -110,6 +110,7 @@ const Form = () => {
           </Stepper>
         </Box>
         <FormBuilder
+          formId={formId}
           dictionary={dictionary}
           schema={schema}
           defaultValues={

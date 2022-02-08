@@ -56,6 +56,7 @@ export const ExtraValidationForm = ({
       <AccordionDetails>
         <Box sx={{ m: 2 }}>
           <FormBuilder
+            formId={formId}
             dictionary={dictionary}
             schema={schema}
             defaultValues={defaultValues}

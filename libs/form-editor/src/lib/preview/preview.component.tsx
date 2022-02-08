@@ -67,6 +67,7 @@ export const PreviewForm = ({
 
       <Box sx={{ m: 2 }}>
         <FormBuilder
+          formId={formId}
           dictionary={dictionary}
           schema={schema}
           defaultValues={defaultValues}
