@@ -11,8 +11,7 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData,
-  setPreviousStep
+  getFormData
 } from '@bedrockstreaming/form-context';
 import {
   Divider,
@@ -26,7 +25,7 @@ import {
 import { makeStyles } from '@mui/styles';
 
 import { config } from '../../../login.config';
-import { dictionary } from '../dictionary';
+import { CONTEXT_DICTIONARY as dictionary } from '../dictionary';
 import { useSubmit } from '../../../hooks/useLoginSubmit.hook';
 import { extraValidation } from '../../../extraValidation';
 
@@ -42,7 +41,7 @@ const {
 
 const useStyles = makeStyles({
   root: {
-    margin: '0 auto',
+    margin: '16px auto',
 
     '& .validation-rule-ul': {
       display: 'flex',
@@ -88,10 +87,6 @@ const Form = () => {
     dispatch(setNextStep(formId));
   };
 
-  const handlePreviousStep = () => {
-    dispatch(setPreviousStep(formId));
-  };
-
   return (
     <Paper className={classes.root} sx={{ p: 2, m: 2 }}>
       <Typography component="h1" variant="h6">
@@ -111,13 +106,13 @@ const Form = () => {
           </Stepper>
         </Box>
         <FormBuilder
+          formId={formId}
           dictionary={dictionary}
           schema={schema}
           defaultValues={
             _.isEmpty(previousValues) ? defaultValues : previousValues
           }
           onNextStep={handleNextStep}
-          onPreviousStep={handlePreviousStep}
           onSubmit={handleSubmit}
           currentStepIndex={currentStepIndex}
           isLastStep={isLastStep}

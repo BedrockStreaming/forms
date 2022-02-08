@@ -10,25 +10,23 @@ import { FormField } from './formField.component';
 import { Dictionary } from '../types';
 
 export interface SubmitFieldProps {
+  formId: string;
   dictionary: Dictionary;
-  isDirty: boolean;
-  isValid: boolean;
-  isPreFilled: boolean;
+  submitDisabled: boolean;
+  nextDisabled: boolean;
   getValues: UseFormGetValues<FieldValues>;
   isLastStep: boolean;
-  isFormStepValid: boolean;
   submitLabel: string;
   onNextStep: (value: UnpackNestedValue<FieldValues>) => void;
 }
 
 export function SubmitField({
+  formId,
   dictionary,
-  isDirty,
-  isValid,
-  isPreFilled,
+  submitDisabled,
+  nextDisabled,
   getValues,
   isLastStep,
-  isFormStepValid,
   submitLabel,
   onNextStep
 }: SubmitFieldProps) {
@@ -46,18 +44,20 @@ export function SubmitField({
         <FormField
           id="submit-field"
           fieldType={SUBMIT_FIELD_TYPE}
-          disabled={!(isDirty || isPreFilled) || !isValid}
+          disabled={submitDisabled}
           label={submitLabel}
           dictionary={dictionary}
+          formId={formId}
         />
       ) : (
         <FormField
           id="next-field"
           fieldType={SUBMIT_FIELD_TYPE}
-          disabled={!isFormStepValid}
+          disabled={nextDisabled}
           onClick={handleNextStep}
           label={submitLabel}
           dictionary={dictionary}
+          formId={formId}
         />
       )}
     </div>

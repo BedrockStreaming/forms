@@ -1,10 +1,33 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Submit = ({ label, ...props }) => {
+import { Button, Box } from '@mui/material';
+import { getCurrentStepIndex, setPreviousStep } from '@bedrockstreaming/form-redux';
+
+export const Submit = ({ label, formId, ...props }) => {
+  const dispatch = useDispatch();
+  const shouldDisplayPrevious = useSelector(getCurrentStepIndex(formId)) !== 0;
+
+  const handlePreviousStep = () => {
+    dispatch(setPreviousStep(formId));
+  };
+
   return (
-    <Button variant="contained" sx={{ margin: 1 }} type="submit" {...props}>
-      {label}
-    </Button>
+    <Box display="flex" justifyContent="center" width="100%">
+      {shouldDisplayPrevious && (
+        <Button
+          onClick={handlePreviousStep}
+          variant="outlined"
+          sx={{ margin: 1 }}
+          type="button"
+          {...props}
+        >
+          {label}
+        </Button>
+      )}
+      <Button variant="contained" sx={{ margin: 1 }} type="submit" {...props}>
+        {label}
+      </Button>
+    </Box>
   );
 };
