@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.7.0](https://github.com/BedrockStreaming/forms/compare/v0.6.1...v0.7.0) (2022-02-09)
+
+
+### Features
+
+* **libs/form-builder:** remove previous button and actions wrapper ([#42](https://github.com/BedrockStreaming/forms/issues/42)) ([84cb1db](https://github.com/BedrockStreaming/forms/commit/84cb1dba0467b8642373d86440bb521cfb56873a))
+
+
+
 ## [0.6.1](https://github.com/BedrockStreaming/forms/compare/v0.6.0...v0.6.1) (2022-01-28)
 
 
