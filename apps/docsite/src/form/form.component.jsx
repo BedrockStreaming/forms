@@ -92,7 +92,7 @@ const Form = () => {
   );
 
   return (
-    <Paper className={classes.root} sx={{ p: 2 }}>
+    <Paper className={classes.root} sx={{ p: 2 }} data-testid="form-example">
       <Typography sx={{ p: 1}} component="h1" variant="h6">
         Multi Step Registration Form Demo
       </Typography>

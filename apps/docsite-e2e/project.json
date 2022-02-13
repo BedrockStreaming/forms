@@ -1,0 +1,28 @@
+{
+  "root": "apps/docsite-e2e",
+  "sourceRoot": "apps/docsite-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/docsite-e2e/cypress.json",
+        "tsConfig": "apps/docsite-e2e/tsconfig.e2e.json",
+        "devServerTarget": "docsite:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "docsite:serve"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/docsite-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["docsite"]
+}

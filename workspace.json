@@ -4,6 +4,7 @@
     "demo": "apps/demo",
     "demo-e2e": "apps/demo-e2e",
     "docsite": "apps/docsite",
+    "docsite-e2e": "apps/docsite-e2e",
     "examples-birthdate": "libs/examples/birthdate",
     "examples-styled-inputs": "libs/examples/styled-inputs",
     "form-builder": "libs/form-builder",
