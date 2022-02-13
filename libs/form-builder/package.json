@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-builder",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "dependencies": {
     "@hookform/devtools": "4.0.2",
     "react-hook-form": "7.27.0"
