@@ -32,9 +32,8 @@ import {
 
 export interface FormSchema {
   fields: {
-    [FieldId: string]: {
+    [key: string]: {
       id: string;
-      title: string;
       type: string;
       meta?: {
         [key: string]: unknown;
@@ -65,7 +64,7 @@ export interface FormSchema {
     };
   };
   steps: {
-    [StepId: string]: {
+    [key: string]: {
       id: string;
       fieldsById: string[];
       submit: {
@@ -87,7 +86,6 @@ const schema = {
   fields: {
     'some-unique-identifier': {
       id: 'some-unique-identifier',
-      title: 'First name',
       type: 'text',
     },
     // ...
@@ -170,7 +168,6 @@ const schema = {
   fields: {
     foo: {
       id: 'foo',
-      title: 'name',
       type: 'text',
       meta: {
         label: 'Your name',
@@ -225,7 +222,6 @@ const schema = {
   fields: {
     foo: {
       id: 'foo',
-      title: 'name',
       type: 'text',
       meta: {
         label: 'some label',
@@ -233,7 +229,6 @@ const schema = {
     },
     bar: {
       id: 'bar',
-      title: 'email',
       type: 'text',
       meta: {
         label: 'some label',
