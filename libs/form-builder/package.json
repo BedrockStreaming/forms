@@ -2,12 +2,11 @@
   "name": "@bedrockstreaming/form-builder",
   "version": "0.7.0",
   "dependencies": {
-    "@hookform/devtools": "4.0.2"
+    "@hookform/devtools": "4.0.2",
+    "react-hook-form": "7.27.0"
   },
   "peerDependencies": {
-    "@hookform/devtools": "4.0.2",
     "lodash": "4.17.21",
-    "react": "17.0.2",
-    "react-hook-form": "7.27.0"
+    "react": "17.0.2"
   }
 }
