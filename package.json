@@ -39,6 +39,7 @@
   "resolutions": {
     "glob-parent": "5.1.2",
     "immer": "9.0.6",
+    "node-fetch": "2.6.7",
     "terser": "4.8.0",
     "trim": "1.0.1"
   },
