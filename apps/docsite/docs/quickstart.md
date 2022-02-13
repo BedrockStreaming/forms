@@ -37,7 +37,6 @@ const schema = {
   fields: {
     firstname: {
       id: '1',
-      title: 'first name',
       type: 'text',
       meta: {
         label: 'First name: ',
@@ -46,7 +45,6 @@ const schema = {
     },
     lastname: {
       id: '2',
-      title: 'last name',
       type: 'text',
       meta: {
         label: 'Last name: ',
