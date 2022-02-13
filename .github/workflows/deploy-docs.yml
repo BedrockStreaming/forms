@@ -27,6 +27,7 @@ jobs:
         run: |
           yarn install --no-progress --frozen-lockfile
           yarn build docsite
+          yarn e2e docsite-e2e
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
