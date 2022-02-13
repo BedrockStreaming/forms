@@ -15,12 +15,12 @@ function Home() {
   const { siteConfig = {} } = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${siteConfig.title}`}
+      description="Documentation website for Bedrock Strealing Forms, a monorepo exposing a form-builder wrapper around react-hook-form"
     >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title" style={{ color: '#1c1c1c' }}>
+          <h1 data-testid="hero-title" className="hero__title" style={{ color: '#1c1c1c' }}>
             {siteConfig.title}
           </h1>
           <p className="hero__subtitle" style={{ color: '#1c1c1c' }}>
@@ -32,6 +32,7 @@ function Home() {
               component={RefLink}
               variant="contained"
               to={useBaseUrl('docs/')}
+              data-testid="hero-get-started-button"
             >
               Get Started
             </Button>
