@@ -1,28 +1,15 @@
 import * as React from 'react';
-import classnames from 'classnames';
 import _ from 'lodash';
+
 export interface DotTextProps {
   key: string;
-  itemColorClass: string;
-  fontWeightClass: string;
   status: string;
+  [key: string]: any;
 }
 
-export const DotText = ({
-  key,
-  itemColorClass,
-  fontWeightClass,
-  status
-}: DotTextProps) => {
+export const DotText = ({ key, status, ...props }: DotTextProps) => {
   return (
-    <li
-      key={key}
-      className={classnames('validation-rule-li', [
-        fontWeightClass,
-        itemColorClass
-      ])}
-      data-testid={`hint-${_.kebabCase(key)}-${status}`}
-    >
+    <li key={key} data-testid={`hint-${_.kebabCase(key)}-${status}`} {...props}>
       <span>{key}</span>
     </li>
   );

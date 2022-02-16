@@ -10,10 +10,7 @@ import {
 import { TextField } from '@mui/material';
 import _ from 'lodash';
 
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+import { RuleList } from '../atoms/rule-list.component';
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -67,8 +64,7 @@ export const Password = ({
       rules={rules}
       value={value}
       data-testid={dataTestId}
-      colorByRulesClassnames={colorByRulesClassnames}
-      weightByRulesClassnames={weightByRulesClassnames}
+      ruleComponent={RuleList}
     />
   );
 };

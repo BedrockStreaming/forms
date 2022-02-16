@@ -11,10 +11,7 @@ import _ from 'lodash';
 
 import { BirthdateInput } from '@forms/examples/birthdate';
 
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+import { RuleList } from '../atoms/rule-list.component';
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -70,8 +67,7 @@ export const DateInput = ({
         rules={rules}
         value={value}
         data-testid={dataTestId}
-        colorByRulesClassnames={colorByRulesClassnames}
-        weightByRulesClassnames={weightByRulesClassnames}
+        ruleComponent={RuleList}
       />
     </div>
   );

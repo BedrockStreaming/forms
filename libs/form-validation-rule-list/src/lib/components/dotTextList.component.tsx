@@ -6,6 +6,7 @@ import { DotText, DotTextProps } from './dotText.component';
 export interface DotTextListProps {
   items: DotTextProps[];
   className?: string;
+  status: 0 | 1 | 2;
   [key: string]: any;
 }
 

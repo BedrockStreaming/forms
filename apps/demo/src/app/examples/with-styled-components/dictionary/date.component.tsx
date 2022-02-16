@@ -9,10 +9,8 @@ import { ValidatedTextField } from '@forms/examples/styled-inputs';
 import { BirthdateInput } from '@forms/examples/birthdate';
 
 import { TextFieldMarginWrapper } from './styled';
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+
+import { RuleList } from '../atoms/rule-list.component';
 
 export const DateInput = ({
   errors,
@@ -45,8 +43,7 @@ export const DateInput = ({
         hasError={hasError}
         valid={isValid}
         rules={rules}
-        weightByRulesClassnames={weightByRulesClassnames}
-        colorByRulesClassnames={colorByRulesClassnames}
+        ruleComponent={RuleList}
         {...props}
       />
     </TextFieldMarginWrapper>

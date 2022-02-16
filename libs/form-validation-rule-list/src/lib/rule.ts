@@ -3,9 +3,11 @@ import { INCOMPLETE_STATE, DEFAULT_STATE, COMPLETE_STATE } from './constants';
 
 export type RuleCheck = (value?: string | number) => boolean;
 
+export type RuleObjectCheck = (value?: string | number) => 0 | 1 | 2;
+
 export interface RuleObject {
   key: string;
-  check: (value?: string | number) => 0 | 1 | 2;
+  check: RuleObjectCheck;
 }
 
 export type Rule = (key: string, check: RuleCheck) => RuleObject;

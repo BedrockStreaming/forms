@@ -41,30 +41,7 @@ const {
 
 const useStyles = makeStyles({
   root: {
-    margin: '16px auto',
-
-    '& .validation-rule-ul': {
-      display: 'flex',
-      padding: 0,
-      listStyle: 'none'
-    },
-
-    '& .validation-rule-ul li': {
-      margin: '4px',
-      fontSize: 'smaller'
-    },
-
-    '& .complete-li': {
-      color: '#4ed569'
-    },
-    '& .incomplete-li,.idle-li': {
-      color: '#da3b2b'
-    },
-    '& .step-fields-actions': {
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center'
-    }
+    margin: '16px auto'
   }
 });
 
