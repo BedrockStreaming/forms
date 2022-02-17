@@ -17,18 +17,3 @@ export const DEFAULT_RULES_NAMES = {
   max: 'max',
   required: 'required'
 };
-
-export interface ClassnamesByStatusNumbers {
-  [DEFAULT_STATE]: string;
-  [COMPLETE_STATE]: string;
-  [INCOMPLETE_STATE]: string;
-}
-
-export interface ClassnamesByStatusStrings {
-  [DEFAULT_STATUS]: string;
-  [COMPLETE_STATUS]: string;
-  [INCOMPLETE_STATUS]: string;
-}
-
-export type StatusValue =
-  ClassnamesByStatusNumbers[keyof ClassnamesByStatusNumbers];

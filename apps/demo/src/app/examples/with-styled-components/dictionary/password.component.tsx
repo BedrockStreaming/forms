@@ -8,10 +8,8 @@ import {
 import { ValidatedPasswordTextField } from '@forms/examples/styled-inputs';
 
 import { TextFieldTopMarginWrapper } from './styled';
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
+
+import { RuleList } from '../atoms/rule-list.component';
 
 export const Password = ({
   errors,
@@ -39,9 +37,7 @@ export const Password = ({
         valid={isValid}
         {...props}
         rules={rules}
-        weightByRulesClassnames={weightByRulesClassnames}
-        colorByRulesClassnames={colorByRulesClassnames}
-        label={props.label}
+        ruleComponent={RuleList}
       />
     </TextFieldTopMarginWrapper>
   );

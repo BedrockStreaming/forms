@@ -10,12 +10,10 @@ export const withValidationRuleList = (
   const Enhanced = ({
     rules,
     value,
-    component,
-    componentProp,
+    ruleComponent,
+    ruleComponentProp,
     valueProp = 'value',
     onError,
-    weightByRulesClassnames,
-    colorByRulesClassnames,
     ...otherProps
   }: ValidationRuleListProps) => {
     const componentProps = { ...otherProps, [valueProp]: value };
@@ -27,12 +25,10 @@ export const withValidationRuleList = (
         <ValidationRuleList
           rules={rules}
           value={value}
-          component={component}
-          componentProp={componentProp}
+          component={ruleComponent}
+          componentProp={ruleComponentProp}
           onError={onError}
           id={otherProps.name}
-          weightByRulesClassnames={weightByRulesClassnames}
-          colorByRulesClassnames={colorByRulesClassnames}
         />
       </div>
     );

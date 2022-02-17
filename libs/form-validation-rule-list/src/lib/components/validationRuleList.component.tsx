@@ -1,21 +1,12 @@
 import * as React from 'react';
 import _ from 'lodash';
 
-import {
-  INCOMPLETE_STATE,
-  STATUS_BY_STATE,
-  StatusValue,
-  ClassnamesByStatusNumbers
-} from '../constants';
+import { INCOMPLETE_STATE, STATUS_BY_STATE } from '../constants';
 import { RuleObject } from '../rule';
-
-import { DotTextList } from './dotTextList.component';
 
 export interface RulesItem {
   key: string;
-  fontWeightClass: string;
-  itemColorClass: string;
-  status: StatusValue;
+  status: string;
 }
 
 export interface BaseRules {
@@ -24,6 +15,23 @@ export interface BaseRules {
 }
 
 export interface EnhancedRules extends RuleObject, BaseRules {}
+
+const getItemsAndErrors = (rules: RuleObject[], value?: string | number) =>
+  rules.reduce(
+    (acc, { check, key }) => {
+      const result = check(value);
+
+      const nextErrors =
+        result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
+      const nextItems = _.concat(acc.items, {
+        key,
+        status: STATUS_BY_STATE[result]
+      });
+
+      return { items: nextItems, errors: nextErrors };
+    },
+    { errors: [], items: [] } as BaseRules
+  );
 
 export interface ValidationRuleListProps {
   id?: string;
@@ -36,46 +44,26 @@ export interface ValidationRuleListProps {
   className?: string;
   name?: string;
   valueProp?: any;
-  weightByRulesClassnames: ClassnamesByStatusNumbers;
-  colorByRulesClassnames: ClassnamesByStatusNumbers;
   [key: string]: any;
 }
 
 export const ValidationRuleList = ({
   rules = [],
   value = '',
-  component: Component = DotTextList,
+  component: Component,
   componentProp = 'items',
-  weightByRulesClassnames,
-  colorByRulesClassnames,
   onError = _.noop,
   ...otherProps
 }: ValidationRuleListProps) => {
-  if (rules.length) {
-    const { items, errors } = rules.reduce(
-      (acc, { check, key }) => {
-        const result = check(value);
-
-        const nextErrors =
-          result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
-        const nextItems = _.concat(acc.items, {
-          key,
-          fontWeightClass: weightByRulesClassnames[result],
-          itemColorClass: colorByRulesClassnames[result],
-          status: STATUS_BY_STATE[result]
-        });
-
-        return { items: nextItems, errors: nextErrors };
-      },
-      { errors: [], items: [] } as BaseRules
-    );
-
-    onError(errors);
-
-    const componentProps = { ...otherProps, [componentProp]: items };
-
-    return <Component {...componentProps} />;
+  if (!Component || !rules.length) {
+    return null;
   }
 
-  return null;
+  const { items, errors } = getItemsAndErrors(rules, value);
+
+  onError(errors);
+
+  const componentProps = { ...otherProps, [componentProp]: items };
+
+  return <Component {...componentProps} />;
 };
