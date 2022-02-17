@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.8.0](https://github.com/BedrockStreaming/forms/compare/v0.7.1...v0.8.0) (2022-02-17)
+
+
+### Features
+
+* **libs/validation-rule-list:** remove components and class ([#48](https://github.com/BedrockStreaming/forms/issues/48)) ([bbe8360](https://github.com/BedrockStreaming/forms/commit/bbe8360a7268d8bd0d9b8e4b2b26cbb0b1014976))
+
+
+
 ## [0.7.1](https://github.com/BedrockStreaming/forms/compare/v0.7.0...v0.7.1) (2022-02-13)
 
 
