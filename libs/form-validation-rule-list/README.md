@@ -1,6 +1,6 @@
 # :judge: form-validation-rule-list
 
-This utility package allows to add a visual validation feedback to your users. It exposes a Higher Order Component adding some behavior to your existing inputs.
+This utility package allows to add a visual validation feedback to your users. It exposes a Higher Order Component that helps displaying a list of rules with 3 possible states for each one: default, incomplete, complete
 
 ## :question: Why ?
 
@@ -60,6 +60,7 @@ import {
 } from '@bedrockstreaming/form-validation-rule-list';
 
 import { PasswordTextField } from '@mylib/textfield';
+import { RuleList } from '@mylib/rule-list';
 
 const ValidatedPasswordTextField = withValidationRuleList(PasswordTextField);
 
@@ -84,7 +85,7 @@ const dictionary = {
           {...props}
           // specific props required by ValidationRuleList
           rules={rules}
-          colors={validationColors}
+          ruleComponent={RuleList}
         />
       </div>
     );

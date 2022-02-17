@@ -4,10 +4,6 @@ import { Validations } from '@bedrockstreaming/form-builder';
 import { ValidatedTextField } from '@forms/examples/styled-inputs';
 
 import { TextFieldMarginWrapper } from './styled';
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../../../constants/validationColors.constants';
 
 export const Text = ({
   errors,
@@ -30,10 +26,7 @@ export const Text = ({
         hasError={!!error}
         errorText={error}
         valid={!!props.value && !error}
-        weightByRulesClassnames={weightByRulesClassnames}
-        colorByRulesClassnames={colorByRulesClassnames}
         {...props}
-        label={props.label}
       />
     </TextFieldMarginWrapper>
   );

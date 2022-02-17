@@ -1,14 +1,12 @@
 import * as React from 'react';
 import _ from 'lodash';
 
-import { INCOMPLETE_STATE, STATUS_BY_STATE, StatusValue } from '../constants';
+import { INCOMPLETE_STATE, STATUS_BY_STATE } from '../constants';
 import { RuleObject } from '../rule';
-
-import { DotTextList } from './dotTextList.component';
 
 export interface RulesItem {
   key: string;
-  status: StatusValue;
+  status: string;
 }
 
 export interface BaseRules {
@@ -62,8 +60,6 @@ export const ValidationRuleList = ({
   }
 
   const { items, errors } = getItemsAndErrors(rules, value);
-
-  console.log(items);
 
   onError(errors);
 

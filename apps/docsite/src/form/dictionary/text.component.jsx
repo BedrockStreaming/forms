@@ -1,6 +1,5 @@
 import React, {  useMemo } from 'react';
 import { TextField, Box } from '@mui/material';
-import _ from 'lodash';
 
 export const Text = ({
   'data-testid': dataTestId,

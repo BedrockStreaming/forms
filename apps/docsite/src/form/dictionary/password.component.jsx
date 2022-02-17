@@ -6,12 +6,8 @@ import {
 } from '@bedrockstreaming/form-validation-rule-list';
 
 import { TextField, Box } from '@mui/material';
-import _ from 'lodash';
 
-import {
-  colorByRulesClassnames,
-  weightByRulesClassnames
-} from '../constants/validationColors.constants';
+import { RuleList } from '../rule-list.component';
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -53,8 +49,7 @@ export const Password = ({
         rules={rules}
         value={value}
         data-testid={dataTestId}
-        colorByRulesClassnames={colorByRulesClassnames}
-        weightByRulesClassnames={weightByRulesClassnames}
+        ruleComponent={RuleList}
         />
     </Box>
   );
