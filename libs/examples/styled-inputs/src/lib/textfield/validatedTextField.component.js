@@ -2,10 +2,6 @@ import { useRef, useEffect, memo } from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 import { withValidationRuleList } from '@bedrockstreaming/form-validation-rule-list';
-// import {
-//   weightByRulesClassnames,
-//   colorByRulesClassnames
-// } from '../../constants/validationColors.constants';
 
 import { TextFieldRaw } from './textfield.component';
 
@@ -68,8 +64,6 @@ ValidatedTextFieldComponent.defaultProps = {
   valid: false,
   onFocus: _.noop,
   onBlur: _.noop,
-  weightByRulesClassnames: {},
-  colorByRulesClassnames: {}
 };
 
 ValidatedTextFieldComponent.displayName = 'ValidatedTextField';

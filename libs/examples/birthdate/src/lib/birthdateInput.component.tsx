@@ -77,8 +77,3 @@ export const BirthdateInput = ({
     />
   );
 };
-
-BirthdateInput.defaultProps = {
-  weightByRulesClassnames: {},
-  colorByRulesClassnames: {}
-};
