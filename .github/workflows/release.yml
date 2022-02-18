@@ -26,13 +26,13 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - name: Commit lint
         shell: bash
-        run: yarn commitlint --from=master
+        run: yarn commitlint --from=last-release
       - name: Lint
-        run: yarn nx affected:lint --base=master
+        run: yarn nx affected:lint --base=last-release
       - name: Build
-        run: yarn nx affected:build --base=master
+        run: yarn nx affected:build --base=last-release
       - name: Unit tests
-        run: yarn nx affected:test --base=master
+        run: yarn nx affected:test --base=last-release
       # - name: Codecov upload
       #   uses: codecov/codecov-action@v2
       #   with:
