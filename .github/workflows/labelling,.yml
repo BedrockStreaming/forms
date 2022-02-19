@@ -2,7 +2,7 @@ name: 🏷 Automatic Labelling
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
   pull_request:
     types: [opened, reopened]
 
@@ -27,7 +27,7 @@ jobs:
           add-labels: "Bedrock"
 
   pr:
-    name: Label Issue
+    name: Label Pull Request
     if: ${{ Boolean(github.event.pull_request) == 'true' }}
     runs-on: ubuntu-latest
     steps:
