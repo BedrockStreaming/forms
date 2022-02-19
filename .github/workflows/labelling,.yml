@@ -3,6 +3,8 @@ name: 🏷 Automatic Labelling
 on:
   issues:
     types: [opened]
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   issues:
