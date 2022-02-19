@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Check if author is an organization member
         id: is_organization_member
-        uses: jamessingleton/is-organization-member@v1
+        uses: jamessingleton/is-organization-member@v1.0.0
         with:
           organization: BedrockStreaming
           username: ${{ github.event.actor.login }}
