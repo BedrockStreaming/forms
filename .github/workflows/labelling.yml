@@ -7,9 +7,8 @@ on:
     types: [opened]
 
 jobs:
-  issues:
-    name: Label Issue
-    if: ${{ Boolean(github.event.issue) == 'true' }}
+  bedrock:
+    name: Label with Bedrock for organization member
     runs-on: ubuntu-latest
     steps:
       - name: Check if author is an organization member
@@ -17,7 +16,7 @@ jobs:
         uses: jamessingleton/is-organization-member@v1
         with:
           organization: BedrockStreaming
-          username: ${{ github.event.issue.user.login }}
+          username: ${{ github.event.actor.login }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: initial labeling
         uses: andymckay/labeler@master
@@ -25,23 +24,3 @@ jobs:
           steps.is_organization_member.outputs.result == true
         with:
           add-labels: "Bedrock"
-
-  pr:
-    name: Label Pull Request
-    if: ${{ Boolean(github.event.pull_request) == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if author is an organization member
-        id: is_organization_member
-        uses: jamessingleton/is-organization-member@v1
-        with:
-          organization: BedrockStreaming
-          username: ${{ github.event.pull_request.user.login }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: initial labeling
-        uses: andymckay/labeler@master
-        if: |
-          steps.is_organization_member.outputs.result == true
-        with:
-          add-labels: "Bedrock"
-
