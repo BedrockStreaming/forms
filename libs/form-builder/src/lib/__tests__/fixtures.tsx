@@ -2,22 +2,14 @@ import { Dictionary } from '../types';
 import _ from 'lodash';
 import { FormSchema } from '../types';
 
-const makeStep = ({
-  fieldsById,
-  stepId,
-  label
-}: {
-  fieldsById: string[];
-  stepId: string;
-  label: string;
-}) => ({
+const makeStep = ({ fieldsById, stepId, label }: { fieldsById: string[]; stepId: string; label: string }) => ({
   [stepId]: {
     fieldsById,
     id: stepId,
     submit: {
-      label
-    }
-  }
+      label,
+    },
+  },
 });
 
 export const fieldOneId = '1';
@@ -30,12 +22,12 @@ export const stepTwoId = 'step-2';
 export const stepOne = makeStep({
   fieldsById: [fieldOneId, fieldTwoId],
   label: 'stepOne',
-  stepId: stepOneId
+  stepId: stepOneId,
 });
 export const stepTwo = makeStep({
   fieldsById: [fieldThreeId],
   label: 'stepTwo',
-  stepId: stepTwoId
+  stepId: stepTwoId,
 });
 
 export const CORRECT_SCHEMA: FormSchema = {
@@ -43,7 +35,7 @@ export const CORRECT_SCHEMA: FormSchema = {
     [fieldOneId]: {
       id: fieldOneId,
       meta: { label: 'bar' },
-      type: 'text'
+      type: 'text',
     },
     [fieldTwoId]: {
       id: fieldTwoId,
@@ -53,18 +45,18 @@ export const CORRECT_SCHEMA: FormSchema = {
         required: {
           key: 'required',
           message: 'forms.required.error',
-          value: true
-        }
-      }
+          value: true,
+        },
+      },
     },
     [fieldThreeId]: {
       id: fieldThreeId,
       meta: { label: 'baz' },
-      type: 'text'
-    }
+      type: 'text',
+    },
   },
   steps: { ...stepOne, ...stepTwo },
-  stepsById: [stepOneId, stepTwoId]
+  stepsById: [stepOneId, stepTwoId],
 };
 
 export const CORRECT_DICTIONARY: Dictionary = {
@@ -74,7 +66,7 @@ export const CORRECT_DICTIONARY: Dictionary = {
     <button type="submit" data-testid="test">
       {label}
     </button>
-  )
+  ),
 };
 
 export const typesAllowed = _.keys(CORRECT_DICTIONARY);

@@ -5,11 +5,7 @@ import { FormFields, FormSchema } from '../types';
 const EMPTY_ARRAY = [] as string[];
 const EMPTY_OBJECT = {} as any;
 
-export const sanitizeFieldsById = (
-  fieldsById: string[],
-  fields: FormFields,
-  typesAllowed: string[]
-): string[] =>
+export const sanitizeFieldsById = (fieldsById: string[], fields: FormFields, typesAllowed: string[]): string[] =>
   _.filter(fieldsById, (fieldId) => {
     const type = _.get(fields, [fieldId, 'type']);
 
@@ -23,11 +19,7 @@ export interface SchemaInfo {
   stepsById: string[];
 }
 
-export const getSchemaInfo = (
-  schema: FormSchema,
-  typesAllowed: string[],
-  currentStepIndex: number
-): SchemaInfo => {
+export const getSchemaInfo = (schema: FormSchema, typesAllowed: string[], currentStepIndex: number): SchemaInfo => {
   const steps = _.get(schema, 'steps');
   const stepsById = _.get(schema, 'stepsById', EMPTY_ARRAY);
   const stepId = _.get(stepsById, currentStepIndex);
@@ -39,6 +31,6 @@ export const getSchemaInfo = (
     fields,
     fieldsById: sanitizeFieldsById(fieldsById, fields, typesAllowed),
     submitLabel,
-    stepsById
+    stepsById,
   };
 };

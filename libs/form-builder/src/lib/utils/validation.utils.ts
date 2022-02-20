@@ -21,36 +21,28 @@ export interface FieldRules extends RegisterOptions {
   validate?: { [key: string]: (value?: any) => Promise<boolean> | boolean };
 }
 
-export const getFieldRules = ({
-  validation,
-  extraValidation
-}: GetFieldRulesArgs): FieldRules => {
+export const getFieldRules = ({ validation, extraValidation }: GetFieldRulesArgs): FieldRules => {
   const hookFormRules = _.reduce(
     validation,
-    (acc, { key, ...rest }) =>
-      _.includes(DEFAULT_RULES_NAMES, key) ? { ...acc, [key]: rest } : acc,
-    {}
+    (acc, { key, ...rest }) => (_.includes(DEFAULT_RULES_NAMES, key) ? { ...acc, [key]: rest } : acc),
+    {},
   );
 
   const extraRules = _.reduce(
     validation,
     (acc, { key, value, message }) =>
-      _.includes(DEFAULT_RULES_NAMES, key) ||
-      (extraValidation && !extraValidation[key])
+      _.includes(DEFAULT_RULES_NAMES, key) || (extraValidation && !extraValidation[key])
         ? acc
         : {
             ...acc,
-            [key]: handleValidateErrorMessage(
-              _.invoke(extraValidation, key, value),
-              message
-            )
+            [key]: handleValidateErrorMessage(_.invoke(extraValidation, key, value), message),
           },
-    {}
+    {},
   );
   const hasExtraRules = !!Object.keys(extraRules).length;
 
   return {
     ...hookFormRules,
-    ...(hasExtraRules && { validate: extraRules })
+    ...(hasExtraRules && { validate: extraRules }),
   };
 };

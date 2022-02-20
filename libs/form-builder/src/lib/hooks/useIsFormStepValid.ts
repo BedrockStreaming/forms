@@ -20,7 +20,7 @@ export const useIsFormStepValid = ({
   currentStepIndex,
   dirtyFields,
   defaultValues,
-  isValidating
+  isValidating,
 }: UseIsFormStepValid) =>
   useMemo(() => {
     if (isLastStep || isValidating) {
@@ -29,7 +29,7 @@ export const useIsFormStepValid = ({
 
     const fieldsToCheckByStep = getFieldsToCheckByStep({
       schema,
-      currentStepIndex
+      currentStepIndex,
     });
 
     const stepInError = isStepInError({
@@ -37,16 +37,8 @@ export const useIsFormStepValid = ({
       schema,
       dirtyFields,
       defaultValues,
-      errors
+      errors,
     });
 
     return !stepInError;
-  }, [
-    errors,
-    schema,
-    isLastStep,
-    currentStepIndex,
-    dirtyFields,
-    defaultValues,
-    isValidating
-  ]);
+  }, [errors, schema, isLastStep, currentStepIndex, dirtyFields, defaultValues, isValidating]);

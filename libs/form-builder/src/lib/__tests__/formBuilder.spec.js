@@ -12,16 +12,11 @@ const makeStep = ({ fieldsById, stepId, label }) => ({
 });
 
 describe('<FormBuilder />', () => {
-  let wrapper;
   const getWrapper = async (props) => {
     await act(async () => {
-      wrapper = await render(<FormBuilder {...props} />);
+       await render(<FormBuilder {...props} />);
     });
   };
-
-  afterEach(() => {
-    wrapper = null;
-  });
 
   const onSubmit = jest.fn();
 

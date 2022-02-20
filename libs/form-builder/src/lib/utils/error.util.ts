@@ -7,46 +7,27 @@ const EMPTY_ARRAY = [] as const;
 
 export const getFieldsToCheckByStep = ({
   schema,
-  currentStepIndex
+  currentStepIndex,
 }: {
   schema: FormSchema;
   currentStepIndex: number;
 }): string[] | readonly [] => {
   const currentStepId = _.get(schema, ['stepsById', currentStepIndex]);
-  const fieldsToCheck = _.get(
-    schema,
-    ['steps', currentStepId, 'fieldsById'],
-    EMPTY_ARRAY
-  );
+  const fieldsToCheck = _.get(schema, ['steps', currentStepId, 'fieldsById'], EMPTY_ARRAY);
 
   return fieldsToCheck;
 };
 
-export const isFieldInError = ({
-  fieldToCheck,
-  errors
-}: {
-  fieldToCheck: string;
-  errors: FieldErrors;
-}) => !!(errors && errors[fieldToCheck]);
+export const isFieldInError = ({ fieldToCheck, errors }: { fieldToCheck: string; errors: FieldErrors }) =>
+  !!(errors && errors[fieldToCheck]);
 
-export const isFieldRequired = ({
-  schema,
-  fieldToCheck
-}: {
-  schema: FormSchema;
-  fieldToCheck: string;
-}) =>
-  _.get(
-    schema,
-    ['fields', fieldToCheck, 'validation', DEFAULT_RULES_NAMES.required],
-    false
-  );
+export const isFieldRequired = ({ schema, fieldToCheck }: { schema: FormSchema; fieldToCheck: string }) =>
+  _.get(schema, ['fields', fieldToCheck, 'validation', DEFAULT_RULES_NAMES.required], false);
 
 export const isFieldNotDirtyAndEmpty = ({
   fieldToCheck,
   dirtyFields,
-  defaultValues
+  defaultValues,
 }: {
   fieldToCheck: string;
   dirtyFields: DirtyFields;
@@ -58,7 +39,7 @@ export const isStepInError = ({
   schema,
   dirtyFields,
   defaultValues,
-  errors
+  errors,
 }: {
   schema: FormSchema;
   errors: FieldErrors;
@@ -70,5 +51,5 @@ export const isStepInError = ({
     (fieldToCheck) =>
       isFieldInError({ fieldToCheck, errors }) ||
       (isFieldRequired({ schema, fieldToCheck }) &&
-        isFieldNotDirtyAndEmpty({ fieldToCheck, dirtyFields, defaultValues }))
+        isFieldNotDirtyAndEmpty({ fieldToCheck, dirtyFields, defaultValues })),
   );

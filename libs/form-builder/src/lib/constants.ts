@@ -7,5 +7,5 @@ interface DeFaultRulesNames {
 export const DEFAULT_RULES_NAMES: DeFaultRulesNames = {
   min: 'min',
   max: 'max',
-  required: 'required'
+  required: 'required',
 };

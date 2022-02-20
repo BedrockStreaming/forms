@@ -10,23 +10,23 @@ describe('useAutoFocus', () => {
     params = {
       schema: CORRECT_SCHEMA,
       setFocus: jest.fn() as jest.MockedFunction<UseFormSetFocus<FieldValues>>,
-      currentStepIndex: 0
+      currentStepIndex: 0,
     };
   });
-  test('should set focus on first field', () => {
+  it('should set focus on first field', () => {
     renderHook(() => useAutoFocus(params));
 
     expect(params.setFocus).toBeCalledWith(fieldOneId);
   });
 
-  test('should not set focus on error', () => {
+  it('should not set focus on error', () => {
     renderHook(() =>
       useAutoFocus({
         ...params,
         setFocus: jest.fn().mockImplementation(() => {
           throw new Error('error');
-        })
-      })
+        }),
+      }),
     );
 
     expect(params.setFocus).not.toBeCalledWith(fieldOneId);
