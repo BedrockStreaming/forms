@@ -5,11 +5,7 @@ import { reducer, initialState } from './forms.reducer';
 const FormsStateContext = React.createContext({});
 const FormsDispatchContext = React.createContext<any>(() => void null);
 
-const FormsProvider = ({
-  children
-}: {
-  children: ReactChildren | JSX.Element;
-}) => {
+const FormsProvider = ({ children }: { children: ReactChildren | JSX.Element }) => {
   const isInitialized = useRef(false);
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -23,9 +19,7 @@ const FormsProvider = ({
 
   return (
     <FormsStateContext.Provider value={state}>
-      <FormsDispatchContext.Provider value={dispatch}>
-        {children}
-      </FormsDispatchContext.Provider>
+      <FormsDispatchContext.Provider value={dispatch}>{children}</FormsDispatchContext.Provider>
     </FormsStateContext.Provider>
   );
 };
