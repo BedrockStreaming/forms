@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "import"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -23,8 +23,30 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "parserOptions": {
+        "project": ["tsconfig.*?.json"]
+      },
+      "extends": ["plugin:@nrwl/nx/typescript", "@bedrockstreaming/react/typescript", "prettier"],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": "error"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.*?.json"]
+      },
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "@bedrockstreaming/react/typescript",
+        "@bedrockstreaming/jest",
+        "prettier"
+      ],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": "error"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],

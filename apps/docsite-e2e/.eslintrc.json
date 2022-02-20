@@ -4,7 +4,9 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {},
+      "rules": {
+        "react/jsx-filename-extension": "off"
+      },
       "parserOptions": {
         "project": ["apps/docsite-e2e/tsconfig.*?.json"]
       }
