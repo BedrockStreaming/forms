@@ -1,8 +1,6 @@
-import { Ref, RefObject, useMemo } from 'react';
+import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
-import { Validations } from '@bedrockstreaming/form-builder';
 import { TextField } from '@mui/material';
-import _ from 'lodash';
 import { Box } from '@mui/material';
 
 export const Text = ({
@@ -18,7 +16,7 @@ export const Text = ({
   propRef,
   type,
   value,
-  multiline
+  multiline,
 }: {
   'data-testid': string;
   errorMessage: string;

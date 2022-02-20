@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getCurrentStepIndex,
-  setPreviousStep
-} from '@bedrockstreaming/form-redux';
+import { getCurrentStepIndex, setPreviousStep } from '@bedrockstreaming/form-redux';
 
 const ActionsWrapper = styled.div`
   display: flex;
@@ -23,14 +20,7 @@ const PreviousButton = styled.button`
   border: 1px solid rgba(150, 100, 255);
 `;
 
-export const Submit = ({
-  label,
-  formId,
-  ...props
-}: {
-  label: string;
-  formId: string;
-}) => {
+export const Submit = ({ label, formId, ...props }: { label: string; formId: string }) => {
   const dispatch = useDispatch();
 
   const shouldDisplayPrevious = useSelector(getCurrentStepIndex(formId)) !== 0;

@@ -1,6 +1,6 @@
 export const config = {
   formIds: {
-    login: 'login'
+    login: 'login',
   },
   schemas: {
     login: {
@@ -10,7 +10,7 @@ export const config = {
           meta: {
             errorMessage: 'Invalid Email',
             label: 'Email',
-            name: 'email'
+            name: 'email',
           },
           type: 'text',
           validation: {
@@ -18,66 +18,66 @@ export const config = {
               key: 'checkPattern',
               message: 'Email format',
               value:
-                '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+                '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
             },
             required: {
               key: 'required',
               message: 'Required field',
-              value: true
-            }
-          }
+              value: true,
+            },
+          },
         },
         password: {
           id: 'password',
           meta: {
             errorMessage: 'Invalid Password',
             label: 'Password',
-            name: 'password'
+            name: 'password',
           },
           type: 'password',
           validation: {
             checkForLower: {
               key: 'checkForLower',
-              message: 'Lowercase expected'
+              message: 'Lowercase expected',
             },
             checkForNumber: {
               key: 'checkForNumber',
-              message: 'Number expected'
+              message: 'Number expected',
             },
             checkForUpper: {
               key: 'checkForUpper',
-              message: 'Uppercase expected'
+              message: 'Uppercase expected',
             },
             checkMinLength: {
               key: 'checkMinLength',
               message: 'Minimum chars expected',
-              value: 8
+              value: 8,
             },
             required: {
               key: 'required',
               message: 'Required field',
-              value: true
-            }
-          }
-        }
+              value: true,
+            },
+          },
+        },
       },
       steps: {
         'login-step-0': {
           fieldsById: ['email'],
           id: 'login-step-0',
           submit: {
-            label: 'Next'
-          }
+            label: 'Next',
+          },
         },
         'login-step-1': {
           fieldsById: ['password'],
           id: 'login-step-1',
           submit: {
-            label: 'Next'
-          }
-        }
+            label: 'Next',
+          },
+        },
       },
-      stepsById: ['login-step-0', 'login-step-1']
-    }
-  }
+      stepsById: ['login-step-0', 'login-step-1'],
+    },
+  },
 };

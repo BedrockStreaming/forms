@@ -13,12 +13,7 @@ export const NavBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: 'flex' }}
-          >
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: 'flex' }}>
             @BedrockStreaming/forms
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -34,11 +29,7 @@ export const NavBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              component={Link}
-              to={`/schema-builder`}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
+            <Button component={Link} to={`/schema-builder`} sx={{ my: 2, color: 'white', display: 'block' }}>
               Schema builder
             </Button>
           </Box>

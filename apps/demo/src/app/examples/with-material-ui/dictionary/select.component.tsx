@@ -1,22 +1,18 @@
 import { Ref, useMemo } from 'react';
 import { FieldErrors } from 'react-hook-form';
 import { InputLabel, MenuItem, Select as MUISelect, Box } from '@mui/material';
-import _ from 'lodash';
 
 export const Select = ({
   'data-testid': dataTestId,
-  errorMessage,
-  errors,
   id,
   label,
   name,
   onBlur,
   onChange,
-  optionalText,
   propRef,
   value,
   choices,
-  multiple
+  multiple,
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -34,7 +30,6 @@ export const Select = ({
   multiple?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
-  const error = errors && errors.type && errorMessage;
 
   return (
     <Box sx={{ m: 2 }}>

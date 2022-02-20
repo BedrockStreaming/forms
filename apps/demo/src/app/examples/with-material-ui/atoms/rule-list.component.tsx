@@ -1,8 +1,4 @@
-import {
-  COMPLETE_STATUS,
-  DEFAULT_STATUS,
-  INCOMPLETE_STATUS
-} from '@bedrockstreaming/form-validation-rule-list';
+import { COMPLETE_STATUS, DEFAULT_STATUS, INCOMPLETE_STATUS } from '@bedrockstreaming/form-validation-rule-list';
 import _ from 'lodash';
 import { makeStyles } from '@mui/styles';
 
@@ -12,28 +8,24 @@ const useStyles = makeStyles<{ [key: string]: unknown }>({
     margin: 0,
     padding: 0,
     textAlign: 'left',
-    listStyle: 'none'
+    listStyle: 'none',
   },
   listItem: {
     margin: '4px',
-    fontSize: 'smaller'
+    fontSize: 'smaller',
   },
   [DEFAULT_STATUS]: {
-    color: '#2e2e2d'
+    color: '#2e2e2d',
   },
   [COMPLETE_STATUS]: {
-    color: '#4ed569'
+    color: '#4ed569',
   },
   [INCOMPLETE_STATUS]: {
-    color: '#da3b2b'
-  }
+    color: '#da3b2b',
+  },
 });
 
-export const RuleList = ({
-  items
-}: {
-  items: { key: string; status: string }[];
-}) => {
+export const RuleList = ({ items }: { items: { key: string; status: string }[] }) => {
   const classes = useStyles();
 
   return (

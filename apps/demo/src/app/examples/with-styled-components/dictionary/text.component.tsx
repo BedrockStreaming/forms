@@ -21,13 +21,7 @@ export const Text = ({
 
   return (
     <TextFieldMarginWrapper>
-      <ValidatedTextField
-        type="text"
-        hasError={!!error}
-        errorText={error}
-        valid={!!props.value && !error}
-        {...props}
-      />
+      <ValidatedTextField type="text" hasError={!!error} errorText={error} valid={!!props.value && !error} {...props} />
     </TextFieldMarginWrapper>
   );
 };

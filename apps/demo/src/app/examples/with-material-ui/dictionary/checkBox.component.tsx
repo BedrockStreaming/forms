@@ -9,16 +9,13 @@ import Box from '@mui/material/Box';
 
 export const Checkbox = ({
   'data-testid': dataTestId,
-  errorMessage,
-  errors,
   id,
   label,
   name,
   onBlur,
   onChange,
-  optionalText,
   propRef,
-  value
+  value,
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -33,11 +30,7 @@ export const Checkbox = ({
   type?: string;
   value?: boolean;
 }) => {
-  const inputProps = useMemo(
-    () => ({ ref: propRef, 'aria-label': 'controlled' }),
-    [propRef]
-  );
-  const error = errors && errors.type && errorMessage;
+  const inputProps = useMemo(() => ({ ref: propRef, 'aria-label': 'controlled' }), [propRef]);
 
   return (
     <Box sx={{ m: 2 }}>

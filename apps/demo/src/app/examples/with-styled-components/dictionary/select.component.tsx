@@ -3,7 +3,7 @@ export const Select = ({
   value,
   label,
   choices,
-  multiple
+  multiple,
 }: {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   value: string | number;

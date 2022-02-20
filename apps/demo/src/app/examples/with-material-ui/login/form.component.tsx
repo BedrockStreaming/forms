@@ -11,17 +11,9 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
 } from '@bedrockstreaming/form-context';
-import {
-  Divider,
-  Paper,
-  Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  Box
-} from '@mui/material';
+import { Divider, Paper, Typography, Stepper, Step, StepLabel, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import { config } from '../../../login.config';
@@ -32,17 +24,17 @@ import { extraValidation } from '../../../extraValidation';
 const formId = 'login';
 const defaultValues = {
   email: '',
-  password: ''
+  password: '',
 };
 
 const {
-  schemas: { login: schema }
+  schemas: { login: schema },
 } = config;
 
 const useStyles = makeStyles({
   root: {
-    margin: '16px auto'
-  }
+    margin: '16px auto',
+  },
 });
 
 const Form = () => {
@@ -73,7 +65,7 @@ const Form = () => {
       <Box sx={{ m: 2 }}>
         <Box sx={{ p: 2 }}>
           <Stepper activeStep={currentStepIndex}>
-            {Object.keys(schema.steps).map((label, index) => {
+            {Object.keys(schema.steps).map((label) => {
               return (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
@@ -86,9 +78,7 @@ const Form = () => {
           formId={formId}
           dictionary={dictionary}
           schema={schema}
-          defaultValues={
-            _.isEmpty(previousValues) ? defaultValues : previousValues
-          }
+          defaultValues={_.isEmpty(previousValues) ? defaultValues : previousValues}
           onNextStep={handleNextStep}
           onSubmit={handleSubmit}
           currentStepIndex={currentStepIndex}

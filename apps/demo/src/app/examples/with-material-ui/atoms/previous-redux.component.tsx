@@ -1,18 +1,8 @@
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setPreviousStep,
-  getCurrentStepIndex
-} from '@bedrockstreaming/form-redux';
+import { setPreviousStep, getCurrentStepIndex } from '@bedrockstreaming/form-redux';
 
-export const Previous = ({
-  label,
-  formId,
-  ...props
-}: {
-  label: string;
-  formId: string;
-}) => {
+export const Previous = ({ label, formId, ...props }: { label: string; formId: string }) => {
   const dispatch = useDispatch();
 
   const shouldDisplayPrevious = useSelector(getCurrentStepIndex(formId)) !== 0;
@@ -22,13 +12,7 @@ export const Previous = ({
   };
 
   return shouldDisplayPrevious ? (
-    <Button
-      onClick={handlePreviousStep}
-      variant="outlined"
-      sx={{ margin: 1 }}
-      type="button"
-      {...props}
-    >
+    <Button onClick={handlePreviousStep} variant="outlined" sx={{ margin: 1 }} type="button" {...props}>
       {label}
     </Button>
   ) : null;

@@ -4,10 +4,9 @@ import { Validations } from '@bedrockstreaming/form-builder';
 import {
   checkRules,
   withValidationRuleList,
-  getValidationRulesHints
+  getValidationRulesHints,
 } from '@bedrockstreaming/form-validation-rule-list';
 import { TextField } from '@mui/material';
-import _ from 'lodash';
 
 import { BirthdateInput } from '@forms/examples/birthdate';
 
@@ -27,7 +26,7 @@ export const DateInput = ({
   setFieldValue,
   onChange,
   onBlur,
-  propRef
+  propRef,
 }: {
   'data-testid': string;
   errors: FieldErrors;
@@ -46,7 +45,7 @@ export const DateInput = ({
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
 
   const hasError = !!checkRules(value, rules).length;

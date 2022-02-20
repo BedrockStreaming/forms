@@ -1,14 +1,11 @@
 import { useCallback } from 'react';
-import {
-  updateFormData,
-  useFormsDispatch
-} from '@bedrockstreaming/form-context';
+import { updateFormData, useFormsDispatch } from '@bedrockstreaming/form-context';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 const transformFields = (x: any) => x;
 const formSubmit = (processedFields: FieldValues) => ({
   type: 'some_scope/SUBMIT',
-  payload: processedFields
+  payload: processedFields,
 });
 
 export const useSubmit = (formId: string): SubmitHandler<FieldValues> => {
@@ -22,7 +19,7 @@ export const useSubmit = (formId: string): SubmitHandler<FieldValues> => {
 
       return console.log(formSubmit(processedFields));
     },
-    [dispatch, formId]
+    [dispatch, formId],
   );
 
   return callback;

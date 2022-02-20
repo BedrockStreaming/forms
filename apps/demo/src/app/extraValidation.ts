@@ -6,8 +6,8 @@ import { ExtraValidation } from '@bedrockstreaming/form-builder';
 const config = {
   onboarding: {
     maxAge: 130,
-    minAge: 13
-  }
+    minAge: 13,
+  },
 };
 
 const maxAge = _.get(config, 'onboarding.maxAge');
@@ -27,15 +27,12 @@ export const extraValidation: ExtraValidation = {
 
     return !!(isDateValid(input) && hasTwoSeparators && isUserAgeBelowMaxAge);
   },
-  checkMaxLength: (value: number) => (input: string) =>
-    !!(input && input.length <= value),
-  checkMinLength: (value: number) => (input: string) =>
-    !!(input && input.length >= value),
+  checkMaxLength: (value: number) => (input: string) => !!(input && input.length <= value),
+  checkMinLength: (value: number) => (input: string) => !!(input && input.length >= value),
   checkForUpper: () => (input: string) => /[A-Z]+/g.test(input),
   checkForLower: () => (input: string) => /[a-z]+/g.test(input),
   checkForNumber: () => (input: string) => /\d+/g.test(input),
   isChecked: () => (value?: boolean) => !!value,
-  checkPattern: (value: string) => (input: string) =>
-    new RegExp(value).test(input),
-  isTrue: () => (input: boolean) => input === true
+  checkPattern: (value: string) => (input: string) => new RegExp(value).test(input),
+  isTrue: () => (input: boolean) => input === true,
 } as ExtraValidation;
