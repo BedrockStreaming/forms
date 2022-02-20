@@ -9,8 +9,8 @@ export const makeSchema = (extraValidationList: string[]): FormSchema => ({
         errorMessage: 'Invalid',
         label: 'extraValidation stringified object',
         name: 'extraValidationList',
-        multiline: true
-      }
+        multiline: true,
+      },
     },
     validationType: {
       id: 'validationType',
@@ -19,8 +19,8 @@ export const makeSchema = (extraValidationList: string[]): FormSchema => ({
         errorMessage: 'Invalid',
         label: 'extra validation type',
         name: 'validationType',
-        multiple: true
-      }
+        multiple: true,
+      },
     },
     validationValue: {
       id: 'validationValue',
@@ -28,8 +28,8 @@ export const makeSchema = (extraValidationList: string[]): FormSchema => ({
       meta: {
         errorMessage: 'Invalid',
         label: 'extra validation value',
-        name: 'validationValue'
-      }
+        name: 'validationValue',
+      },
     },
     validationErrorMessage: {
       id: 'validationErrorMessage',
@@ -37,38 +37,31 @@ export const makeSchema = (extraValidationList: string[]): FormSchema => ({
       meta: {
         errorMessage: 'Invalid',
         label: 'extra validation error message',
-        name: 'validationErrorMessage'
-      }
-    }
+        name: 'validationErrorMessage',
+      },
+    },
   },
   steps: {
     'step-0': {
       fieldsById: ['extraValidationList'],
       id: 'step-0',
       submit: {
-        label: 'Next'
-      }
+        label: 'Next',
+      },
     },
     ...extraValidationList.reduce(
       (acc, current, index) => ({
         ...acc,
         [`step-${index + 1}`]: {
           id: `step-${index + 1}`,
-          fieldsById: [
-            'validationType',
-            'validationValue',
-            'validationErrorMessage'
-          ],
+          fieldsById: ['validationType', 'validationValue', 'validationErrorMessage'],
           submit: {
-            label: `Configure ${current} extraValidation`
-          }
-        }
+            label: `Configure ${current} extraValidation`,
+          },
+        },
       }),
-      {} as FormSteps
-    )
+      {} as FormSteps,
+    ),
   },
-  stepsById: [
-    'step-0',
-    ...extraValidationList.map((_, index) => `step-${index + 1}`)
-  ]
+  stepsById: ['step-0', ...extraValidationList.map((_, index) => `step-${index + 1}`)],
 });

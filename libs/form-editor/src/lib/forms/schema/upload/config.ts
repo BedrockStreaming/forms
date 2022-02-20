@@ -9,18 +9,18 @@ export const schema: FormSchema = {
         errorMessage: 'Invalid',
         label: 'Copy paste your schema',
         name: 'schema',
-        multiline: true
-      }
-    }
+        multiline: true,
+      },
+    },
   },
   steps: {
     'step-0': {
       fieldsById: ['schema'],
       id: 'step-0',
       submit: {
-        label: 'Upload existing schema'
-      }
-    }
+        label: 'Upload existing schema',
+      },
+    },
   },
-  stepsById: ['step-0']
+  stepsById: ['step-0'],
 };

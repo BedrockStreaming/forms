@@ -6,19 +6,19 @@ export const useStyles = makeStyles({
     '& .validation-rule-ul': {
       display: 'flex',
       padding: 0,
-      listStyle: 'none'
+      listStyle: 'none',
     },
 
     '& .validation-rule-ul li': {
       margin: '4px',
-      fontSize: 'smaller'
+      fontSize: 'smaller',
     },
 
     '& .complete-li': {
-      color: '#4ed569'
+      color: '#4ed569',
     },
     '& .incomplete-li,.idle-li': {
-      color: '#da3b2b'
-    }
-  }
+      color: '#da3b2b',
+    },
+  },
 });

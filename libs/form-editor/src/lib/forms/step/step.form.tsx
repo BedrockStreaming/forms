@@ -3,27 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import {
-  Dictionary,
-  FormBuilder,
-  ExtraValidation
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, FormBuilder, ExtraValidation } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
 } from '@bedrockstreaming/form-redux';
 
-import {
-  Typography,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails
-} from '@mui/material';
+import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 import { getFields, getSchema } from '../../generator.selectors';
@@ -37,12 +27,12 @@ const defaultValues = {
   stepId: '',
   stepSubmitLabel: '',
   stepFieldsById: [],
-  stepPosition: 0
+  stepPosition: 0,
 };
 
 export const StepForm = ({
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
@@ -54,10 +44,7 @@ export const StepForm = ({
   const previousValues = useSelector(getFormData(formId));
   const fields = useSelector(getFields);
   const storedSchema = useSelector(getSchema);
-  const schema = useMemo(
-    () => makeSchema({ fields, schema: storedSchema }),
-    [fields, storedSchema]
-  );
+  const schema = useMemo(() => makeSchema({ fields, schema: storedSchema }), [fields, storedSchema]);
 
   useEffect(() => {
     dispatch(initForm(formId, schema));
@@ -88,9 +75,7 @@ export const StepForm = ({
             formId={formId}
             dictionary={dictionary}
             schema={schema}
-            defaultValues={
-              _.isEmpty(previousValues) ? defaultValues : previousValues
-            }
+            defaultValues={_.isEmpty(previousValues) ? defaultValues : previousValues}
             onNextStep={handleNextStep}
             onSubmit={handleSubmit}
             currentStepIndex={currentStepIndex}

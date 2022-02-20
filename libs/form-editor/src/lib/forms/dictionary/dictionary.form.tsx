@@ -1,17 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import _ from 'lodash';
 
 import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
 import { initForm } from '@bedrockstreaming/form-redux';
 
-import {
-  Typography,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails
-} from '@mui/material';
+import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 import { schema } from './config';
@@ -21,7 +14,7 @@ import { addDictionary } from '../../generator.actions';
 
 const formId = 'upload-dictionary';
 const defaultValues = {
-  dictionary: ''
+  dictionary: '',
 };
 
 export const DictionaryForm = ({ dictionary }: { dictionary: Dictionary }) => {

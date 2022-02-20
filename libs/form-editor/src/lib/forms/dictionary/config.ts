@@ -9,18 +9,18 @@ export const schema: FormSchema = {
         errorMessage: 'Invalid',
         label: 'Dictionary object',
         name: 'dictionary',
-        multiline: true
-      }
-    }
+        multiline: true,
+      },
+    },
   },
   steps: {
     'step-0': {
       fieldsById: ['dictionary'],
       id: 'step-0',
       submit: {
-        label: 'Upload dictionary'
-      }
-    }
+        label: 'Upload dictionary',
+      },
+    },
   },
-  stepsById: ['step-0']
+  stepsById: ['step-0'],
 };

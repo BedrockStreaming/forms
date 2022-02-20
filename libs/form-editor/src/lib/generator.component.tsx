@@ -11,7 +11,7 @@ import { PreviewForm } from './preview/preview.component';
 
 export const Generator = ({
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
@@ -23,24 +23,15 @@ export const Generator = ({
       </Typography>
       <Grid container spacing={2}>
         <Grid item sm={8} xs={12} md={6}>
-          <SchemaVisualizer
-            dictionary={dictionary}
-            extraValidation={extraValidation}
-          />
-          <PreviewForm
-            dictionary={dictionary}
-            extraValidation={extraValidation}
-          />
+          <SchemaVisualizer dictionary={dictionary} extraValidation={extraValidation} />
+          <PreviewForm dictionary={dictionary} extraValidation={extraValidation} />
         </Grid>
         <Grid item sm={4} md={6}>
           <SchemaForm dictionary={dictionary} />
           <DictionaryForm dictionary={dictionary} />
           <ExtraValidationForm dictionary={dictionary} />
           <StepForm dictionary={dictionary} extraValidation={extraValidation} />
-          <FieldForm
-            dictionary={dictionary}
-            extraValidation={extraValidation}
-          />
+          <FieldForm dictionary={dictionary} extraValidation={extraValidation} />
         </Grid>
       </Grid>
     </Box>

@@ -1,19 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import {
-  Dictionary,
-  FormBuilder,
-  ExtraValidation
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, FormBuilder, ExtraValidation } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
-  updateFormData
+  updateFormData,
 } from '@bedrockstreaming/form-redux';
 
 import { Typography, Box, Paper, Alert } from '@mui/material';
@@ -28,7 +23,7 @@ const formId = 'user-form';
 
 export const PreviewForm = ({
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
@@ -60,8 +55,7 @@ export const PreviewForm = ({
       </Typography>
       {userDictionary && (
         <Alert severity="warning">
-          You can't use your own dictionary online, use{' '}
-          <b>@bedrockstreaming/form-editor</b> in your project instead
+          You can't use your own dictionary online, use <b>@bedrockstreaming/form-editor</b> in your project instead
         </Alert>
       )}
 
