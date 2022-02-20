@@ -1,11 +1,15 @@
 {
   "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
+  "globals": {
+    "cy": true
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "react/jsx-filename-extension": "off"
+        "react/jsx-filename-extension": "off",
+        "import/no-extraneous-dependencies": "off"
       },
       "parserOptions": {
         "project": ["apps/docsite-e2e/tsconfig.*?.json"]

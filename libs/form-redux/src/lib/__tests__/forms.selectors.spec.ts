@@ -1,8 +1,4 @@
-import {
-  getFormData,
-  getCurrentStepIndex,
-  isLastStep
-} from '../forms.selectors';
+import { getFormData, getCurrentStepIndex, isLastStep } from '../forms.selectors';
 
 const formId = 'foo';
 const state = {
@@ -11,9 +7,9 @@ const state = {
       currentStepIndex: 666,
       data: 'bar',
       isLastStep: false,
-      stepsCount: 999
-    }
-  }
+      stepsCount: 999,
+    },
+  },
 };
 
 describe('forms.selectors', () => {
@@ -25,9 +21,7 @@ describe('forms.selectors', () => {
 
   describe('getCurrentStepIndex', () => {
     it('should retrieve currentStepIndex from state input', () => {
-      expect(getCurrentStepIndex(formId)(state)).toBe(
-        state.forms.foo.currentStepIndex
-      );
+      expect(getCurrentStepIndex(formId)(state)).toBe(state.forms.foo.currentStepIndex);
     });
   });
 

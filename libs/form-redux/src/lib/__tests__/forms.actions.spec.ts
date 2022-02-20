@@ -11,7 +11,7 @@ import {
   RESET_FORM,
   resetForm,
   setStep,
-  SET_STEP
+  SET_STEP,
 } from '../forms.actions';
 
 const formId = 'foo';
@@ -19,23 +19,23 @@ const CORRECT_SCHEMA: FormSchema = {
   fields: {
     foo: {
       id: 'foo',
-      type: 'text'
+      type: 'text',
     },
     bar: {
       id: 'bar',
-      type: 'checkbox'
-    }
+      type: 'checkbox',
+    },
   },
   steps: {
     one: {
       fieldsById: ['foo', 'bar'],
       id: 'one',
       submit: {
-        label: 'label'
-      }
-    }
+        label: 'label',
+      },
+    },
   },
-  stepsById: ['one']
+  stepsById: ['one'],
 };
 
 describe('forms.actions', () => {
@@ -44,7 +44,7 @@ describe('forms.actions', () => {
       expect(initForm(formId, CORRECT_SCHEMA)).toEqual({
         type: INIT_FORM,
         formId,
-        schema: CORRECT_SCHEMA
+        schema: CORRECT_SCHEMA,
       });
     });
   });
@@ -73,7 +73,7 @@ describe('forms.actions', () => {
       expect(updateFormData(formId, data)).toEqual({
         type: UPDATE_FORM_DATA,
         formId,
-        data
+        data,
       });
     });
   });
@@ -84,7 +84,7 @@ describe('forms.actions', () => {
       expect(setStep(formId, stepIndex)).toEqual({
         type: SET_STEP,
         formId,
-        stepIndex
+        stepIndex,
       });
     });
   });

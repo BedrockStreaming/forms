@@ -26,17 +26,6 @@
       "parserOptions": {
         "project": ["tsconfig.*?.json"]
       },
-      "extends": ["plugin:@nrwl/nx/typescript", "@bedrockstreaming/react/typescript", "prettier"],
-      "plugins": ["prettier"],
-      "rules": {
-        "prettier/prettier": "error"
-      }
-    },
-    {
-      "files": ["*.spec.ts", "*.spec.tsx"],
-      "parserOptions": {
-        "project": ["tsconfig.*?.json"]
-      },
       "extends": [
         "plugin:@nrwl/nx/typescript",
         "@bedrockstreaming/react/typescript",
@@ -45,7 +34,8 @@
       ],
       "plugins": ["prettier"],
       "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": "off"
       }
     },
     {
