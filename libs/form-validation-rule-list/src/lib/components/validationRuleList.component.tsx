@@ -21,16 +21,15 @@ const getItemsAndErrors = (rules: RuleObject[], value?: string | number) =>
     (acc, { check, key }) => {
       const result = check(value);
 
-      const nextErrors =
-        result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
+      const nextErrors = result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
       const nextItems = _.concat(acc.items, {
         key,
-        status: STATUS_BY_STATE[result]
+        status: STATUS_BY_STATE[result],
       });
 
       return { items: nextItems, errors: nextErrors };
     },
-    { errors: [], items: [] } as BaseRules
+    { errors: [], items: [] } as BaseRules,
   );
 
 export interface ValidationRuleListProps {

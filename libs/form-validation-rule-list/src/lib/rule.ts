@@ -24,20 +24,10 @@ export const rule = (key: string, check?: RuleCheck): RuleObject => ({
     }
 
     return check(value) ? COMPLETE_STATE : INCOMPLETE_STATE;
-  }
+  },
 });
 
-export type CheckRules = (
-  value: string | number,
-  rules: RuleObject[]
-) => string[];
+export type CheckRules = (value: string | number, rules: RuleObject[]) => string[];
 
-export const checkRules = (
-  value: string | number | undefined,
-  rules: RuleObject[]
-): string[] =>
-  rules.reduce(
-    (acc, { check, key }) =>
-      check(value) === INCOMPLETE_STATE ? _.concat(acc, key) : acc,
-    [] as string[]
-  );
+export const checkRules = (value: string | number | undefined, rules: RuleObject[]): string[] =>
+  rules.reduce((acc, { check, key }) => (check(value) === INCOMPLETE_STATE ? _.concat(acc, key) : acc), [] as string[]);

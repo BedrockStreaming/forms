@@ -9,11 +9,11 @@ export const INCOMPLETE_STATUS = 'incomplete';
 export const STATUS_BY_STATE = {
   [COMPLETE_STATE]: COMPLETE_STATUS,
   [INCOMPLETE_STATE]: INCOMPLETE_STATUS,
-  [DEFAULT_STATE]: DEFAULT_STATUS
+  [DEFAULT_STATE]: DEFAULT_STATUS,
 };
 
 export const DEFAULT_RULES_NAMES = {
   min: 'min',
   max: 'max',
-  required: 'required'
+  required: 'required',
 };

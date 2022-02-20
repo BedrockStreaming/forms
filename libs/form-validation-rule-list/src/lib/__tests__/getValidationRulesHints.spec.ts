@@ -9,16 +9,16 @@ describe('getValidationRulesHints', () => {
   const validation = {
     foo: {
       key: 'foo',
-      message: 'foo message'
+      message: 'foo message',
     },
     bar: {
       key: 'bar',
-      message: 'bar message'
+      message: 'bar message',
     },
     required: {
       key: 'required',
-      message: 'required message'
-    }
+      message: 'required message',
+    },
   };
 
   const config = {};
@@ -27,7 +27,7 @@ describe('getValidationRulesHints', () => {
 
   ruleMock.mockImplementation((x, y) => ({
     key: x,
-    check: y
+    check: y,
   }));
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('getValidationRulesHints', () => {
   it('should pick the custom rules only', () => {
     expect(getValidationRulesHints({ t, validation, errors: {} })).toEqual([
       { check: expect.any(Function), key: validation.foo.message },
-      { check: expect.any(Function), key: validation.bar.message }
+      { check: expect.any(Function), key: validation.bar.message },
     ]);
   });
 
@@ -46,7 +46,7 @@ describe('getValidationRulesHints', () => {
     const result = getValidationRulesHints({
       t,
       validation,
-      errors: { types: { foo: true } }
+      errors: { types: { foo: true } },
     });
     expect(result[0].check()).toBeFalsy();
     expect(result[1].check()).toBeTruthy();
