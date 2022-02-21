@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-import { And, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
-import { getConstant } from '../../support/constants';
+const { When, Given, Then, And } = require('cypress-cucumber-preprocessor/steps');
+const { getConstant } = require('../../support/constants');
 
 When('I reload the page', () => {
   cy.reload();

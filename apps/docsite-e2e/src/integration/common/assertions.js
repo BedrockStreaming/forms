@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-import { Then, And } from 'cypress-cucumber-preprocessor/steps';
-import { getConstant } from '../../support/constants';
+const { Then, And } = require('cypress-cucumber-preprocessor/steps');
+const { getConstant } = require('../../support/constants');
 
 Then('I should see {string}', (constantName) => {
   cy.get(getConstant(constantName)).should('be.visible');

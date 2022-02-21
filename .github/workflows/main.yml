@@ -26,7 +26,7 @@ jobs:
       - run: npx nx affected --target=lint --parallel --max-parallel=3
       - run: npx nx affected --target=build --parallel --max-parallel=3
       - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx affected --target=e2e --parallel --max-parallel=2 --headless
+      - run: npx nx affected --target=e2e --parallel --max-parallel=2
 
       # - name: Codecov upload
       #   uses: codecov/codecov-action@v2
@@ -55,7 +55,7 @@ jobs:
       - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3
       - run: npx nx affected --base=origin/master --target=build --parallel --max-parallel=3
       - run: npx nx affected --base=origin/master --target=test --parallel --max-parallel=2 --coverage --outputFile=coverage-final.json --json
-      - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2 --headless
+      - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2
 
       # - name: Codecov upload
       #   uses: codecov/codecov-action@v2
