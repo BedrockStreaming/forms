@@ -26,13 +26,10 @@
       "pragma": "React",
       "version": "detect"
     },
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
-    },
-    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+    "import/extensions": [".js", ".jsx"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+        "extensions": [".js", ".jsx", ".json"]
       }
     }
   }
