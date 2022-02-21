@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-validation-rule-list",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "dependencies": {},
   "peerDependencies": {
     "react": "17.0.2",
