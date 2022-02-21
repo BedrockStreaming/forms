@@ -16,7 +16,7 @@ export interface FormAction {
   type: string;
   formId: string;
   data?: {
-    [key: string]: unknown
+    [key: string]: unknown;
   };
   [key: string]: unknown;
 }

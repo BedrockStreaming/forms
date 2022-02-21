@@ -1,9 +1,9 @@
-import { useRef, useEffect, memo } from 'react';
+import React, { useRef, useEffect, memo } from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 import { withValidationRuleList } from '@bedrockstreaming/form-validation-rule-list';
 
-import { TextFieldRaw } from './textfield.component';
+import { TextFieldRaw } from './textfield.component.jsx';
 
 const ErrorMessage = styled.p`
   color: '#c0c';
@@ -68,6 +68,4 @@ ValidatedTextFieldComponent.defaultProps = {
 
 ValidatedTextFieldComponent.displayName = 'ValidatedTextField';
 
-export const ValidatedTextField = withValidationRuleList(
-  memo(ValidatedTextFieldComponent)
-);
+export const ValidatedTextField = withValidationRuleList(memo(ValidatedTextFieldComponent));

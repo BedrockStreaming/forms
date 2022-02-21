@@ -1,11 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 
-import {
-  formatBirthdate,
-  getBirthdateSeparator,
-  shortDateDisplay
-} from './birthdate.utils';
+import { formatBirthdate, getBirthdateSeparator, shortDateDisplay } from './birthdate.utils';
 
 const separator = getBirthdateSeparator(shortDateDisplay);
 const MAX_INPUT_LENGTH = 10;
@@ -50,14 +46,10 @@ export const BirthdateInput = ({
 
     const isDeleting = previousInputValue.current.length >= eventValue.length;
 
-    const shouldFormatInput =
-      !isDeleting || eventValue.length === MAX_INPUT_LENGTH;
+    const shouldFormatInput = !isDeleting || eventValue.length === MAX_INPUT_LENGTH;
 
     if (shouldFormatInput) {
-      const newBirthdateInput =
-        eventValue[eventValue.length] === separator
-          ? eventValue
-          : formatBirthdate(eventValue);
+      const newBirthdateInput = eventValue[eventValue.length] === separator ? eventValue : formatBirthdate(eventValue);
       setFieldValue(id, formatBirthdate(newBirthdateInput));
     }
 

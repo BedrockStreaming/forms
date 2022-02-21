@@ -2,14 +2,14 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateFormData } from '@bedrockstreaming/form-redux';
 
-const transformFields = (x) => x;
-const formSubmit = (processedFields) => ({
+const transformFields = (x: any) => x;
+const formSubmit = (processedFields: any) => ({
   type: 'some_scope/SUBMIT',
-  payload: processedFields
+  payload: processedFields,
 });
 const onExit = () => ({ type: 'some_scope/EXIT' });
 
-export const useSubmit = (formId) => {
+export const useSubmit = (formId: string) => {
   const dispatch = useDispatch();
 
   const callback = useCallback(
@@ -20,7 +20,7 @@ export const useSubmit = (formId) => {
 
       return dispatch(formSubmit(processedFields));
     },
-    [dispatch, formId]
+    [dispatch, formId],
   );
 
   const cleanCallback = useCallback(() => dispatch(onExit()), [dispatch]);
