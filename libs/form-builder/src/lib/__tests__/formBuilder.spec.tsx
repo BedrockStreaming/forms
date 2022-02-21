@@ -3,38 +3,26 @@ import { FormBuilder, FormBuilderProps } from '../formBuilder';
 import { FormSchema } from '../types';
 import { FormBuilderError } from '../utils/formBuilderError.utils';
 
-const makeStep = ({
-  fieldsById,
-  stepId,
-  label
-}: {
-  fieldsById: string[];
-  stepId: string;
-  label: string;
-}) => ({
+const makeStep = ({ fieldsById, stepId, label }: { fieldsById: string[]; stepId: string; label: string }) => ({
   [stepId]: {
     fieldsById,
     id: stepId,
     submit: {
-      label
-    }
-  }
+      label,
+    },
+  },
 });
 
 describe('<FormBuilder />', () => {
-  let wrapper;
   const getWrapper = async (props: FormBuilderProps) => {
     await act(async () => {
-      wrapper = await render(<FormBuilder {...props} />);
+      await render(<FormBuilder {...props} />);
     });
   };
 
-  afterEach(() => {
-    wrapper = null;
-  });
-
   const onSubmit = jest.fn();
 
+  const formId = 'formId';
   const fieldOneId = '1';
   const fieldTwoId = '2';
   const fieldThreeId = '3';
@@ -45,38 +33,34 @@ describe('<FormBuilder />', () => {
   const stepOne = makeStep({
     fieldsById: [fieldOneId, fieldTwoId],
     label: 'stepOne',
-    stepId: stepOneId
+    stepId: stepOneId,
   });
   const stepTwo = makeStep({
     fieldsById: [fieldThreeId],
     label: 'stepTwo',
-    stepId: stepTwoId
+    stepId: stepTwoId,
   });
-
-  // Fields length is the length of our custom fields + 1 for the submit field which is always here
-  const stepOneLength = stepOne[stepOneId].fieldsById.length + 1;
-  const stepTwoLength = stepTwo[stepTwoId].fieldsById.length + 1;
 
   const CORRECT_SCHEMA: FormSchema = {
     fields: {
       [fieldOneId]: {
         id: fieldOneId,
         meta: { label: 'bar' },
-        type: 'text'
+        type: 'text',
       },
       [fieldTwoId]: {
         id: fieldTwoId,
         meta: { label: 'foo', validation: { required: true, maxLength: 20 } },
-        type: 'checkbox'
+        type: 'checkbox',
       },
       [fieldThreeId]: {
         id: fieldThreeId,
         meta: { label: 'baz' },
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     steps: { ...stepOne, ...stepTwo },
-    stepsById: [stepOneId, stepTwoId]
+    stepsById: [stepOneId, stepTwoId],
   };
   // aria-checked="true"
   const CORRECT_DICTIONARY = {
@@ -86,69 +70,58 @@ describe('<FormBuilder />', () => {
         <input type="text" placeholder="Test" />
       </fieldset>
     ),
-    checkbox: ({
-      label,
-      value = false
-    }: {
-      label: string;
-      value?: boolean;
-    }) => (
+    checkbox: ({ label, value = false }: { label: string; value?: boolean }) => (
       <fieldset>
         <label>{label}</label>
         <input type="checkbox" aria-checked={!!value} />
       </fieldset>
     ),
-    submit: ({ label }: { label: string }) => (
-      <button type="submit">{label}</button>
-    )
+    submit: ({ label }: { label: string }) => <button type="submit">{label}</button>,
   };
 
   describe('with good props', () => {
     it('should render the first step of the form', async () => {
       await getWrapper({
+        formId,
         schema: CORRECT_SCHEMA,
         dictionary: CORRECT_DICTIONARY,
         onSubmit,
-        currentStepIndex: 0
+        currentStepIndex: 0,
       });
 
-      expect(screen.getByRole('form').children.length).toBe(3);
+      expect(screen.getByRole('form').children).toHaveLength(3);
       expect(screen.getAllByRole('checkbox')).toHaveLength(1);
       expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepOne[stepOneId].submit.label
-      );
+      expect(screen.getByRole('button').innerHTML).toBe(stepOne[stepOneId].submit.label);
     });
 
     it('should render the second step of the form', async () => {
       await getWrapper({
+        formId,
         schema: CORRECT_SCHEMA,
         dictionary: CORRECT_DICTIONARY,
         onSubmit,
-        currentStepIndex: 1
+        currentStepIndex: 1,
       });
 
-      expect(screen.getByRole('form').children.length).toBe(2);
+      expect(screen.getByRole('form').children).toHaveLength(2);
       expect(screen.queryByRole('checkbox')).toBeNull();
       expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepTwo[stepTwoId].submit.label
-      );
+      expect(screen.getByRole('button').innerHTML).toBe(stepTwo[stepTwoId].submit.label);
     });
 
     it('should render step one if we pass no currentStepIndex', async () => {
       await getWrapper({
+        formId,
         schema: CORRECT_SCHEMA,
         dictionary: CORRECT_DICTIONARY,
-        onSubmit
+        onSubmit,
       });
 
-      expect(screen.getByRole('form').children.length).toBe(3);
+      expect(screen.getByRole('form').children).toHaveLength(3);
       expect(screen.getAllByRole('checkbox')).toHaveLength(1);
       expect(screen.getAllByRole('textbox')).toHaveLength(1);
-      expect(screen.getByRole('button').innerHTML).toBe(
-        stepOne[stepOneId].submit.label
-      );
+      expect(screen.getByRole('button').innerHTML).toBe(stepOne[stepOneId].submit.label);
     });
   });
 
@@ -160,30 +133,31 @@ describe('<FormBuilder />', () => {
         fields: {
           [fieldOneId]: {
             id: fieldOneId,
-            type: 'iDontExistIndictionary'
-          }
+            type: 'iDontExistInDictionary',
+          },
         },
         fieldsById: [fieldOneId],
         steps: { ...stepOne },
-        stepsById: [stepOneId]
+        stepsById: [stepOneId],
       };
-      // Does not contain the field type 'iDontExistIndictionary'
+      // Does not contain the field type 'iDontExistInDictionary'
       const dictionary = {};
-      let _error;
+      let error;
 
       try {
         await getWrapper({
+          formId,
           schema,
           dictionary,
           onSubmit,
           isLastStep: true,
-          debug: true
+          debug: true,
         });
-      } catch (error) {
-        _error = error;
-        expect(error).toBeInstanceOf(FormBuilderError);
+      } catch (err) {
+        error = err;
+        expect(err).toBeInstanceOf(FormBuilderError);
       }
-      expect(_error).toBeDefined();
+      expect(error).toBeDefined();
       spy.mockRestore();
     });
   });

@@ -12,15 +12,11 @@ describe('<FormField />', () => {
   beforeEach(() => {
     baseProps = {
       dictionary: {
-        [SUBMIT_FIELD_TYPE]: ({
-          id,
-          label,
-          onClick
-        }: Partial<FormFieldProps>) => (
+        [SUBMIT_FIELD_TYPE]: ({ id, label, onClick }: Partial<FormFieldProps>) => (
           <button type="submit" onClick={onClick} id={id}>
             {label}
           </button>
-        )
+        ),
       },
       isDirty: false,
       isValid: true,
@@ -29,7 +25,7 @@ describe('<FormField />', () => {
       isLastStep: true,
       isFormStepValid: true,
       submitLabel: 'Click',
-      onNextStep: jest.fn()
+      onNextStep: jest.fn(),
     };
   });
 

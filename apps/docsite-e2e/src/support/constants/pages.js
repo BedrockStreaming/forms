@@ -1,4 +1,4 @@
 export default {
   home: '/',
-  docs: '/docs'
+  docs: '/docs',
 };

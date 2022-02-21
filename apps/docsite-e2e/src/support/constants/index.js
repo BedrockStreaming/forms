@@ -6,7 +6,7 @@ const constants = {
   ...pages,
 };
 
-export const getConstant = constantName => {
+export const getConstant = (constantName) => {
   const constantValue = constants[constantName];
 
   if (!constantValue) {

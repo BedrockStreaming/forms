@@ -8,12 +8,7 @@ export interface ShouldDisplayField {
   dependsOn: FormField['dependsOn'];
 }
 
-export const shouldDisplayField = ({
-  dependsOn,
-  getValues,
-  extraValidation,
-  errors
-}: ShouldDisplayField) => {
+export const shouldDisplayField = ({ dependsOn, getValues, extraValidation, errors }: ShouldDisplayField) => {
   if (!dependsOn) return true;
 
   const dependsOnConditions = [] as boolean[];
@@ -21,9 +16,7 @@ export const shouldDisplayField = ({
   dependsOn.forEach((dependRule) => {
     // Validate at field level on string
     if (typeof dependRule === 'string') {
-      return dependsOnConditions.push(
-        !!getValues(dependRule) && !errors[dependRule]
-      );
+      return dependsOnConditions.push(!!getValues(dependRule) && !errors[dependRule]);
     }
     const fieldValue = getValues(dependRule.fieldId);
     const fieldError = errors[dependRule.fieldId];
@@ -42,9 +35,7 @@ export const shouldDisplayField = ({
       return dependsOnConditions.push(!!fieldValue && !fieldError);
     }
 
-    return dependsOnConditions.push(
-      !!validateMethod(dependRule.value)(fieldValue) && !fieldError
-    );
+    return dependsOnConditions.push(!!validateMethod(dependRule.value)(fieldValue) && !fieldError);
   });
 
   return dependsOnConditions.filter((value) => !value).length === 0;
@@ -63,7 +54,7 @@ export const filterDependentsFieldsById = ({
   fields,
   getValues,
   extraValidation,
-  errors
+  errors,
 }: FilterDependentsFieldsById) => {
   return fieldsById.reduce((acc, fieldId) => {
     const { dependsOn } = fields[fieldId];
@@ -75,7 +66,7 @@ export const filterDependentsFieldsById = ({
       dependsOn,
       getValues,
       extraValidation,
-      errors
+      errors,
     })
       ? [...acc, fieldId]
       : acc;

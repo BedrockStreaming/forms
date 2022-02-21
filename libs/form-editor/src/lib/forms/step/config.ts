@@ -1,37 +1,31 @@
 import { FormFields, FormSchema } from '@bedrockstreaming/form-builder';
 
-export const makeSchema = ({
-  fields,
-  schema
-}: {
-  fields: FormFields;
-  schema: FormSchema;
-}): FormSchema => ({
+export const makeSchema = ({ fields, schema }: { fields: FormFields; schema: FormSchema }): FormSchema => ({
   fields: {
     stepId: {
       id: 'stepId',
       meta: {
         errorMessage: 'Invalid',
         label: 'the step id',
-        name: 'stepId'
+        name: 'stepId',
       },
       type: 'text',
       validation: {
         required: {
           key: 'required',
           message: 'Required field',
-          value: true
-        }
-      }
+          value: true,
+        },
+      },
     },
     stepSubmitLabel: {
       id: 'stepSubmitLabel',
       meta: {
         errorMessage: 'Invalid',
         label: 'the step submit label',
-        name: 'stepSubmitLabel'
+        name: 'stepSubmitLabel',
       },
-      type: 'text'
+      type: 'text',
     },
     stepFieldsById: {
       id: 'stepFieldsById',
@@ -41,9 +35,9 @@ export const makeSchema = ({
         label: 'stepFieldsById',
         name: 'stepFieldsById',
         multiple: true,
-        choices: Object.keys(fields)
+        choices: Object.keys(fields),
       },
-      defaultValue: []
+      defaultValue: [],
     },
     stepPosition: {
       id: 'stepPosition',
@@ -52,30 +46,25 @@ export const makeSchema = ({
         errorMessage: 'Invalid',
         label: 'stepPosition',
         name: 'stepPosition',
-        type: 'number'
+        type: 'number',
       },
       validation: {
         max: {
           message: 'max number exceeded',
           value: schema.stepsById.length,
-          key: 'max'
-        }
-      }
-    }
+          key: 'max',
+        },
+      },
+    },
   },
   steps: {
     'add-step-0': {
-      fieldsById: [
-        'stepId',
-        'stepFieldsById',
-        'stepSubmitLabel',
-        'stepPosition'
-      ],
+      fieldsById: ['stepId', 'stepFieldsById', 'stepSubmitLabel', 'stepPosition'],
       id: 'add-step-0',
       submit: {
-        label: 'Add step'
-      }
-    }
+        label: 'Add step',
+      },
+    },
   },
-  stepsById: ['add-step-0']
+  stepsById: ['add-step-0'],
 });

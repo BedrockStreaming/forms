@@ -7,5 +7,5 @@ export const dictionary = {
   text: Text,
   password: Password,
   date: DateInput,
-  submit: Submit
+  submit: Submit,
 };

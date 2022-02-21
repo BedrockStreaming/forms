@@ -5,5 +5,5 @@ import { reducer as generator } from '@bedrockstreaming/form-editor';
 export const createRootReducer = () =>
   combineReducers({
     forms: reducer,
-    generator
+    generator,
   });

@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "import"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -23,13 +23,47 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "parserOptions": {
+        "project": ["tsconfig.*?.json"]
+      },
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "@bedrockstreaming/react/typescript",
+        "@bedrockstreaming/jest",
+        "prettier"
+      ],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {}
+      "extends": ["plugin:@nrwl/nx/javascript", "@bedrockstreaming/react", "@bedrockstreaming/jest", "prettier"],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": "off",
+        "import/prefer-default-export": "off",
+        "react/prop-types": "off",
+        "react/jsx-props-no-spreading": "off"
+      }
     }
-  ]
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+      }
+    }
+  }
 }

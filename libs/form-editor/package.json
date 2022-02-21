@@ -1,4 +1,17 @@
 {
   "name": "@bedrockstreaming/form-editor",
-  "version": "0.8.1"
+  "version": "0.8.1",
+  "peerDependencies": {
+    "@bedrockstreaming/form-builder": "0.8.1",
+    "lodash": "4.17.21",
+    "react": "17.0.2",
+    "react-hook-form": "7.27.0",
+    "@hookform/devtools": "4.0.2",
+    "react-redux": "7.2.6",
+    "@bedrockstreaming/form-redux": "0.8.1",
+    "@mui/material": "5.2.2",
+    "@mui/icons-material": "5.2.0",
+    "@mui/styles": "5.2.2",
+    "classnames": "2.3.1"
+  }
 }

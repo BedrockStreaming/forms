@@ -8,11 +8,12 @@ import { Button } from '@mui/material';
 import LiveExample from './live-example.component';
 import styles from './styles.module.css';
 
-const RefLink = React.forwardRef((props, ref) => <Link {...props} />);
+const RefLink = React.forwardRef((props) => <Link {...props} />);
 
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+
   return (
     <Layout
       title={`${siteConfig.title}`}

@@ -1,11 +1,5 @@
 import { FormSchema } from '@bedrockstreaming/form-builder';
-import {
-  ADD_FIELD,
-  ADD_STEP,
-  ADD_SCHEMA,
-  ADD_DICTIONARY,
-  ADD_EXTRA_VALIDATION
-} from './generator.actions';
+import { ADD_FIELD, ADD_STEP, ADD_SCHEMA, ADD_DICTIONARY, ADD_EXTRA_VALIDATION } from './generator.actions';
 
 const DEFAULT_OBJECT = {};
 
@@ -20,8 +14,8 @@ export const initialState = {
   schema: {
     fields: {},
     steps: {},
-    stepsById: []
-  }
+    stepsById: [],
+  },
 } as GeneratorState;
 
 const arrayInsertAtPosition = (arr: any[], index: number, newItem: any) => [
@@ -30,17 +24,14 @@ const arrayInsertAtPosition = (arr: any[], index: number, newItem: any) => [
   // inserted item
   newItem,
   // part of the array after the specified index
-  ...arr.slice(index)
+  ...arr.slice(index),
 ];
 
-export const reducer = (
-  state = initialState,
-  action: { type: string; payload: any }
-) => {
+export const reducer = (state = initialState, action: { type: string; payload: any }) => {
   switch (action.type) {
     case ADD_FIELD: {
       const {
-        schema: { steps, fields }
+        schema: { steps, fields },
       } = state;
       const {
         positionInStep,
@@ -48,14 +39,10 @@ export const reducer = (
         fieldId: id,
         fieldType: type,
         fieldDefaultValue: defaultValue,
-        fieldValidation: validation
+        fieldValidation: validation,
       } = action.payload;
 
-      const fieldsById = arrayInsertAtPosition(
-        steps[stepId].fieldsById,
-        positionInStep,
-        id
-      );
+      const fieldsById = arrayInsertAtPosition(steps[stepId].fieldsById, positionInStep, id);
 
       return {
         ...state,
@@ -69,25 +56,20 @@ export const reducer = (
               name: id,
               defaultValue,
               validation,
-              meta: DEFAULT_OBJECT
-            }
+              meta: DEFAULT_OBJECT,
+            },
           },
-          steps: { ...steps, [stepId]: { ...steps[stepId], fieldsById } }
-        }
+          steps: { ...steps, [stepId]: { ...steps[stepId], fieldsById } },
+        },
       };
     }
     case ADD_STEP: {
       const {
-        schema: { steps, stepsById }
+        schema: { steps, stepsById },
       } = state;
-      const { stepId, stepSubmitLabel, stepFieldsById, stepPosition } =
-        action.payload;
+      const { stepId, stepSubmitLabel, stepFieldsById, stepPosition } = action.payload;
 
-      const newStepsById = arrayInsertAtPosition(
-        stepsById,
-        stepPosition,
-        stepId
-      );
+      const newStepsById = arrayInsertAtPosition(stepsById, stepPosition, stepId);
 
       return {
         ...state,
@@ -98,11 +80,11 @@ export const reducer = (
             [stepId]: {
               id: stepId,
               fieldsById: stepFieldsById,
-              submit: { label: stepSubmitLabel }
-            }
+              submit: { label: stepSubmitLabel },
+            },
           },
-          stepsById: newStepsById
-        }
+          stepsById: newStepsById,
+        },
       };
     }
     case ADD_SCHEMA: {

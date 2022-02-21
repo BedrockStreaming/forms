@@ -9,7 +9,7 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
 } from '@bedrockstreaming/form-redux';
 import _ from 'lodash';
 
@@ -24,11 +24,11 @@ const defaultValues = {
   firstName: '',
   lastName: '',
   birthdate: '',
-  password: ''
+  password: '',
 };
 
 const {
-  schemas: { register: schema }
+  schemas: { register: schema },
 } = config;
 
 const Container = styled.div`
@@ -68,9 +68,9 @@ const Form = () => {
 
   useEffect(
     () => () => {
-      cleanUseSubmit();
+      cleanUseSubmit(null);
     },
-    [cleanUseSubmit]
+    [cleanUseSubmit],
   );
   return (
     <Container>
@@ -83,9 +83,7 @@ const Form = () => {
         currentStepIndex={currentStepIndex}
         isLastStep={isLastStep}
         extraValidation={extraValidation}
-        defaultValues={
-          _.isEmpty(previousValues) ? defaultValues : previousValues
-        }
+        defaultValues={_.isEmpty(previousValues) ? defaultValues : previousValues}
       />
     </Container>
   );

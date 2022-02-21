@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  UseFormGetValues,
-  UnpackNestedValue,
-  FieldValues
-} from 'react-hook-form';
+import { UseFormGetValues, UnpackNestedValue, FieldValues } from 'react-hook-form';
 
 import { SUBMIT_FIELD_TYPE } from '../constants';
 import { FormField } from './formField.component';
@@ -28,14 +24,14 @@ export function SubmitField({
   getValues,
   isLastStep,
   submitLabel,
-  onNextStep
+  onNextStep,
 }: SubmitFieldProps) {
   const handleNextStep = React.useCallback(
     (event) => {
       event.preventDefault();
       onNextStep(getValues());
     },
-    [onNextStep, getValues]
+    [onNextStep, getValues],
   );
 
   return (

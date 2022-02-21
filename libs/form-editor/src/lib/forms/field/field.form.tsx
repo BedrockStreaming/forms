@@ -3,27 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 
 import { FieldValues } from 'react-hook-form';
-import {
-  Dictionary,
-  FormBuilder,
-  ExtraValidation
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, FormBuilder, ExtraValidation } from '@bedrockstreaming/form-builder';
 import {
   getCurrentStepIndex,
   isLastStep as isLastStepSelector,
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
 } from '@bedrockstreaming/form-redux';
 
-import {
-  Typography,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails
-} from '@mui/material';
+import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 import { makeSchema } from './config';
@@ -40,12 +30,12 @@ const defaultValues = {
   fieldType: '',
   fieldDefaultValue: '',
   stepId: '',
-  positionInStep: 0
+  positionInStep: 0,
 };
 
 export const FieldForm = ({
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   dictionary: Dictionary;
   extraValidation: ExtraValidation;
@@ -58,7 +48,7 @@ export const FieldForm = ({
   const storedSchema = useSelector(getSchema);
   const schema = useMemo(
     () => makeSchema({ dictionary, extraValidation, schema: storedSchema }),
-    [storedSchema, dictionary, extraValidation]
+    [storedSchema, dictionary, extraValidation],
   );
 
   useEffect(() => {
@@ -90,9 +80,7 @@ export const FieldForm = ({
             formId={formId}
             dictionary={dictionary}
             schema={schema}
-            defaultValues={
-              _.isEmpty(previousValues) ? defaultValues : previousValues
-            }
+            defaultValues={_.isEmpty(previousValues) ? defaultValues : previousValues}
             onNextStep={handleNextStep}
             onSubmit={handleSubmit}
             currentStepIndex={currentStepIndex}

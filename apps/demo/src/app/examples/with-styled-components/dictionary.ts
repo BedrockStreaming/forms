@@ -11,5 +11,5 @@ export const dictionary = {
   date: DateInput,
   checkbox: Checkbox,
   select: Select,
-  submit: Submit
+  submit: Submit,
 };

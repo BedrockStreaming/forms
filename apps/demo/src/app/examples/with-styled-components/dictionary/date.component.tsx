@@ -1,9 +1,6 @@
 import { FieldErrors, Path, FieldValues } from 'react-hook-form';
 import { Validations } from '@bedrockstreaming/form-builder';
-import {
-  getValidationRulesHints,
-  checkRules
-} from '@bedrockstreaming/form-validation-rule-list';
+import { getValidationRulesHints, checkRules } from '@bedrockstreaming/form-validation-rule-list';
 
 import { ValidatedTextField } from '@forms/examples/styled-inputs';
 import { BirthdateInput } from '@forms/examples/birthdate';
@@ -29,7 +26,7 @@ export const DateInput = ({
 }) => {
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
   const hasError = !!checkRules(props.value, rules).length;
   const fieldError = errors && errors.type;

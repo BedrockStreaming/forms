@@ -17,15 +17,15 @@ describe('useIsFormStepValid', () => {
     errors: {},
     dirtyFields: {},
     schema: CORRECT_SCHEMA,
-    currentStepIndex: 0
+    currentStepIndex: 0,
   };
 
   it('should return false if isValidating is passed to true', () => {
     const { result } = renderHook(() =>
       useIsFormStepValid({
         ...baseParams,
-        isValidating: true
-      })
+        isValidating: true,
+      }),
     );
 
     expect(result.current).toBe(false);
@@ -34,9 +34,7 @@ describe('useIsFormStepValid', () => {
   });
 
   it('should return false if isLastStep is passed to true', () => {
-    const { result } = renderHook(() =>
-      useIsFormStepValid({ ...baseParams, isLastStep: true })
-    );
+    const { result } = renderHook(() => useIsFormStepValid({ ...baseParams, isLastStep: true }));
     expect(result.current).toBe(false);
     expect(getFieldsToCheckByStep).not.toBeCalled();
     expect(isStepInError).not.toBeCalled();
@@ -47,8 +45,8 @@ describe('useIsFormStepValid', () => {
       useIsFormStepValid({
         ...baseParams,
         isLastStep: true,
-        isValidating: true
-      })
+        isValidating: true,
+      }),
     );
     expect(result.current).toBe(false);
     expect(getFieldsToCheckByStep).not.toBeCalled();

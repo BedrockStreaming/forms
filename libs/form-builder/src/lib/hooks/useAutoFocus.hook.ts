@@ -9,19 +9,10 @@ export interface UseAutoFocusArgs {
   setFocus: UseFormSetFocus<FieldValues>;
 }
 
-export const useAutoFocus = ({
-  currentStepIndex,
-  schema,
-  setFocus
-}: UseAutoFocusArgs) => {
+export const useAutoFocus = ({ currentStepIndex, schema, setFocus }: UseAutoFocusArgs) => {
   useEffect(() => {
     const currentStepId = _.get(schema, `stepsById.${currentStepIndex}`);
-    const firstFieldIdInStep = _.get(schema, [
-      'steps',
-      currentStepId,
-      'fieldsById',
-      0
-    ]);
+    const firstFieldIdInStep = _.get(schema, ['steps', currentStepId, 'fieldsById', 0]);
 
     try {
       setFocus(firstFieldIdInStep);

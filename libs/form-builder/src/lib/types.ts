@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  Path,
-  PathValue,
-  FieldValues,
-  FieldNamesMarkedBoolean,
-  UnpackNestedValue
-} from 'react-hook-form';
+import { Path, PathValue, FieldValues, FieldNamesMarkedBoolean, UnpackNestedValue } from 'react-hook-form';
 
 export type DirtyFields = FieldNamesMarkedBoolean<FieldValues>;
 
@@ -37,13 +31,7 @@ export interface FormField {
   meta?: FormMeta | undefined;
   dependsOn?: Array<string | DependsOnObject>;
   validation?: Validations | undefined;
-  defaultValue?:
-    | UnpackNestedValue<PathValue<unknown, never>>
-    | string
-    | number
-    | string[]
-    | number[]
-    | Path<string>;
+  defaultValue?: UnpackNestedValue<PathValue<unknown, never>> | string | number | string[] | number[] | Path<string>;
 }
 
 export interface FormFields {
@@ -74,7 +62,5 @@ export interface Dictionary {
 }
 
 export interface ExtraValidation {
-  [key: string]: (
-    value?: any
-  ) => (input?: any) => boolean | string | Promise<boolean | string>;
+  [key: string]: (value?: any) => (input?: any) => boolean | string | Promise<boolean | string>;
 }

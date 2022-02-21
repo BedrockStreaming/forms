@@ -11,7 +11,7 @@ import { UpdateModal } from './update/updateModal.component';
 
 export const SchemaVisualizer = ({
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   dictionary: Dictionary;
   extraValidation: ExtraValidation;

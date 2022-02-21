@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  FormBuilder,
-  FormSchema,
-  Dictionary,
-  ExtraValidation
-} from '@bedrockstreaming/form-builder';
+import { FormBuilder, FormSchema, Dictionary, ExtraValidation } from '@bedrockstreaming/form-builder';
 import { Typography, Modal, Box } from '@mui/material';
 
 import { updateSchema } from '../../../generator.actions';
@@ -20,7 +15,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4
+  p: 4,
 };
 
 const formId = 'update-form';
@@ -32,7 +27,7 @@ export function UpdateModal({
   text,
   storedSchema,
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   open: boolean;
   handleOpen: () => void;
@@ -46,7 +41,7 @@ export function UpdateModal({
     text,
     schema: storedSchema,
     dictionary,
-    extraValidation
+    extraValidation,
   });
 
   const [onSubmit] = useSubmit(formId, updateSchema);
@@ -74,7 +69,7 @@ export function UpdateModal({
                   text,
                   schema: storedSchema,
                   dictionary,
-                  extraValidation
+                  extraValidation,
                 }) || defaultSchema
               }
             />

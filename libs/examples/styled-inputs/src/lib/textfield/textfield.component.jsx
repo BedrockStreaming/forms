@@ -1,5 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+// eslint-disable-next-line no-use-before-define
+import React from 'react';
 import _ from 'lodash';
 import styled, { css } from 'styled-components';
 
@@ -30,11 +30,9 @@ const Input = styled.input`
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding: ${VERTICAL_SPACING}px ${7 * VERTICAL_SPACING}px ${VERTICAL_SPACING}px
-    0;
+  padding: ${VERTICAL_SPACING}px ${7 * VERTICAL_SPACING}px ${VERTICAL_SPACING}px 0;
   border: none;
-  border-bottom: ${(props) =>
-    props.readOnly ? 'none' : `1px solid ${lineInactiveColor}`};
+  border-bottom: ${(props) => (props.readOnly ? 'none' : `1px solid ${lineInactiveColor}`)};
   appearance: none;
   border-radius: 0;
   background-color: transparent;
@@ -116,10 +114,6 @@ const OptionalText = styled.p`
   color: ${textColor};
 `;
 
-Label.propTypes = {
-  up: PropTypes.bool.isRequired
-};
-
 export const TextFieldComponent = ({
   propRef,
   type,
@@ -174,34 +168,7 @@ TextFieldComponent.defaultProps = {
   onChange: _.noop,
   onFocus: _.noop,
   onBlur: _.noop,
-  readOnly: false
-};
-
-TextFieldComponent.propTypes = {
-  /** Ref */
-  propRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  /** Input change handler */
-  onChange: PropTypes.func,
-  /** Input on focus handler */
-  onFocus: PropTypes.func,
-  /** Input on blur handler */
-  onBlur: PropTypes.func,
-  /** Input's name */
-  name: PropTypes.string,
-  /** Input's type */
-  type: PropTypes.oneOf(['text', 'email', 'password', 'tel']),
-  /** Input's value */
-  value: PropTypes.string,
-  /** Cursor's value */
-  disabled: PropTypes.bool,
-  /** Optional text */
-  optionalText: PropTypes.string,
-  /** If `true`, the field cannot be edited. */
-  readOnly: PropTypes.bool,
-  /** Label */
-  label: PropTypes.string,
-  /** Required */
-  required: PropTypes.bool
+  readOnly: false,
 };
 
 TextFieldComponent.displayName = 'TextField';

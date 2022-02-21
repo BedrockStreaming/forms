@@ -2,7 +2,6 @@ export const Checkbox = ({
   onChange,
   value,
   label,
-  ...props
 }: {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: boolean;

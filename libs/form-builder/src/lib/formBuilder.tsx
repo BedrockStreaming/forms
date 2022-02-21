@@ -7,7 +7,7 @@ import {
   SubmitHandler,
   UnpackNestedValue,
   useForm,
-  ValidationMode
+  ValidationMode,
 } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
@@ -55,7 +55,7 @@ export function FormBuilder({
   isLastStep = true,
   currentStepIndex = 0,
   formProps = EMPTY_OBJECT,
-  debug = false
+  debug = false,
 }: FormBuilderProps) {
   const {
     handleSubmit,
@@ -64,11 +64,11 @@ export function FormBuilder({
     getValues,
     setValue,
     trigger,
-    setFocus
+    setFocus,
   } = useForm<FieldValues>({
     mode: behavior,
     criteriaMode: 'all',
-    defaultValues
+    defaultValues,
   });
 
   const isPreFilled = !_.isEmpty(defaultValues);
@@ -77,7 +77,7 @@ export function FormBuilder({
 
   const { fields, fieldsById, stepsById, submitLabel } = React.useMemo(
     () => getSchemaInfo(schema, typesAllowed, currentStepIndex),
-    [currentStepIndex, schema, typesAllowed]
+    [currentStepIndex, schema, typesAllowed],
   );
 
   const filteredFields = filterDependentsFieldsById({
@@ -85,7 +85,7 @@ export function FormBuilder({
     fields,
     getValues,
     errors,
-    extraValidation
+    extraValidation,
   });
 
   const validationRulesById = React.useMemo(
@@ -93,26 +93,21 @@ export function FormBuilder({
       _.reduce(
         fieldsById,
         (accumulator, fieldId) => {
-          const validation = _.get(
-            fields,
-            [fieldId, 'validation'],
-            EMPTY_OBJECT
-          );
+          const validation = _.get(fields, [fieldId, 'validation'], EMPTY_OBJECT);
 
           return {
             ...accumulator,
-            [fieldId]: getFieldRules({ validation, extraValidation })
+            [fieldId]: getFieldRules({ validation, extraValidation }),
           };
         },
-        {} as { [key: string]: FieldRules }
+        {} as { [key: string]: FieldRules },
       ),
-    [extraValidation, fields, fieldsById]
+    [extraValidation, fields, fieldsById],
   );
 
   const setFieldValue = React.useCallback(
-    (id: Path<FieldValues>, value) =>
-      setValue(id, value, { shouldValidate: true, shouldDirty: true }),
-    [setValue]
+    (id: Path<FieldValues>, value) => setValue(id, value, { shouldValidate: true, shouldDirty: true }),
+    [setValue],
   );
 
   const triggerValidationField = React.useCallback(trigger, [trigger]);
@@ -124,7 +119,7 @@ export function FormBuilder({
     currentStepIndex,
     dirtyFields,
     defaultValues,
-    isValidating
+    isValidating,
   });
 
   useAutoFocus({ currentStepIndex, schema, setFocus });
@@ -132,12 +127,7 @@ export function FormBuilder({
   // Displays nice and informative errors in dev mode
   if (debug) handleFormBuilderError(typesAllowed, schema, dictionary);
 
-  if (
-    _.isEmpty(schema) ||
-    _.isEmpty(dictionary) ||
-    typeof onSubmit !== 'function'
-  )
-    return null;
+  if (_.isEmpty(schema) || _.isEmpty(dictionary) || typeof onSubmit !== 'function') return null;
 
   return (
     <>
@@ -151,8 +141,7 @@ export function FormBuilder({
           {_.map(stepsById, (stepId) => (
             <React.Fragment key={stepId}>
               {_.map(filteredFields, (fieldId) => {
-                const { type, id, defaultValue, meta, validation } =
-                  fields[fieldId];
+                const { type, id, defaultValue, meta, validation } = fields[fieldId];
 
                 return (
                   <Controller

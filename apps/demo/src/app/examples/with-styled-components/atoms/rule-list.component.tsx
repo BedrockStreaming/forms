@@ -1,8 +1,4 @@
-import {
-  COMPLETE_STATUS,
-  INCOMPLETE_STATUS,
-  DEFAULT_STATUS
-} from '@bedrockstreaming/form-validation-rule-list';
+import { COMPLETE_STATUS, INCOMPLETE_STATUS, DEFAULT_STATUS } from '@bedrockstreaming/form-validation-rule-list';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -28,11 +24,7 @@ export const ListItem = styled.li`
   }
 `;
 
-export const RuleList = ({
-  items
-}: {
-  items: { key: string; status: string }[];
-}) => {
+export const RuleList = ({ items }: { items: { key: string; status: string }[] }) => {
   return (
     <List>
       {items.map((item) => (

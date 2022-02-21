@@ -16,15 +16,15 @@ const DICTIONARY = {
   password: Password,
   date: DateInput,
   select: Select,
-  checkbox: Checkbox
+  checkbox: Checkbox,
 };
 
 export const REDUX_DICTIONARY = {
   ...DICTIONARY,
-  submit: SubmitRedux
+  submit: SubmitRedux,
 };
 
 export const CONTEXT_DICTIONARY = {
   ...DICTIONARY,
-  submit: SubmitContext
+  submit: SubmitContext,
 };

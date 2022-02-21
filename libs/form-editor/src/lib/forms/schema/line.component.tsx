@@ -11,20 +11,20 @@ const useStyles = makeStyles({
     '&.isClickable': {
       '&:hover': {
         background: 'yellow',
-        cursor: 'pointer'
-      }
+        cursor: 'pointer',
+      },
     },
     '& .button-appearance': {
       display: 'block',
       position: 'absolute',
       top: '20px',
       left: '25px',
-      zIndex: 1
-    }
+      zIndex: 1,
+    },
   },
   lineText: {
-    whiteSpace: 'pre'
-  }
+    whiteSpace: 'pre',
+  },
 });
 
 export const Line = ({
@@ -34,7 +34,7 @@ export const Line = ({
   setButtonLineIndex,
   isClickable,
   setLineText,
-  onClick
+  onClick,
 }: {
   text: string;
   lineIndex: number;
@@ -63,11 +63,7 @@ export const Line = ({
   };
 
   return (
-    <ListItem
-      button
-      onClick={handleLineClick}
-      className={classnames(classes.line, { isClickable })}
-    >
+    <ListItem button onClick={handleLineClick} className={classnames(classes.line, { isClickable })}>
       <ListItemText className={classes.lineText} primary={text} />
       {hasButtons && (
         <div className="button-appearance">

@@ -1,9 +1,6 @@
 import { FieldErrors } from 'react-hook-form';
 import { Validations } from '@bedrockstreaming/form-builder';
-import {
-  getValidationRulesHints,
-  checkRules
-} from '@bedrockstreaming/form-validation-rule-list';
+import { getValidationRulesHints, checkRules } from '@bedrockstreaming/form-validation-rule-list';
 
 import { ValidatedPasswordTextField } from '@forms/examples/styled-inputs';
 
@@ -24,7 +21,7 @@ export const Password = ({
 }) => {
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
   const hasError = !!checkRules(props.value, rules).length;
   const fieldError = errors && errors.type;

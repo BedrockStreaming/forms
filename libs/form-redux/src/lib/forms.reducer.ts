@@ -1,14 +1,7 @@
 import _ from 'lodash';
 import { FieldValues } from 'react-hook-form';
 
-import {
-  PREVIOUS_STEP,
-  NEXT_STEP,
-  UPDATE_FORM_DATA,
-  INIT_FORM,
-  RESET_FORM,
-  SET_STEP
-} from './forms.actions';
+import { PREVIOUS_STEP, NEXT_STEP, UPDATE_FORM_DATA, INIT_FORM, RESET_FORM, SET_STEP } from './forms.actions';
 
 export interface DefaultFormState {
   [key: string]: {
@@ -21,24 +14,26 @@ export interface DefaultFormState {
 
 export interface FormAction {
   type: string;
-  [key: string]: any;
+  formId: string;
+  data?: {
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
 }
 
 const defaultFormState = {
   stepsCount: 1,
   isLastStep: true,
   currentStepIndex: 0,
-  data: {}
+  data: {},
 };
 
 const DEFAULT_OBJECT = {};
 export const initialState = {} as any;
 
 const checkFormId = ({ formId }: FormAction) => !!formId;
-const checkFormExist = <T>({ formId }: FormAction, state: DefaultFormState) =>
-  !!state[formId];
-const checkStepExist = (stepsCount: number, newStepIndex: number) =>
-  newStepIndex + 1 <= stepsCount;
+const checkFormExist = ({ formId }: FormAction, state: DefaultFormState) => !!state[formId];
+const checkStepExist = (stepsCount: number, newStepIndex: number) => newStepIndex + 1 <= stepsCount;
 
 export const reducer = (state = initialState, action: FormAction) => {
   switch (action.type) {
@@ -51,12 +46,12 @@ export const reducer = (state = initialState, action: FormAction) => {
       const currentFormState = {
         ...defaultFormState,
         stepsCount: stepsById.length,
-        isLastStep: stepsById.length === 1
+        isLastStep: stepsById.length === 1,
       };
 
       return {
         ...state,
-        [action.formId]: currentFormState
+        [action.formId]: currentFormState,
       };
     }
 
@@ -69,11 +64,7 @@ export const reducer = (state = initialState, action: FormAction) => {
       }
 
       const formState = _.get(state, action.formId, DEFAULT_OBJECT);
-      const currentStepIndex = _.get(
-        state,
-        [action.formId, 'currentStepIndex'],
-        0
-      );
+      const currentStepIndex = _.get(state, [action.formId, 'currentStepIndex'], 0);
       const stepsCount = _.get(state, [action.formId, 'stepsCount'], 1);
 
       // Can't go under 0
@@ -84,8 +75,8 @@ export const reducer = (state = initialState, action: FormAction) => {
         [action.formId]: {
           ...formState,
           isLastStep: stepsCount === newStepIndex + 1,
-          currentStepIndex: newStepIndex
-        }
+          currentStepIndex: newStepIndex,
+        },
       };
     }
 
@@ -98,26 +89,19 @@ export const reducer = (state = initialState, action: FormAction) => {
       }
 
       const formState = _.get(state, action.formId, DEFAULT_OBJECT);
-      const currentStepIndex = _.get(
-        state,
-        [action.formId, 'currentStepIndex'],
-        0
-      );
+      const currentStepIndex = _.get(state, [action.formId, 'currentStepIndex'], 0);
       const stepsCount = _.get(state, [action.formId, 'stepsCount'], 1);
 
       // Can't go above steps count
-      const newStepIndex =
-        currentStepIndex >= stepsCount - 1
-          ? stepsCount - 1
-          : currentStepIndex + 1;
+      const newStepIndex = currentStepIndex >= stepsCount - 1 ? stepsCount - 1 : currentStepIndex + 1;
 
       return {
         ...state,
         [action.formId]: {
           ...formState,
           isLastStep: stepsCount === newStepIndex + 1,
-          currentStepIndex: newStepIndex
-        }
+          currentStepIndex: newStepIndex,
+        },
       };
     }
 
@@ -139,9 +123,9 @@ export const reducer = (state = initialState, action: FormAction) => {
           ...formState,
           data: {
             ...formState.data,
-            ...action.data
-          }
-        }
+            ...action.data,
+          },
+        },
       };
     }
 
@@ -178,8 +162,8 @@ export const reducer = (state = initialState, action: FormAction) => {
         [action.formId]: {
           ...formState,
           isLastStep: stepsCount === newStepIndex + 1,
-          currentStepIndex: newStepIndex % stepsCount
-        }
+          currentStepIndex: newStepIndex % stepsCount,
+        },
       };
     }
     default:

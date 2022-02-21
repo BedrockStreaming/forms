@@ -4,11 +4,10 @@ import { Validations } from '@bedrockstreaming/form-builder';
 import {
   getValidationRulesHints,
   checkRules,
-  withValidationRuleList
+  withValidationRuleList,
 } from '@bedrockstreaming/form-validation-rule-list';
 
 import { TextField } from '@mui/material';
-import _ from 'lodash';
 
 import { RuleList } from '../atoms/rule-list.component';
 
@@ -24,9 +23,8 @@ export const Password = ({
   onChange,
   optionalText,
   propRef,
-  type,
   value,
-  validation
+  validation,
 }: {
   'data-testid': string;
   errors: FieldErrors;
@@ -45,7 +43,7 @@ export const Password = ({
 
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
 
   const hasError = !!checkRules(value, rules).length;

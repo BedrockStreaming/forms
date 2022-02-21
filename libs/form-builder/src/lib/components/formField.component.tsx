@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { Dictionary, Validations } from '../types';
-import {
-  ErrorOption,
-  Path,
-  Ref,
-  SetFieldValue,
-  FieldValues
-} from 'react-hook-form';
+import { ErrorOption, Path, Ref, SetFieldValue, FieldValues } from 'react-hook-form';
 
 export interface FormFieldProps {
   id: string;
@@ -24,12 +18,7 @@ export interface FormFieldProps {
   formId?: string;
 }
 
-export function FormField({
-  id,
-  fieldType,
-  dictionary,
-  ...props
-}: FormFieldProps) {
+export function FormField({ id, fieldType, dictionary, ...props }: FormFieldProps) {
   const Field = dictionary[fieldType];
 
   if (!Field) return null;

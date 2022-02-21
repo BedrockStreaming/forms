@@ -1,14 +1,7 @@
 import { Button, Box } from '@mui/material';
 import { Previous } from '../atoms/previous-context.component';
 
-export const Submit = ({
-  label,
-  formId,
-  ...props
-}: {
-  label: string;
-  formId: string;
-}) => {
+export const Submit = ({ label, formId, ...props }: { label: string; formId: string }) => {
   return (
     <Box display="flex" justifyContent="center" width="100%">
       <Previous label="Previous" formId={formId} />

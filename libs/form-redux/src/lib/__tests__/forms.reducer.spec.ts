@@ -1,18 +1,6 @@
 import deepFreeze from 'deep-freeze';
-import {
-  reducer,
-  initialState,
-  DefaultFormState,
-  FormAction
-} from '../forms.reducer';
-import {
-  PREVIOUS_STEP,
-  NEXT_STEP,
-  UPDATE_FORM_DATA,
-  INIT_FORM,
-  RESET_FORM,
-  SET_STEP
-} from '../forms.actions';
+import { reducer, initialState, DefaultFormState, FormAction } from '../forms.reducer';
+import { PREVIOUS_STEP, NEXT_STEP, UPDATE_FORM_DATA, INIT_FORM, RESET_FORM, SET_STEP } from '../forms.actions';
 
 const formId = 'foo';
 const emptyObject = {};
@@ -23,51 +11,50 @@ const defaultState = {
     data: emptyObject,
     currentStepIndex: zero,
     isLastStep: true,
-    stepsCount: 1
-  }
+    stepsCount: 1,
+  },
 };
 
 describe('forms.reducer', () => {
-  const freezedReducer = (state: DefaultFormState, action: FormAction) =>
-    reducer(deepFreeze(state), action);
+  const freezedReducer = (state: DefaultFormState, action: FormAction) => reducer(deepFreeze(state), action);
 
   it('should init store', () => {
-    expect(reducer(undefined, { type: '@@redux/INIT' })).toEqual(initialState);
+    expect(reducer(undefined, { type: '@@redux/INIT' } as FormAction)).toEqual(initialState);
   });
 
-  describe(INIT_FORM, () => {
+  describe('INIT_FORM', () => {
     it('should set a default form state under its formId', () => {
       const action = {
         type: INIT_FORM,
         formId,
-        schema: { stepsById: ['foo'] }
+        schema: { stepsById: ['foo'] },
       };
       expect(freezedReducer(initialState, action)).toEqual(defaultState);
     });
   });
 
-  describe(PREVIOUS_STEP, () => {
+  describe('PREVIOUS_STEP', () => {
     it('should decrement currentStepIndex', () => {
       const action = {
         type: PREVIOUS_STEP,
-        formId
+        formId,
       };
 
       expect(
         freezedReducer(
           {
             ...defaultState,
-            [formId]: { ...defaultState[formId], currentStepIndex: one }
+            [formId]: { ...defaultState[formId], currentStepIndex: one },
           },
-          action
-        )
+          action,
+        ),
       ).toEqual(defaultState);
     });
 
     it('should not decrement currentStepIndex when it does not exist', () => {
       const action = {
         type: PREVIOUS_STEP,
-        formId
+        formId,
       };
 
       expect(freezedReducer(initialState, action)).toBe(initialState);
@@ -76,23 +63,23 @@ describe('forms.reducer', () => {
     it('should not decrement currentStepIndex when it is already 0', () => {
       const action = {
         type: PREVIOUS_STEP,
-        formId
+        formId,
       };
 
       expect(freezedReducer(defaultState, action)).toStrictEqual(defaultState);
     });
   });
 
-  describe(NEXT_STEP, () => {
+  describe('NEXT_STEP', () => {
     it('should increment currentStepIndex on multi steps', () => {
       const action = {
         type: NEXT_STEP,
-        formId
+        formId,
       };
 
       const defaultStateWithHigherCount = {
         ...defaultState,
-        [formId]: { ...defaultState[formId], stepsCount: 2 }
+        [formId]: { ...defaultState[formId], stepsCount: 2 },
       };
 
       expect(freezedReducer(defaultStateWithHigherCount, action)).toEqual({
@@ -100,51 +87,51 @@ describe('forms.reducer', () => {
         [formId]: {
           ...defaultStateWithHigherCount[formId],
           currentStepIndex: one,
-          isLastStep: true
-        }
+          isLastStep: true,
+        },
       });
     });
 
     it('should not increment currentStepIndex on single step', () => {
       const action = {
         type: NEXT_STEP,
-        formId
+        formId,
       };
 
       expect(freezedReducer(defaultState, action)).toStrictEqual(defaultState);
     });
   });
 
-  describe(RESET_FORM, () => {
+  describe('RESET_FORM', () => {
     it('should remove the form from the formId', () => {
       const action = {
         type: RESET_FORM,
-        formId
+        formId,
       };
 
       expect(
         freezedReducer(
           {
             ...defaultState,
-            [formId]: { ...defaultState[formId], currentStepIndex: one }
+            [formId]: { ...defaultState[formId], currentStepIndex: one },
           },
-          action
-        )
+          action,
+        ),
       ).toEqual(initialState);
     });
   });
 
-  describe(UPDATE_FORM_DATA, () => {
+  describe('UPDATE_FORM_DATA', () => {
     it('should set data under formId when it is empty yet', () => {
       const action = {
         type: UPDATE_FORM_DATA,
         formId,
-        data: { foo: 'bar' }
+        data: { foo: 'bar' },
       };
 
       expect(freezedReducer(defaultState, action)).toEqual({
         ...defaultState,
-        [formId]: { ...defaultState[formId], data: action.data }
+        [formId]: { ...defaultState[formId], data: action.data },
       });
     });
 
@@ -152,30 +139,30 @@ describe('forms.reducer', () => {
       const action = {
         type: UPDATE_FORM_DATA,
         formId,
-        data: { bar: 'baz' }
+        data: { bar: 'baz' },
       };
 
       const state = {
         ...defaultState,
-        [formId]: { ...defaultState[formId], data: { foo: 'bar' } }
+        [formId]: { ...defaultState[formId], data: { foo: 'bar' } },
       };
 
       expect(freezedReducer(state, action)).toEqual({
         ...defaultState,
         [formId]: {
           ...defaultState[formId],
-          data: { ...state[formId].data, ...action.data }
-        }
+          data: { ...state[formId].data, ...action.data },
+        },
       });
     });
   });
 
-  describe(SET_STEP, () => {
+  describe('SET_STEP', () => {
     it('should return state when passed index is above stepsCount', () => {
       const action = {
         type: SET_STEP,
         formId,
-        stepIndex: 666
+        stepIndex: 666,
       };
 
       expect(freezedReducer(defaultState, action)).toEqual(defaultState);
@@ -186,7 +173,7 @@ describe('forms.reducer', () => {
         const action = {
           type: SET_STEP,
           formId,
-          stepIndex: 0
+          stepIndex: 0,
         };
 
         expect(freezedReducer(defaultState, action)).toEqual({
@@ -194,8 +181,8 @@ describe('forms.reducer', () => {
           [formId]: {
             ...defaultState[formId],
             currentStepIndex: action.stepIndex,
-            isLastStep: true
-          }
+            isLastStep: true,
+          },
         });
       });
     });
@@ -205,12 +192,12 @@ describe('forms.reducer', () => {
         const action = {
           type: SET_STEP,
           formId,
-          stepIndex: 0
+          stepIndex: 0,
         };
 
         const defaultStateWithHigherCount = {
           ...defaultState,
-          [formId]: { ...defaultState[formId], stepsCount: 2 }
+          [formId]: { ...defaultState[formId], stepsCount: 2 },
         };
 
         expect(freezedReducer(defaultStateWithHigherCount, action)).toEqual({
@@ -218,8 +205,8 @@ describe('forms.reducer', () => {
           [formId]: {
             ...defaultStateWithHigherCount[formId],
             currentStepIndex: action.stepIndex,
-            isLastStep: false
-          }
+            isLastStep: false,
+          },
         });
       });
     });

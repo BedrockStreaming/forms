@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {
-  ValidationRuleList,
-  ValidationRuleListProps
-} from './validationRuleList.component';
+import { ValidationRuleList, ValidationRuleListProps } from './validationRuleList.component';
 
-export const withValidationRuleList = (
-  ToEnhance: React.FunctionComponent<any>
-) => {
+export const withValidationRuleList = (ToEnhance: React.FunctionComponent<any>) => {
   const Enhanced = ({
     rules,
     value,

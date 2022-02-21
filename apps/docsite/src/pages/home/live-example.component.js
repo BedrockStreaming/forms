@@ -4,30 +4,20 @@ import { Grid, Button, Typography, Box } from '@mui/material';
 
 import Form from '../../form/form.component';
 
-const RefLink = React.forwardRef((props, ref) => <Link {...props} />);
+const RefLink = React.forwardRef((props) => <Link {...props} />);
 
 export default function LiveExample() {
   return (
     <Box component="section" sx={{ p: 5 }}>
       <Box>
         <Grid container>
-          <Grid
-            sx={{ p: 2, m: 'auto', textAlign: 'center' }}
-            item
-            xs={12}
-            sm={6}
-            md={6}
-          >
+          <Grid sx={{ p: 2, m: 'auto', textAlign: 'center' }} item xs={12} sm={6} md={6}>
             <Typography sx={{ m: 2 }} component="h1" variant="h4" gutterBottom>
               A live example
             </Typography>
+            <Typography sx={{ m: 1 }}>This registration form was generated using the FormBuilder component.</Typography>
             <Typography sx={{ m: 1 }}>
-              This registration form was generated using the FormBuilder
-              component.
-            </Typography>
-            <Typography sx={{ m: 1 }}>
-              You can play with it here to see how a form behaves with our
-              solution.
+              You can play with it here to see how a form behaves with our solution.
             </Typography>
             <Box sx={{ p: 2 }} display="flex" justifyContent="center">
               <Button

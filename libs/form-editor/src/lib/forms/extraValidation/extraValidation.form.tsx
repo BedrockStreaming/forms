@@ -1,17 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
 
 import { FormBuilder, Dictionary } from '@bedrockstreaming/form-builder';
 import { initForm } from '@bedrockstreaming/form-redux';
 
-import {
-  Typography,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails
-} from '@mui/material';
+import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 import { makeSchema } from './config';
@@ -22,14 +15,10 @@ import { getExtraValidationList } from '../../generator.selectors';
 
 const formId = 'upload-extraValidation';
 const defaultValues = {
-  extraValidationList: ''
+  extraValidationList: '',
 };
 
-export const ExtraValidationForm = ({
-  dictionary
-}: {
-  dictionary: Dictionary;
-}) => {
+export const ExtraValidationForm = ({ dictionary }: { dictionary: Dictionary }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const extraValidationList = useSelector(getExtraValidationList);

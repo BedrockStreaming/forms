@@ -17,10 +17,7 @@ export function App() {
             <MUIRegisterForm />
           </Route>
           <Route exact path="/schema-builder">
-            <SchemaBuilder
-              dictionary={dictionary}
-              extraValidation={extraValidation}
-            />
+            <SchemaBuilder dictionary={dictionary} extraValidation={extraValidation} />
           </Route>
           <Route exact path="/examples/styled-components">
             <StyledForm />

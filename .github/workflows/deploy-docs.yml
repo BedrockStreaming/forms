@@ -26,6 +26,7 @@ jobs:
       - name: Build Docusaurus website
         run: |
           yarn install --no-progress --frozen-lockfile
+          yarn lint docsite
           yarn build docsite
           yarn e2e docsite-e2e
       - name: Deploy to GitHub Pages

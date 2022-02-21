@@ -9,7 +9,7 @@ describe('rule', () => {
     it('should return a rule object', () => {
       expect(rule('foo', checkAlwaysFalsy)).toMatchObject({
         key: 'foo',
-        check: expect.any(Function)
+        check: expect.any(Function),
       });
     });
 
@@ -41,21 +41,11 @@ describe('rule', () => {
 
   describe('checkRules()', () => {
     it('should return a list of incomplete rules keys', () => {
-      expect(
-        checkRules('yolo', [
-          rule('foo', checkAlwaysFalsy),
-          rule('bar', checkAlwaysTruthy)
-        ])
-      ).toEqual(['foo']);
+      expect(checkRules('yolo', [rule('foo', checkAlwaysFalsy), rule('bar', checkAlwaysTruthy)])).toEqual(['foo']);
     });
 
     it('should return no rules keys when value is empty', () => {
-      expect(
-        checkRules('', [
-          rule('foo', checkAlwaysFalsy),
-          rule('bar', checkAlwaysTruthy)
-        ])
-      ).toEqual([]);
+      expect(checkRules('', [rule('foo', checkAlwaysFalsy), rule('bar', checkAlwaysTruthy)])).toEqual([]);
     });
   });
 });

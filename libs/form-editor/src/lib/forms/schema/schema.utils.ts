@@ -1,8 +1,4 @@
-import {
-  Dictionary,
-  ExtraValidation,
-  FormSchema
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, ExtraValidation, FormSchema } from '@bedrockstreaming/form-builder';
 import _ from 'lodash';
 import { makeFieldSchema, makeStepSchema } from './updateConfig';
 
@@ -18,7 +14,7 @@ export const getElementType = ({
   text,
   schema,
   dictionary,
-  extraValidation
+  extraValidation,
 }: {
   text: string;
   schema: FormSchema;
@@ -35,25 +31,19 @@ export const getElementType = ({
       extraValidation,
       dictionary,
       schema,
-      field: _.get(schema, ['fields', elementKey])
+      field: _.get(schema, ['fields', elementKey]),
     });
 
   if (_.get(schema, ['steps', elementKey]))
     return makeStepSchema({
       schema,
-      step: _.get(schema, ['steps', elementKey])
+      step: _.get(schema, ['steps', elementKey]),
     });
 
   return null;
 };
 
-export const isClickableItem = ({
-  schema,
-  text
-}: {
-  schema: FormSchema;
-  text: string;
-}) => {
+export const isClickableItem = ({ schema, text }: { schema: FormSchema; text: string }) => {
   const elementType = getElementType({ text, schema });
 
   return !!elementType;

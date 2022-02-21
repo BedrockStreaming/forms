@@ -1,18 +1,6 @@
-import {
-  Dictionary,
-  FormSchema,
-  FormStep,
-  ExtraValidation,
-  FormField
-} from '@bedrockstreaming/form-builder';
+import { Dictionary, FormSchema, FormStep, ExtraValidation, FormField } from '@bedrockstreaming/form-builder';
 
-export const makeStepSchema = ({
-  schema,
-  step
-}: {
-  schema: FormSchema;
-  step: FormStep;
-}): FormSchema => ({
+export const makeStepSchema = ({ schema, step }: { schema: FormSchema; step: FormStep }): FormSchema => ({
   fields: {
     stepId: {
       id: 'stepId',
@@ -21,25 +9,25 @@ export const makeStepSchema = ({
       meta: {
         errorMessage: 'Invalid',
         label: 'the step id',
-        name: 'stepId'
+        name: 'stepId',
       },
       validation: {
         required: {
           key: 'required',
           message: 'Required field',
-          value: true
-        }
-      }
+          value: true,
+        },
+      },
     },
     stepSubmitLabel: {
       id: 'stepSubmitLabel',
       meta: {
         errorMessage: 'Invalid',
         label: 'the step submit label',
-        name: 'stepSubmitLabel'
+        name: 'stepSubmitLabel',
       },
       type: 'text',
-      defaultValue: step.submit.label
+      defaultValue: step.submit.label,
     },
     stepFieldsById: {
       id: 'stepFieldsById',
@@ -50,8 +38,8 @@ export const makeStepSchema = ({
         label: 'stepFieldsById',
         name: 'stepFieldsById',
         multiple: true,
-        choices: Object.keys(schema.fields)
-      }
+        choices: Object.keys(schema.fields),
+      },
     },
     stepPosition: {
       id: 'stepPosition',
@@ -60,39 +48,34 @@ export const makeStepSchema = ({
         errorMessage: 'Invalid',
         label: 'stepPosition',
         name: 'stepPosition',
-        type: 'number'
+        type: 'number',
       },
       validation: {
         max: {
           message: 'max number exceeded',
           value: schema.stepsById.length,
-          key: 'max'
-        }
-      }
-    }
+          key: 'max',
+        },
+      },
+    },
   },
   steps: {
     'add-step-0': {
-      fieldsById: [
-        'stepId',
-        'stepFieldsById',
-        'stepSubmitLabel',
-        'stepPosition'
-      ],
+      fieldsById: ['stepId', 'stepFieldsById', 'stepSubmitLabel', 'stepPosition'],
       id: 'add-step-0',
       submit: {
-        label: 'Update step'
-      }
-    }
+        label: 'Update step',
+      },
+    },
   },
-  stepsById: ['add-step-0']
+  stepsById: ['add-step-0'],
 });
 
 export const makeFieldSchema = ({
   schema,
   dictionary,
   extraValidation,
-  field
+  field,
 }: {
   schema: FormSchema;
   field: FormField;
@@ -105,11 +88,9 @@ export const makeFieldSchema = ({
       type: 'select',
       meta: {
         label: 'dictionary target',
-        choices: dictionary
-          ? Object.keys(dictionary).filter((id) => id !== 'submit')
-          : []
+        choices: dictionary ? Object.keys(dictionary).filter((id) => id !== 'submit') : [],
       },
-      defaultValue: field.type
+      defaultValue: field.type,
     },
     fieldId: {
       id: 'fieldId',
@@ -118,25 +99,25 @@ export const makeFieldSchema = ({
       meta: {
         errorMessage: 'Invalid',
         label: 'the field id',
-        name: 'fieldId'
+        name: 'fieldId',
       },
       validation: {
         required: {
           key: 'required',
           message: 'Required field',
-          value: true
-        }
-      }
+          value: true,
+        },
+      },
     },
     fieldDefaultValue: {
       id: 'fieldDefaultValue',
       meta: {
         errorMessage: 'Invalid',
         label: 'the field default value',
-        name: 'fieldDefaultValue'
+        name: 'fieldDefaultValue',
       },
       type: 'text',
-      defaultValue: field.defaultValue
+      defaultValue: field.defaultValue,
     },
     fieldValidation: {
       id: 'fieldValidation',
@@ -147,13 +128,8 @@ export const makeFieldSchema = ({
         label: 'the field validation',
         name: 'fieldValidation',
         multiple: true,
-        choices: [
-          'min',
-          'max',
-          'required',
-          extraValidation && Object.keys(extraValidation)
-        ].filter(Boolean)
-      }
+        choices: ['min', 'max', 'required', extraValidation && Object.keys(extraValidation)].filter(Boolean),
+      },
     },
     positionInStep: {
       id: 'positionInStep',
@@ -161,10 +137,10 @@ export const makeFieldSchema = ({
         errorMessage: 'Invalid',
         label: 'the field index position in Step',
         name: 'positionInStep',
-        type: 'number'
+        type: 'number',
       },
       type: 'text',
-      defaultValue: 0
+      defaultValue: 0,
     },
     stepId: {
       id: 'stepId',
@@ -174,32 +150,25 @@ export const makeFieldSchema = ({
         required: {
           key: 'required',
           value: true,
-          message: 'required field'
-        }
+          message: 'required field',
+        },
       },
       meta: {
         errorMessage: 'Invalid',
         label: 'the stepId the field belongs to',
         name: 'stepId',
-        choices: schema.stepsById
-      }
-    }
+        choices: schema.stepsById,
+      },
+    },
   },
   steps: {
     'add-field-0': {
-      fieldsById: [
-        'fieldId',
-        'fieldType',
-        'fieldValidation',
-        'fieldDefaultValue',
-        'stepId',
-        'positionInStep'
-      ],
+      fieldsById: ['fieldId', 'fieldType', 'fieldValidation', 'fieldDefaultValue', 'stepId', 'positionInStep'],
       id: 'add-field-0',
       submit: {
-        label: 'Update field'
-      }
-    }
+        label: 'Update field',
+      },
+    },
   },
-  stepsById: ['add-field-0']
+  stepsById: ['add-field-0'],
 });
