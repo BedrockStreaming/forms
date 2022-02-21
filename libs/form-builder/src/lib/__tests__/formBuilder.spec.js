@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { act, render, screen } from '@testing-library/react';
 import { FormBuilder } from '../formBuilder';
 
@@ -6,15 +7,15 @@ const makeStep = ({ fieldsById, stepId, label }) => ({
     fieldsById,
     id: stepId,
     submit: {
-      label
-    }
-  }
+      label,
+    },
+  },
 });
 
 describe('<FormBuilder />', () => {
   const getWrapper = async (props) => {
     await act(async () => {
-       await render(<FormBuilder {...props} />);
+      await render(<FormBuilder {...props} />);
     });
   };
 
@@ -30,12 +31,12 @@ describe('<FormBuilder />', () => {
   const stepOne = makeStep({
     fieldsById: [fieldOneId, fieldTwoId],
     label: 'stepOne',
-    stepId: stepOneId
+    stepId: stepOneId,
   });
   const stepTwo = makeStep({
     fieldsById: [fieldThreeId],
     label: 'stepTwo',
-    stepId: stepTwoId
+    stepId: stepTwoId,
   });
 
   const CORRECT_SCHEMA = {
@@ -43,21 +44,21 @@ describe('<FormBuilder />', () => {
       [fieldOneId]: {
         id: fieldOneId,
         meta: { label: 'bar' },
-        type: 'text'
+        type: 'text',
       },
       [fieldTwoId]: {
         id: fieldTwoId,
         meta: { label: 'foo', validation: { required: true, maxLength: 20 } },
-        type: 'checkbox'
+        type: 'checkbox',
       },
       [fieldThreeId]: {
         id: fieldThreeId,
         meta: { label: 'baz' },
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     steps: { ...stepOne, ...stepTwo },
-    stepsById: [stepOneId, stepTwoId]
+    stepsById: [stepOneId, stepTwoId],
   };
   // aria-checked="true"
   const CORRECT_DICTIONARY = {
@@ -73,14 +74,14 @@ describe('<FormBuilder />', () => {
         <input type="checkbox" aria-checked={!!value} />
       </fieldset>
     ),
-    submit: ({ label }) => <button type="submit">{label}</button>
+    submit: ({ label }) => <button type="submit">{label}</button>,
   };
 
   describe('with bad props', () => {
     it('should not render if we pass no dictionary', async () => {
       await getWrapper({
         schema: CORRECT_SCHEMA,
-        onSubmit
+        onSubmit,
       });
 
       return expect(screen.queryByRole('form')).toBeNull();
@@ -89,7 +90,7 @@ describe('<FormBuilder />', () => {
     it('should not render if we pass no schema', async () => {
       await getWrapper({
         dictionary: CORRECT_DICTIONARY,
-        onSubmit
+        onSubmit,
       });
 
       return expect(screen.queryByRole('form')).toBeNull();
@@ -98,7 +99,7 @@ describe('<FormBuilder />', () => {
     it('should not render if we pass no onSubmit', async () => {
       await getWrapper({
         dictionary: CORRECT_DICTIONARY,
-        schema: CORRECT_SCHEMA
+        schema: CORRECT_SCHEMA,
       });
 
       return expect(screen.queryByRole('form')).toBeNull();
@@ -108,7 +109,7 @@ describe('<FormBuilder />', () => {
       await getWrapper({
         dictionary: CORRECT_DICTIONARY,
         schema: CORRECT_SCHEMA,
-        onSubmit: { great: 'right' }
+        onSubmit: { great: 'right' },
       });
 
       return expect(screen.queryByRole('form')).toBeNull();
@@ -118,7 +119,7 @@ describe('<FormBuilder />', () => {
       const schema = {
         fields: {},
         steps: {},
-        stepsById: []
+        stepsById: [],
       };
       const dictionary = {};
 
