@@ -1,4 +1,4 @@
-import React, {  useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { TextField, Box } from '@mui/material';
 
 export const Text = ({
@@ -13,9 +13,8 @@ export const Text = ({
   optionalText,
   propRef,
   type,
-  value
-}
- ) => {
+  value,
+}) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const error = errors && errors.type && errorMessage;
 

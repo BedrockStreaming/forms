@@ -5,8 +5,8 @@ import { getUserAge, isDateValid } from '@forms/examples/birthdate';
 const config = {
   onboarding: {
     maxAge: 130,
-    minAge: 13
-  }
+    minAge: 13,
+  },
 };
 
 const maxAge = _.get(config, 'onboarding.maxAge');
@@ -32,5 +32,5 @@ export const extraValidation = {
   checkForLower: () => (input) => /[a-z]+/g.test(input),
   checkForNumber: () => (input) => /\d+/g.test(input),
   isChecked: () => (value) => !!value,
-  checkPattern: (value) => (input) => new RegExp(value).test(input)
+  checkPattern: (value) => (input) => new RegExp(value).test(input),
 };

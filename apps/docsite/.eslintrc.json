@@ -1,0 +1,39 @@
+{
+  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "plugins": ["react"],
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "plugins": ["import"],
+      "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "import/no-unresolved": [2, { "ignore": ["@bedrockstreaming", "@forms", "react", "@docusaurus", "@theme"] }],
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "js": "never",
+            "jsx": "never"
+          }
+        ]
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+      }
+    }
+  }
+}

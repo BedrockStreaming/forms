@@ -17,21 +17,21 @@ module.exports = {
       title: 'Home',
       logo: {
         alt: 'Bedrock Streaming Forms Logo',
-        src: 'img/bedrock_logo.svg'
+        src: 'img/bedrock_logo.svg',
       },
       items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Doc',
-          position: 'left'
+          position: 'left',
         },
         {
           href: 'https://github.com/BedrockStreaming/forms',
           label: 'GitHub',
-          position: 'right'
-        }
-      ]
+          position: 'right',
+        },
+      ],
     },
     footer: {
       style: 'dark',
@@ -41,47 +41,47 @@ module.exports = {
           items: [
             {
               label: 'Overview',
-              to: 'docs/'
+              to: 'docs/',
             },
             {
               label: 'Quickstart',
-              to: 'docs/quickstart/'
+              to: 'docs/quickstart/',
             },
             {
               label: 'Using Forms with Redux',
-              to: 'docs/form-redux/'
-            }
-          ]
+              to: 'docs/form-redux/',
+            },
+          ],
         },
         {
           title: 'Community',
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/bedrockstreaming'
+              href: 'https://stackoverflow.com/questions/tagged/bedrockstreaming',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/Bedrock_Stream'
-            }
-          ]
+              href: 'https://twitter.com/Bedrock_Stream',
+            },
+          ],
         },
         {
           title: 'More',
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/BedrockStreaming/forms'
-            }
-          ]
-        }
+              href: 'https://github.com/BedrockStreaming/forms',
+            },
+          ],
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} BedrockStreaming, Inc. Built with Docusaurus.`
+      copyright: `Copyright © ${new Date().getFullYear()} BedrockStreaming, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: lightCodeTheme,
-      darkTheme: darkCodeTheme
-    }
+      darkTheme: darkCodeTheme,
+    },
   },
   presets: [
     [
@@ -89,15 +89,14 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/BedrockStreaming/forms/edit/master/apps/docsite/'
+          editUrl: 'https://github.com/BedrockStreaming/forms/edit/master/apps/docsite/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css')
-        }
-      }
-    ]
-  ]
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      },
+    ],
+  ],
 
   // themes: ['@docusaurus/theme-live-codeblock']
 };

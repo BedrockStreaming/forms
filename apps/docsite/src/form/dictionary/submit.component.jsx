@@ -15,12 +15,7 @@ export const Submit = ({ label, formId, ...props }) => {
   return (
     <Box display="flex" justifyContent="center" width="100%">
       {shouldDisplayPrevious && (
-        <Button
-          onClick={handlePreviousStep}
-          variant="outlined"
-          sx={{ margin: 1 }}
-          type="button"
-        >
+        <Button onClick={handlePreviousStep} variant="outlined" sx={{ margin: 1 }} type="button">
           Previous
         </Button>
       )}

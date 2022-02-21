@@ -9,18 +9,10 @@ import {
   initForm,
   setNextStep,
   updateFormData,
-  getFormData
+  getFormData,
 } from '@bedrockstreaming/form-redux';
 
-import {
-  Divider,
-  Paper,
-  Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  Box,
-} from '@mui/material';
+import { Divider, Paper, Typography, Stepper, Step, StepLabel, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import { config } from './config';
@@ -34,18 +26,18 @@ const defaultValues = {
   firstName: '',
   lastName: '',
   birthdate: '',
-  password: ''
+  password: '',
 };
 
 const {
-  formIds: { register: formId, },
-  schemas: { register: schema }
+  formIds: { register: formId },
+  schemas: { register: schema },
 } = config;
 
 const useStyles = makeStyles({
   root: {
     margin: '0 auto',
-  }
+  },
 });
 
 const Form = () => {
@@ -70,34 +62,30 @@ const Form = () => {
     () => () => {
       cleanUseSubmit();
     },
-    [cleanUseSubmit]
+    [cleanUseSubmit],
   );
 
   return (
     <Paper className={classes.root} sx={{ p: 2 }} data-testid="form-example">
-      <Typography sx={{ p: 1}} component="h1" variant="h6">
+      <Typography sx={{ p: 1 }} component="h1" variant="h6">
         Multi Step Registration Form Demo
       </Typography>
       <Divider />
       <Box sx={{ m: 2 }}>
         <Box sx={{ p: 2 }}>
           <Stepper activeStep={currentStepIndex}>
-            {Object.keys(schema.steps).map((label, index) => {
-              return (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              );
-            })}
+            {Object.keys(schema.steps).map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
           </Stepper>
         </Box>
         <FormBuilder
           formId={formId}
           dictionary={dictionary}
           schema={schema}
-          defaultValues={
-            _.isEmpty(previousValues) ? defaultValues : previousValues
-          }
+          defaultValues={_.isEmpty(previousValues) ? defaultValues : previousValues}
           onNextStep={handleNextStep}
           onSubmit={handleSubmit}
           currentStepIndex={currentStepIndex}

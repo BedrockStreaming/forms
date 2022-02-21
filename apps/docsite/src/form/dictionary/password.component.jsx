@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import {
   getValidationRulesHints,
   checkRules,
-  withValidationRuleList
+  withValidationRuleList,
 } from '@bedrockstreaming/form-validation-rule-list';
 
 import { TextField, Box } from '@mui/material';
@@ -21,15 +21,14 @@ export const Password = ({
   onChange,
   optionalText,
   propRef,
-  type,
   value,
-  validation
+  validation,
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
 
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
 
   const hasError = !!checkRules(value, rules).length;
@@ -50,7 +49,7 @@ export const Password = ({
         value={value}
         data-testid={dataTestId}
         ruleComponent={RuleList}
-        />
+      />
     </Box>
   );
 };

@@ -2,14 +2,13 @@ import React, { useMemo } from 'react';
 import {
   getValidationRulesHints,
   checkRules,
-  withValidationRuleList
+  withValidationRuleList,
 } from '@bedrockstreaming/form-validation-rule-list';
 import { TextField, Box } from '@mui/material';
 
 import { BirthdateInput } from '@forms/examples/birthdate';
 
 import { RuleList } from '../rule-list.component';
-
 
 const ValidatedTextField = withValidationRuleList(TextField);
 
@@ -25,12 +24,12 @@ export const DateInput = ({
   setFieldValue,
   onChange,
   onBlur,
-  propRef
+  propRef,
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const rules = getValidationRulesHints({
     errors,
-    validation
+    validation,
   });
 
   const hasError = !!checkRules(value, rules).length;

@@ -40,8 +40,30 @@
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {}
+      "extends": ["plugin:@nrwl/nx/javascript", "@bedrockstreaming/react", "@bedrockstreaming/jest", "prettier"],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": "error",
+        "react/jsx-filename-extension": "off",
+        "import/prefer-default-export": "off",
+        "react/prop-types": "off",
+        "react/jsx-props-no-spreading": "off"
+      }
     }
-  ]
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+      }
+    }
+  }
 }
