@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-const { When } = require('cypress-cucumber-preprocessor/steps');
-const { getConstant } = require('../../support/constants');
+import { When } from 'cypress-cucumber-preprocessor/steps';
+import { getConstant } from '../../support/constants';
 
 When('I fill the input {string} with {string}', (constantName, text) => {
   cy.get(getConstant(constantName)).type(text);
