@@ -23,7 +23,7 @@ import { SubmitField } from './components/submitField.component';
 import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
 import { isEmpty } from './utils/object.utils';
-import { useDevtools } from './hooks/useDebug.hook';
+import { useDevtools } from './hooks/useDevtools.hook';
 
 const EMPTY_OBJECT = {} as const;
 const NOOP = () => null;

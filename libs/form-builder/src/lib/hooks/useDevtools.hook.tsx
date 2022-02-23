@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const BaseDebug = (): JSX.Element | null => null;
+export const BaseDebug = (): JSX.Element | null => null;
 
 export const useDevtools = (debug: boolean) => {
   const [, setLoaded] = React.useState(false);
