@@ -1,6 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import { reducer, initialState, DefaultFormState, FormAction } from '../forms.reducer';
 import { PREVIOUS_STEP, NEXT_STEP, UPDATE_FORM_DATA, INIT_FORM, RESET_FORM, SET_STEP } from '../forms.actions';
+import { FormSchema } from '@bedrockstreaming/form-builder';
 
 const formId = 'foo';
 const emptyObject = {};
@@ -27,7 +28,7 @@ describe('forms.reducer', () => {
       const action = {
         type: INIT_FORM,
         formId,
-        schema: { stepsById: ['foo'] },
+        schema: { stepsById: ['foo'] } as FormSchema,
       };
       expect(freezedReducer(initialState, action)).toEqual(defaultState);
     });

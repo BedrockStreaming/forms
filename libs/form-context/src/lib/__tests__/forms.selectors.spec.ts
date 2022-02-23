@@ -15,19 +15,19 @@ const state = {
 describe('forms.selectors', () => {
   describe('getFormData', () => {
     it('should retrieve data from state input', () => {
-      expect(getFormData(formId)(state)).toBe(state.foo.data);
+      expect(getFormData(formId)(state)).toEqual(state.foo.data);
     });
   });
 
   describe('getCurrentStepIndex', () => {
     it('should retrieve currentStepIndex from state input', () => {
-      expect(getCurrentStepIndex(formId)(state)).toBe(state.foo.currentStepIndex);
+      expect(getCurrentStepIndex(formId)(state)).toEqual(state.foo.currentStepIndex);
     });
   });
 
   describe('isLastStep', () => {
     it('should retrieve isLastStep property', () => {
-      expect(isLastStep(formId)(state)).toBe(state.foo.isLastStep);
+      expect(isLastStep(formId)(state)).toEqual(state.foo.isLastStep);
     });
   });
 });

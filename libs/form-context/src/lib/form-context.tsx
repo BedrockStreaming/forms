@@ -3,7 +3,7 @@ import React, { ReactChildren, useEffect, useRef } from 'react';
 import { reducer, initialState } from './forms.reducer';
 
 const FormsStateContext = React.createContext({});
-const FormsDispatchContext = React.createContext<any>(() => void null);
+const FormsDispatchContext = React.createContext<unknown>(() => void null);
 
 const FormsProvider = ({ children }: { children: ReactChildren | JSX.Element }) => {
   const isInitialized = useRef(false);

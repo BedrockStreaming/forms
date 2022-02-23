@@ -8,5 +8,11 @@ export const getFormData = (formId: string) => (state: { forms: DefaultFormState
 export const getCurrentStepIndex = (formId: string) => (state: { forms: DefaultFormState }) =>
   state.forms?.[formId]?.currentStepIndex || 0;
 
-export const isLastStep = (formId: string) => (state: { forms: DefaultFormState }) =>
-  state?.forms?.[formId]?.isLastStep || true;
+export const isLastStep = (formId: string) => (state: { forms: DefaultFormState }) => {
+  const value = state.forms[formId]?.isLastStep;
+  if (typeof value === 'boolean') {
+    return value;
+  }
+
+  return true;
+};
