@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import _ from 'lodash';
 import { FieldValues, UseFormSetFocus } from 'react-hook-form';
 import { FormSchema } from '../types';
 
@@ -11,8 +10,8 @@ export interface UseAutoFocusArgs {
 
 export const useAutoFocus = ({ currentStepIndex, schema, setFocus }: UseAutoFocusArgs) => {
   useEffect(() => {
-    const currentStepId = _.get(schema, `stepsById.${currentStepIndex}`);
-    const firstFieldIdInStep = _.get(schema, ['steps', currentStepId, 'fieldsById', 0]);
+    const currentStepId = schema?.stepsById?.[currentStepIndex];
+    const firstFieldIdInStep = schema?.steps?.[currentStepId]?.fieldsById?.[0];
 
     try {
       setFocus(firstFieldIdInStep);

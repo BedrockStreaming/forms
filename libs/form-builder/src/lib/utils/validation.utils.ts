@@ -1,13 +1,14 @@
 import { RegisterOptions } from 'react-hook-form';
-import _ from 'lodash';
 
 import { DEFAULT_RULES_NAMES } from '../constants';
 import { ExtraValidation, Validations } from '../types';
 
+const EMPTY_OBJECT = {} as const;
+
 export const handleValidateErrorMessage =
-  (validate: (...args: any[]) => boolean | undefined, message: string) =>
-  async (...args: any[]) => {
-    const result = await validate(...args);
+  (validate: (input: any) => boolean | string | undefined | Promise<boolean | string | undefined>, message: string) =>
+  async (input: any): Promise<string | boolean | undefined> => {
+    const result = await validate(input);
 
     return result || message;
   };
@@ -21,23 +22,24 @@ export interface FieldRules extends RegisterOptions {
   validate?: { [key: string]: (value?: any) => Promise<boolean> | boolean };
 }
 
-export const getFieldRules = ({ validation, extraValidation }: GetFieldRulesArgs): FieldRules => {
-  const hookFormRules = _.reduce(
-    validation,
-    (acc, { key, ...rest }) => (_.includes(DEFAULT_RULES_NAMES, key) ? { ...acc, [key]: rest } : acc),
-    {},
+export const getFieldRules = ({
+  validation = EMPTY_OBJECT,
+  extraValidation = EMPTY_OBJECT,
+}: GetFieldRulesArgs): FieldRules => {
+  const hookFormRules = Object.values(validation).reduce(
+    (acc, { key, ...rest }) => (DEFAULT_RULES_NAMES?.[key] ? { ...acc, [key]: rest } : acc),
+    EMPTY_OBJECT,
   );
 
-  const extraRules = _.reduce(
-    validation,
+  const extraRules = Object.values(validation).reduce(
     (acc, { key, value, message }) =>
-      _.includes(DEFAULT_RULES_NAMES, key) || (extraValidation && !extraValidation[key])
+      DEFAULT_RULES_NAMES?.[key] || (extraValidation && !extraValidation[key])
         ? acc
         : {
             ...acc,
-            [key]: handleValidateErrorMessage(_.invoke(extraValidation, key, value), message),
+            [key]: handleValidateErrorMessage(extraValidation?.[key]?.(value), message),
           },
-    {},
+    EMPTY_OBJECT,
   );
   const hasExtraRules = !!Object.keys(extraRules).length;
 

@@ -62,5 +62,5 @@ export interface Dictionary {
 }
 
 export interface ExtraValidation {
-  [key: string]: (value?: any) => (input?: any) => boolean | string | Promise<boolean | string>;
+  [key: string]: (value?: any) => (input?: any) => boolean | string | undefined | Promise<boolean | string | undefined>;
 }

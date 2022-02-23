@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { FieldErrors, DefaultValues, FieldValues } from 'react-hook-form';
 import { DEFAULT_RULES_NAMES } from '../constants';
 import { DirtyFields, FormSchema } from '../types';
@@ -12,8 +11,8 @@ export const getFieldsToCheckByStep = ({
   schema: FormSchema;
   currentStepIndex: number;
 }): string[] | readonly [] => {
-  const currentStepId = _.get(schema, ['stepsById', currentStepIndex]);
-  const fieldsToCheck = _.get(schema, ['steps', currentStepId, 'fieldsById'], EMPTY_ARRAY);
+  const currentStepId = schema?.stepsById?.[currentStepIndex];
+  const fieldsToCheck = schema?.steps?.[currentStepId]?.fieldsById || EMPTY_ARRAY;
 
   return fieldsToCheck;
 };
@@ -22,7 +21,7 @@ export const isFieldInError = ({ fieldToCheck, errors }: { fieldToCheck: string;
   !!(errors && errors[fieldToCheck]);
 
 export const isFieldRequired = ({ schema, fieldToCheck }: { schema: FormSchema; fieldToCheck: string }) =>
-  _.get(schema, ['fields', fieldToCheck, 'validation', DEFAULT_RULES_NAMES.required], false);
+  schema?.fields?.[fieldToCheck]?.validation?.[DEFAULT_RULES_NAMES.required];
 
 export const isFieldNotDirtyAndEmpty = ({
   fieldToCheck,
@@ -32,7 +31,7 @@ export const isFieldNotDirtyAndEmpty = ({
   fieldToCheck: string;
   dirtyFields: DirtyFields;
   defaultValues?: DefaultValues<FieldValues>;
-}) => !_.get(dirtyFields, fieldToCheck) && !_.get(defaultValues, fieldToCheck);
+}) => !dirtyFields?.[fieldToCheck] && !defaultValues?.[fieldToCheck];
 
 export const isStepInError = ({
   fieldsToCheckByStep,
