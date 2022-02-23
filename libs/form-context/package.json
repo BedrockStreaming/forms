@@ -4,9 +4,8 @@
   "peerDependencies": {
     "react": "17.0.2",
     "@bedrockstreaming/form-builder": "0.8.1",
-    "lodash": "4.17.21",
-    "react-hook-form": "7.27.0",
-    "@hookform/devtools": "4.0.2"
+    "@hookform/devtools": "4.0.2",
+    "react-hook-form": "7.27.0"
   },
   "devDependencies": {
     "deep-freeze": "0.0.1"
