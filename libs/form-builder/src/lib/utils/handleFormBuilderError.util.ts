@@ -1,11 +1,13 @@
-import _ from 'lodash';
 import { FormBuilderError } from './formBuilderError.utils';
 import { SUBMIT_FIELD_TYPE } from '../constants';
 import { Dictionary, FormSchema } from '../types';
 
+const EMPTY_OBJECT = {} as const;
+const EMPTY_ARRAY = [] as const;
+
 export const handleFormBuilderError = (typesAllowed: string[], schema: FormSchema, dictionary: Dictionary) => {
-  const invalidTypesInSchema = _.filter(
-    schema.fields,
+  const fieldValues = Object.values(schema?.fields || EMPTY_OBJECT);
+  const invalidTypesInSchema = fieldValues.filter(
     ({ type }) => !typesAllowed.includes(type) || type === SUBMIT_FIELD_TYPE,
   );
 
@@ -19,20 +21,21 @@ export const handleFormBuilderError = (typesAllowed: string[], schema: FormSchem
     );
   }
 
-  const steps = _.get(schema, 'steps');
+  const steps = schema?.steps || EMPTY_OBJECT;
+  const isStepsNonNullObject = steps && typeof steps === 'object';
 
-  if (!_.isObject(steps) || _.isEmpty(steps)) {
+  if (!isStepsNonNullObject || Object.keys(steps).length === 0) {
     throw new FormBuilderError(
       `The form's schema must contain a map of steps by id. Found: \n${JSON.stringify(steps, null, 2)}`,
     );
   }
 
-  const stepsById = _.get(schema, 'stepsById');
+  const stepsById = schema?.stepsById || EMPTY_ARRAY;
 
-  if (_.keys(steps).length !== stepsById.length) {
+  if (Object.keys(steps).length !== stepsById.length) {
     throw new FormBuilderError(
       `The form's schema must contain as many steps entries as steps ids. Found: \n${JSON.stringify(
-        { steps: _.keys(steps).length, stepsById: stepsById.length },
+        { steps: Object.keys(steps).length, stepsById: stepsById.length },
         null,
         2,
       )}`,

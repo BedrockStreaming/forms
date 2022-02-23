@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { INCOMPLETE_STATE, DEFAULT_STATE, COMPLETE_STATE } from './constants';
 
 export type RuleCheck = (value?: string | number) => boolean;
@@ -15,7 +14,7 @@ export type Rule = (key: string, check: RuleCheck) => RuleObject;
 export const rule = (key: string, check?: RuleCheck): RuleObject => ({
   key,
   check: (value?: string | number) => {
-    if (typeof value === 'undefined' || !_.get(value, ['length'])) {
+    if (typeof value === 'undefined' || (typeof value === 'string' && !value?.length)) {
       return DEFAULT_STATE;
     }
 
@@ -30,4 +29,4 @@ export const rule = (key: string, check?: RuleCheck): RuleObject => ({
 export type CheckRules = (value: string | number, rules: RuleObject[]) => string[];
 
 export const checkRules = (value: string | number | undefined, rules: RuleObject[]): string[] =>
-  rules.reduce((acc, { check, key }) => (check(value) === INCOMPLETE_STATE ? _.concat(acc, key) : acc), [] as string[]);
+  rules.reduce((acc, { check, key }) => (check(value) === INCOMPLETE_STATE ? [...acc, key] : acc), [] as string[]);

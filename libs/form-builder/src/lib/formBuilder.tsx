@@ -11,8 +11,6 @@ import {
 } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
-import _ from 'lodash';
-
 import { Dictionary, ExtraValidation, FormSchema } from './types';
 import { useAutoFocus } from './hooks/useAutoFocus.hook';
 import { useIsFormStepValid } from './hooks/useIsFormStepValid';
@@ -25,8 +23,10 @@ import { FormField } from './components/formField.component';
 import { SubmitField } from './components/submitField.component';
 import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
+import { isEmpty } from './utils/object.utils';
 
 const EMPTY_OBJECT = {} as const;
+const NOOP = () => null;
 
 export interface FormBuilderProps {
   formId: string;
@@ -48,7 +48,7 @@ export function FormBuilder({
   schema,
   dictionary,
   onSubmit,
-  onNextStep = _.noop,
+  onNextStep = NOOP,
   extraValidation,
   defaultValues,
   behavior = 'onChange',
@@ -71,9 +71,9 @@ export function FormBuilder({
     defaultValues,
   });
 
-  const isPreFilled = !_.isEmpty(defaultValues);
+  const isPreFilled = defaultValues && typeof defaultValues === 'object' && Object.keys(defaultValues).length > 0;
 
-  const typesAllowed = React.useMemo(() => _.keys(dictionary), [dictionary]);
+  const typesAllowed = React.useMemo(() => Object.keys(dictionary || EMPTY_OBJECT), [dictionary]);
 
   const { fields, fieldsById, stepsById, submitLabel } = React.useMemo(
     () => getSchemaInfo(schema, typesAllowed, currentStepIndex),
@@ -90,18 +90,14 @@ export function FormBuilder({
 
   const validationRulesById = React.useMemo(
     () =>
-      _.reduce(
-        fieldsById,
-        (accumulator, fieldId) => {
-          const validation = _.get(fields, [fieldId, 'validation'], EMPTY_OBJECT);
+      fieldsById.reduce((accumulator, fieldId) => {
+        const validation = fields?.[fieldId]?.validation || EMPTY_OBJECT;
 
-          return {
-            ...accumulator,
-            [fieldId]: getFieldRules({ validation, extraValidation }),
-          };
-        },
-        {} as { [key: string]: FieldRules },
-      ),
+        return {
+          ...accumulator,
+          [fieldId]: getFieldRules({ validation, extraValidation }),
+        };
+      }, {} as { [key: string]: FieldRules }),
     [extraValidation, fields, fieldsById],
   );
 
@@ -127,7 +123,7 @@ export function FormBuilder({
   // Displays nice and informative errors in dev mode
   if (debug) handleFormBuilderError(typesAllowed, schema, dictionary);
 
-  if (_.isEmpty(schema) || _.isEmpty(dictionary) || typeof onSubmit !== 'function') return null;
+  if (isEmpty(schema) || isEmpty(dictionary) || typeof onSubmit !== 'function') return null;
 
   return (
     <>
@@ -138,9 +134,9 @@ export function FormBuilder({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Stepper currentStepIndex={currentStepIndex}>
-          {_.map(stepsById, (stepId) => (
+          {stepsById?.map((stepId) => (
             <React.Fragment key={stepId}>
-              {_.map(filteredFields, (fieldId) => {
+              {filteredFields?.map((fieldId) => {
                 const { type, id, defaultValue, meta, validation } = fields[fieldId];
 
                 return (
@@ -150,21 +146,24 @@ export function FormBuilder({
                     control={control}
                     defaultValue={defaultValue}
                     rules={validationRulesById[fieldId]}
-                    render={({ field }) => (
-                      <FormField
-                        id={id}
-                        fieldType={type}
-                        validation={validation}
-                        dictionary={dictionary}
-                        errors={_.get(errors, [id])}
-                        setFieldValue={setFieldValue}
-                        triggerValidationField={triggerValidationField}
-                        {..._.omit(field, 'ref')}
-                        propRef={field.ref}
-                        isValidating={isValidating}
-                        {...meta}
-                      />
-                    )}
+                    render={({ field }) => {
+                      const { ref, ...fieldRest } = field;
+                      return (
+                        <FormField
+                          id={id}
+                          fieldType={type}
+                          validation={validation}
+                          dictionary={dictionary}
+                          errors={errors?.[id]}
+                          setFieldValue={setFieldValue}
+                          triggerValidationField={triggerValidationField}
+                          propRef={ref}
+                          isValidating={isValidating}
+                          {...meta}
+                          {...fieldRest}
+                        />
+                      );
+                    }}
                   />
                 );
               })}

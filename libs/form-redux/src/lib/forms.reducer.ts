@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import { FieldValues } from 'react-hook-form';
+import { FormSchema } from '@bedrockstreaming/form-builder';
 
 import { PREVIOUS_STEP, NEXT_STEP, UPDATE_FORM_DATA, INIT_FORM, RESET_FORM, SET_STEP } from './forms.actions';
 
@@ -18,6 +18,7 @@ export interface FormAction {
   data?: {
     [key: string]: unknown;
   };
+  schema?: FormSchema;
   [key: string]: unknown;
 }
 
@@ -28,8 +29,8 @@ const defaultFormState = {
   data: {},
 };
 
-const DEFAULT_OBJECT = {};
-export const initialState = {} as any;
+const DEFAULT_OBJECT = {} as const;
+export const initialState = {} as DefaultFormState;
 
 const checkFormId = ({ formId }: FormAction) => !!formId;
 const checkFormExist = ({ formId }: FormAction, state: DefaultFormState) => !!state[formId];
@@ -42,7 +43,7 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const stepsById = _.get(action, ['schema', 'stepsById'], [] as string[]);
+      const stepsById = action?.schema?.stepsById || ([] as string[]);
       const currentFormState = {
         ...defaultFormState,
         stepsCount: stepsById.length,
@@ -63,9 +64,9 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const formState = _.get(state, action.formId, DEFAULT_OBJECT);
-      const currentStepIndex = _.get(state, [action.formId, 'currentStepIndex'], 0);
-      const stepsCount = _.get(state, [action.formId, 'stepsCount'], 1);
+      const formState = state?.[action.formId] || DEFAULT_OBJECT;
+      const currentStepIndex = state?.[action.formId]?.currentStepIndex || 0;
+      const stepsCount = state?.[action.formId]?.stepsCount || 1;
 
       // Can't go under 0
       const newStepIndex = currentStepIndex <= 0 ? 0 : currentStepIndex - 1;
@@ -88,9 +89,9 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const formState = _.get(state, action.formId, DEFAULT_OBJECT);
-      const currentStepIndex = _.get(state, [action.formId, 'currentStepIndex'], 0);
-      const stepsCount = _.get(state, [action.formId, 'stepsCount'], 1);
+      const formState = state?.[action.formId] || DEFAULT_OBJECT;
+      const currentStepIndex = state?.[action.formId]?.currentStepIndex || 0;
+      const stepsCount = state?.[action.formId]?.stepsCount || 1;
 
       // Can't go above steps count
       const newStepIndex = currentStepIndex >= stepsCount - 1 ? stepsCount - 1 : currentStepIndex + 1;
@@ -113,7 +114,7 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const formState = _.get(state, action.formId);
+      const formState = state?.[action.formId];
 
       if (!formState) return state;
 
@@ -137,7 +138,9 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      return _.omit(state, [action.formId]);
+      const { [action.formId]: targetForm, ...resetState } = state;
+
+      return resetState;
     }
 
     case SET_STEP: {
@@ -148,14 +151,14 @@ export const reducer = (state = initialState, action: FormAction) => {
         return state;
       }
 
-      const newStepIndex = _.isNumber(action.stepIndex) ? action.stepIndex : 0;
-      const stepsCount = _.get(state, [action.formId, 'stepsCount'], 1);
+      const newStepIndex = typeof action.stepIndex === 'number' ? action.stepIndex : 0;
+      const stepsCount = state?.[action.formId]?.stepsCount || 1;
 
       if (!checkStepExist(stepsCount, newStepIndex)) {
         return state;
       }
 
-      const formState = _.get(state, action.formId, DEFAULT_OBJECT);
+      const formState = state?.[action.formId] || DEFAULT_OBJECT;
 
       return {
         ...state,

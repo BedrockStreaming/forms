@@ -1,13 +1,12 @@
-import _ from 'lodash';
 import { SUBMIT_FIELD_TYPE } from '../constants';
 import { FormFields, FormSchema } from '../types';
 
-const EMPTY_ARRAY = [] as string[];
-const EMPTY_OBJECT = {} as any;
+const EMPTY_ARRAY = [] as const;
+const EMPTY_OBJECT = {} as const;
 
 export const sanitizeFieldsById = (fieldsById: string[], fields: FormFields, typesAllowed: string[]): string[] =>
-  _.filter(fieldsById, (fieldId) => {
-    const type = _.get(fields, [fieldId, 'type']);
+  fieldsById.filter((fieldId) => {
+    const type = fields?.[fieldId]?.type;
 
     return typesAllowed.includes(type) && type !== SUBMIT_FIELD_TYPE;
   });
@@ -20,12 +19,12 @@ export interface SchemaInfo {
 }
 
 export const getSchemaInfo = (schema: FormSchema, typesAllowed: string[], currentStepIndex: number): SchemaInfo => {
-  const steps = _.get(schema, 'steps');
-  const stepsById = _.get(schema, 'stepsById', EMPTY_ARRAY);
-  const stepId = _.get(stepsById, currentStepIndex);
-  const fieldsById = _.get(steps, [stepId, 'fieldsById'], EMPTY_ARRAY);
-  const submitLabel = _.get(steps, [stepId, 'submit', 'label']);
-  const fields = _.get(schema, 'fields', EMPTY_OBJECT);
+  const steps = schema?.steps;
+  const stepsById = schema?.stepsById || EMPTY_ARRAY;
+  const stepId = stepsById?.[currentStepIndex];
+  const fieldsById = steps?.[stepId]?.fieldsById || EMPTY_ARRAY;
+  const submitLabel = steps?.[stepId]?.submit?.label;
+  const fields = schema?.fields || EMPTY_OBJECT;
 
   return {
     fields,

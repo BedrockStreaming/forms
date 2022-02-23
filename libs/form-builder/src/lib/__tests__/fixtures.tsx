@@ -1,5 +1,4 @@
 import { Dictionary } from '../types';
-import _ from 'lodash';
 import { FormSchema } from '../types';
 
 const makeStep = ({ fieldsById, stepId, label }: { fieldsById: string[]; stepId: string; label: string }) => ({
@@ -69,4 +68,4 @@ export const CORRECT_DICTIONARY: Dictionary = {
   ),
 };
 
-export const typesAllowed = _.keys(CORRECT_DICTIONARY);
+export const typesAllowed = Object.keys(CORRECT_DICTIONARY);
