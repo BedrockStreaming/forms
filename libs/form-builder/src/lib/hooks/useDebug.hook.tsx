@@ -8,10 +8,13 @@ export const useDevtools = (debug: boolean) => {
 
   React.useEffect(() => {
     if (debug && Component.current === BaseDebug) {
-      import('@hookform/devtools').then(({ DevTool }) => {
-        Component.current = DevTool as React.ElementType;
-        setLoaded(true);
-      });
+      // eslint-disable-next-line import/no-extraneous-dependencies
+      import('@hookform/devtools')
+        .then(({ DevTool }) => {
+          Component.current = DevTool as React.ElementType;
+          setLoaded(true);
+        })
+        .catch();
     }
   }, [debug, setLoaded]);
 

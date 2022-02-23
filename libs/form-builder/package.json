@@ -2,7 +2,6 @@
   "name": "@bedrockstreaming/form-builder",
   "version": "0.8.2",
   "dependencies": {
-    "@hookform/devtools": "4.0.2",
     "react-hook-form": "7.27.0"
   },
   "peerDependencies": {
@@ -11,5 +10,8 @@
   "devDependencies": {
     "@testing-library/react": "11.2.6",
     "@testing-library/react-hooks": "7.0.2"
+  },
+  "optionalDependencies": {
+    "@hookform/devtools": "4.0.2"
   }
 }
