@@ -1,18 +1,12 @@
-import _ from 'lodash';
+import { DefaultFormState } from './forms.reducer';
 
-const defaultObject = {} as any;
+const defaultObject = {} as const;
 
-export const getFormData =
-  <RootState>(formId: string) =>
-  (state: RootState) =>
-    _.get(state, ['forms', formId, 'data'], defaultObject);
+export const getFormData = (formId: string) => (state: { forms: DefaultFormState }) =>
+  state.forms?.[formId]?.data || defaultObject;
 
-export const getCurrentStepIndex =
-  <RootState>(formId: string) =>
-  (state: RootState) =>
-    _.get(state, ['forms', formId, 'currentStepIndex'], 0);
+export const getCurrentStepIndex = (formId: string) => (state: { forms: DefaultFormState }) =>
+  state.forms?.[formId]?.currentStepIndex || 0;
 
-export const isLastStep =
-  <RootState>(formId: string) =>
-  (state: RootState) =>
-    _.get(state, ['forms', formId, 'isLastStep'], true);
+export const isLastStep = (formId: string) => (state: { forms: DefaultFormState }) =>
+  state?.forms?.[formId]?.isLastStep || true;

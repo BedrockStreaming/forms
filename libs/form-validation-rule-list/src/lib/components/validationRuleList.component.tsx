@@ -1,8 +1,9 @@
 import * as React from 'react';
-import _ from 'lodash';
 
 import { INCOMPLETE_STATE, STATUS_BY_STATE } from '../constants';
 import { RuleObject } from '../rule';
+
+const noop = () => null;
 
 export interface RulesItem {
   key: string;
@@ -21,11 +22,14 @@ const getItemsAndErrors = (rules: RuleObject[], value?: string | number) =>
     (acc, { check, key }) => {
       const result = check(value);
 
-      const nextErrors = result === INCOMPLETE_STATE ? _.concat(acc.errors, key) : acc.errors;
-      const nextItems = _.concat(acc.items, {
-        key,
-        status: STATUS_BY_STATE[result],
-      });
+      const nextErrors = result === INCOMPLETE_STATE ? [...acc.errors, key] : acc.errors;
+      const nextItems = [
+        ...acc.items,
+        {
+          key,
+          status: STATUS_BY_STATE[result],
+        },
+      ];
 
       return { items: nextItems, errors: nextErrors };
     },
@@ -51,7 +55,7 @@ export const ValidationRuleList = ({
   value = '',
   component: Component,
   componentProp = 'items',
-  onError = _.noop,
+  onError = noop,
   ...otherProps
 }: ValidationRuleListProps) => {
   if (!Component || !rules.length) {

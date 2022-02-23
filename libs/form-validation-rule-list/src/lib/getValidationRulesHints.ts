@@ -1,6 +1,5 @@
 import { Validations, DEFAULT_RULES_NAMES } from '@bedrockstreaming/form-builder';
 import { FieldErrors } from 'react-hook-form';
-import _ from 'lodash';
 
 import { rule, RuleObject } from './rule';
 
@@ -15,13 +14,10 @@ export interface GetValidationRulesHintsArgs {
   config?: AbstractMapOfString;
 }
 
-export const getValidationRulesHints = ({
-  t = _.identity,
-  errors,
-  validation,
-  config,
-}: GetValidationRulesHintsArgs) => {
+const identity = (value: string) => value;
+
+export const getValidationRulesHints = ({ t = identity, errors, validation, config }: GetValidationRulesHintsArgs) => {
   return Object.values(validation).reduce((acc, { message, key }) => {
-    return DEFAULT_RULES_NAMES[key] ? acc : [...acc, rule(t(message, config), () => !_.get(errors, ['types', key]))];
+    return DEFAULT_RULES_NAMES[key] ? acc : [...acc, rule(t(message, config), () => !errors?.types[key])];
   }, [] as Array<RuleObject>);
 };
