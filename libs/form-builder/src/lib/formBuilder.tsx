@@ -9,7 +9,6 @@ import {
   useForm,
   ValidationMode,
 } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
 
 import { Dictionary, ExtraValidation, FormSchema } from './types';
 import { useAutoFocus } from './hooks/useAutoFocus.hook';
@@ -24,6 +23,7 @@ import { SubmitField } from './components/submitField.component';
 import { getFieldRules, FieldRules } from './utils/validation.utils';
 import { filterDependentsFieldsById } from './utils/conditionalFields.utils';
 import { isEmpty } from './utils/object.utils';
+import { useDevtools } from './hooks/useDevtools.hook';
 
 const EMPTY_OBJECT = {} as const;
 const NOOP = () => null;
@@ -39,7 +39,7 @@ export interface FormBuilderProps {
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
-  formProps?: { [key: string]: any };
+  formProps?: { [key: string]: unknown };
   debug?: boolean;
 }
 
@@ -70,6 +70,8 @@ export function FormBuilder({
     criteriaMode: 'all',
     defaultValues,
   });
+
+  const Debug = useDevtools(debug);
 
   const isPreFilled = defaultValues && typeof defaultValues === 'object' && Object.keys(defaultValues).length > 0;
 
@@ -181,7 +183,7 @@ export function FormBuilder({
           onNextStep={onNextStep}
         />
       </form>
-      {debug && <DevTool control={control} />}
+      {debug && <Debug control={control} />}
     </>
   );
 }
