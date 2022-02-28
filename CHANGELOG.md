@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.8.3](https://github.com/BedrockStreaming/forms/compare/v0.8.2...v0.8.3) (2022-02-28)
+
+
+### Bug Fixes
+
+* **libs/form-context:** make selectors safer ([#61](https://github.com/BedrockStreaming/forms/issues/61)) ([39fc91c](https://github.com/BedrockStreaming/forms/commit/39fc91c820a2a6f5b45fa54ba86d2580a28e13fd))
+
+
+
 ## [0.8.2](https://github.com/BedrockStreaming/forms/compare/v0.8.1...v0.8.2) (2022-02-21)
 
 
