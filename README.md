@@ -15,6 +15,9 @@
 </p>
 
 :octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our production react applications to handle dynamic forms generation and validation.
+This project handles 4 librairies packages, plus the demo/demo-e2e and docsite/docsite-e2e
+The demo site is there to smoothe the dev experience
+The docsite is the one used on https://bedrockstreaming.github.io/forms/
 
 ## :package: Packages
 
