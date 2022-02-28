@@ -27,7 +27,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[BedrockStreaming Forms Code of Conduct](https://github.com/BedrockStreaming/formsblob/master/CODE_OF_CONDUCT.md).
+[BedrockStreaming Forms Code of Conduct](https://github.com/BedrockStreaming/forms/blob/master/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to <contact@bedrockstreaming.com>.
 
