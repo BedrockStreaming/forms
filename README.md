@@ -15,9 +15,6 @@
 </p>
 
 :octocat: Monorepo exposing a set of form libraries we, [BedrockStreaming](https://www.bedrockstreaming.com/), are using in our production react applications to handle dynamic forms generation and validation.
-This project handles 4 librairies packages, plus the demo/demo-e2e and docsite/docsite-e2e
-The `demo` project is there to smoothe the dev experience
-The `docsite`project is the one used on https://bedrockstreaming.github.io/forms/
 
 ## :package: Packages
 
@@ -36,23 +33,24 @@ As we were eager to keep some control over the process, but not willing to contr
 
 We believe that anyone using react could use our libraries to create and manage forms the way we do. We are still exposing - what we think are - the relevant parts of `react-hook-form` API so we think of the FormBuilder as an opinionated solution to industrialize forms across your application.
 
-## How to start
-
-for development:
-`yarn start demo``
-or
-`yarn start docsite``
-
-for e2e:
-`yarn e2e demo-e2e``
-or
-`yarn e2e docsite-e2e`
-
 ## 🤝 Contributing
 
 First read the [Contributing](.github/CONTRIBUTING.md) and [Code of conduct](.github/CODE_OF_CONDUCT.md) sections.
 
 :point_up: Note that this project was generated using [Nx](https://nx.dev).
+
+### Getting started
+
+Check each library's documentation.
+
+To test each library development, we'll use the demo app and the docsite (dog-fooding strategy).
+
+This project handles 4 librairies packages, plus the demo/demo-e2e and docsite/docsite-e2e
+The `demo` project is there to smoothe the dev experience
+The `docsite`project is the one used on https://bedrockstreaming.github.io/forms/
+
+In order to start on the project, you can start with the demo project:
+`yarn start demo`
 
 ### Generate an application
 
