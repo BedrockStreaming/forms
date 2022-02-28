@@ -47,7 +47,7 @@ To test each library development, we'll use the demo app and the docsite (dog-fo
 
 This project handles 4 libraries packages, which are used in two apps: demo and docsite (e2e apps are simply holding test code about those apps)
 The `demo` project is there to smoothe the dev experience
-The `docsite`project is the one used on https://bedrockstreaming.github.io/forms/
+The `docsite` project is the one used on https://bedrockstreaming.github.io/forms/
 
 In order to start on the project, you can start with the demo project:
 `yarn start demo`
