@@ -29,9 +29,11 @@ export function SubmitField({
   const handleNextStep = React.useCallback(
     (event) => {
       event.preventDefault();
-      onNextStep(getValues());
+      if (!nextDisabled) {
+        onNextStep(getValues());
+      }
     },
-    [onNextStep, getValues],
+    [onNextStep, getValues, nextDisabled],
   );
 
   return (
