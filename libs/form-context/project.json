@@ -40,7 +40,7 @@
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "baseBranch": "master",
+        "baseBranch": "${baseBranch}",
         "access": "public"
       }
     }

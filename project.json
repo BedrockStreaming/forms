@@ -4,7 +4,7 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "baseBranch": "master",
+        "baseBranch": "${baseBranch}",
         "push": true,
         "noVerify": true,
         "commitMessageFormat": "release(${projectName}): publish version ${version}",
@@ -21,7 +21,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "target": "master",
+        "target": "${baseBranch}",
         "tag": "${tag}",
         "notes": "${notes}"
       }
