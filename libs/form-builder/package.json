@@ -13,5 +13,6 @@
   },
   "optionalDependencies": {
     "@hookform/devtools": "4.0.2"
-  }
+  },
+  "version": "0.8.4-testprerelease.0"
 }

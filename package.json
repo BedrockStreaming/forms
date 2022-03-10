@@ -1,6 +1,6 @@
 {
   "name": "forms",
-  "version": "0.8.3",
+  "version": "0.8.4-testprerelease.0",
   "license": "MIT",
   "keywords": [
     "react-hook-form",
