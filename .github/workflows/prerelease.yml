@@ -1,4 +1,4 @@
-name: 'Forms Release'
+name: 'Forms Pre-Release'
 
 on:
   workflow_dispatch:
