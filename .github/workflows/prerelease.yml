@@ -1,0 +1,45 @@
+name: 'Forms Release'
+
+on:
+  workflow_dispatch:
+    inputs:
+      pre_id:
+        description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha')"
+        required: true
+        type: string
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          node-version: "14"
+          registry-url: https://registry.npmjs.org
+      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+      - name: Lint
+        run: yarn nx affected:lint --base={{ github.ref }}
+      - name: Setup git user to "🤖 Release Bot"
+        run: git config user.email "-" && git config user.name "🤖 Release Bot"
+      - name: Version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Use npx instead of yarn because yarn auto-magically sets NPM_* environment variables
+        # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
+        # which is set up by `setup-node` action.
+        # run: npx nx affected --base=master --releaseAs=minor --target=version
+        run: npx --no-install nx run workspace:version --baseBranch=${{ github.ref }} --syncVersions
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+          tags: true
