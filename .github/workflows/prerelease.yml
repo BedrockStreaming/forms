@@ -23,7 +23,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - name: Lint
-        run: yarn nx affected:lint --base={{ github.ref }}
+        run: yarn nx affected:lint --base=${{ github.ref }}
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
       - id: lowercase-branch-tag
