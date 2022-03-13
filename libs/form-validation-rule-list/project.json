@@ -25,9 +25,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/form-validation-rule-list/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/form-validation-rule-list/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
@@ -42,6 +40,12 @@
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "baseBranch": "master",
+        "access": "public"
+      }
+    },
+    "publish-canary": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
         "access": "public"
       }
     }

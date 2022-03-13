@@ -18,6 +18,23 @@
         ]
       }
     },
+    "pre-version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "commitMessageFormat": "release(${projectName}): publish pre-release version ${version}",
+        "postTargets": [
+          "form-builder:canary-publish",
+          "form-validation-rule-list:canary-publish",
+          "form-redux:canary-publish",
+          "form-editor:canary-publish",
+          "form-context:canary-publish"
+        ],
+        "skipProjectChangelog": false,
+        "skipRootChangelog": false
+      }
+    },
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {

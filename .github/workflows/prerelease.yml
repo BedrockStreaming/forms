@@ -1,15 +1,14 @@
-name: 'Forms Pre-Release'
+name: 'Forms Pre-release'
 
 on:
   workflow_dispatch:
     inputs:
       pre_id:
-        description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha')"
+        description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)"
         required: true
         type: string
 
 jobs:
-
   release:
     runs-on: ubuntu-latest
 
@@ -27,7 +26,12 @@ jobs:
         run: yarn nx affected:lint --base={{ github.ref }}
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
+      - id: lowercase-branch-tag
+        uses: ASzc/change-string-case-action@v2
+        with:
+          string: ${{ github.ref }}
       - name: Version
+        id: version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,11 +39,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:version --baseBranch=${{ github.ref }} --syncVersions
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          force: true
-          tags: true
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.ref }} --syncVersions --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }} --dry-run
+

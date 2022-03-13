@@ -40,6 +40,12 @@
         "baseBranch": "master",
         "access": "public"
       }
+    },
+    "publish-canary": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
     }
   },
   "tags": []
