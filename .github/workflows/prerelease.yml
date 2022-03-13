@@ -5,7 +5,7 @@ on:
     inputs:
       pre_id:
         description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)"
-        required: true
+        required: false
         type: string
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
       - id: lowercase-branch-tag
         uses: ASzc/change-string-case-action@v2
         with:
-          string: ${{ github.ref }}
+          string: ${{ inputs.pre_id || github.ref }}
       - name: Version
         id: version
         env:
