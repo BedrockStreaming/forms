@@ -1,11 +1,12 @@
 name: 'Forms Pre-release'
 
 on:
+  pull_request:
   workflow_dispatch:
     inputs:
       pre_id:
         description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)"
-        required: false
+        required: true
         type: string
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
       - id: lowercase-branch-tag
         uses: ASzc/change-string-case-action@v2
         with:
-          string: ${{ inputs.pre_id || github.ref }}
+          string: ${{ github.event.inputs.pre_id || "$GITHUB_REF_NAME" }}
       - name: Version
         id: version
         env:
