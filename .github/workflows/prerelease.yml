@@ -32,6 +32,10 @@ jobs:
         with:
           string: test-2
           # string: ${{ github.event.inputs.pre_id }}
+      - name: BranchName
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: echo "$BRANCH_NAME"
       - name: Version
         id: version
         env:
