@@ -11,6 +11,8 @@ on:
 
 jobs:
   release:
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     runs-on: ubuntu-latest
 
     steps:
@@ -23,19 +25,13 @@ jobs:
           node-version: "14"
           registry-url: https://registry.npmjs.org
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
-      - name: Lint
-        run: yarn nx affected:lint --base=${{ github.ref }}
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
       - id: lowercase-branch-tag
         uses: ASzc/change-string-case-action@v2
         with:
-          string: test-2
+          string: ${{ env.BRANCH_NAME }}
           # string: ${{ github.event.inputs.pre_id }}
-      - name: BranchName
-        env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-        run: echo "$BRANCH_NAME"
       - name: Version
         id: version
         env:
@@ -45,5 +41,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.ref }} --syncVersions --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }} --dry-run
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }} --dry-run
 
