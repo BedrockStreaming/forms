@@ -47,7 +47,8 @@
     "publish-canary": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "access": "public"
+        "access": "public",
+        "dryRun": true
       }
     }
   },

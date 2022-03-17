@@ -41,5 +41,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }} --dry-run
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }}
 
