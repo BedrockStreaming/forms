@@ -30,7 +30,8 @@ jobs:
       - id: lowercase-branch-tag
         uses: ASzc/change-string-case-action@v2
         with:
-          string: ${{ github.event.inputs.pre_id || "$GITHUB_REF_NAME" }}
+          string: test-2
+          # string: ${{ github.event.inputs.pre_id }}
       - name: Version
         id: version
         env:
