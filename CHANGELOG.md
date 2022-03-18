@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.8.4-test-2.1](https://github.com/BedrockStreaming/forms/compare/v0.8.4-test-2.0...v0.8.4-test-2.1) (2022-03-18)
+
+
+### Bug Fixes
+
+* add ref to checkout ([4a0a9e2](https://github.com/BedrockStreaming/forms/commit/4a0a9e232054d8fe984c9d4219b27617de265d5e))
+
+
+
 ## [0.8.4-test-2.0](https://github.com/BedrockStreaming/forms/compare/v0.8.3...v0.8.4-test-2.0) (2022-03-18)
 
 
