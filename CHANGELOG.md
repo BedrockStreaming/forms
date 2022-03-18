@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.8.4-test-2.0](https://github.com/BedrockStreaming/forms/compare/v0.8.3...v0.8.4-test-2.0) (2022-03-18)
+
+
+### Bug Fixes
+
+* base branch ([3b87d6c](https://github.com/BedrockStreaming/forms/commit/3b87d6ca886eed394420bf5a1e4400fa6143dcb5))
+* comment ([0ce1c77](https://github.com/BedrockStreaming/forms/commit/0ce1c7784074265ccd537b231f310b7df88ce012))
+
+
+
 ## [0.8.3](https://github.com/BedrockStreaming/forms/compare/v0.8.2...v0.8.3) (2022-02-28)
 
 
