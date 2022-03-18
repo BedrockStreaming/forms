@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-redux",
-  "version": "0.8.4-test-2.0",
+  "version": "0.8.3",
   "peerDependencies": {
     "@bedrockstreaming/form-builder": "0.8.1",
     "@hookform/devtools": "4.0.2",
