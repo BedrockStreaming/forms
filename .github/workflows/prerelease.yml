@@ -4,8 +4,12 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
+      branch:
+        description: Specify the git branch you want to prerelease
+        required: true
+        type: string
       pre_id:
-        description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)"
+        description: Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)
         required: true
         type: string
 
@@ -20,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: test-2
-          # ${{ github.head_ref || github.ref_name }}
+          # ref: ${{ github.event.inputs.branch }}
       - uses: actions/setup-node@v2
         with:
           cache: yarn
@@ -29,7 +33,7 @@ jobs:
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
-      - id: lowercase-branch-tag
+      - id: lowercase-preid
         uses: ASzc/change-string-case-action@v2
         with:
           string: ${{ env.BRANCH_NAME }}
@@ -43,5 +47,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }}
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-preid.outputs.lowercase }}
 

@@ -44,11 +44,12 @@
         "access": "public"
       }
     },
-    "publish-canary": {
+    "publish-dev": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public",
-        "dryRun": true
+        "dryRun": true,
+        "tag": "dev"
       }
     }
   },

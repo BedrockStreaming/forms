@@ -25,14 +25,14 @@
         "push": true,
         "commitMessageFormat": "release(${projectName}): publish pre-release version ${version}",
         "postTargets": [
-          "form-builder:publish-canary",
-          "form-validation-rule-list:publish-canary",
-          "form-redux:publish-canary",
-          "form-editor:publish-canary",
-          "form-context:publish-canary"
+          "form-builder:publish-dev",
+          "form-validation-rule-list:publish-dev",
+          "form-redux:publish-dev",
+          "form-editor:publish-dev",
+          "form-context:publish-dev"
         ],
-        "skipProjectChangelog": false,
-        "skipRootChangelog": false
+        "skipProjectChangelog": true,
+        "skipRootChangelog": true
       }
     },
     "github": {
