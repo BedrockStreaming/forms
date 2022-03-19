@@ -1,7 +1,6 @@
 name: 'Forms Pre-release'
 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       branch:
@@ -15,16 +14,12 @@ on:
 
 jobs:
   release:
-    env:
-      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: test-2
-          # ref: ${{ github.event.inputs.branch }}
+          ref: ${{ github.event.inputs.branch }}
       - uses: actions/setup-node@v2
         with:
           cache: yarn
@@ -36,8 +31,7 @@ jobs:
       - id: lowercase-preid
         uses: ASzc/change-string-case-action@v2
         with:
-          string: ${{ env.BRANCH_NAME }}
-          # string: ${{ github.event.inputs.pre_id }}
+          string: ${{ github.event.inputs.pre_id }}
       - name: Version
         id: version
         env:
@@ -47,5 +41,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ env.BRANCH_NAME }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-preid.outputs.lowercase }}
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.event.inputs.branch }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-preid.outputs.lowercase }}
 
