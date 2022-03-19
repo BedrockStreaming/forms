@@ -3,33 +3,35 @@ name: 'Forms Pre-release'
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: Specify the git branch you want to prerelease
+        required: true
+        type: string
       pre_id:
-        description: "Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)"
-        required: false
+        description: Specify the pre-id parameter for your pre-release (e.g. 'alpha' or a branch name)
+        required: true
         type: string
 
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          ref: ${{ github.event.inputs.branch }}
       - uses: actions/setup-node@v2
         with:
           cache: yarn
           node-version: "14"
           registry-url: https://registry.npmjs.org
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
-      - name: Lint
-        run: yarn nx affected:lint --base=${{ github.ref }}
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
-      - id: lowercase-branch-tag
+      - id: lowercase-preid
         uses: ASzc/change-string-case-action@v2
         with:
-          string: ${{ inputs.pre_id || github.ref }}
+          string: ${{ github.event.inputs.pre_id }}
       - name: Version
         id: version
         env:
@@ -39,5 +41,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.ref }} --syncVersions --preid=${{ steps.lowercase-branch-tag.outputs.lowercase }} --dry-run
+        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.event.inputs.branch }} --syncVersions  --releaseAs=prerelease --preid=${{ steps.lowercase-preid.outputs.lowercase }}
 
