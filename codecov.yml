@@ -23,10 +23,6 @@ coverage:
         target: 0%
         flags:
           - form-editor
-      demo:
-        target: 0%
-        flags:
-          - demo
     patch:
       default:
         enabled: no
@@ -51,6 +47,6 @@ flags:
   form-editor:
     paths:
       - libs/form-editor/src
-  demo:
-    paths:
-      - apps/demo/src
+
+ignore:
+  - "apps/demo/**/*"
