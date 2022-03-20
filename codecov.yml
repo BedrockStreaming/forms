@@ -19,10 +19,6 @@ coverage:
         target: 90%
         flags:
           - form-validation-rule-list
-      form-editor:
-        target: 0%
-        flags:
-          - form-editor
     patch:
       default:
         enabled: no
@@ -44,9 +40,9 @@ flags:
   form-validation-rule-list:
     paths:
       - libs/form-validation-rule-list/src
-  form-editor:
-    paths:
-      - libs/form-editor/src
 
 ignore:
   - "apps/demo/**/*"
+  - "apps/docsite/**/*"
+  - "libs/form-editor/**/*"
+  - "libs/examples/**/*"
