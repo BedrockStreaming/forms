@@ -6,4 +6,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/form-validation-rule-list',
+  coverageReporters: ['html', 'lcov'],
 };
