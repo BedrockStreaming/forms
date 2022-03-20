@@ -32,11 +32,11 @@ jobs:
       - name: Build
         run: yarn nx affected:build --base=last-release
       - name: Unit tests
-        run: yarn nx affected:test --base=last-release
-      # - name: Codecov upload
-      #   uses: codecov/codecov-action@v2
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+        run: yarn nx affected:test --base=last-release --code-coverage
+      - name: Codecov upload
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
     runs-on: ubuntu-latest

@@ -3,10 +3,30 @@ coverage:
   round: down
   status:
     project:
-      builder:
-        target: 70%
+      form-builder:
+        target: 90%
         flags:
-          - builder
+          - form-builder
+      form-redux:
+        target: 90%
+        flags:
+          - form-redux
+      form-context:
+        target: 90%
+        flags:
+          - form-context
+      form-validation-rule-list:
+        target: 90%
+        flags:
+          - form-validation-rule-list
+      form-editor:
+        target: 0%
+        flags:
+          - form-editor
+      demo:
+        target: 0%
+        flags:
+          - demo
     patch:
       default:
         enabled: no
@@ -16,6 +36,21 @@ coverage:
         enabled: no
         if_not_found: success
 flags:
-  builder:
+  form-builder:
     paths:
       - libs/form-builder/src
+  form-redux:
+    paths:
+      - libs/form-redux/src
+  form-context:
+    paths:
+      - libs/form-context/src
+  form-validation-rule-list:
+    paths:
+      - libs/form-validation-rule-list/src
+  form-editor:
+    paths:
+      - libs/form-editor/src
+  demo:
+    paths:
+      - apps/demo/src
