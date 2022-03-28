@@ -25,6 +25,7 @@ export function SubmitField({
   isLastStep,
   submitLabel,
   onNextStep,
+  isValidating,
 }: SubmitFieldProps) {
   const handleNextStep = React.useCallback(
     (event) => {
@@ -51,7 +52,7 @@ export function SubmitField({
         <FormField
           id="next-field"
           fieldType={SUBMIT_FIELD_TYPE}
-          disabled={nextDisabled}
+          disabled={isValidating}
           onClick={handleNextStep}
           label={submitLabel}
           dictionary={dictionary}

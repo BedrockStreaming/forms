@@ -70,7 +70,6 @@ export function FormBuilder({
     criteriaMode: 'all',
     defaultValues,
   });
-
   const Debug = useDevtools(debug);
 
   const isPreFilled = defaultValues && typeof defaultValues === 'object' && Object.keys(defaultValues).length > 0;
@@ -181,6 +180,7 @@ export function FormBuilder({
           submitLabel={submitLabel}
           getValues={getValues}
           onNextStep={onNextStep}
+          isValidating={isValidating}
         />
       </form>
       {debug && <Debug control={control} />}
