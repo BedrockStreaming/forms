@@ -10,6 +10,7 @@ export interface SubmitFieldProps {
   dictionary: Dictionary;
   submitDisabled: boolean;
   nextDisabled: boolean;
+  isValidating: boolean;
   getValues: UseFormGetValues<FieldValues>;
   isLastStep: boolean;
   submitLabel: string;
