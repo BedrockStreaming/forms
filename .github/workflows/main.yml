@@ -57,6 +57,9 @@ jobs:
       - run: npx nx affected --base=origin/master --target=test --parallel --max-parallel=2 --code-coverage
       - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2
 
+      - name: Clean before merge
+        run: yarn cleanBeforeMerge
+
       - name: Codecov upload
         uses: codecov/codecov-action@v2
         with:

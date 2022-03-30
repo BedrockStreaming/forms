@@ -33,7 +33,8 @@
     "help": "nx help",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cleanBeforeMerge": "node check-version.js"
   },
   "private": true,
   "resolutions": {
@@ -84,7 +85,7 @@
     "@bedrockstreaming/eslint-config-react": "4.0.4",
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-angular": "15.0.0",
-    "@jscutlery/semver": "2.17.5",
+    "@jscutlery/semver": "2.21.5",
     "@nrwl/cli": "12.10.0",
     "@nrwl/cypress": "12.10.0",
     "@nrwl/eslint-plugin-nx": "12.10.0",
