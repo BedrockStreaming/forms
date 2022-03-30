@@ -23,10 +23,10 @@ jobs:
           node-version: '14'
           cache: yarn
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
-      - run: npx nx affected --target=lint --parallel --max-parallel=3
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2 --code-coverage
-      - run: npx nx affected --target=e2e --parallel --max-parallel=2
+      - run: npx nx affected --target=lint --parallel --max-parallel=3 --exclude=workspace
+      - run: npx nx affected --target=build --parallel --max-parallel=3 --exclude=workspace
+      - run: npx nx affected --target=test --parallel --max-parallel=2 --code-coverage --exclude=workspace
+      - run: npx nx affected --target=e2e --parallel --max-parallel=2 --exclude=workspace
 
       - name: Codecov upload
         uses: codecov/codecov-action@v2
@@ -52,10 +52,10 @@ jobs:
           node-version: '14'
           cache: yarn
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
-      - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3
-      - run: npx nx affected --base=origin/master --target=build --parallel --max-parallel=3
-      - run: npx nx affected --base=origin/master --target=test --parallel --max-parallel=2 --code-coverage
-      - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2
+      - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3 --exclude=workspace
+      - run: npx nx affected --base=origin/master --target=build --parallel --max-parallel=3 --exclude=workspace
+      - run: npx nx affected --base=origin/master --target=test --parallel --max-parallel=2 --code-coverage --exclude=workspace
+      - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2 --exclude=workspace
 
       - name: Clean before merge
         run: yarn cleanBeforeMerge

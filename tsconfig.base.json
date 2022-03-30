@@ -19,13 +19,9 @@
       "@bedrockstreaming/form-context": ["libs/form-context/src/index.ts"],
       "@bedrockstreaming/form-editor": ["libs/form-editor/src/index.ts"],
       "@bedrockstreaming/form-redux": ["libs/form-redux/src/index.ts"],
-      "@bedrockstreaming/form-validation-rule-list": [
-        "libs/form-validation-rule-list/src/index.ts"
-      ],
+      "@bedrockstreaming/form-validation-rule-list": ["libs/form-validation-rule-list/src/index.ts"],
       "@forms/examples/birthdate": ["libs/examples/birthdate/src/index.ts"],
-      "@forms/examples/styled-inputs": [
-        "libs/examples/styled-inputs/src/index.ts"
-      ]
+      "@forms/examples/styled-inputs": ["libs/examples/styled-inputs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
