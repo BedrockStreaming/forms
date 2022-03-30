@@ -31,6 +31,7 @@
           "form-editor:publish-dev",
           "form-context:publish-dev"
         ],
+        "skipProjectChangelog": true,
         "skipRootChangelog": true
       }
     },
