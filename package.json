@@ -34,7 +34,7 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "prepare": "husky install",
-    "cleanBeforeMerge": "./cleanBeforeMerge.sh"
+    "cleanBeforeMerge": "node check-version.js"
   },
   "private": true,
   "resolutions": {
