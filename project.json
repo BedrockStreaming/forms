@@ -30,9 +30,7 @@
           "form-redux:publish-dev",
           "form-editor:publish-dev",
           "form-context:publish-dev"
-        ],
-        "skipProjectChangelog": true,
-        "skipRootChangelog": true
+        ]
       }
     },
     "github": {
