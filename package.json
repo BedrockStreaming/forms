@@ -33,7 +33,8 @@
     "help": "nx help",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cleanBeforeMerge": "./cleanBeforeMerge.sh"
   },
   "private": true,
   "resolutions": {
