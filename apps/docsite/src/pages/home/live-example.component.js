@@ -4,7 +4,7 @@ import { Grid, Button, Typography, Box } from '@mui/material';
 
 import Form from '../../form/form.component';
 
-const RefLink = React.forwardRef((props) => <Link {...props} />);
+const RefLink = React.forwardRef((props, ref) => <Link {...props} ref={ref} />);
 
 export default function LiveExample() {
   return (

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { FieldValues } from 'react-hook-form';
 import { updateFormData } from '@bedrockstreaming/form-redux';
 
 const transformFields = (x: any) => x;
@@ -9,11 +10,13 @@ const formSubmit = (processedFields: any) => ({
 });
 const onExit = () => ({ type: 'some_scope/EXIT' });
 
-export const useSubmit = (formId: string) => {
+type UseSubmitReturn = Array<((fieldsValues: FieldValues) => void) | (() => void)>;
+
+export const useSubmit = (formId: string): UseSubmitReturn => {
   const dispatch = useDispatch();
 
   const callback = useCallback(
-    async (fieldsValues) => {
+    async (fieldsValues: FieldValues) => {
       dispatch(updateFormData(formId, fieldsValues));
 
       const processedFields = transformFields(fieldsValues);

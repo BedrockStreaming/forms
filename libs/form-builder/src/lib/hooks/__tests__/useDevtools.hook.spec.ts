@@ -1,13 +1,18 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import { useDevtools, BaseDebug } from '../useDevtools.hook';
+
+jest.mock('@hookform/devtools', () => ({ DevTools: 'foo' }));
 
 describe('useDebug', () => {
   it('should load Devtools', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useDevtools(true));
+    expect.assertions(2);
+    const { result, rerender, unmount } = renderHook(() => useDevtools(true));
 
-    await waitForNextUpdate();
-
-    expect(result.current).not.toBe(BaseDebug);
+    rerender(true);
+    await waitFor(() => {
+      expect(result.current).not.toBe(BaseDebug);
+    });
+    unmount();
   });
 
   it('should not load Devtools', async () => {

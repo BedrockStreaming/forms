@@ -11,7 +11,7 @@ export const useSubmit = (
   const dispatch = useDispatch();
 
   const callback = useCallback(
-    async (fieldsValues) => {
+    async (fieldsValues: FieldValues) => {
       dispatch(updateFormData(formId, fieldsValues));
 
       return dispatch(onSubmit(fieldsValues));

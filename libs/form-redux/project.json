@@ -1,5 +1,5 @@
 {
-  "root": "libs/form-redux",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/form-redux/src",
   "projectType": "library",
   "targets": {
@@ -11,14 +11,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/form-redux"],
+      "outputs": ["{workspaceRoot}/coverage/libs/form-redux"],
       "options": {
-        "jestConfig": "libs/form-redux/jest.config.js",
+        "jestConfig": "libs/form-redux/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/web:package",
+      "executor": "@nrwl/rollup:rollup",
       "options": {
         "outputPath": "dist/libs/form-redux",
         "tsConfig": "libs/form-redux/tsconfig.lib.json",

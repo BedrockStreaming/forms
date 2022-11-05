@@ -104,7 +104,7 @@ export function FormBuilder({
   );
 
   const setFieldValue = React.useCallback(
-    (id: Path<FieldValues>, value) => setValue(id, value, { shouldValidate: true, shouldDirty: true }),
+    (id: Path<FieldValues>, value: unknown) => setValue(id, value, { shouldValidate: true, shouldDirty: true }),
     [setValue],
   );
 

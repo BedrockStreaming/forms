@@ -1,5 +1,5 @@
 {
-  "root": "libs/examples/birthdate",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/examples/birthdate/src",
   "projectType": "library",
   "targets": {
@@ -11,9 +11,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/examples/birthdate"],
+      "outputs": ["{workspaceRoot}/coverage/libs/examples/birthdate"],
       "options": {
-        "jestConfig": "libs/examples/birthdate/jest.config.js",
+        "jestConfig": "libs/examples/birthdate/jest.config.ts",
         "passWithNoTests": true
       }
     }

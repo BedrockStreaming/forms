@@ -14,24 +14,5 @@
     "form-validation-rule-list": "libs/form-validation-rule-list",
     "workspace": "."
   },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "defaultProject": "demo",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  }
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

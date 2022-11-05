@@ -1,10 +1,10 @@
 {
-  "root": "apps/demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/demo/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:build",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/demo",
@@ -43,7 +43,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/webpack:dev-server",
       "options": {
         "buildTarget": "demo:build",
         "hmr": true
@@ -52,8 +52,12 @@
         "production": {
           "buildTarget": "demo:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "demo:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -63,9 +67,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/demo"],
+      "outputs": ["{workspaceRoot}/coverage/apps/demo"],
       "options": {
-        "jestConfig": "apps/demo/jest.config.js",
+        "jestConfig": "apps/demo/jest.config.ts",
         "passWithNoTests": true
       }
     }

@@ -12,7 +12,7 @@ export const useSubmit = (formId: string): SubmitHandler<FieldValues> => {
   const dispatch = useFormsDispatch();
 
   const callback = useCallback(
-    async (fieldsValues) => {
+    async (fieldsValues: FieldValues) => {
       dispatch(updateFormData(formId, fieldsValues));
 
       const processedFields = transformFields(fieldsValues);

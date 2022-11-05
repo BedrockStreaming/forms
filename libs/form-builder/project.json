@@ -1,10 +1,10 @@
 {
-  "root": "libs/form-builder",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/form-builder/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:package",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/form-builder",
@@ -30,9 +30,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/form-builder"],
+      "outputs": ["{workspaceRoot}/coverage/libs/form-builder"],
       "options": {
-        "jestConfig": "libs/form-builder/jest.config.js",
+        "jestConfig": "libs/form-builder/jest.config.ts",
         "passWithNoTests": true
       }
     },

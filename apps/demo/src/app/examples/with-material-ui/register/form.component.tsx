@@ -62,7 +62,7 @@ const Form = () => {
 
   useEffect(
     () => () => {
-      cleanUseSubmit(null);
+      cleanUseSubmit(null as any);
     },
     [cleanUseSubmit],
   );

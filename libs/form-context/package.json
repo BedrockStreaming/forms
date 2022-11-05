@@ -2,7 +2,7 @@
   "name": "@bedrockstreaming/form-context",
   "version": "0.8.4",
   "peerDependencies": {
-    "react": "17.0.2",
+    "react": "17 - 18",
     "@bedrockstreaming/form-builder": "0.8.1",
     "react-hook-form": "7.27.0"
   },

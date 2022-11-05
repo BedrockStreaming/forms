@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useIsFormStepValid } from '../useIsFormStepValid';
 import { getFieldsToCheckByStep, isStepInError } from '../../utils/error.util';
 import { CORRECT_SCHEMA } from '../../__tests__/fixtures';

@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'form-redux',
   preset: '../../jest.preset.js',
   globals: {

@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './app/app';
@@ -9,7 +9,10 @@ import configureStore from './app/store/configureStore';
 
 const store = configureStore();
 
-ReactDOM.render(
+const container = document.getElementById('root');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+root.render(
   <StrictMode>
     <Router>
       <Provider store={store}>
@@ -17,5 +20,4 @@ ReactDOM.render(
       </Provider>
     </Router>
   </StrictMode>,
-  document.getElementById('root'),
 );

@@ -27,7 +27,7 @@ export function SubmitField({
   onNextStep,
 }: SubmitFieldProps) {
   const handleNextStep = React.useCallback(
-    (event) => {
+    (event: SubmitEvent) => {
       event.preventDefault();
       onNextStep(getValues());
     },

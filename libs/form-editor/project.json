@@ -1,10 +1,10 @@
 {
-  "root": "libs/form-editor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/form-editor/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:package",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/form-editor",
@@ -30,9 +30,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/form-editor"],
+      "outputs": ["{workspaceRoot}/coverage/libs/form-editor"],
       "options": {
-        "jestConfig": "libs/form-editor/jest.config.js",
+        "jestConfig": "libs/form-editor/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useAutoFocus, UseAutoFocusArgs } from '../useAutoFocus.hook';
 import { CORRECT_SCHEMA, fieldOneId } from '../../__tests__/fixtures';
 import { FieldValues, UseFormSetFocus } from 'react-hook-form';

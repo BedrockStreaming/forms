@@ -1,10 +1,10 @@
 {
-  "root": "libs/form-context",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/form-context/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:package",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/form-context",
@@ -31,9 +31,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/form-context"],
+      "outputs": ["{workspaceRoot}/coverage/libs/form-context"],
       "options": {
-        "jestConfig": "libs/form-context/jest.config.js",
+        "jestConfig": "libs/form-context/jest.config.ts",
         "passWithNoTests": true
       }
     },

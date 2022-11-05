@@ -20,7 +20,7 @@ jobs:
           main-branch-name: 'master'
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
           cache: yarn
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --target=lint --parallel --max-parallel=3
@@ -39,8 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
       - run: |
             git fetch --no-tags --prune origin master
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -49,7 +50,7 @@ jobs:
           main-branch-name: 'master'
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
           cache: yarn
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3

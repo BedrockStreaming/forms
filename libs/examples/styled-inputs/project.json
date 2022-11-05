@@ -1,5 +1,5 @@
 {
-  "root": "libs/examples/styled-inputs",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/examples/styled-inputs/src",
   "projectType": "library",
   "targets": {
@@ -11,9 +11,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/examples/styled-inputs"],
+      "outputs": ["{workspaceRoot}/coverage/libs/examples/styled-inputs"],
       "options": {
-        "jestConfig": "libs/examples/styled-inputs/jest.config.js",
+        "jestConfig": "libs/examples/styled-inputs/jest.config.ts",
         "passWithNoTests": true
       }
     }
