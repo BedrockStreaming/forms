@@ -69,7 +69,7 @@ const Form = () => {
 
   return (
     <Paper className={classes.root} sx={{ p: 2, m: 2 }}>
-      <Typography component="h1" variant="h6">
+      <Typography component="h1" variant="h6" data-testid="mui-register-form">
         {formId} with React Redux
       </Typography>
       <Divider />

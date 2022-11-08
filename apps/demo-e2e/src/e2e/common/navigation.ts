@@ -1,6 +1,4 @@
-/// <reference types="cypress" />
-
-import { And, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
+import { Given, Then, When } from '@badeball/cypress-cucumber-preprocessor';
 import { getConstant } from '../../support/constants';
 
 When('I reload the page', () => {
@@ -29,10 +27,10 @@ When('I click on {string} {int} times', (constantName, times) => {
   const selector = getConstant(constantName);
 
   Array(times)
-    .fill()
+    .fill(null)
     .forEach(() => {
       cy.get(selector).click();
     });
 });
 
-And('I wait {int} seconds', (n) => cy.wait(n * 1000));
+When('I wait {int} seconds', (n: number) => cy.wait(n * 1000));

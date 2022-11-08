@@ -17,7 +17,7 @@ declare namespace Cypress {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    getByDataTestId(selector: string): HTMLElement;
+    getByDataTestId(selector: string): Chainable<JQuery<HTMLElement>>;
   }
 }
 //
@@ -26,7 +26,7 @@ Cypress.Commands.add('login', (email, password) => {
   console.log('Custom command example: Login', email, password);
 });
 
-Cypress.Commands.add('getByDataTestId', (selector, ...args) => {
+Cypress.Commands.add('getByDataTestId', (selector: string, ...args) => {
   return cy.get(`[data-testid=${selector}]`, ...args);
 });
 //
