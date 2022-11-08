@@ -30,9 +30,9 @@ jobs:
       - name: Lint
         run: yarn nx affected:lint --base=last-release
       - name: Build
-        run: yarn nx affected:build --base=last-release
+        run: yarn nx affected:build --base=last-release --exclude=workspace
       - name: Unit tests
-        run: yarn nx affected:test --base=last-release --code-coverage
+        run: yarn nx affected:test --base=last-release --code-coverage --exclude=workspace
       - name: Codecov upload
         uses: codecov/codecov-action@v2
         with:
