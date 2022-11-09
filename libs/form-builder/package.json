@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-builder",
-  "version": "0.8.4",
+  "version": "0.8.5-bump-nx.0",
   "dependencies": {
     "react-hook-form": "7.27.0"
   },
