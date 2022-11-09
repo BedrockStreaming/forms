@@ -1,12 +1,13 @@
 name: 'Forms Pre-release'
 
 on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: Specify the git branch you want to prerelease
-        required: true
-        type: string
+  pull_request:
+  # workflow_dispatch:
+  #   inputs:
+  #     branch:
+  #       description: Specify the git branch you want to prerelease
+  #       required: true
+  #       type: string
 
 jobs:
   release:
@@ -15,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${{ github.event.inputs.branch }}
+          ref: bump-nx
       - uses: actions/setup-node@v2
         with:
           cache: yarn
@@ -33,5 +34,5 @@ jobs:
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version
-        run: npx --no-install nx run workspace:pre-version --baseBranch=${{ github.event.inputs.branch }} --syncVersions  --releaseAs=prerelease --preid=${{ github.event.inputs.branch }}
+        run: npx --no-install nx run workspace:pre-version --baseBranch=bump-nx --syncVersions  --releaseAs=prerelease --preid=bump-nx
 
