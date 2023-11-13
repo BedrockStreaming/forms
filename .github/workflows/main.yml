@@ -18,7 +18,11 @@ jobs:
         uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
-      - uses: actions/setup-node@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: pnpm
@@ -47,7 +51,11 @@ jobs:
         uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
-      - uses: actions/setup-node@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: pnpm
