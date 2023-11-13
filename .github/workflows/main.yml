@@ -21,8 +21,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: yarn
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --target=lint --parallel --max-parallel=3
       - run: npx nx affected --target=build --parallel --max-parallel=3
       - run: npx nx affected --target=test --parallel --max-parallel=2 --code-coverage
@@ -50,15 +50,15 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: yarn
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3
       - run: npx nx affected --base=origin/master --target=build --parallel --max-parallel=3
       - run: npx nx affected --base=origin/master --target=test --parallel --max-parallel=2 --code-coverage
       - run: npx nx affected --base=origin/master --target=e2e --parallel --max-parallel=2
 
       - name: Clean before merge
-        run: yarn cleanBeforeMerge
+        run: pnpm cleanBeforeMerge
 
       - name: Codecov upload
         uses: codecov/codecov-action@v2

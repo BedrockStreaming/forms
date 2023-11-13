@@ -25,10 +25,10 @@ jobs:
       # Install and build Docusaurus website
       - name: Build Docusaurus website
         run: |
-          yarn install --no-progress --frozen-lockfile
-          yarn lint docsite
-          yarn build docsite
-          yarn e2e docsite-e2e
+          pnpm install --no-progress --frozen-lockfile
+          pnpm lint docsite
+          pnpm build docsite
+          pnpm e2e docsite-e2e
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
