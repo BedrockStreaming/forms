@@ -18,6 +18,7 @@ const identity = (value: string) => value;
 
 export const getValidationRulesHints = ({ t = identity, errors, validation, config }: GetValidationRulesHintsArgs) => {
   return Object.values(validation).reduce((acc, { message, key }) => {
+    // @ts-ignore
     return DEFAULT_RULES_NAMES[key] ? acc : [...acc, rule(t(message, config), () => !errors?.types[key])];
   }, [] as Array<RuleObject>);
 };
