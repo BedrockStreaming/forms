@@ -6,7 +6,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -31,7 +31,7 @@
 coverage-final.json
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
+pnpm-error.log
 testem.log
 /typings
 

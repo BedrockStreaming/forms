@@ -1,4 +1,4 @@
-import { UseFormGetValues, FieldValues, FieldErrors } from 'react-hook-form';
+import { UseFormGetValues, FieldValues, FieldErrors, FieldError } from 'react-hook-form';
 import { ExtraValidation, FormField, FormFields } from '../types';
 
 export interface ShouldDisplayField {
@@ -24,7 +24,7 @@ export const shouldDisplayField = ({ dependsOn, getValues, extraValidation, erro
     // When the validate option is disabled
     // Check for specific validation error
     if (!dependRule.validate) {
-      const validationError = fieldError && fieldError[dependRule.key];
+      const validationError = fieldError && fieldError[dependRule.key as keyof FieldError];
       return dependsOnConditions.push(!!fieldValue && !validationError);
     }
 

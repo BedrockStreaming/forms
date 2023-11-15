@@ -17,22 +17,26 @@ jobs:
         uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
-      - uses: actions/setup-node@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+      - uses: actions/setup-node@v3
         with:
           node-version: "14"
-          cache: yarn
+          cache: pnpm
       - name: Install
         shell: bash
-        run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+        run: pnpm install --frozen-lockfile
       - name: Commit lint
         shell: bash
-        run: yarn commitlint --from=last-release
+        run: pnpm commitlint --from=last-release
       - name: Lint
-        run: yarn nx affected:lint --base=last-release
+        run: pnpm nx affected:lint --base=last-release
       - name: Build
-        run: yarn nx affected:build --base=last-release
+        run: pnpm nx affected:build --base=last-release
       - name: Unit tests
-        run: yarn nx affected:test --base=last-release --code-coverage
+        run: pnpm nx affected:test --base=last-release --code-coverage
       - name: Codecov upload
         uses: codecov/codecov-action@v2
         with:
@@ -48,19 +52,23 @@ jobs:
         with:
           ref: 'master'
           fetch-depth: 0
-      - uses: actions/setup-node@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          cache: yarn
+          version: 6
+      - uses: actions/setup-node@v3
+        with:
+          cache: pnpm
           node-version: "14"
           registry-url: https://registry.npmjs.org
-      - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
+      - run: pnpm install --frozen-lockfile
       - name: Setup git user to "🤖 Release Bot"
         run: git config user.email "-" && git config user.name "🤖 Release Bot"
       - name: Version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # Use npx instead of yarn because yarn auto-magically sets NPM_* environment variables
+        # Use npx instead of pnpm because pnpm auto-magically sets NPM_* environment variables
         # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
         # which is set up by `setup-node` action.
         # run: npx nx affected --base=master --releaseAs=minor --target=version

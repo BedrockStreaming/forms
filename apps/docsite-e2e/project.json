@@ -19,7 +19,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/docsite-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/docsite-e2e/**/*.{js,ts}"],
+        "exclude": ["**/node_modules/**"]
       }
     }
   },

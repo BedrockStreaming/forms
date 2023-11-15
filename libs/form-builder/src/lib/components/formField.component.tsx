@@ -8,7 +8,7 @@ export interface FormFieldProps {
   dictionary: Dictionary;
   validation?: Validations;
   errors?: ErrorOption;
-  setFieldValue?: SetFieldValue<string | number>;
+  setFieldValue?: SetFieldValue<FieldValues>;
   triggerValidationField?: (value: Path<FieldValues>) => void;
   propRef?: Ref;
   disabled?: boolean;

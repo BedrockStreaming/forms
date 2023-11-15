@@ -14,7 +14,7 @@ There are two applications in this NX workspace `demo` and `docsite`. We are usi
 Start the server
 
 ```bash
-yarn start demo
+pnpm start demo
 ```
 
 Then start editing the libraries and demo app.
@@ -27,7 +27,7 @@ Then start editing the libraries and demo app.
 
 ### Generate an application
 
-Run `yarn nx g @nrwl/react:app my-app` to generate an application.
+Run `pnpm nx g @nrwl/react:app my-app` to generate an application.
 
 > You can use any of the plugins above to generate applications as well.
 
@@ -35,7 +35,7 @@ When using Nx, you can create multiple applications and libraries in the same wo
 
 ### Generate a library
 
-Run `yarn nx g @nrwl/react:lib my-lib` to generate a react library.
+Run `pnpm nx g @nrwl/react:lib my-lib` to generate a react library.
 Run `yarn nx g @nrwl/react:web my-lib` to generate a web library.
 Run `yarn nx g @nrwl/react:node my-lib` to generate a node library.
 

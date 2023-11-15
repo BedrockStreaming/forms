@@ -18,7 +18,7 @@ export interface GetFieldRulesArgs {
   extraValidation?: ExtraValidation;
 }
 
-export interface FieldRules extends RegisterOptions {
+export type FieldRules = RegisterOptions & {
   validate?: { [key: string]: (value?: any) => Promise<boolean> | boolean };
 }
 

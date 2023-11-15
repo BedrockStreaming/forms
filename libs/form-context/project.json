@@ -26,7 +26,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/form-context/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/form-context/**/*.{ts,tsx,js,jsx}"],
+        "exclude": ["**/node_modules/**"]
       }
     },
     "test": {

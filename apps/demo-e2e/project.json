@@ -19,7 +19,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"],
+        "exclude": ["**/node_modules/**"]
       }
     }
   },

@@ -6,7 +6,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/examples/styled-inputs/**/*.{ts,tsx,js,jsx}"],
+        "exclude": ["**/node_modules/**"]
       }
     },
     "test": {
