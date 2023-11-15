@@ -41,10 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+      - uses: actions/checkout@v3
       - run: |
             git fetch --no-tags --prune origin master
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -54,10 +51,10 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6
-      - uses: actions/setup-node@v3
+          version: 8
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '16'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: npx nx affected --base=origin/master --target=lint --parallel --max-parallel=3
