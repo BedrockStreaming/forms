@@ -25,7 +25,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["libs/form-builder/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/form-builder/**/*.{ts,tsx,js,jsx}"],
+        "exclude": ["**/node_modules/**"]
       }
     },
     "test": {

@@ -6,7 +6,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["libs/form-redux/**/*.ts"]
+        "lintFilePatterns": ["libs/form-redux/**/*.ts"],
+        "exclude": ["**/node_modules/**"]
       }
     },
     "test": {
