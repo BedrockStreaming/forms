@@ -3,7 +3,7 @@ import { Path, PathValue, FieldValues, FieldNamesMarkedBoolean, UnpackNestedValu
 
 export type DirtyFields = FieldNamesMarkedBoolean<FieldValues>;
 
-export interface FormMeta {
+export interface StepMeta {
   [key: string]: unknown;
 }
 
@@ -28,7 +28,7 @@ export interface DependsOnObject {
 export interface FormField {
   id: string;
   type: string;
-  meta?: FormMeta | undefined;
+  meta?: StepMeta | undefined;
   dependsOn?: Array<string | DependsOnObject>;
   validation?: Validations | undefined;
   defaultValue?: UnpackNestedValue<PathValue<unknown, never>> | string | number | string[] | number[] | Path<string>;
@@ -44,15 +44,20 @@ export interface FormStep {
   submit: {
     label: string;
   };
-  meta?: FormMeta;
+  meta?: StepMeta;
 }
 
 export interface FormSteps {
   [key: string]: FormStep;
 }
 
+export interface FormMeta {
+  shouldDisplayRequiredHint?: boolean;
+}
+
 export interface FormSchema {
   fields: FormFields;
+  formMeta?: FormMeta;
   steps: FormSteps;
   stepsById: string[];
 }

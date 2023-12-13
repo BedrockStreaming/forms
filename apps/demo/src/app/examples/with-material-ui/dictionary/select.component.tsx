@@ -13,6 +13,7 @@ export const Select = ({
   value,
   choices,
   multiple,
+  shouldDisplayRequiredHint,
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -28,8 +29,13 @@ export const Select = ({
   value?: string | number;
   choices: string[] | number[];
   multiple?: boolean;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <Box sx={{ m: 2 }}>

@@ -11,6 +11,8 @@ import { RuleList } from '../atoms/rule-list.component';
 export const Password = ({
   errors,
   validation,
+  shouldDisplayRequiredHint,
+  label,
   ...props
 }: {
   errors: FieldErrors;
@@ -18,6 +20,7 @@ export const Password = ({
   label: string;
   value?: string | number;
   validation: Validations;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const rules = getValidationRulesHints({
     errors,
@@ -27,11 +30,16 @@ export const Password = ({
   const fieldError = errors && errors.type;
   const isValid = !!(props.value && !hasError && !fieldError);
 
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
+
   return (
     <TextFieldTopMarginWrapper>
       <ValidatedPasswordTextField
         hasError={hasError}
         valid={isValid}
+        label={label}
         {...props}
         rules={rules}
         ruleComponent={RuleList}

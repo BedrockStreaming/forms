@@ -17,6 +17,7 @@ export const Text = ({
   type,
   value,
   multiline,
+  shouldDisplayRequiredHint,
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -31,9 +32,14 @@ export const Text = ({
   type?: string;
   value?: string | number;
   multiline?: boolean;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const error = errors && errors.type && errorMessage;
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <Box sx={{ m: 2 }}>

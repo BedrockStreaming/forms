@@ -27,6 +27,7 @@ export const DateInput = ({
   onChange,
   onBlur,
   propRef,
+  shouldDisplayRequiredHint,
 }: {
   'data-testid': string;
   errors: FieldErrors;
@@ -41,6 +42,7 @@ export const DateInput = ({
   value?: string | number;
   validation: Validations;
   setFieldValue: (id: Path<FieldValues>, value: any) => void;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
   const rules = getValidationRulesHints({
@@ -49,6 +51,10 @@ export const DateInput = ({
   });
 
   const hasError = !!checkRules(value, rules).length;
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <div>

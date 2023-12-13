@@ -63,6 +63,9 @@ export interface FormSchema {
         | Path<string>;
     };
   };
+  formMeta?: {
+    shouldDisplayRequiredHint?: boolean;
+  };
   steps: {
     [key: string]: {
       id: string;

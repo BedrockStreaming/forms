@@ -25,6 +25,7 @@ export const Password = ({
   propRef,
   value,
   validation,
+  shouldDisplayRequiredHint,
 }: {
   'data-testid': string;
   errors: FieldErrors;
@@ -38,6 +39,7 @@ export const Password = ({
   type?: string;
   value?: string | number;
   validation: Validations;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef }), [propRef]);
 
@@ -47,6 +49,10 @@ export const Password = ({
   });
 
   const hasError = !!checkRules(value, rules).length;
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <ValidatedTextField

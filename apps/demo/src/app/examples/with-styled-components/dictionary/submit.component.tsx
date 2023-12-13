@@ -20,7 +20,16 @@ const PreviousButton = styled.button`
   border: 1px solid rgba(150, 100, 255);
 `;
 
-export const Submit = ({ label, formId, ...props }: { label: string; formId: string }) => {
+export const Submit = ({
+  label,
+  formId,
+  shouldDisplayRequiredHint,
+  ...props
+}: {
+  label: string;
+  formId: string;
+  shouldDisplayRequiredHint?: boolean;
+}) => {
   const dispatch = useDispatch();
 
   const shouldDisplayPrevious = useSelector(getCurrentStepIndex(formId)) !== 0;
@@ -28,6 +37,10 @@ export const Submit = ({ label, formId, ...props }: { label: string; formId: str
   const handlePreviousStep = () => {
     dispatch(setPreviousStep(formId));
   };
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <ActionsWrapper>
