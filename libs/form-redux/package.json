@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-redux",
-  "version": "0.8.4",
+  "version": "0.8.5-add-meta-display-required-hint.0",
   "peerDependencies": {
     "@bedrockstreaming/form-builder": "0.8.1",
     "@hookform/devtools": "4.0.2",

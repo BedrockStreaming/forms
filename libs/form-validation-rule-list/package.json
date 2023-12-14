@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-validation-rule-list",
-  "version": "0.8.4",
+  "version": "0.8.5-add-meta-display-required-hint.0",
   "dependencies": {},
   "peerDependencies": {
     "react": "17.0.2",
