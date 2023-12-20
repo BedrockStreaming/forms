@@ -16,12 +16,32 @@ export interface FormFieldProps {
   onClick?: (event: any) => void;
   isValidating?: boolean;
   formId?: string;
+  shouldDisplayRequiredHint?: boolean;
 }
 
-export function FormField({ id, fieldType, dictionary, ...props }: FormFieldProps) {
+export function FormField({
+  id,
+  fieldType,
+  dictionary,
+  shouldDisplayRequiredHint,
+  validation,
+  ...props
+}: FormFieldProps) {
   const Field = dictionary[fieldType];
 
   if (!Field) return null;
 
-  return <Field data-testid={id} id={id} {...props} />;
+  if (!validation?.required?.value) {
+    shouldDisplayRequiredHint = false;
+  }
+
+  return (
+    <Field
+      data-testid={id}
+      id={id}
+      shouldDisplayRequiredHint={shouldDisplayRequiredHint}
+      validation={validation}
+      {...props}
+    />
+  );
 }

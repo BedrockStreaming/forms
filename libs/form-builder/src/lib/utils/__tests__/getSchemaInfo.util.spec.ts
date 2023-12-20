@@ -9,6 +9,7 @@ describe('getSchemaInfo', () => {
     fieldsById: stepOne[stepOneId].fieldsById,
     stepsById: CORRECT_SCHEMA.stepsById,
     submitLabel: stepOne[stepOneId].submit.label,
+    formMeta: CORRECT_SCHEMA.formMeta,
   };
 
   it('should return all fields, current step fieldsByIds, submit label and stepsById', () => {

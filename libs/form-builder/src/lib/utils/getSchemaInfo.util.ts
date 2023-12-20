@@ -1,5 +1,5 @@
 import { SUBMIT_FIELD_TYPE } from '../constants';
-import { FormFields, FormSchema } from '../types';
+import { FormFields, FormMeta, FormSchema } from '../types';
 
 const EMPTY_ARRAY = [] as const;
 const EMPTY_OBJECT = {} as const;
@@ -16,6 +16,7 @@ export interface SchemaInfo {
   fieldsById: string[];
   submitLabel: string;
   stepsById: string[];
+  formMeta: FormMeta;
 }
 
 export const getSchemaInfo = (schema: FormSchema, typesAllowed: string[], currentStepIndex: number): SchemaInfo => {
@@ -25,11 +26,13 @@ export const getSchemaInfo = (schema: FormSchema, typesAllowed: string[], curren
   const fieldsById = steps?.[stepId]?.fieldsById || EMPTY_ARRAY;
   const submitLabel = steps?.[stepId]?.submit?.label;
   const fields = schema?.fields || EMPTY_OBJECT;
+  const formMeta = schema?.formMeta || EMPTY_OBJECT;
 
   return {
     fields,
     fieldsById: sanitizeFieldsById(fieldsById, fields, typesAllowed),
     submitLabel,
     stepsById,
+    formMeta,
   };
 };

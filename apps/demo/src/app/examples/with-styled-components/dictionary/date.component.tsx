@@ -12,6 +12,7 @@ import { RuleList } from '../atoms/rule-list.component';
 export const DateInput = ({
   errors,
   validation,
+  shouldDisplayRequiredHint,
   label,
   ...props
 }: {
@@ -23,6 +24,7 @@ export const DateInput = ({
   id: string;
   setFieldValue: (id: Path<FieldValues>, value: any) => void;
   onChange: (event: any) => void;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const rules = getValidationRulesHints({
     errors,
@@ -31,6 +33,10 @@ export const DateInput = ({
   const hasError = !!checkRules(props.value, rules).length;
   const fieldError = errors && errors.type;
   const isValid = !!(props.value && !hasError && !fieldError);
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <TextFieldMarginWrapper>

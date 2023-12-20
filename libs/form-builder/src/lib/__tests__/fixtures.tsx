@@ -54,6 +54,7 @@ export const CORRECT_SCHEMA: FormSchema = {
       type: 'text',
     },
   },
+  formMeta: {},
   steps: { ...stepOne, ...stepTwo },
   stepsById: [stepOneId, stepTwoId],
 };

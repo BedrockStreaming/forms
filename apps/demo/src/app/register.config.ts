@@ -170,6 +170,9 @@ export const config: Config = {
           },
         },
       },
+      formMeta: {
+        shouldDisplayRequiredHint: true,
+      },
       steps: {
         'register-step-0': {
           fieldsById: ['email', 'discloseGender', 'gender', 'firstName', 'lastName'],

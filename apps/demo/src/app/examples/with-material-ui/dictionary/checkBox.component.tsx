@@ -16,6 +16,7 @@ export const Checkbox = ({
   onChange,
   propRef,
   value,
+  shouldDisplayRequiredHint,
 }: {
   'data-testid': string;
   errorMessage: string;
@@ -29,8 +30,13 @@ export const Checkbox = ({
   propRef: Ref<any>;
   type?: string;
   value?: boolean;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const inputProps = useMemo(() => ({ ref: propRef, 'aria-label': 'controlled' }), [propRef]);
+
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
 
   return (
     <Box sx={{ m: 2 }}>

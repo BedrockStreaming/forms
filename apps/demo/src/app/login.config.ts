@@ -61,6 +61,9 @@ export const config = {
           },
         },
       },
+      formMeta: {
+        shouldDisplayRequiredHint: false,
+      },
       steps: {
         'login-step-0': {
           fieldsById: ['email'],

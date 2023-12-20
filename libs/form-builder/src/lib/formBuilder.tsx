@@ -77,7 +77,7 @@ export function FormBuilder({
 
   const typesAllowed = React.useMemo(() => Object.keys(dictionary || EMPTY_OBJECT), [dictionary]);
 
-  const { fields, fieldsById, stepsById, submitLabel } = React.useMemo(
+  const { fields, fieldsById, stepsById, submitLabel, formMeta } = React.useMemo(
     () => getSchemaInfo(schema, typesAllowed, currentStepIndex),
     [currentStepIndex, schema, typesAllowed],
   );
@@ -161,6 +161,7 @@ export function FormBuilder({
                           triggerValidationField={triggerValidationField}
                           propRef={ref}
                           isValidating={isValidating}
+                          {...formMeta}
                           {...meta}
                           {...fieldRest}
                         />

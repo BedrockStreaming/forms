@@ -9,6 +9,8 @@ export const Text = ({
   errors,
   errorMessage,
   validation,
+  shouldDisplayRequiredHint,
+  label,
   ...props
 }: {
   errors: FieldErrors;
@@ -16,12 +18,24 @@ export const Text = ({
   label: string;
   value?: string | number;
   validation: Validations;
+  shouldDisplayRequiredHint?: boolean;
 }) => {
   const error = errors && errors.type && errorMessage;
 
+  if (shouldDisplayRequiredHint) {
+    label += ' *';
+  }
+
   return (
     <TextFieldMarginWrapper>
-      <ValidatedTextField type="text" hasError={!!error} errorText={error} valid={!!props.value && !error} {...props} />
+      <ValidatedTextField
+        type="text"
+        hasError={!!error}
+        errorText={error}
+        valid={!!props.value && !error}
+        label={label}
+        {...props}
+      />
     </TextFieldMarginWrapper>
   );
 };
