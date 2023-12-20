@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.9.0](https://github.com/BedrockStreaming/forms/compare/v0.8.4...v0.9.0) (2023-12-20)
+
+
+### Features
+
+* **meta:** add option to display mandatory field hint ([#98](https://github.com/BedrockStreaming/forms/issues/98)) ([e15dbf8](https://github.com/BedrockStreaming/forms/commit/e15dbf822641a6cd55b17c4a61b17b7e217b5112))
+
+
+
 ## [0.8.4](https://github.com/BedrockStreaming/forms/compare/v0.8.3...v0.8.4) (2022-03-28)
 
 
