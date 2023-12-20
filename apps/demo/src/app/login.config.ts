@@ -62,7 +62,7 @@ export const config = {
         },
       },
       formMeta: {
-        shouldDisplayRequiredHint: true,
+        shouldDisplayRequiredHint: false,
       },
       steps: {
         'login-step-0': {

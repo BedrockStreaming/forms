@@ -31,7 +31,7 @@ export function FormField({
 
   if (!Field) return null;
 
-  if (!validation || !validation?.required?.value) {
+  if (!validation?.required?.value) {
     shouldDisplayRequiredHint = false;
   }
 
