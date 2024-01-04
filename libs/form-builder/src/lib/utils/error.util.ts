@@ -17,13 +17,13 @@ export const getFieldsToCheckByStep = ({
   return fieldsToCheck;
 };
 
-export const isFieldInError = ({ fieldToCheck, errors }: { fieldToCheck: string; errors: FieldErrors }) =>
+const isFieldInError = ({ fieldToCheck, errors }: { fieldToCheck: string; errors: FieldErrors }) =>
   !!(errors && errors[fieldToCheck]);
 
-export const isFieldRequired = ({ schema, fieldToCheck }: { schema: FormSchema; fieldToCheck: string }) =>
-  schema?.fields?.[fieldToCheck]?.validation?.[DEFAULT_RULES_NAMES.required];
+const isFieldRequired = ({ schema, fieldToCheck }: { schema: FormSchema; fieldToCheck: string }): boolean =>
+  !!schema?.fields?.[fieldToCheck]?.validation?.[DEFAULT_RULES_NAMES.required]?.value;
 
-export const isFieldNotDirtyAndEmpty = ({
+const isFieldNotDirtyAndEmpty = ({
   fieldToCheck,
   dirtyFields,
   defaultValues,
