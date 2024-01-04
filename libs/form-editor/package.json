@@ -1,6 +1,6 @@
 {
   "name": "@bedrockstreaming/form-editor",
-  "version": "0.9.0",
+  "version": "0.9.1-fix-required.0",
   "dependencies": {
     "@bedrockstreaming/form-builder": "0.8.1",
     "@bedrockstreaming/form-redux": "0.8.1",
