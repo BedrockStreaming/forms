@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.9.1](https://github.com/BedrockStreaming/forms/compare/v0.9.0...v0.9.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* **validation:** wrong condition for required field ([#99](https://github.com/BedrockStreaming/forms/issues/99)) ([3f19afc](https://github.com/BedrockStreaming/forms/commit/3f19afcf4202fb736dcf60fe5cad3c568424596b))
+
+
+
 # [0.9.0](https://github.com/BedrockStreaming/forms/compare/v0.8.4...v0.9.0) (2023-12-20)
 
 
