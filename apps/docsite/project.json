@@ -18,7 +18,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/docsite/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/docsite/**/*.{ts,tsx,js,jsx}"],
+        "exclude": ["**/node_modules/**"]
       }
     }
   },

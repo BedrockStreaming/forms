@@ -115,7 +115,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Bedroc
 
 ### Your First Code Contribution
 
-- Make sure you have yarn and node (>= 12) installed
+- Make sure you have pnpm and node (>= 12) installed
 - Your Pull Request must include both unit tests and functional (cypress) tests when possible.
 
 ### Improving The Documentation

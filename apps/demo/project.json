@@ -58,7 +58,8 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/demo/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/demo/**/*.{ts,tsx,js,jsx}"],
+        "exclude": ["**/node_modules/**"]
       }
     },
     "test": {
