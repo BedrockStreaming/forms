@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.9.2](https://github.com/BedrockStreaming/forms/compare/v0.9.1...v0.9.2) (2024-05-16)
+
+
+
 ## [0.9.1](https://github.com/BedrockStreaming/forms/compare/v0.9.0...v0.9.1) (2024-01-04)
 
 
