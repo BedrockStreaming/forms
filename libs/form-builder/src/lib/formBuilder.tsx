@@ -151,13 +151,6 @@ export function FormBuilder({
                     render={({ field }) => {
                       const { ref, onChange, ...fieldRest } = field;
 
-                      const handleOnChangeFromField = (event: unknown) => {
-                        onChange(event);
-                        trigger(id);
-                      };
-                      const onChangeAttr =
-                        behavior === 'onChangeTriggerByField' ? { onChange: handleOnChangeFromField } : null;
-
                       return (
                         <FormField
                           id={id}
@@ -172,7 +165,12 @@ export function FormBuilder({
                           {...formMeta}
                           {...meta}
                           {...fieldRest}
-                          {...onChangeAttr}
+                          onChange={(event) => {
+                            onChange(event);
+                            if (behavior === 'onChangeTriggerByField') {
+                              trigger(id);
+                            }
+                          }}
                         />
                       );
                     }}
