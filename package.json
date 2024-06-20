@@ -1,6 +1,6 @@
 {
   "name": "forms",
-  "version": "0.9.3-fix-toomuch-calls.1",
+  "version": "0.9.3-fix-toomuch-calls.2",
   "license": "MIT",
   "keywords": [
     "react-hook-form",
