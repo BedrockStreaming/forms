@@ -165,8 +165,8 @@ export function FormBuilder({
                           {...meta}
                           {...fieldRest}
                           onChange={(event) => {
+                            onChange(event);
                             if (behavior === 'onChangeTriggerByField') {
-                              onChange(event);
                               trigger(id);
                             }
                           }}
