@@ -108,6 +108,10 @@ Run `yarn nx dep-graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
+## Release or Pre-release a new version
+
+Use the actions tabs in github!
+
 ## Contributors
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.

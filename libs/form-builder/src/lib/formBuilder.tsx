@@ -35,7 +35,7 @@ export interface FormBuilderProps {
   onSubmit: SubmitHandler<FieldValues>;
   onNextStep?: (value: UnpackNestedValue<FieldValues>) => void;
   defaultValues?: DefaultValues<FieldValues>;
-  behavior?: keyof ValidationMode;
+  behavior?: keyof ValidationMode | 'onChangeTriggerByField';
   extraValidation?: ExtraValidation;
   isLastStep?: boolean;
   currentStepIndex?: number;
@@ -66,7 +66,7 @@ export function FormBuilder({
     trigger,
     setFocus,
   } = useForm<FieldValues>({
-    mode: behavior,
+    mode: behavior === 'onChangeTriggerByField' ? 'onSubmit' : behavior,
     criteriaMode: 'all',
     defaultValues,
   });
@@ -149,7 +149,8 @@ export function FormBuilder({
                     defaultValue={defaultValue}
                     rules={validationRulesById[fieldId]}
                     render={({ field }) => {
-                      const { ref, ...fieldRest } = field;
+                      const { ref, onChange, ...fieldRest } = field;
+
                       return (
                         <FormField
                           id={id}
@@ -164,6 +165,12 @@ export function FormBuilder({
                           {...formMeta}
                           {...meta}
                           {...fieldRest}
+                          onChange={(event) => {
+                            onChange(event);
+                            if (behavior === 'onChangeTriggerByField') {
+                              trigger(id);
+                            }
+                          }}
                         />
                       );
                     }}

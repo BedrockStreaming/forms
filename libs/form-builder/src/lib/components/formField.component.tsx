@@ -13,7 +13,8 @@ export interface FormFieldProps {
   propRef?: Ref;
   disabled?: boolean;
   label?: string;
-  onClick?: (event: any) => void;
+  onClick?: (event: React.BaseSyntheticEvent) => void;
+  onChange?: (event: React.BaseSyntheticEvent) => void;
   isValidating?: boolean;
   formId?: string;
   shouldDisplayRequiredHint?: boolean;

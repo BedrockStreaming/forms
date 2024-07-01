@@ -1,5 +1,7 @@
 /* eslint-disable */
+import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { FormBuilder } from '../formBuilder';
 
 const makeStep = ({ fieldsById, stepId, label }) => ({
@@ -60,12 +62,18 @@ describe('<FormBuilder />', () => {
     steps: { ...stepOne, ...stepTwo },
     stepsById: [stepOneId, stepTwoId],
   };
+
   // aria-checked="true"
   const CORRECT_DICTIONARY = {
-    text: ({ label, ...props }) => (
+    text: ({ label, errors, id, ...props }) => (
       <fieldset>
-        <label>{label}</label>
-        <input type="text" placeholder="Test" />
+        <label for={id}>{label}</label>
+        <input id={id} type="text" placeholder="Test" />
+        {
+          !!errors ? (
+            <span>{errors.message}</span>
+          ) : null
+        }
       </fieldset>
     ),
     checkbox: ({ label, value = false, ...props }) => (
@@ -76,6 +84,53 @@ describe('<FormBuilder />', () => {
     ),
     submit: ({ label }) => <button type="submit">{label}</button>,
   };
+
+  describe('onChangeTriggerByField behavior', () => {
+    it.only('should trigger validate only changed field', async () => {
+      await getWrapper({
+        schema: {
+          fields: {
+            [fieldOneId]: {
+              id: fieldOneId,
+              type: 'text',
+              meta: {
+                label: 'bar',
+              },
+              validation: {
+                required: {
+                  key: 'required',
+                  message: 'field is required',
+                  value: true,
+                },
+              }
+            },
+            [fieldTwoId]: {
+              id: fieldTwoId,
+              type: 'text',
+              meta: {
+                label: 'foo',
+              },
+              validation: {
+                required: {
+                  key: 'required',
+                  message: 'field is required',
+                  value: true,
+                },
+              }
+            },
+          },
+          steps: { ...stepOne },
+          stepsById: [stepOneId, stepTwoId],
+        },
+        dictionary: CORRECT_DICTIONARY,
+        onSubmit,
+      });
+
+      await userEvent.type(screen.getByLabelText('bar'), 'tesTyping');
+
+      expect(screen.queryByText('field is required')).not.toBeInTheDocument();
+    })
+  })
 
   describe('with bad props', () => {
     it('should not render if we pass no dictionary', async () => {
